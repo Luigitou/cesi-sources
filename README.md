@@ -1,2 +1,2 @@
-# cesi-sources
-Projet sources relationnel du groupe 1 des RIL 2021.
+# CESI Projet Sources Relationnelles
+Projet sources relationnelles du groupe 1 des RIL 2021.
