@@ -1,5 +1,11 @@
 <template>
-    <Footer-Accueil/>
+  <div id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </div>
+  <router-view/>
+
+  <FooterAccueil/>
 </template>
 
 <script>
@@ -23,19 +29,16 @@ body{
   background-color: #EFFAFF;
 }
 
-#footer{
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-  margin-top: 33rem;
+#nav {
+  padding: 30px;
 }
 
-#footer h1{
-  color: #FF914D;
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
 
-#footer p{
-  color: #296870;
-  font-size: 1.2rem;
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

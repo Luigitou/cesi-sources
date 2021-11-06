@@ -27,3 +27,21 @@ export default {
         </div>
     </div>
 </template>
+
+<style>
+#footer{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 33rem;
+}
+
+#footer h1{
+  color: #FF914D;
+}
+
+#footer p{
+  color: #296870;
+  font-size: 1.2rem;
+}
+</style>
