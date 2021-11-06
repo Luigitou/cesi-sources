@@ -1,24 +1,20 @@
 <!-- Vue router to implement
-<div id="nav">
+  <div id="nav">
     <router-link to="/">Home</router-link> |
   </div>
-  <router-view/>
 -->
 
 <template>
   <div id="main">
-    <FooterAccueil/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import FooterAccueil from './components/FooterAccueil.vue'
 
 export default {
   name: 'App',
-  components: {
-    FooterAccueil
-  }
+
 }
 </script>
 
@@ -26,6 +22,8 @@ export default {
 body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #EFFAFF;
+  margin: 0;
+  padding: 0;
 }
 
 #app {
