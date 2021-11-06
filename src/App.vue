@@ -1,26 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Footer-Accueil></Footer-Accueil>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FooterAccueil from './components/FooterAccueil.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    FooterAccueil
   }
 }
 </script>
 
 <style>
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #EFFAFF;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #EFFAFF;
+}
+
+#footer{
+  display: flex;
+  justify-content: space-around;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 33rem;
+}
+
+#footer h1{
+  color: #FF914D;
+}
+
+#footer p{
+  color: #296870;
+  font-size: 1.2rem;
 }
 </style>
