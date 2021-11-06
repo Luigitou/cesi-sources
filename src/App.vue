@@ -4,15 +4,28 @@
     <router-link to="/about">About</router-link>
   </div>
   <router-view/>
+  <FooterAccueil/>
 </template>
 
+<script>
+import FooterAccueil from './components/FooterAccueil.vue'
+
+export default {
+  name: 'App',
+  components: {
+    FooterAccueil
+  }
+}
+</script>
+
 <style>
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #EFFAFF;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  background-color: #EFFAFF;
 }
 
 #nav {
