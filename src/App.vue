@@ -1,10 +1,14 @@
-<template>
-  <div id="nav">
+<!-- Vue router to implement
+<div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
   </div>
   <router-view/>
-  <FooterAccueil/>
+-->
+
+<template>
+  <div id="main">
+    <FooterAccueil/>
+  </div>
 </template>
 
 <script>
