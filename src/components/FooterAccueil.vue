@@ -28,7 +28,7 @@ export default {
     </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 #footer{
   display: flex;
   justify-content: space-around;
