@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 @click="testStore">{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -35,6 +35,13 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods: {
+    testStore () {
+      console.log(this.$store.state.name)
+      this.$store.commit('changeName', 'Pierre')
+      console.log(this.$store.state.name)
+    }
   }
 }
 </script>
