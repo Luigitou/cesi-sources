@@ -7,17 +7,17 @@
 
 <template>
   <div id="main">
-    <FooterAccueil/>
+    <HeaderAccueil/>
   </div>
 </template>
 
 <script>
-import FooterAccueil from './components/FooterAccueil.vue'
+import HeaderAccueil from './components/HeaderAccueil.vue'
 
 export default {
   name: 'App',
   components: {
-    FooterAccueil
+    HeaderAccueil
   }
 }
 </script>

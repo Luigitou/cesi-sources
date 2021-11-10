@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <FooterAccueil />
+    <HeaderAccueil />
   </div>
-</template>
+</template> 
 
 <script>
 // @ is an alias to /src
-import FooterAccueil from '../components/FooterAccueil.vue'
+import HeaderAccueil from '../components/HeaderAccueil.vue'
 
 export default {
   name: 'Home',
   components: {
-    FooterAccueil
+    HeaderAccueil
   }
 }
 </script>
