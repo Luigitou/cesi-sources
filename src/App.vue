@@ -7,17 +7,21 @@
 
 <template>
   <div id="main">
-    <FooterAccueil/>
+    <VosFichiersMain/>
+    <!-- <FooterAccueil/> -->
+    
   </div>
 </template>
 
 <script>
-import FooterAccueil from './components/FooterAccueil.vue'
+//import FooterAccueil from './components/FooterAccueil.vue'
+import VosFichiersMain from './components/VosFichiersMain.vue'
 
 export default {
   name: 'App',
   components: {
-    FooterAccueil
+//    FooterAccueil,
+    VosFichiersMain
   }
 }
 </script>
