@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-    <div>
+    <div id="vosfichiers">
         <button>Créer un nouveau fichier</button>
         <button>Partagé avec moi</button>
         <button>Supprimer</button>
@@ -45,6 +45,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+#vosfichiers{
+    background-color: #FFF;
+}
+
 button{
     margin: 2rem 0rem 0rem 3rem;
     background-color: #EFFAFF;
@@ -62,6 +66,7 @@ button:hover{
 
 table{
     margin: 4rem 0rem 0rem 5rem;
+    padding-bottom: 2rem;
 }
 
 table tr th{
