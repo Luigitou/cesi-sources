@@ -7,17 +7,17 @@
 
 <template>
   <div id="main">
-    <HeaderAccueil/>
+    <Home/>
   </div>
 </template>
 
 <script>
-import HeaderAccueil from './components/HeaderAccueil.vue'
+import Home from './views/Home.vue'
 
 export default {
   name: 'App',
   components: {
-    HeaderAccueil
+    Home
   }
 }
 </script>
