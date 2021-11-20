@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <Icon />
+    <div class="iconBar">
+        <div v-for="icon in icons" :key="icon" class="wrapperIcon">
+            <Icon :iconType="icon"/>
+        </div>
     </div>
 </template>
 
@@ -21,10 +23,14 @@ export default {
 
 <style lang="scss" scoped>
 
-div {
+.iconBar {
 
-    width: 20%;
-    margin-right: 1%;
+    width: 30%;
+    margin-right: 0%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-around;
 
 }
 

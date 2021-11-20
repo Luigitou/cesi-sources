@@ -21,13 +21,13 @@ export default {
 <style>
 body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #EFFAFF;
+  background-color: #FFFFFF;
   margin: 0;
   padding: 0;
 }
 
 #app {
-  background-color: #EFFAFF;
+  background-color: #FFFFFF;
 }
 
 #nav {
