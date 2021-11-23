@@ -1,12 +1,37 @@
 <script>
 export default {
     name: 'VosFichiersMain',
-    data:function (){
-    return {
-        taille1: 1,
-        taille2: 100
+    data (){
+        return {
+            list: [
+                {
+                    nom: "Photos",
+                    date: "14/10/2021",
+                    proprietaire: "Edomiyas",
+                    membres: "Louis, Imen...",
+                    taille: 1 + "Go",
+                },
+
+                {
+                    nom: "logo.png",
+                    date: "12/10/2021",
+                    proprietaire: "Louis",
+                    membres: "Edomiyas, Imen...",
+                    taille: 100 + "Mo",
+                },
+            ],
+
+            separator: {
+                line: ""
+            },
+        }
+    },
+
+    methods: {
+        displayType(){
+            // Fonction qui va afficher le bon icon selon le fichier
+        }
     }
-  }
 }
 </script>
 
@@ -25,20 +50,13 @@ export default {
                 <th>Propriétaire</th>
                 <th>Membres</th>
             </tr>
-            <tr>
-                <td><a href="#"><img src="../assets/dossier.png" alt="dossier"> Photos</a></td>
-                <td>14/10/2021</td>
-                <td>{{ taille1 }}Go</td>
-                <td>Edomiyas</td>
-                <td>Louis, Imen...</td>
-            </tr>
-            <hr>
-            <tr>
-                <td><a href="#"><img src="../assets/fichier.png" alt="fichier"> logo.png</a></td>
-                <td>12/10/2021</td>
-                <td>{{ taille2 }}Mo</td>
-                <td>Louis</td>
-                <td>Edomiyas, Imen...</td>
+            <tr v-for="item in list" v-bind:key="item.id">
+                <td><a href="#"><img src="../assets/dossier.png" alt="dossier" id="type-icon"> {{ item.nom }}</a></td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.taille }}</td>
+                <td>{{ item.proprietaire }}</td>
+                <td>{{ item.membres }}</td>
+                <hr v-for="item in separator" v-bind:key="item.id">
             </tr>
         </table>
     </div>
@@ -47,6 +65,7 @@ export default {
 <style lang="scss" scoped>
 #vosfichiers{
     background-color: #FFF;
+    width: 50rem;
 }
 
 button{
@@ -92,6 +111,8 @@ img{
 hr{
     position: absolute;
     width: 40rem;
+    margin-left: -39rem;
+    margin-top: 3.5rem;
 }
 
 </style>
