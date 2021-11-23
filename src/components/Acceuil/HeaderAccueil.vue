@@ -1,24 +1,23 @@
 <template>
 <header>
     <div class="nav">
-      <div>
+      <div class="wrapperLogo">
         <router-link to="/">
-          <img src="../../assets/logo.png" class="logo" 
-          style="width:140px;height:140px;">
+          <img src="../../assets/Accueil/logo.png" class="logo">
         </router-link>
       </div>
-      <div>
-        <input type="text" placeholder="  Rechercher..">    
+      <div class="wrapperInput">
+        <input type="text" placeholder="Rechercher..">    
       </div>
-      <div>
-      <h5>Connexion</h5>
+      <div class="wrapperBtn">
+        <div>
+          <h5>Connexion</h5>
+        </div>
+        <div>
+          <img src="../../assets/Accueil/Profile.png" class="Profile">
+        </div>
       </div>
-      <div>
-        <router-link to="/">
-          <img src="../../assets/Profile.png" class="Profile" 
-          style="width:40px;height:40px;">
-        </router-link>
-      </div>
+      
     </div>  
 </header>
 </template>
@@ -30,50 +29,67 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
-  background-color: #EFFAFF;
-  padding: 10px 10px;
-  display:flex;
-  position: absolute;
-  height: 10%;
-  width: 100%;
-}
+@import "../../scss/common.scss";
+
 .nav {
-  display:flex;
-  width: 90%;
+  display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-top: 5%;
+
+  .wrapperLogo {
+    width: 15%;
+    position: absolute;
+    top: 0;
+
+    .logo {
+      width: 100%;
+    }
+  }
+
+  .wrapperInput {
+    width: 50%;
+    margin-left: 25%;
+
+    input {
+      width: 100%;
+      padding: 10px 20px 10px 20px;
+      background-image: url("../../assets/Accueil/searchicon.png");
+      background-position: 98% 50%;
+      background-repeat: no-repeat;
+      background-size: 20px 20px;
+      border: 1px solid black;
+      outline: 0;
+      border-radius: 10px;
+
+      &:hover {
+        border: 1px solid $color-special;
+      }
+    }
+  }
+
+  .wrapperBtn {
+    display: flex;
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+
+    h5 {
+      margin-right: 20px;
+    }
+
+    img {
+      width: 3vw;
+    }
+  }
+
 }
-.nav input[type=text] {
-  padding: 8px;
-  background-image: url("../../assets/searchicon.png");
+
+</style>
+
+/*
+background-image: url("../../assets/Accueil/searchicon.png");
   background-position: 95% 50%;
   background-repeat: no-repeat;
   background-size: 20px 20px;
-  border: none;
-  margin-top: 15px;
-  font-size: 17px;
-  border-radius: 12px;
-  position: absolute;
-  top: 25%;
-  left: 48%;
-  width: 1010px;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-h5{
-  position: relative;
-  top:-8px;
-  left : 750%;
-  color : #296870;
-}
-.Profile{
-  top:-5px;
-  position: relative;
-  left : 600%;
-}
-.logo{
-  position: relative;
-  right : 100%;
-}
-</style>
+*/
