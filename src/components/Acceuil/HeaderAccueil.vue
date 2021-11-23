@@ -37,7 +37,6 @@ header {
   position: absolute;
   height: 10%;
   width: 100%;
-
 }
 .nav {
   display:flex;
@@ -62,7 +61,6 @@ header {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
 h5{
   position: relative;
   top:-8px;

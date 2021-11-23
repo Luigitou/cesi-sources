@@ -1,47 +1,33 @@
 <!-- Vue router to implement
-<div id="nav">
+  <div id="nav">
     <router-link to="/">Home</router-link> |
   </div>
-  <router-view/>
 -->
 
 <template>
   <div id="main">
-    <Home/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Home from './views/Home.vue'
 
 export default {
   name: 'App',
-  components: {
-    Home
-  }
+
 }
 </script>
 
 <style>
 body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #EFFAFF;
+  background-color: #FFFFFF;
+  margin: 0;
+  padding: 0;
 }
 
 #app {
-  background-color: #EFFAFF;
+  background-color: #FFFFFF;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

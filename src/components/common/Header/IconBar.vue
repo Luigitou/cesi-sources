@@ -1,0 +1,37 @@
+<template>
+    <div class="iconBar">
+        <div v-for="icon in icons" :key="icon" class="wrapperIcon">
+            <Icon :iconType="icon"/>
+        </div>
+    </div>
+</template>
+
+<script>
+import Icon from './Icon.vue'
+export default {
+    name: 'IconBar',
+    data () {
+        return {
+            icons: ['Settings', 'Notifications', 'Profile']
+        }
+    },
+    components: {
+        Icon
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+
+.iconBar {
+
+    width: 30%;
+    margin-right: 0%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-around;
+
+}
+
+</style>
