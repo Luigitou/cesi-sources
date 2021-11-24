@@ -42,7 +42,9 @@ export default {
 }
 
 .wrapper {
+  width: 80%;
   display: flex;
+  justify-content: space-evenly;
 }
 
 #footer h1{

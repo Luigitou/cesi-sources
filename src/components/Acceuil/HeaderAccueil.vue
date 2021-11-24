@@ -35,7 +35,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 5%;
+  padding-top: 3%;
 
   .wrapperLogo {
     width: 15%;
@@ -49,7 +49,7 @@ export default {
 
   .wrapperInput {
     width: 50%;
-    margin-left: 25%;
+    margin-left: 22%;
 
     input {
       width: 100%;
