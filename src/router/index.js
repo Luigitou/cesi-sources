@@ -12,6 +12,11 @@ const routes = [
     name: "Tableau de bord",
     component: () => import("../views/TDB.vue"),
   },
+  {
+    path: "/vosfichiers",
+    name: "TVos Fichiers",
+    component: () => import("../views/VosFichiers.vue"),
+  },
   /*
   {
     path: '/about',
