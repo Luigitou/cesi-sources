@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import FichiersRecentMain from '../components/Recent/FichiersRecentMain.vue'
+import FichiersRecentMain from '../components/FichierRecent/FichiersRecentMain.vue'
 
 export default {
   name: 'Fichiers recents',

@@ -16,11 +16,25 @@ export default {
                 {
                     nom: "logo.png",
                 },  
+                {
+                    nom: "Photos",
+                },  
+                {
+                    nom: "logo.png",
+                },  
+                {
+                    nom: "famille.png",
+                },  
+                {
+                    nom: "Photos",
+                },  
+                {
+                    nom: "logo.png",
+                },
+                {
+                    nom: "logo.png",
+                },  
             ],
-
-            separator: {
-                line: ""
-            },
         }
     },
 
@@ -35,35 +49,45 @@ export default {
 <template>
     <div id="fichiersRecent">
         <h2>Les fichiers récemment consultés...</h2>
-
-        <table class="elmFlex">
-            <tr>
-                <th  v-for="item in list" v-bind:key="item.id"></th>
-            </tr>
-            <tr>
-                <td v-for="item in list" v-bind:key="item.id"><a href="#"><img src="../../assets/VosFichiers/dossier.png" alt="dossier" id="type-icon">{{ item.nom }}</a></td>
-            </tr>    
-        </table>
+   
+    <fieldset>
+        <div class="liste">
+            <a href="#" v-for="item in list" v-bind:key="item.id"><img src="../../assets/VosFichiers/dossier.png" alt="dossier" id="dossier">{{ item.nom }}</a>
+        </div>
+    </fieldset>    
     </div>
 </template>
 
 <style lang="scss" scoped>
+
 #fichiersRecent{
     h2{
         display: flex;
         margin-left: 4rem;
     }
 
+    fieldset{
+        width: 50rem;
+        border: none;
+    }
+    
+    .liste {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     a{
-        width: 7rem;
+        max-width: 20%;
         background-color: #EFFAFF;
         padding: .7rem;
         border-radius: .3rem;
         text-decoration: none;
         color: #000000;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
         font-weight: 500;
+        flex: 1 0 12%;
+        margin: 2.5rem;
     }
 
     img{
@@ -79,17 +103,5 @@ export default {
             padding: 2rem 0rem 0rem 5rem;
         }
     }
-
-// #flex{
-//     display: flex;
-//     flex-wrap: wrap;
-//     flex-direction: row;
-//     justify-content: flex-start;
-// }
-
-// .elmFlex{
-//     flex: 0 0 16.6%;
-// }
-
 }
 </style>
