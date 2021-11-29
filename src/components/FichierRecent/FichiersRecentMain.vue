@@ -6,7 +6,6 @@ export default {
     name: 'FichiersRecentMain',
     data (){
         return {
-            estDossier: true,
             isDossier: dossier,
             isFichier: fichier,
             list: [
