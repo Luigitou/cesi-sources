@@ -45,11 +45,6 @@ export default {
                     nom: "logo.png",
                      type: "fichier"
                 },
-                {
-                    nom: "logo.png",
-                    type: "fichier"
-                }, 
-                 
             ],
         }
     },
@@ -81,7 +76,7 @@ export default {
     }
 
     fieldset{
-        width: 50rem;
+        max-width: 50rem;
         border: none;
     }
     
@@ -101,7 +96,7 @@ export default {
         justify-content: space-evenly;
         font-weight: 500;
         flex: 1 0 12%;
-        margin: 2.5rem;
+        margin: 2.7rem;
     }
 
     img{
