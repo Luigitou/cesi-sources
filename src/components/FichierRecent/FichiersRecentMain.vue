@@ -43,7 +43,7 @@ export default {
                 },  
                 {
                     nom: "logo.png",
-                     type: "fichier"
+                    type: "fichier"
                 },
             ],
         }
