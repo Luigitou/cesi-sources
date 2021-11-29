@@ -1,5 +1,5 @@
 <template>
-  <div class="vosfichiers">
+  <div class="vosfichiers view">
     <VosFichiersMain />
   </div>
 </template>

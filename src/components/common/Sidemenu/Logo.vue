@@ -13,9 +13,11 @@ export default {
 <style lang="scss" scoped>
 
 div {
-    margin: 0 3% 0 1%;
+    position: relative;
     padding: 0;
-    width: 10%;
+    top: 0;
+    left: 0;
+    width: 100%;
 
 
     img {

@@ -1,6 +1,5 @@
 <template>
   <header>
-    <Logo />
     <div class="submenu">
       <h2>Bonjour, {{ name }}</h2>
       <SearchBar />
@@ -11,14 +10,12 @@
 
 <script>
 import IconBar from "./IconBar.vue";
-import Logo from "./Logo.vue";
 import SearchBar from "./SearchBar.vue";
 
 export default {
   name: "Header",
   components: {
     SearchBar,
-    Logo,
     IconBar,
   },
   data() {
@@ -36,19 +33,20 @@ header {
   background: $color-head;
   display: flex;
 
-  position: absolute;
+  position: relative;
+  width: 85%;
+  padding: 1% 0% 1% 3%;
   height: 10%;
-  width: 100%;
 
   h2 {
-    width: 15%;
+    width: 20%;
   }
 
   .submenu {
-    width: 90%;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 }
 </style>
