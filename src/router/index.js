@@ -22,6 +22,11 @@ const routes = [
     name: "Fichiers recents",
     component: () => import("../views/FichiersRecent.vue"),
   },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: () => import("../views/Contact.vue"),
+  },
   /*
   {
     path: '/about',
