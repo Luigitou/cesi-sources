@@ -1,48 +1,59 @@
 <script>
+import dossier from "../../assets/VosFichiers/dossier.png"
+import fichier from "../../assets/VosFichiers/fichier.png"
+
 export default {
     name: 'FichiersRecentMain',
     data (){
         return {
+            estDossier: true,
+            isDossier: dossier,
+            isFichier: fichier,
             list: [
                 {
                     nom: "Photos",
+                    type: "dossier"
                 },
                 {
                     nom: "logo.png",
+                    type: "fichier"
                 },  
                 {
                     nom: "famille.png",
+                    type: "fichier"
                 },  
                 {
                     nom: "logo.png",
+                    type: "fichier"
                 },  
                 {
                     nom: "Photos",
+                    type: "dossier"
                 },  
                 {
                     nom: "logo.png",
+                    type: "fichier"
                 },  
                 {
                     nom: "famille.png",
+                    type: "fichier"
                 },  
                 {
                     nom: "Photos",
+                    type: "dossier"
                 },  
                 {
                     nom: "logo.png",
+                     type: "fichier"
                 },
                 {
                     nom: "logo.png",
-                },  
+                    type: "fichier"
+                }, 
+                 
             ],
         }
     },
-
-    methods: {
-        displayType(){
-            // Fonction qui va afficher le bon icon selon le fichier
-        }
-    }
 }
 </script>
 
@@ -52,7 +63,11 @@ export default {
    
     <fieldset>
         <div class="liste">
-            <a href="#" v-for="item in list" v-bind:key="item.id"><img src="../../assets/VosFichiers/dossier.png" alt="dossier" id="dossier">{{ item.nom }}</a>
+            <a href="#" v-for="item in list" v-bind:key="item.id">
+                <span v-if="item.type == 'dossier'"><img :src="isDossier" alt="Dossier"></span>
+                <span v-else><img :src="isFichier" alt="fichier"></span>
+                {{ item.nom }}
+            </a>
         </div>
     </fieldset>    
     </div>
@@ -92,16 +107,6 @@ export default {
 
     img{
         width: 1.5rem;
-    }
-
-    table{
-        th{
-            padding: 1rem;
-        }
-
-        td{
-            padding: 2rem 0rem 0rem 5rem;
-        }
     }
 }
 </style>
