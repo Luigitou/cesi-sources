@@ -57,13 +57,19 @@ div {
     align-items: center;
     justify-content: center;
     background: white;
+    cursor: pointer;
+    transition: background ease .15s, filter ease .15s;
 
     img {
       width: 75%;
     }
 
     &:hover {
-      background: darken($color: #acacac, $amount: 1);
+      background: $color-button;
+
+      img {
+        filter: $filter-head;
+      }
     }
   }
 
