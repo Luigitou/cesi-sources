@@ -33,14 +33,13 @@ export default {
 
 .nav {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: relative;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 3%;
 
   .wrapperLogo {
     width: 15%;
-    position: absolute;
-    top: 0;
 
     .logo {
       width: 100%;
@@ -48,11 +47,15 @@ export default {
   }
 
   .wrapperInput {
-    width: 50%;
-    margin-left: 22%;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    height: 15%;
+    align-self: center;
+    justify-content: center;
 
     input {
-      width: 100%;
+      width: 75%;
       padding: 10px 20px 10px 20px;
       background-image: url("../../assets/Accueil/searchicon.png");
       background-position: 98% 50%;

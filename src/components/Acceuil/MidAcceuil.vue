@@ -38,9 +38,9 @@ export default {
 .MidAccueil {
   display: flex;
   flex-direction: row;
-  margin-top: 3%;
   align-items: center;
   justify-content: center;
+  align-self: baseline;
 
   .wrapperLeft {
     width: 40%;

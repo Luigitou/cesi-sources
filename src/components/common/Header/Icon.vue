@@ -47,6 +47,12 @@ export default {
     .iconImg {
         width: 65%;
         filter: $filter-head;
+        cursor: pointer;
+        transition: filter ease-in-out .15s;
+
+        &:hover {
+            filter: $filter-special;
+        }
     }
 }
 
