@@ -27,7 +27,7 @@ export default {
     flex-direction: column;
     position: relative;
     background: $color-head;
-    width: 15%;
+    width: 10%;
     height: 100%;
 }
 </style>

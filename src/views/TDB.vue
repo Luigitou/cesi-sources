@@ -1,7 +1,9 @@
 <template>
   <div class="tdb view">
     <Sidemenu  />
-    <Header />
+    <div class="wrap">
+      <Header />
+    </div>
   </div>
 </template>
 
@@ -19,10 +21,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-  .tdb {
-    display: flex;
-    flex-direction: row;
-  }
 
 </style>

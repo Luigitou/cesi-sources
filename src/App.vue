@@ -42,6 +42,14 @@ body{
 
 .view {
   height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.wrap {
+  width: 90%;
+  margin: 0;
+  padding: 0;
 }
 
 </style>

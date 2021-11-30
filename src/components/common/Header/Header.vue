@@ -34,12 +34,14 @@ header {
   display: flex;
 
   position: relative;
-  width: 85%;
-  padding: 1% 0% 1% 3%;
-  height: 10%;
+  width: 100%;
+  padding: 1% 0% 1% 0%;
+  height: 5%;
 
   h2 {
     width: 20%;
+    color: $color-text;
+    margin-left: 2%;
   }
 
   .submenu {

@@ -12,7 +12,7 @@ export default {
     name: 'IconBar',
     data () {
         return {
-            icons: ['Settings', 'Notifications', 'Profile']
+            icons: ['Notifications', 'Profile', 'Settings']
         }
     },
     components: {

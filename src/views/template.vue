@@ -1,28 +1,28 @@
 <template>
-  <div class="vosfichiers view">
+  <div class="/Nomducomposant/ view">
     <Sidemenu  />
     <div class="wrap">
-      <Header  />
-      <VosFichiersMain />
+      <Header />
+      <!-- METTRE ICI LE COMPOSANT PRINCIPAL A APPELER -->
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import VosFichiersMain from '../components/VosFichier/VosFichiersMain.vue'
 import Sidemenu from "../components/common/Sidemenu/Sidemenu.vue"
 import Header from "../components/common/Header/Header.vue";
+// IMPORTEZ ICI LE COMPOSANT PRINCIPALE
 
 export default {
-  name: 'Vos fichiers',
+  name: /* METTRE ICI LE NOM DE LA VUE */"",
   components: {
-    VosFichiersMain,
+    Header,
     Sidemenu,
-    Header
-  }
-}
+    // IMPORTEZ ICI LE COMPOSANT PRINCIPALE
+  },
+};
 </script>
 
 <style lang="scss" scoped>
+
 </style>

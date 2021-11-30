@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: "/vosfichiers",
-    name: "TVos Fichiers",
+    name: "Vos Fichiers",
     component: () => import("../views/VosFichiers.vue"),
   },
   /*

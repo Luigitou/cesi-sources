@@ -1,7 +1,7 @@
 <template>
     <div class="subnav">
         <div class="wrapper" v-for="element in listLink" :key="element">
-            <NavLink  :text="element['text']" :img="element['image']"/>
+            <NavLink  :text="element['text']" :img="element['image']" :link="element['link']"/>
         </div>
     </div>
 </template>
@@ -25,24 +25,29 @@ export default {
         return {
             listLink: [
                 {
-                    text: 'Tableau de bord',
-                    image: home
+                    text: 'Accueil',
+                    image: home,
+                    link: 'tdb'
                 },
                 {
                     text: 'Vos fichiers',
-                    image: file
+                    image: file,
+                    link: 'vosfichiers'
                 },
                 {
                     text: 'Vos groupes',
-                    image: fav
+                    image: fav,
+                    link: 'groups'
                 },
                 {
                     text: 'Vos favoris',
-                    image: hearth
+                    image: hearth,
+                    links: 'fav'
                 },
                 {
                     text: 'Contacts',
-                    image: contact
+                    image: contact,
+                    link: 'contact'
                 }
             ]
         }
@@ -56,10 +61,11 @@ export default {
 
 .subnav {
     background: $color-head;
-    height: 100%;
+    height: 75%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 }
 
 </style>

@@ -38,6 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../scss/common.scss";
 
 .icon {
 
@@ -45,6 +46,7 @@ export default {
 
     .iconImg {
         width: 65%;
+        filter: $filter-head;
     }
 }
 
