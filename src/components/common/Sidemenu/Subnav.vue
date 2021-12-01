@@ -1,7 +1,7 @@
 <template>
     <div class="subnav">
         <div class="wrapper" v-for="element in listLink" :key="element">
-            <NavLink  :text="element['text']" :img="element['image']" :link="element['link']"/>
+            <NavLink :text="element['text']" :img="element['image']" :link="element['link']"/>
         </div>
     </div>
 </template>

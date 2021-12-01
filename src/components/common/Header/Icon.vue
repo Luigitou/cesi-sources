@@ -48,7 +48,7 @@ export default {
         width: 65%;
         filter: $filter-head;
         cursor: pointer;
-        transition: filter ease-in-out .15s;
+        transition: filter ease-in-out .05s;
 
         &:hover {
             filter: $filter-special;
