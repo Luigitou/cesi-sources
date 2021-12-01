@@ -1,16 +1,15 @@
 <template>
   <div>
-    <Header />
+    <Mid />
   </div>
 </template>
 
 <script>
-import Header from "../components/common/Header/Header.vue";
-
+import Mid from "../components/TDB/TDBMid.vue";
 export default {
   name: "Tableau de bord",
   components: {
-    Header,
+    Mid,
   },
 };
 </script>
