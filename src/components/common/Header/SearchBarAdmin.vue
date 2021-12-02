@@ -19,6 +19,8 @@ div {
   width: 25%;
   display: flex;
 
+  margin: -2rem 0rem 0rem 22rem;
+
   .input {
     width: 95%;
     border-top: 1px solid $color-special;
@@ -34,7 +36,6 @@ div {
 
   .btn {
 
-    width: 5%;
     border-top: 1px solid $color-special;
     border-right: 1px solid $color-special;
     border-bottom: 1px solid $color-special;
@@ -51,10 +52,9 @@ div {
     }
 
     &:hover {
-      background: darken($color: #acacac, $amount: 1);
+      background: $color-special;
     }
   }
-
 }
 
 </style>
