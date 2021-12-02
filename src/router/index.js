@@ -27,6 +27,11 @@ const routes = [
     name: "Contact",
     component: () => import("../views/Contact.vue"),
   },
+  {
+    path: "/superadmin",
+    name: "Super Admin",
+    component: () => import("../views/SuperAdmin.vue"),
+  },
   /*
   {
     path: '/about',
