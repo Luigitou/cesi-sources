@@ -17,6 +17,11 @@ const routes = [
     name: "Vos Fichiers",
     component: () => import("../views/VosFichiers.vue"),
   },
+  {
+    path: "/search/:param",
+    name: "Search",
+    component: () => import("../views/Search.vue"),
+  }
   /*
   {
     path: '/about',
