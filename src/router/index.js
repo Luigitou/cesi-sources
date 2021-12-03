@@ -32,6 +32,11 @@ const routes = [
     name: "Super Admin",
     component: () => import("../views/SuperAdmin.vue"),
   },
+  {
+    path: "/superadminform",
+    name: "Super Admin Form",
+    component: () => import("../views/SuperAdminForm.vue"),
+  },
   /*
   {
     path: '/about',
