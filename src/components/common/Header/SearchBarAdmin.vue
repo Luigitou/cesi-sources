@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input class="input" type="text" placeholder="Rechercher un fichier .." id="search" name="search"/>
+    <input class="input" type="text" placeholder="Rechercher..." id="search" name="search"/>
     <button class="btn" type="submit"><img src="../../../assets/SuperAdmin/chercher.png"></button>
   </div>
 </template>
