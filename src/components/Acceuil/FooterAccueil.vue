@@ -35,7 +35,7 @@ export default {
   display: flex;
   justify-content: space-around;
   text-align: center;
-  position: relative;
+  position: static;
   width: 100%;
   margin-bottom: 1%;
   bottom: 0;

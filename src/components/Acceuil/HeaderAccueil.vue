@@ -1,4 +1,5 @@
 <template>
+<modale v-bind:revele="revele" v-bind:toggleModale="toggleModale"></modale> <!--lier les données au composent-->
 <header>
     <div class="nav">
       <div class="wrapperLogo">
@@ -9,22 +10,32 @@
       <div class="wrapperInput">
         <input type="text" placeholder="Rechercher..">    
       </div>
-      <div class="wrapperBtn">
-        <div>
+      <div v-on:click="toggleModale" class="wrapperBtn"> <!-- ouvre le Modale -->
           <h5>Connexion</h5>
-        </div>
-        <div>
-          <img src="../../assets/Accueil/Profile.png" class="Profile">
-        </div>
+          <div>
+            <img src="../../assets/Accueil/Profile.png" class="Profile">
+          </div>
       </div>
-      
-    </div>  
+    </div>
 </header>
 </template>
 <script>
-
+import Modale from "../../components/Login/Modale.vue"
 export default {
     name: 'HeaderAccueil',
+    data(){
+      return{
+        revele: false 
+      }
+    },
+    components : {
+      'modale': Modale  //modale est le nom d'utilisation voir dans template
+    },
+    methods: {
+      toggleModale: function() {
+        this.revele=!this.revele //si cest false passe a true vis versa et cela a partir de la modale puisque les props sont liées
+      }
+    }
 };
 </script>
 
@@ -35,30 +46,33 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 3%;
+  padding-top: 0%;
 
   .wrapperLogo {
     width: 15%;
-    position: absolute;
-    top: 0;
+    //position: absolute;
+    position: static;
+    top: 5;
 
     .logo {
-      width: 100%;
+      width: 80%;
     }
   }
 
   .wrapperInput {
     width: 50%;
-    margin-left: 22%;
+    //margin-left: -2%
+    margin-right: 5%;
+
 
     input {
       width: 100%;
-      padding: 10px 20px 10px 20px;
+      padding: 10px 80px 10px 20px;
       background-image: url("../../assets/Accueil/searchicon.png");
       background-position: 98% 50%;
       background-repeat: no-repeat;
       background-size: 20px 20px;
-      border: 1px solid black;
+      border:none;
       outline: 0;
       border-radius: 10px;
 
@@ -75,13 +89,20 @@ export default {
     justify-content: center;
 
     h5 {
-      margin-right: 20px;
+      margin-right: 10%;
+      color:$color-android;
+      cursor:pointer;
     }
-
-    img {
+    /*img {
       width: 3vw;
-    }
+    }*/
   }
+    .Profile{
+      width:2rem;
+      position: relative;
+      margin-left: 5%;
+      cursor:pointer;
+    }
 
 }
 

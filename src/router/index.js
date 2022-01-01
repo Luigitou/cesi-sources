@@ -17,6 +17,11 @@ const routes = [
     name: "TVos Fichiers",
     component: () => import("../views/VosFichiers.vue"),
   },
+  {
+    path: "/Inscription",
+    name: "Inscription",
+    component: () => import("../views/Inscription.vue"),
+  },
   /*
   {
     path: '/about',
