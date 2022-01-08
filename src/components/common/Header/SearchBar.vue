@@ -21,9 +21,9 @@ div {
 
   .input {
     width: 95%;
-    border-top: 1px solid $color-special;
-    border-left: 1px solid $color-special;
-    border-bottom: 1px solid $color-special;
+    border-top: 1px solid $color-text;
+    border-left: 1px solid $color-text;
+    border-bottom: 1px solid $color-text;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-right: none;
@@ -32,12 +32,24 @@ div {
     padding-left: 2%;
   }
 
+  .input:focus {
+    border-top: 1px solid $color-special;
+    border-left: 1px solid $color-special;
+    border-bottom: 1px solid $color-special;
+
+    & + .btn {
+      border-top: 1px solid $color-special;
+      border-right: 1px solid $color-special;
+      border-bottom: 1px solid $color-special;
+    }
+  }
+
   .btn {
 
     width: 5%;
-    border-top: 1px solid $color-special;
-    border-right: 1px solid $color-special;
-    border-bottom: 1px solid $color-special;
+    border-top: 1px solid $color-text;
+    border-right: 1px solid $color-text;
+    border-bottom: 1px solid $color-text;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-left: none;
@@ -45,13 +57,19 @@ div {
     align-items: center;
     justify-content: center;
     background: white;
+    cursor: pointer;
+    transition: background ease .15s, filter ease .15s;
 
     img {
       width: 75%;
     }
 
     &:hover {
-      background: darken($color: #acacac, $amount: 1);
+      background: $color-button;
+
+      img {
+        filter: $filter-head;
+      }
     }
   }
 

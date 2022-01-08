@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: "/vosfichiers",
-    name: "TVos Fichiers",
+    name: "Vos Fichiers",
     component: () => import("../views/VosFichiers.vue"),
   },
   {
@@ -47,6 +47,11 @@ const routes = [
     name: "Gestion Ressources",
     component: () => import("../views/GestionRessource.vue"),
   },
+  {
+    path: "/search/:param",
+    name: "Search",
+    component: () => import("../views/Search.vue"),
+  }
   /*
   {
     path: '/about',

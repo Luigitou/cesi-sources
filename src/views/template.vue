@@ -1,24 +1,24 @@
 <template>
-  <div class="tdb view">
+  <div class="/Nomducomposant/ view">
     <Sidemenu  />
     <div class="wrap">
       <Header />
-      <Mid  />
+      <!-- METTRE ICI LE COMPOSANT PRINCIPAL A APPELER -->
     </div>
   </div>
 </template>
 
 <script>
-import Mid from "../components/TDB/TDBMid.vue";
 import Sidemenu from "../components/common/Sidemenu/Sidemenu.vue"
 import Header from "../components/common/Header/Header.vue";
+// IMPORTEZ ICI LE COMPOSANT PRINCIPALE
 
 export default {
-  name: "Tableau de bord",
+  name: /* METTRE ICI LE NOM DE LA VUE */"",
   components: {
-    Mid,
     Header,
-    Sidemenu
+    Sidemenu,
+    // IMPORTEZ ICI LE COMPOSANT PRINCIPALE
   },
 };
 </script>

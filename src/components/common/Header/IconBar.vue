@@ -12,7 +12,7 @@ export default {
     name: 'IconBar',
     data () {
         return {
-            icons: ['Settings', 'Notifications', 'Profile']
+            icons: ['Notifications', 'Profile', 'Settings']
         }
     },
     components: {
@@ -25,7 +25,7 @@ export default {
 
 .iconBar {
 
-    width: 30%;
+    width: 25%;
     margin-right: 0%;
     display: flex;
     align-items: center;

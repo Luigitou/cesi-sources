@@ -65,7 +65,8 @@ export default {
 <style lang="scss" scoped>
 #vosfichiers{
     background-color: #FFF;
-    width: 50rem;
+    width: 100%;
+    height: 90%;
 }
 
 button{

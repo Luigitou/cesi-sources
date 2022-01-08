@@ -70,4 +70,9 @@ export default {
 
 <style lang="scss" scoped>
 
+.TDBMid {
+    width: 100%;
+    height: 100%;
+}
+
 </style>
