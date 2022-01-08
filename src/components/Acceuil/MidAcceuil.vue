@@ -72,7 +72,7 @@ export default {
   }
 
   .imgWrapper {
-    position: relative;
+    position: static;
     width: 40%;
 
     img {

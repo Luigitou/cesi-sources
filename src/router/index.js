@@ -51,7 +51,12 @@ const routes = [
     path: "/search/:param",
     name: "Search",
     component: () => import("../views/Search.vue"),
-  }
+  },
+  {
+    path: "/Inscription",
+    name: "Inscription",
+    component: () => import("../views/Inscription.vue"),
+  },
   /*
   {
     path: '/about',
