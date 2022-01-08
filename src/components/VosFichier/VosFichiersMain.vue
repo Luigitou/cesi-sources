@@ -1,8 +1,13 @@
 <script>
+import dossier from "../../assets/VosFichiers/dossier.png"
+import fichier from "../../assets/VosFichiers/fichier.png"
+
 export default {
     name: 'VosFichiersMain',
     data (){
         return {
+            isDossier: dossier,
+            isFichier: fichier,
             list: [
                 {
                     nom: "Photos",
@@ -10,6 +15,7 @@ export default {
                     proprietaire: "Edomiyas",
                     membres: "Louis, Imen...",
                     taille: 1 + "Go",
+                    type: "dossier"
                 },
 
                 {
@@ -18,6 +24,7 @@ export default {
                     proprietaire: "Louis",
                     membres: "Edomiyas, Imen...",
                     taille: 100 + "Mo",
+                    type: "fichier"
                 },
             ],
 
@@ -26,12 +33,6 @@ export default {
             },
         }
     },
-
-    methods: {
-        displayType(){
-            // Fonction qui va afficher le bon icon selon le fichier
-        }
-    }
 }
 </script>
 
@@ -51,7 +52,12 @@ export default {
                 <th>Membres</th>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
-                <td><a href="#"><img src="../../assets/VosFichiers/dossier.png" alt="dossier" id="type-icon"> {{ item.nom }}</a></td>
+                <td><a href="#">
+                        <span v-if="item.type == 'dossier'"><img :src="isDossier" alt="Dossier"></span>
+                        <span v-else><img :src="isFichier" alt="fichier"></span>
+                    {{ item.nom }}
+                    </a>
+                </td>
                 <td>{{ item.date }}</td>
                 <td>{{ item.taille }}</td>
                 <td>{{ item.proprietaire }}</td>
