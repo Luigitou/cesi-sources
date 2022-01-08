@@ -17,6 +17,36 @@ const routes = [
     name: "TVos Fichiers",
     component: () => import("../views/VosFichiers.vue"),
   },
+  {
+    path: "/fichiersrecents",
+    name: "Fichiers recents",
+    component: () => import("../views/FichiersRecent.vue"),
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: () => import("../views/Contact.vue"),
+  },
+  {
+    path: "/superadmin",
+    name: "Super Admin",
+    component: () => import("../views/SuperAdmin.vue"),
+  },
+  {
+    path: "/superadminform",
+    name: "Super Admin Form",
+    component: () => import("../views/SuperAdminForm.vue"),
+  },
+  {
+    path: "/listeusers",
+    name: "Liste Users",
+    component: () => import("../views/ListeUsers.vue"),
+  },
+  {
+    path: "/gestionressources",
+    name: "Gestion Ressources",
+    component: () => import("../views/GestionRessource.vue"),
+  },
   /*
   {
     path: '/about',
