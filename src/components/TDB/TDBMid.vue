@@ -9,7 +9,7 @@
 
 <script>
 import Sliders from "./Sliders.vue"
-//import test from "../../../src/assets/Accueil/Profile.png"
+import test from "../../../src/assets/Accueil/Profile.png"
 
 export default {
     name: 'TDBMid',
@@ -23,13 +23,13 @@ export default {
                     Text: "Vos Favoris",
                     ImagesList: [
                         {
-                            Text: "test"
+                            Text: test
                         },
                         {
-                            Text: "test"
+                            Text: test
                         },
                         {
-                            Text: "test"
+                            Text: test
                         }
                     ]
                 },
@@ -37,13 +37,13 @@ export default {
                     Text: "Recommandations",
                     ImagesList: [
                         {
-                            Text: "test"
+                            Text: test
                         },
                         {
-                            Text: "test"
+                            Text: test
                         },
                         {
-                            Text: "test"
+                            Text: test
                         }
                     ]
                 },
@@ -51,13 +51,13 @@ export default {
                     Text: "Vos Fichier",
                     ImagesList: [
                         {
-                            Text: "test"
+                            Text: test
                         },
                         {
-                            Text: "test"
+                            Text: test
                         },
                         {
-                            Text: "test"
+                            Text: test
                         }
                     ]
                 }
@@ -65,6 +65,8 @@ export default {
         }
     }
 };
+
+
 </script>
 
 
