@@ -57,6 +57,11 @@ const routes = [
     name: "Inscription",
     component: () => import("../views/Inscription.vue"),
   },
+  {
+    path: "/statistique",
+    name: "Statistique",
+    component: () => import("../views/Statistique.vue"),
+  },
   /*
   {
     path: '/about',
