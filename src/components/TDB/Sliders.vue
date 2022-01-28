@@ -1,78 +1,102 @@
 <template>
     <div class="Sliders">
-       <p>{{Text}}</p>
-       <div class="wrapperbasementImage">
-         <div class="wrapperImages" v-for="images in Img" :key="images">
-           <Images v-bind:Text='images["Text"]' />
-         </div>
-       </div>
-       <div class="wrapperDot">
-
-         <span class="dot" onclick="currentSlide(1)"></span>
-         <span class="dot" onclick="currentSlide(2)"></span>
-         <span class="dot" onclick="currentSlide(3)"></span>
-       </div>  
+         <p>{{Text}}</p>
+      <div class="wrapperSliderImages">   
+        <div class="wrapperImages" v-for="images in Img" :key="images">
+          <div v-bind:class='IdActive===images["ID"]? "Fadein wrapperShow":"FadeOut wrapperShow"'>
+            <Images 
+                v-bind:Text='images["Text"]'
+                v-bind:ID='images["ID"]'  
+            />
+          </div>
+        </div>
+      </div>   
+      <div class="wrapperButton"> 
+         <span class="dot" v-on:click="Image(0)"></span>
+         <span class="dot" v-on:click="Image(1)"></span>
+         <span class="dot" v-on:click="Image(2)"></span>
+      </div>  
     </div>
 </template>
 
 <script>
 import Images from "./Images.vue"
-
 export default {
+    data () {
+      return {
+        IdActive: 0
+      }
+    },
     name: 'Sliders',
     components:{
         Images
     },
     props:{
         Text:String,
-        Img:String
+        Img:Array,
+        ID:Number
+    },
+    methods:{
+      Image(id){
+        console.log(id)
+        console.log(this.$props.ID)
+        this.$data.IdActive = id
+      }
     }
 };
 </script>
 
 
 <style lang="scss" scoped>
-
 .Sliders{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-
-p{
-  text-decoration: underline;
-}
-
-.wrapperbasementImage{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  .wrapperImages{
-      display:flex;
-      flex-direction: row;
+    p{
+      display: flex;
+      justify-content: center;
+      font-size: 1rem;
+      text-decoration: underline;
     }
-  }
-  .wrapperDot{
-  display: flex;
-  flex-direction: row;
+  .wrapperSliderImages{
+    display: flex;
+    justify-content: center;
+    
+    .wrapperImages{
+      display: inline-block;
+      flex-direction: row;
+      width: auto;
+      
+      .FadeOut{
+        position: absolute;
 
-    .dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-  background-color: #037682;
-  transition: background-color 0.6s ease;
-
-    &:hover {
-  background-color: #FF914D;
+        opacity: 0;
+        transition: visibility 0s 0.5s, opacity 0.5s ease-in-out;
+      }
+      
+      .Fadein {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
       }
     }
-  } 
+  }
+  .wrapperButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+      .dot {
+        cursor: pointer;
+        height: 1.5rem;
+        width: 1.5rem;
+        margin-right: 0.5rem;
+        margin-bottom: 2rem;
+        background-color: #e0e6e7;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.4s ease;
+        
+     }
+        .active, .dot:hover {
+        background-color: #FF914D;
+    }
+  }
 }
-
-
-
-
 </style>

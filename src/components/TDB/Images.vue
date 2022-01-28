@@ -1,6 +1,6 @@
 <template>
     <div class="Images">
-     <img v-bind:src="Text"/>
+      <img v-bind:src="Text"/>
     </div>
 </template>
 
@@ -9,12 +9,18 @@
 export default {
     name: 'Images',
     props:{
-        Text:String
+        Text:String,
+        ID:Number
     }
 };
 </script>
 
 
 <style lang="scss" scoped>
-
+.Images{
+    img{
+        height: 11rem;
+        width: 11rem;
+    }
+}
 </style>
