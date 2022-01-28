@@ -52,12 +52,15 @@ export default {
     p{
       display: flex;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.2rem;
       text-decoration: underline;
+      font-family: sans-serif;
+      font-weight: bold;
     }
   .wrapperSliderImages{
     display: flex;
     justify-content: center;
+    margin-bottom: 1.7rem;
     
     .wrapperImages{
       display: inline-block;
@@ -66,7 +69,7 @@ export default {
       
       .FadeOut{
         position: absolute;
-
+        left: 200%;
         opacity: 0;
         transition: visibility 0s 0.5s, opacity 0.5s ease-in-out;
       }
@@ -84,8 +87,8 @@ export default {
     justify-content: center;
       .dot {
         cursor: pointer;
-        height: 1.5rem;
-        width: 1.5rem;
+        height: 1rem;
+        width: 1rem;
         margin-right: 0.5rem;
         margin-bottom: 2rem;
         background-color: #e0e6e7;
