@@ -42,17 +42,17 @@ export default {
                     <input type="text" id="villei">
                 </div>
             </div>
+            <br>
             <div class="wrapperRadio">
                 <input type="radio" id="superadminr" value="Super administrateur" name="admin">
                 <label for="superadmin" id="superadmin">Super administrateur</label>
                 <input type="radio" id="adminr" value="Administrateur" name="admin" checked>
                 <label for="admin" id="admin">Administrateur</label>
-            </div>
                 <br>
-            <input type="submit" value="Creer un compte" id="submit">
+                <br>
+                <input type="submit" value="Creer un compte" id="submit">
+            </div>
         </form>
-    
-     
     </div>
 </template>
 
@@ -61,8 +61,13 @@ export default {
 
 #superadminform{
     
-    form{
-        margin: 0 auto;
+    form{        
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5%;
+ 
         .wrapperIdent{
             display: flex;
             justify-content: space-evenly;
@@ -90,7 +95,7 @@ export default {
             display: flex;
             flex-direction: column;
             width: 40%;
-            margin: 1% 2% 0% 3%;
+            margin: 1% 4% 0% 0%;
 
             input[type='text']{
                 border: 1px solid $color-special;
@@ -140,26 +145,32 @@ export default {
             }
         }
 
-        #superadmin, #admin{
-            font-size: 1.2rem;
-        }
+        .wrapperRadio{
+            #superadminr{
+                margin-left: -2rem;
+            }
+        
+            #superadmin, #admin{
+                font-size: 1.2rem;
+            }
 
-        #superadminr, #adminr{          
-            margin: 3% 2% 0% 3%;
-        }
+            #superadminr, #adminr{          
+                margin: 3% 2% 0% 3%;
+            }
 
-        #submit{
-            display: flex;
-            justify-content: center;
-            background-color: $color-special;
-            color: #fff;
-            border: 1px solid $color-special;
-            width: 38.7rem;
-            height: 2.5rem;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            margin: 2% 0% 0% 2.5%;
+            #submit{
+                display: flex;
+                justify-content: center;
+                background-color: $color-special;
+                color: #fff;
+                border: 1px solid $color-special;
+                width: 38.7rem;
+                height: 2.5rem;
+                font-weight: bold;
+                font-size: 1rem;
+                cursor: pointer;
+                margin: 2% 0% 0% -5%;
+            }
         }
     }
     /*    padding: 1rem;
