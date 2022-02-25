@@ -3,13 +3,11 @@
     <div class="wrapperLeft">
       <h1>{{ msg }}</h1>
       <p>
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dol esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident,
-        sunt in culpa qui officia deserunt mollit anim"
+        <span>Ressources relationnelles</span> 
+          <br>
+          <br> 
+        L'application idéale qui vous permettrait de partager,
+        d'échanger différents images, vidéos ainsi améliorer votre mode de vie et relations.
       </p>
       <div class="btnWrapper">
         <button class="Button" type="button"><img class="gglLogo" src="../../assets/Accueil/LogoGooglePlay.png" alt="Rejoignez nous !"></button>
@@ -47,6 +45,17 @@ export default {
     text-align: justify;
     margin-right: 3%;
 
+    span{
+      color: $color-android;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    p{
+      font-size: 18px;
+    }
+
+    
     .btnWrapper {
       margin-top: 10%;
       display: flex;
