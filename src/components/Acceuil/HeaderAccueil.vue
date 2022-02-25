@@ -46,7 +46,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  position: relative;
+  position: static;
   align-items: center;
   justify-content: space-between;
   padding-top: 0%;
@@ -55,22 +55,23 @@ export default {
     width: 15%;
     //position: absolute;
     position: static;
-    top: 5;
+    top: 10;
 
     .logo {
-      width: 80%;
+      width: 40%;
+       margin-left: 25%;
     }
   }
 
   .wrapperInput {
     width: 50%;
     //margin-left: -2%
-    margin-right: 5%;
+    margin-right: 7%;
 
 
     input {
       width: 100%;
-      padding: 10px 80px 10px 20px;
+      padding: 10px 80px 10px 50px;
       background-image: url("../../assets/Accueil/searchicon.png");
       background-position: 98% 50%;
       background-repeat: no-repeat;

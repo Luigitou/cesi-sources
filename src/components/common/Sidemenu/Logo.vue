@@ -17,14 +17,16 @@ div {
     padding: 0;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 75%;
 
 
     img {
         position: relative;
-        width: 100%;
+        width: 75%;
         top: 0;
         left: 0;
+        margin-left: 30%;
+        margin-top: 10%;
     }
 
 }

@@ -35,7 +35,7 @@ header {
 
   position: relative;
   width: 100%;
-  padding: 1% 0% 1% 0%;
+  padding: 2% 0% 3% 0%;
   height: 5%;
 
   h2 {

@@ -35,7 +35,7 @@ export default {
 <template>
     <div id="superadmin">
         <button>Créer un administrateur</button>
-        <SearchBarAdmin />
+        <SearchBarAdmin id="search"/>
         <table>
             <tr>
                 <th>Nom</th>
@@ -59,27 +59,32 @@ export default {
 <style lang="scss" scoped>
 #vosfichiers{
     background-color: #FFF;
-    width: 50rem;
+    width: 80%;
 }
 
 button{
-    margin: 2rem 0rem 0rem 3rem;
+    margin: 4rem 0rem 0rem 18rem;
     background-color: #EFFAFF;
     color: #000000;
     padding: .5rem;
     border-radius: .5rem;
     border: 0.1rem solid #037682;
     cursor: pointer;
+
 }
 
+#search{
+    margin-left: 55%;
+}
 button:hover{
     background-color: #037682;
     color: #FFF;
 }
 
 table{
-    margin: 4rem 0rem 0rem 5rem;
-    padding-bottom: 2rem;
+    margin: 0 auto;
+    padding-top: 5rem;
+    width: 70rem;
 }
 
 table tr th{
@@ -88,6 +93,7 @@ table tr th{
 
 table tr td{
     padding: 1.5rem 0rem 0rem 1rem;
+    text-align: center;
 }
 
 #nom{
@@ -110,8 +116,8 @@ table tr td{
 
 hr{
     position: absolute;
-    width: 40rem;
-    margin-left: -32rem;
+    width: 65rem;
+    margin-left: -54rem;
     margin-top: 0rem;
 }
 

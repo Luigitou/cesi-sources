@@ -39,7 +39,7 @@ export default {
 <template>
     <div id="listeusers">
         <button>Liste des utilisateurs</button>
-        <button>Gestions des ressources</button>
+        <button id="btn2">Gestions des ressources</button>
         <SearchBarAdmin id="search" />
         <table>
             <tr>
@@ -75,7 +75,9 @@ export default {
 
 #listeusers{
     background-color: #FFF;
-    width: 50rem;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 5%;
 }
 
 #search{
@@ -93,15 +95,19 @@ button{
     cursor: pointer;
 }
 
+#btn2{
+    margin-left: 10%;
+}
+
 button:hover{
     background-color: #037682;
     color: #FFF;
 }
 
 table{
-    margin: 4rem 0rem 0rem 2rem;
-    padding-bottom: 2rem;
-    width: 52rem;
+    margin: 0 auto;
+    padding-top: 5rem;
+    width: 70rem;
 }
 
 table tr th{
@@ -110,6 +116,7 @@ table tr th{
 
 table tr td{
     padding: 1.5rem 0rem 0rem 1rem;
+    text-align: center;
 }
 
 #nom{
@@ -127,6 +134,7 @@ table tr td{
 #moderateur{
     display: flex;
     width: 2rem;
+    margin-left: 3rem;
 }
 
 #desactiver{
@@ -139,8 +147,8 @@ table tr td{
 
 hr{
     position: absolute;
-    width: 50rem;
-    margin-left: -43rem;
+    width: 70rem;
+    margin-left: -60rem;
 }
 
 </style>

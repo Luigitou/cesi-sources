@@ -13,7 +13,7 @@
       </p>
       <div class="btnWrapper">
         <button class="Button" type="button"><img class="gglLogo" src="../../assets/Accueil/LogoGooglePlay.png" alt="Rejoignez nous !"></button>
-        <button class="Button" type="button">Nous Rejoindre</button>
+        <button class="Button" type="button"> <router-link to="/Inscription"  id="btnInscription">Nous Rejoindre</router-link></button>
       </div>
     </div>
     <div class="imgWrapper">
@@ -52,17 +52,22 @@ export default {
       display: flex;
       flex-direction: row;
       width: 100%;
+      justify-content: space-around;
 
       .Button {
         flex: 1;
-        margin-right: 5%;
+        //margin-right: 5%;
         background: $color-android;
         color: white;
         border: none;
         border-radius: 10px;
         height: 4em;
         max-width: 35%;
-        
+
+        #btnInscription{
+          text-decoration: none;
+          color: #FFFFFF;
+        }
 
         img {
           width: 50%;

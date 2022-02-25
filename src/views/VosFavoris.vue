@@ -1,25 +1,28 @@
 <template>
-  <div class="contact view">
+  <div class="vosfavoris view">
     <Sidemenu  />
     <div class="wrap">
       <Header  />
-      <ContactMain/>
+      <VosFavorisMain />
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import ContactMain from '../components/Contact/ContactMain.vue'
+import VosFavorisMain from '../components/VosFavoris/VosFavorisMain.vue'
 import Sidemenu from "../components/common/Sidemenu/Sidemenu.vue"
 import Header from "../components/common/Header/Header.vue";
 
 export default {
-  name: 'Contact main',
+  name: 'Vos Favoris',
   components: {
-    ContactMain,
+    VosFavorisMain,
     Sidemenu,
     Header
   }
 }
 </script>
+
+<style lang="scss" scoped>
+</style>

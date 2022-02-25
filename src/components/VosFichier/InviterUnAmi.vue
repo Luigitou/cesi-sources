@@ -1,27 +1,18 @@
 <template>
-    <div class="bloc-modale" v-if="revele"> <!-- if revele false le modale disparait if revele true le modale apparait --> 
-        <div class="overlay" v-on:click="toggleModale"></div> <!-- click en dehors du modale pour fermer -->
+    <div class="bloc-modale" v-if="reveleInvite"> <!-- if revele false le modale disparait if revele true le modale apparait --> 
+        <div class="overlay" v-on:click="toggleInvite"></div> <!-- click en dehors du modale pour fermer -->
         <form class="modale-card">
                     
-                <div v-on:click="toggleModale" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
+                <div v-on:click="toggleInvite" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
 
                 <div class="container">
-                    <label for="uname"><b>Email</b></label>
-                    <input type="text" placeholder="Entrez votre email" name="uname" required>
-
-                    <label for="psw"><b>Mot de passe</b></label>
-                    <input type="password" placeholder="Entrez votre mot de passe" name="psw" required>
+                    <label for="uname"><b>Nom</b></label>
+                    <input type="text" placeholder="Entrez le nom de votre ami" name="uname" required>
         
-                    <router-link to="/tdb">
-                    <button type="submit">Connexion</button>
-                    </router-link>
-
-                    <label>
-                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label><br>
-                    <label>
-                        Vous n'avez pas de compte? <router-link to="/Inscription"><b>Inscrivez-vous</b></router-link>
-                    </label>
+                    <div v-on:click="toggleInvite">
+                    <button type="submit">Valider</button>
+                    <button type="cancel">Annuler</button>
+                    </div>
                 </div>
         </form>
     </div>
@@ -29,8 +20,8 @@
 
 <script>
 export default {
-    name: 'Modale',
-    props: ['revele', 'toggleModale']
+    name: 'Invite',
+    props: ['reveleInvite', 'toggleInvite']
 }
 </script>
 
@@ -84,7 +75,7 @@ export default {
     label{
         padding: 2%;
     }
-    input[type=text], input[type=password] {
+    input[type=text] {
         width: 95%;
         padding: 2%;
         margin: 1%;
@@ -95,7 +86,7 @@ export default {
     }
 
     /* Add a background color when the inputs get focus */
-    input[type=text]:focus, input[type=password]:focus {
+    input[type=text]:focus {
         background-color: #ddd;
         outline: none;
     }
@@ -117,9 +108,6 @@ export default {
     }
     a{
         color: $color-special;   
-    }
-    .checkbox {
-        cursor: pointer;
     }
 </style>
 

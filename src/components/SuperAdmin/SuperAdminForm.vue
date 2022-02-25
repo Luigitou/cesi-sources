@@ -60,8 +60,9 @@ export default {
 @import "../../scss/common.scss";
 
 #superadminform{
-     
+    
     form{
+        margin: 0 auto;
         .wrapperIdent{
             display: flex;
             justify-content: space-evenly;

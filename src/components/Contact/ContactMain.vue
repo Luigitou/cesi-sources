@@ -25,9 +25,10 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/common.scss";
 #contact{
+
   form{
     display: block;
-    margin: 2rem 0rem 0rem 10rem;
+    margin: 6rem 0rem 0rem 18rem;
     
     label{
       font-size: 1.3rem;
@@ -53,7 +54,7 @@ export default {
       outline: none !important;
       border:1px solid $color-special;
     }
-
+    
     .buttons{
       margin: 2rem 0rem 0rem 15.4rem;
 

@@ -42,9 +42,9 @@ export default {
 
 <template>
     <div id="vosfichiers">
-        <button>Créer un nouveau fichier</button>
+        <button id="creer">Créer un nouveau fichier</button>
         <button>Créer une nouvelle catégorie</button>
-        <button>Supprimer</button>
+        
         <SearchBarAdmin id="search" />
 
         <table>
@@ -57,7 +57,7 @@ export default {
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
                 <td>
-                    <a href="#">  
+                    <a href="#" id="nom">  
                         <span v-if="item.type == 'dossier'"><img :src="isDossier" alt="Dossier"></span>
                         <span v-else><img :src="isFichier" alt="fichier"></span> 
                         {{ item.nom }}
@@ -67,6 +67,8 @@ export default {
                 <td>{{ item.taille }}</td>
                 <td>{{ item.proprietaire }}</td>
                 <td>{{ item.categorie }}</td>
+                 <a href=""><img src="../../assets/SuperAdmin/Modifier.png" alt="Modifier" id="modifier"></a>
+                <a href=""><img src="../../assets/SuperAdmin/Supprimer.png" alt="Supprimer" id="supprimer"></a>
                 <hr v-for="item in separator" v-bind:key="item.id">
             </tr>
         </table>
@@ -77,10 +79,11 @@ export default {
 #vosfichiers{
     background-color: #FFF;
     width: 50rem;
+    margin: 0 auto;
 }
 
 button{
-    margin: 2rem 0rem 0rem 3rem;
+    margin: 4rem 0rem 0rem 3rem;
     background-color: #EFFAFF;
     color: #000000;
     padding: .5rem;
@@ -89,18 +92,25 @@ button{
     cursor: pointer;
 }
 
+#creer{
+    margin-left: -15%;
+}
+
 button:hover{
     background-color: #037682;
     color: #FFF;
 }
 
 #search{
-    margin-left: 80%;
+    margin-left: 77%;
+    width: 40%;
 }
 
 table{
-    margin: 4rem 0rem 0rem 5rem;
-    padding-bottom: 2rem;
+    margin: 0 auto;
+    padding-top: 3rem;
+    width: 70rem;
+    margin-left: -10rem;
 }
 
 table tr th{
@@ -109,25 +119,38 @@ table tr th{
 
 table tr td{
     padding: 1.5rem 0rem 0rem 1rem;
+    text-align: center;
 }
 
-a{
+/*a{
     background-color: #EFFAFF;
     padding: .3rem;
     border-radius: .2rem;
     text-decoration: none;
     color: #000000;
-}
+}*/
 
 img{
     width: 1rem;
 }
 
+#modifier, #supprimer{
+    width: 1.5rem;
+    padding: .5rem;
+    margin: 1.5rem 0rem 0rem 1rem;
+}
+
 hr{
     position: absolute;
-    width: 36rem;
-    margin-left: -37rem;
-    margin-top: 3.5rem;
+     width: 67rem;
+    margin-left: -56rem;
+}
+#nom{
+    background-color: #EFFAFF;
+    padding: .3rem;
+    border-radius: .2rem;
+    text-decoration: none;
+    color: #000000;
 }
 
 </style>

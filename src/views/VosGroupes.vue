@@ -1,25 +1,28 @@
 <template>
-  <div class="contact view">
+  <div class="vosgroupes view">
     <Sidemenu  />
     <div class="wrap">
       <Header  />
-      <ContactMain/>
+      <VosGroupesMain />
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import ContactMain from '../components/Contact/ContactMain.vue'
+import VosGroupesMain from '../components/VosGroupes/VosGroupesMain.vue'
 import Sidemenu from "../components/common/Sidemenu/Sidemenu.vue"
 import Header from "../components/common/Header/Header.vue";
 
 export default {
-  name: 'Contact main',
+  name: 'Vos groupes',
   components: {
-    ContactMain,
+    VosGroupesMain,
     Sidemenu,
     Header
   }
 }
 </script>
+
+<style lang="scss" scoped>
+</style>

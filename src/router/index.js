@@ -18,6 +18,16 @@ const routes = [
     component: () => import("../views/VosFichiers.vue"),
   },
   {
+    path: "/vosgroupes",
+    name: "Vos Groupes",
+    component: () => import("../views/VosGroupes.vue"),
+  },
+  {
+    path: "/VosFavoris",
+    name: "Vos Favoris",
+    component: () => import("../views/VosFavoris.vue"),
+  },
+  {
     path: "/fichiersrecents",
     name: "Fichiers recents",
     component: () => import("../views/FichiersRecent.vue"),
