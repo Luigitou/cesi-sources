@@ -1,5 +1,8 @@
 <script>
 
+import NouveauGroupe from "../../components/VosGroupes/NouveauGroupe.vue"
+import Invite from "../../components/VosGroupes/InviterUnAmi.vue"
+
 export default {
     name: 'VosGroupesMain',
     data (){
@@ -23,16 +26,33 @@ export default {
             separator: {
                 line: ""
             },
+
+            reveleGroupe: false,
+            reveleInvite: false
         }
     },
-}
+    components : {
+        'NouveauGroupe' : NouveauGroupe,
+        'Invite': Invite //modale est le nom d'utilisation voir dans template
+    },
+    methods: {
+        toggleNouveauGroupe: function() {
+            this.reveleGroupe=!this.reveleGroupe
+        },
+        toggleInvite: function() {
+        this.reveleInvite=!this.reveleInvite //si cest false passe a true vis versa et cela a partir de la modale puisque les props sont liées
+      }
+    }
+};
 </script>
 
 <template>
+<NouveauGroupe v-bind:reveleGroupe="reveleGroupe" v-bind:toggleNouveauGroupe="toggleNouveauGroupe"></NouveauGroupe> <!--lier les données au composent--> 
+<Invite v-bind:reveleInvite="reveleInvite" v-bind:toggleInvite="toggleInvite"></Invite>
     <div id="vosGroupes">
         <div class="menu">
-            <button>Créer un nouveau Groupe</button>
-            <button>Ajouter un ami</button>
+            <button v-on:click="toggleNouveauGroupe">Créer un nouveau Groupe</button>
+            <button v-on:click="toggleInvite">Ajouter un ami</button>
         </div>
 
         <table>
@@ -127,7 +147,7 @@ img{
 }
 
 hr{
-    position: absolute;
+    position: static;
     width: 65rem;
     margin-left: -55rem;
 }

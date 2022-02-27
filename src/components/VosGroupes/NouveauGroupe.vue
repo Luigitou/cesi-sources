@@ -1,17 +1,14 @@
 <template>
-    <div class="bloc-modale" v-if="revele"> <!-- if revele false le modale disparait if revele true le modale apparait --> 
-        <div class="overlay" v-on:click="toggleNouveauFichier"></div> <!-- click en dehors du modale pour fermer -->
+    <div class="bloc-modale" v-if="reveleGroupe"> <!-- if revele false le modale disparait if revele true le modale apparait --> 
+        <div class="overlay" v-on:click="toggleNouveauGroupe"></div> <!-- click en dehors du modale pour fermer -->
         <form class="modale-card">
                     
-                <div v-on:click="toggleNouveauFichier" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
+                <div v-on:click="toggleNouveauGroupe" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
 
                 <div class="container">
                     <label for="uname"><b>Nom</b></label>
-                    <input type="text" placeholder="Entrez le nom du fichier" name="uname" required>
-
-                    <input type="file" placeholder="selectionneé votre fichier" name="fichier" required>
-        
-                    <div v-on:click="toggleNouveauFichier">
+                    <input type="text" placeholder="Entrez le nom du groupe" name="uname" required>
+                    <div v-on:click="toggleNouveauGroupe">
                     <button type="submit">Valider</button>
                     <button type="cancel">Annuler</button>
                     </div>
@@ -22,8 +19,8 @@
 
 <script>
 export default {
-    name: 'NouveauFichier',
-    props: ['revele', 'toggleNouveauFichier']
+    name: 'NouveauGroupe',
+    props: ['reveleGroupe', 'toggleNouveauGroupe']
 }
 </script>
 

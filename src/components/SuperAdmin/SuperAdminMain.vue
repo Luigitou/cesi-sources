@@ -34,7 +34,9 @@ export default {
 
 <template>
     <div id="superadmin">
-        <button>Créer un administrateur</button>
+        <router-link to="/superadminform">
+        <button>Créer un compte</button>
+        </router-link>
         <SearchBarAdmin id="search"/>
         <table>
             <tr>
@@ -70,15 +72,15 @@ button{
     border-radius: .5rem;
     border: 0.1rem solid #037682;
     cursor: pointer;
+}
 
+button:hover{
+    background-color: #037682;
+    color: #FFF;
 }
 
 #search{
     margin-left: 55%;
-}
-button:hover{
-    background-color: #037682;
-    color: #FFF;
 }
 
 table{

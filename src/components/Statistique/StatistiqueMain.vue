@@ -1,6 +1,5 @@
 <script>
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
-
 export default {
     name: 'StatistiqueMain',
     components: {
@@ -33,7 +32,6 @@ export default {
                 }
             }
         };
-
         const lineChart = {
             type: "line",
             data: {
@@ -49,7 +47,6 @@ export default {
                 
                 ],
             },
-
             options: {
                 plugins: {
                     legend: {
@@ -61,7 +58,6 @@ export default {
                 }
             }
         };
-
         return {
             pieChart,
             lineChart
@@ -131,7 +127,6 @@ export default {
     .statistique{
         background-color: #FAFAFA;
     }
-
     .stockage{
         width: 20rem;
         height: 10rem;
@@ -140,18 +135,15 @@ export default {
         background-color: #FFF;
         border-radius: 0.2rem;
     }
-
     #title-stockage{
         text-align: center;
         padding-top: 0.2rem;
     }
-
     .stockage-info{
         display: flex;
         margin: -1rem 0rem 0rem 0rem;
         justify-content: space-around;
     }
-
     #utilise-p, #libre-p{
         color: $color-special;
         text-align: center;
@@ -164,71 +156,59 @@ export default {
         background-color: #FFF;
         border-radius: 0.2rem;
     }
-
     #title-interaction{
         text-align: center;
         padding-top: 0.5rem;
     }
-
     .interaction-info{
         display: flex;
         margin: 0.5rem 0rem 0rem 0rem;
         justify-content: space-around;
     }
-
     #nombre-interaction{
         color: $color-special;
         text-align: center;
     } 
-
     .stockage-interaction{
         display: flex;
         margin-left: -20rem;
         justify-content: space-evenly;
     }
-
     .pie{
         background-color: #FFF;
         width: 15rem;
         padding: 3.2rem;
         margin-top: 2rem;
-
         h3{
             text-align: center;
             margin: 0rem 0rem 2rem 0rem;
         }
     }
-
     .line{
         background-color: #FFF;
         width: 45rem;
         height: 29rem;
         padding: 2rem;
         margin: -10rem 0rem 0rem 10rem;
-
         h3{
             text-align: center;
             margin-bottom: 2rem;
         }
     }
-
     .container-ressources{
         position: absolute;
         margin: 28rem 0rem 0rem 78rem;
         width: 20%;
         padding: 1rem;
         background-color: #FFF;
-
         h3{
             text-align: center;
         }
     }
-
     .ressource-container{
         width: 100%;
         background: #ddd;
     }
-
     .ressource{
         text-align: right;
         padding-top: 10px;
@@ -236,27 +216,22 @@ export default {
         color: white;
         height: 1rem;
     }
-
     .image{
         width: 90%;
         background-color: $color-text;
     }
-
     .video{
         width: 80%;
         background-color: $color-special;
     }
-
     .pdf{
         width: 85%;
         background-color: $color-button;
     }
-
 @media only screen and (max-width: 760px) {
   .container{
     width: 96%;
   }
-
   .line{
       width: 96%;
   }

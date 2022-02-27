@@ -2,11 +2,15 @@
 import dossier from "../../assets/VosFichiers/dossier.png"
 import fichier from "../../assets/VosFichiers/fichier.png"
 import SearchBarAdmin from "../common/Header/SearchBarAdmin.vue";
+import NouveauFichier from "../../components/VosFichier/NouveauFichier.vue"
+import Categorie from "../../components/Admin/NouvelleCategorie.vue"
 
 export default {
     name: 'VosFichiersMain',
      components: {
         SearchBarAdmin,
+        'NouveauFichier' : NouveauFichier,
+        'Categorie' : Categorie
     },
     data (){
         return {
@@ -35,15 +39,27 @@ export default {
             separator: {
                 line: ""
             },
+            revele: false,
+            reveleCategorie : false
         }
     },
-}
+    methods: {
+        toggleNouveauFichier: function() {
+            this.revele=!this.revele
+        },
+        toggleCategorie: function() {
+            this.reveleCategorie=!this.reveleCategorie
+        }
+    }
+};
 </script>
 
 <template>
+<NouveauFichier v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent--> 
+<Categorie v-bind:reveleCategorie="reveleCategorie" v-bind:toggleCategorie="toggleCategorie"></Categorie>    
     <div id="vosfichiers">
-        <button id="creer">Créer un nouveau fichier</button>
-        <button>Créer une nouvelle catégorie</button>
+        <button v-on:click="toggleNouveauFichier" id="creer">Créer un nouveau fichier</button>
+        <button v-on:click="toggleCategorie">Créer une nouvelle catégorie</button>
         
         <SearchBarAdmin id="search" />
 
@@ -141,7 +157,7 @@ img{
 }
 
 hr{
-    position: absolute;
+    position: static;
      width: 67rem;
     margin-left: -56rem;
 }

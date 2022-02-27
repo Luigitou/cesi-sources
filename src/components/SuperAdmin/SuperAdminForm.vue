@@ -48,6 +48,8 @@ export default {
                 <label for="superadmin" id="superadmin">Super administrateur</label>
                 <input type="radio" id="adminr" value="Administrateur" name="admin" checked>
                 <label for="admin" id="admin">Administrateur</label>
+                <input type="radio" id="moderateurr" value="Moderateur" name="admin" checked>
+                <label for="moderateur" id="moderateur">Moderateur</label>
                 <br>
                 <br>
                 <input type="submit" value="Creer un compte" id="submit">
@@ -150,11 +152,11 @@ export default {
                 margin-left: -2rem;
             }
         
-            #superadmin, #admin{
+            #superadmin, #admin, #moderateur{
                 font-size: 1.2rem;
             }
 
-            #superadminr, #adminr{          
+            #superadminr, #adminr, #moderateurr{          
                 margin: 3% 2% 0% 3%;
             }
 

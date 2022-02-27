@@ -2,7 +2,7 @@
 import dossier from "../../assets/VosFichiers/dossier.png"
 import fichier from "../../assets/VosFichiers/fichier.png"
 import NouveauFichier from "../../components/VosFichier/NouveauFichier.vue"
-//import Invite from "../../components/VosFichier/InviterUnAmi.vue"
+import Invite from "../../components/VosFichier/InviterUnAmi.vue"
 
 export default {
     name: 'VosFichiersMain',
@@ -40,28 +40,29 @@ export default {
     },
     components : {
         'NouveauFichier' : NouveauFichier,
-        //'Invite': Invite //modale est le nom d'utilisation voir dans template
+        'Invite': Invite //modale est le nom d'utilisation voir dans template
     },
     methods: {
         toggleNouveauFichier: function() {
             this.revele=!this.revele
-        }
-        /*toggleInvite: function() {
+        },
+        toggleInvite: function() {
         this.reveleInvite=!this.reveleInvite //si cest false passe a true vis versa et cela a partir de la modale puisque les props sont liées
-      }*/
+      }
     }
 };
 </script>
 
 <template>
 <NouveauFichier v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent--> 
-<!--<Invite v-bind:reveleInvite="reveleInvite" v-bind:toggleInvite="toggleInvite"></Invite> -->   
+<Invite v-bind:reveleInvite="reveleInvite" v-bind:toggleInvite="toggleInvite"></Invite> 
+
     <div id="vosfichiers">
         <button v-on:click="toggleNouveauFichier">Créer un nouveau fichier</button>
         <button>Créer un nouveau dossier</button>
         <button>Partagé avec moi</button>
         <button v-on:click="toggleInvite">Inviter un ami</button>
-
+        
         <table>
             <tr>
                 <th>Nom</th>
@@ -151,7 +152,7 @@ img{
 }
 
 hr{
-    position: absolute;
+    position: static;
     width: 67rem;
     margin-left: -58rem;
     margin-top: 0rem;
