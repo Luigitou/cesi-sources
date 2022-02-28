@@ -2,28 +2,25 @@
   <header>
     <div class="submenu">
         <router-link to="/">
-        <img src="../../../assets/Accueil/logo.png" alt="logo">
+        <img src="../../assets/Accueil/logo.png" alt="logo">
         </router-link>
-        <NavBarAdmin />
         <IconBarAdmin />
     </div>
   </header>
 </template>
 
 <script>
-import IconBarAdmin from "./IconBarAdmin.vue";
-import NavBarAdmin from "./NavBarAdmin.vue";
+import IconBarAdmin from "../common/Header/IconBarAdmin.vue";
 export default {
   name: "HeaderAdmin",
   components: {
     IconBarAdmin,
-    NavBarAdmin,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../../scss/common.scss";
+@import "../../scss/common.scss";
 
 /*header {
   background: $color-head;
@@ -55,11 +52,11 @@ header {
     display: flex;
     align-items: right;
     justify-content: space-around;
+    align-items: center;
   }
   img{
     margin-left: 10%;
-    width: 20%;
+    width: 30%;
   }
 }
-
 </style>

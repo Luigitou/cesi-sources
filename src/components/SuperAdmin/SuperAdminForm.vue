@@ -12,7 +12,9 @@ export default {
 
 <template>
     <div id="superadminform">
-
+        <router-link to="/superadmin">
+        <button>Gérer un compte</button>
+        </router-link>
         <form action="#" method="POST">
             <div class="wrapperIdent">
                 <div class="wrappernom">
@@ -175,6 +177,20 @@ export default {
             }
         }
     }
+    button{
+    margin: 4rem 0rem 0rem 18rem;
+    background-color: #EFFAFF;
+    color: #000000;
+    padding: .5rem;
+    border-radius: .5rem;
+    border: 0.1rem solid #037682;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #037682;
+    color: #FFF;
+}
     /*    padding: 1rem;
 
         input[type='text'], #emaili{

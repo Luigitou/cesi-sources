@@ -38,8 +38,8 @@ export default {
 
 <template>
     <div id="listeusers">
-        <button>Liste des utilisateurs</button>
-        <button id="btn2">Gestions des ressources</button>
+        <!--<button>Liste des utilisateurs</button>
+        <button id="btn2">Gestions des ressources</button>-->
         <SearchBarAdmin id="search" />
         <table>
             <tr>
@@ -47,7 +47,7 @@ export default {
                 <th>Date de création de compte</th>
                 <th>Statut</th>
                 <th>Compte</th>
-                <th>Modérateur</th>
+                <th>Citoyen</th>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
                 <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ item.nom }}</a></td>
@@ -77,7 +77,7 @@ export default {
     background-color: #FFF;
     width: 80%;
     margin: 0 auto;
-    padding-top: 5%;
+    padding-top: 8%;
 }
 
 #search{
