@@ -57,10 +57,12 @@ export default {
 <NouveauFichier v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent--> 
 <Invite v-bind:reveleInvite="reveleInvite" v-bind:toggleInvite="toggleInvite"></Invite> 
     <div id="vosfavoris">
-        <button v-on:click="toggleNouveauFichier">Créer un nouveau fichier</button>
-        <button>Partagé avec moi</button>
-        <button v-on:click="toggleInvite">Inviter un ami</button>
-
+        <div class="menu">
+            <button v-on:click="toggleNouveauFichier">Créer un nouveau fichier</button>
+            <button>Partagé avec moi</button>
+            <button v-on:click="toggleInvite">Inviter un ami</button>
+        </div>
+        
         <table>
             <tr>
                 <th>Nom</th>
@@ -93,10 +95,19 @@ export default {
     background-color: #FFF;
     width: 100%;
     height: 90%;
+    overflow-x:auto;
+}
+
+.menu{
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+    margin-right: 10%;
+    flex-wrap: wrap;
 }
 
 button{
-    margin: 4rem 0rem 0rem 15rem;
+    margin: 4rem 0rem 0rem 3rem;
     background-color: #EFFAFF;
     color: #000000;
     padding: .5rem;
@@ -113,7 +124,7 @@ button:hover{
 
 table{
     margin: 0 auto;
-    padding-top: 5%;
+    padding-top: 5rem;
     width: 60rem;
 }
 

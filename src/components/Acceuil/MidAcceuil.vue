@@ -95,4 +95,31 @@ export default {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .MidAccueil {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .MidAccueil .wrapperLeft .btnWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    height: 5rem;
+    gap: 10%;
+  }
+
+  .imgWrapper{
+    margin-top: 20%;
+    margin-bottom: 20%;
+    width: 100%;
+    display: flex;
+
+    img{
+      width: 80px;
+    }
+  }
+}
+
 </style>

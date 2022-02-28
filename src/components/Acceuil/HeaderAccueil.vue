@@ -110,6 +110,25 @@ export default {
 
 }
 
+@media only screen and (max-width: 600px) {
+  .nav {
+    display: flex;
+    flex-direction: column;
+
+    .wrapperLogo {
+      .logo {
+        width: 100%;
+        margin-left: 0%;
+      }
+    }
+
+    .wrapperInput {
+      width: 40%;
+      margin-right: 25%;
+    }
+  }
+}
+
 </style>
 
 /*

@@ -1,6 +1,6 @@
 <template>
     <div class="Sidemenu">
-        <Logo  />
+        <Logo  id="logo"/>
         <Subnav  />
     </div>
 </template>
@@ -29,5 +29,16 @@ export default {
     background: $color-head;
     width: 10%;
     height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .Sidemenu {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: $color-head;
+    width: 10%;
+    height: 100%;
+  }
 }
 </style>

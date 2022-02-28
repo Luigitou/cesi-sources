@@ -54,4 +54,13 @@ export default {
   color: #296870;
   font-size: 1.2rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+}
 </style>

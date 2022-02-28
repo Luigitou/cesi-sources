@@ -84,6 +84,7 @@ export default {
     background-color: #FFF;
     width: 100%;
     height: 90%;
+    overflow-x:auto;
 }
 
 .menu{
@@ -91,6 +92,7 @@ export default {
     justify-content: center;
     gap: 10%;
     margin-right: 10%;
+    flex-wrap: wrap;
 }
 
 button{
@@ -100,8 +102,7 @@ button{
     padding: .5rem;
     border-radius: .5rem;
     border: 0.1rem solid #037682;
-    cursor: pointer;
-    
+    cursor: pointer; 
 }
 
 button:hover{

@@ -16,7 +16,7 @@ export default {
       <textarea name="message" id="message" cols="30" rows="10" required></textarea>
       <div class="buttons">
         <button id="annuler">Annuler</button>
-        <input type="submit" value="Envoyer" id="envoyer">
+        <button id="envoyer">Envoyer</button>
       </div>
     </form>
   </div>
@@ -25,19 +25,24 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/common.scss";
 #contact{
+  
 
   form{
-    display: block;
-    margin: 6rem 0rem 0rem 18rem;
-    
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+    overflow-x:auto;
+
     label{
       font-size: 1.3rem;
     }
 
+    input, textarea{
+      width: 50%;
+    }
+
     #objet{
-      display: block;
       margin: -1.5rem 0rem 0rem 11.2rem;
-      width: 27rem;
       height: 1.5rem;
       border-radius: .2rem;
       border-width: .06rem;
@@ -45,18 +50,21 @@ export default {
 
     #message{
       margin: -.7rem 0rem 0rem 11.2rem;
-      width: 27rem;
       height: 13rem;
       border-radius: .4rem;
     }
 
     input:focus, textarea:focus{
       outline: none !important;
-      border:1px solid $color-special;
+      border: 1px solid $color-special;
     }
     
     .buttons{
-      margin: 2rem 0rem 0rem 15.4rem;
+      display: flex;
+      justify-content: center;
+      gap: 10%;
+      margin-left: 11rem;
+      width: 50%;
 
       #annuler, #envoyer{
         background-color: $color-android;
@@ -64,22 +72,36 @@ export default {
         color: $color-head;
         border: none;
         cursor: pointer;
+        margin-top: 30px;
       }
 
       #annuler{
-        width: 8rem;
-        height: 3rem;
+        padding: 1rem;
         border-radius: .5rem;
       }
 
       #envoyer{
-        display: block;
-        width: 8rem;
-        height: 3rem;
+        padding: 1rem;
         border-radius: .5rem;
-        margin: -3rem 0rem 0rem 11rem;
       }
     }
   }
+
+@media only screen and (max-width: 600px) {
+  form{
+    #objet, #message{
+      width: 100%;
+    }
+
+    label{
+      font-size: 15px;
+    }
+
+    .buttons{
+      width: 100%;
+    }
+  }
+}
+
 }
 </style>
