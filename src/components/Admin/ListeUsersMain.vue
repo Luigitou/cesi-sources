@@ -38,8 +38,8 @@ export default {
 
 <template>
     <div id="listeusers">
-        <button>Liste des utilisateurs</button>
-        <button id="btn2">Gestions des ressources</button>
+        <!--<button>Liste des utilisateurs</button>
+        <button id="btn2">Gestions des ressources</button>-->
         <SearchBarAdmin id="search" />
         <table>
             <tr>
@@ -77,7 +77,7 @@ export default {
     background-color: #FFF;
     width: 80%;
     margin: 0 auto;
-    padding-top: 5%;
+    padding-top: 8%;
 }
 
 #search{

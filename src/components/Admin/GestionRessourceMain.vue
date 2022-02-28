@@ -96,6 +96,7 @@ export default {
     background-color: #FFF;
     width: 50rem;
     margin: 0 auto;
+    padding-top: 3%;
 }
 
 button{
@@ -124,7 +125,7 @@ button:hover{
 
 table{
     margin: 0 auto;
-    padding-top: 3rem;
+    padding-top: 5rem;
     width: 70rem;
     margin-left: -10rem;
 }
@@ -158,8 +159,8 @@ img{
 
 hr{
     position: static;
-     width: 67rem;
-    margin-left: -56rem;
+    width: 63rem;
+    margin-left: -53rem;
 }
 #nom{
     background-color: #EFFAFF;

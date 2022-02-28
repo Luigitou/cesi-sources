@@ -4,6 +4,7 @@
         <router-link to="/">
         <img src="../../../assets/Accueil/logo.png" alt="logo">
         </router-link>
+        <NavBarAdmin />
         <IconBarAdmin />
     </div>
   </header>
@@ -11,11 +12,12 @@
 
 <script>
 import IconBarAdmin from "./IconBarAdmin.vue";
-
+import NavBarAdmin from "./NavBarAdmin.vue";
 export default {
   name: "HeaderAdmin",
   components: {
     IconBarAdmin,
+    NavBarAdmin,
   },
 };
 </script>
@@ -56,7 +58,7 @@ header {
   }
   img{
     margin-left: 10%;
-    width: 30%;
+    width: 20%;
   }
 }
 

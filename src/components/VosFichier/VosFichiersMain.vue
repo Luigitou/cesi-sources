@@ -2,6 +2,7 @@
 import dossier from "../../assets/VosFichiers/dossier.png"
 import fichier from "../../assets/VosFichiers/fichier.png"
 import NouveauFichier from "../../components/VosFichier/NouveauFichier.vue"
+import NouveauDossier from "../../components/VosFichier/NouveauDossier.vue"
 import Invite from "../../components/VosFichier/InviterUnAmi.vue"
 
 export default {
@@ -34,13 +35,15 @@ export default {
                 line: ""
             },
             revele: false,
-            reveleInvite: false
+            reveleInvite: false,
+            reveleDossier: false
 
         }
     },
     components : {
         'NouveauFichier' : NouveauFichier,
-        'Invite': Invite //modale est le nom d'utilisation voir dans template
+        'Invite': Invite, //modale est le nom d'utilisation voir dans template
+        'NouveauDossier': NouveauDossier
     },
     methods: {
         toggleNouveauFichier: function() {
@@ -48,18 +51,22 @@ export default {
         },
         toggleInvite: function() {
         this.reveleInvite=!this.reveleInvite //si cest false passe a true vis versa et cela a partir de la modale puisque les props sont liées
-      }
-    }
+        },
+        toggleNouveauDossier: function() {
+        this.reveleDossier=!this.reveleDossier
+        },
+    },
 };
 </script>
 
 <template>
-<NouveauFichier v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent--> 
+<NouveauFichier v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent-->
+<NouveauDossier v-bind:reveleDossier="reveleDossier" v-bind:toggleNouveauDossier="toggleNouveauDossier"></NouveauDossier>
 <Invite v-bind:reveleInvite="reveleInvite" v-bind:toggleInvite="toggleInvite"></Invite> 
 
     <div id="vosfichiers">
         <button v-on:click="toggleNouveauFichier">Créer un nouveau fichier</button>
-        <button>Créer un nouveau dossier</button>
+        <button v-on:click="toggleNouveauDossier">Créer un nouveau dossier</button>
         <button>Partagé avec moi</button>
         <button v-on:click="toggleInvite">Inviter un ami</button>
         
