@@ -9,7 +9,8 @@
 export default {
     name: 'Images',
     props:{
-        Text:String
+        Text:String,
+        ID:Number
     }
 };
 </script>

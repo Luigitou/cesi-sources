@@ -86,7 +86,5 @@ export default {
 
 
 <style lang="scss" scoped>
-.TDBMid{
-    }
 
 </style>
