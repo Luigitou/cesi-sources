@@ -14,6 +14,7 @@ export default {
                     date: "14/10/2021",
                     statut: "Connecté",
                     compte: "Activé",
+                    nature: "Modérateur",
                 },
 
                 {
@@ -21,6 +22,7 @@ export default {
                     date: "12/10/2021",
                     statut: "Déconnecté",
                     compte: "Désactivé",
+                    nature: "Administrateur",
                 },
             ],
 
@@ -44,12 +46,14 @@ export default {
                 <th>Date de création de compte</th>
                 <th>Statut</th>
                 <th>Compte</th>
+                <th>Nature</th>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
                 <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ item.nom }}</a></td>
                 <td>{{ item.date }}</td>
                 <td>{{ item.statut }}</td>
                 <td>{{ item.compte }}</td>
+                <td>{{ item.nature }}</td>
                 <a href=""><img src="../../assets/SuperAdmin/Modifier.png" alt="Modifier" id="modifier"></a>
                 <a href=""><img src="../../assets/SuperAdmin/Supprimer.png" alt="Supprimer" id="supprimer"></a>
                 <hr v-for="item in separator" v-bind:key="item.id">
@@ -118,8 +122,8 @@ table tr td{
 
 hr{
     position: absolute;
-    width: 65rem;
-    margin-left: -54rem;
+    width: 68rem;
+    margin-left: -58rem;
     margin-top: 0rem;
 }
 

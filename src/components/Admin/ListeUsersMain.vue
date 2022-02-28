@@ -47,7 +47,7 @@ export default {
                 <th>Date de création de compte</th>
                 <th>Statut</th>
                 <th>Compte</th>
-                <th>Modérateur</th>
+                <th>Citoyen</th>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
                 <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ item.nom }}</a></td>
