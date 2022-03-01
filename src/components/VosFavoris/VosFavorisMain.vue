@@ -157,7 +157,7 @@ img{
 
 hr{
     position: static;
-    width: 58rem;
+    width: 56rem;
     margin-left: -49rem;
     margin-top: 0rem;
 }

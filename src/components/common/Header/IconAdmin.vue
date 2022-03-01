@@ -54,7 +54,7 @@ export default {
     display: flex;
 
     .iconImg {
-        width: 65%;
+        width: 30px;
         filter: $filter-head;
         cursor: pointer;
         transition: filter ease-in-out .05s;

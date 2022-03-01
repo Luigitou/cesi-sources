@@ -22,7 +22,7 @@ div {
 
     img {
         position: relative;
-        width: 75%;
+        width: 85%;
         top: 0;
         left: 0;
         margin-left: 30%;
@@ -30,5 +30,4 @@ div {
     }
 
 }
-
 </style>

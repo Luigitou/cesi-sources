@@ -41,6 +41,7 @@ export default {
         <!--<button>Liste des utilisateurs</button>
         <button id="btn2">Gestions des ressources</button>-->
         <SearchBarAdmin id="search" />
+        <div class="table-style">
         <table>
             <tr>
                 <th>Nom</th>
@@ -67,6 +68,7 @@ export default {
                 <hr v-for="item in separator" v-bind:key="item.id">
             </tr>
         </table>
+        </div>
     </div>
 </template>
 
@@ -77,12 +79,16 @@ export default {
     background-color: #FFF;
     width: 80%;
     margin: 0 auto;
-    padding-top: 8%;
+    padding-top: 8%;  
 }
 
 #search{
     width: 20rem;
     margin-left: 68%;
+}
+
+.table-style{
+    overflow-x:auto;
 }
 
 button{
@@ -146,9 +152,21 @@ table tr td{
 }
 
 hr{
-    position: absolute;
-    width: 70rem;
-    margin-left: -60rem;
+    width: 65rem;
+    margin-left: -58rem;
+}
+
+@media only screen and (max-width: 900px) {
+  #search{
+    margin-top: 50px;
+    margin-left: 60px;
+    width: 170px;
+  }
+
+  #listeusers{
+    width: 150%;
+    padding-bottom: 100%;
+  }
 }
 
 </style>

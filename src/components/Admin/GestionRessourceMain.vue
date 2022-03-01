@@ -60,11 +60,12 @@ export default {
 <NouveauFichier v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent--> 
 <Categorie v-bind:reveleCategorie="reveleCategorie" v-bind:toggleCategorie="toggleCategorie"></Categorie>    
     <div id="vosfichiers">
-        <button v-on:click="toggleNouveauFichier" id="creer">Créer un nouveau fichier</button>
-        <button v-on:click="toggleCategorie">Créer une nouvelle catégorie</button>
-        
-        <SearchBarAdmin id="search" />
+        <div class="buttons">
+            <button v-on:click="toggleNouveauFichier" id="creer">Créer un nouveau fichier</button>
+            <button v-on:click="toggleCategorie">Créer une nouvelle catégorie</button>
+        </div>
 
+        <SearchBarAdmin id="search" />
         <table>
             <tr>
                 <th>Nom</th>
@@ -182,6 +183,7 @@ hr{
     position: static;
     width: 69rem;
     margin-left: -68rem;
+    margin-top: 5rem;
 }
 #nom{
     background-color: #EFFAFF;
@@ -189,6 +191,43 @@ hr{
     border-radius: .2rem;
     text-decoration: none;
     color: #000000;
+}
+
+@media only screen and (max-width: 1100px) {
+  #search{
+    margin-top: 50px;
+    margin-left: 12rem;
+    width: 20rem;
+  }
+
+  table{
+    margin: 0;
+    width: 50rem;
+  }
+
+  .buttons{
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    margin: 0 auto;
+  }
+
+  #vosfichiers{
+    width: 150%;
+    padding-bottom: 100%;
+    overflow-x:auto;
+  }
+
+  #creer{
+    margin-left: 15%;
+    width: 17rem;
+  }
+
+  hr{
+    margin-top: 6rem;
+    width: 57rem;
+    margin-left: -51rem;
+  }
 }
 
 </style>

@@ -170,8 +170,8 @@ img{
 
 hr{
     position: static;
-    width: 67rem;
-    margin-left: -58rem;
+    width: 64rem;
+    margin-left: -55rem;
     margin-top: 0rem;
 }
 

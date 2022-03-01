@@ -58,7 +58,14 @@ header {
   }
   img{
     margin-left: 10%;
-    width: 20%;
+    width: 100px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+
+  header{
+    width: 150%;
   }
 }
 

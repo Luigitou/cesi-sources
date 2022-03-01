@@ -149,7 +149,7 @@ img{
 
 hr{
     position: static;
-    width: 65rem;
+    width: 62rem;
     margin-left: -55rem;
 }
 

@@ -38,6 +38,7 @@ export default {
 
 <template>    
     <div id="vosfichiers">
+        <div class="table_style">
         <table>
             <tr>
                 <th>Nom</th>
@@ -64,6 +65,7 @@ export default {
                 <hr v-for="item in separator" v-bind:key="item.id">
             </tr>
         </table>
+        </div>
     </div>
 </template>
 
@@ -151,6 +153,7 @@ hr{
     position: static;
     width: 69rem;
     margin-left: -68rem;
+    margin-top: 5rem;
 }
 #nom{
     background-color: #EFFAFF;
@@ -158,6 +161,26 @@ hr{
     border-radius: .2rem;
     text-decoration: none;
     color: #000000;
+}
+
+@media only screen and (max-width: 1000px) {
+
+  table{
+    margin: 0;
+    width: 50rem;
+  }
+
+  #vosfichiers{
+    margin: 0;
+    width: 100%;
+    overflow-x:auto;
+  }
+
+  hr{
+    width: 48.5rem;
+    margin-left: -49rem;
+    margin-top: 7rem;
+  }
 }
 
 </style>

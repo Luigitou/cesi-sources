@@ -56,7 +56,7 @@ header {
   }
   img{
     margin-left: 10%;
-    width: 30%;
+    width: 100px;
   }
 }
 </style>

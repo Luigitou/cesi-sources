@@ -34,11 +34,11 @@ export default {
 .iconBar {
 
     width: 25%;
-    margin-left: 65%;
+    margin-left: 50%;
     display: flex;
     align-items: center;
     justify-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
 }
 

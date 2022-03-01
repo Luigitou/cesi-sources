@@ -40,6 +40,7 @@ export default {
         <button>Créer un compte</button>
         </router-link>
         <SearchBarAdmin id="search"/>
+        <div class="table_style">
         <table>
             <tr>
                 <th>Nom</th>
@@ -59,6 +60,7 @@ export default {
                 <hr v-for="item in separator" v-bind:key="item.id">
             </tr>
         </table>
+        </div>
     </div>
 </template>
 
@@ -121,10 +123,49 @@ table tr td{
 }
 
 hr{
-    position: absolute;
-    width: 68rem;
+    width: 66rem;
     margin-left: -58rem;
-    margin-top: 0rem;
+    margin-top: 1rem;
+}
+
+@media only screen and (max-width: 1190px) {
+  .table_style{
+    overflow-x:auto;
+  }
+
+  button{
+    margin: 60px 0px 0px 70px;
+  }
+
+  #search{
+    margin-left: 25rem;
+  }
+
+  hr{
+    margin-top: 1rem;
+    width: 65rem;
+    margin-left: -55rem;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .table_style{
+    overflow-x:auto;
+  }
+
+  button{
+    margin: 60px 0px 0px 70px;
+  }
+
+  #search{
+    margin-left: 15rem;
+  }
+
+  hr{
+    margin-top: 1rem;
+    width: 65rem;
+    margin-left: -58rem;
+  }
 }
 
 </style>
