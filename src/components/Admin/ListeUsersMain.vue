@@ -3,6 +3,8 @@ import SearchBarAdmin from "../common/Header/SearchBarAdmin.vue";
 import moderateurDesactive from "../../assets/Admin/ModerateurDesactive.png"
 import moderateurActive from "../../assets/Admin/ModerateurActive.png"
 
+import UtilisateurService from '../../services/UtilisateurService'
+
 export default {
     name: 'ListeUsersMain',
     components: {
@@ -12,6 +14,7 @@ export default {
         return {
             isDesactive: moderateurDesactive,
             isActive: moderateurActive,
+            utilisateurs: [],
             list: [
                 {
                     nom: "Louis",
@@ -33,6 +36,16 @@ export default {
             },
         }
     },
+    methods: {
+        getUtilisateurs(){
+            UtilisateurService.getUtilisateurs().then((response) => {
+                this.utilisateurs = response.data;   
+            });
+        }
+    },
+    created() {
+        this.getUtilisateurs();
+    }  
 }
 </script>
 
@@ -69,6 +82,18 @@ export default {
             </tr>
         </table>
         </div>
+
+        <table>
+            <tbody>
+                <tr v-for="utilisateur in utilisateurs" v-bind:key="utilisateur.id">
+                    <td> {{utilisateur.id }}</td>
+                    <td> {{utilisateur.nom }}</td>
+                    <td> {{utilisateur.prenom}}</td>    
+                    <td> {{utilisateur.email}}</td>
+                    <td> {{utilisateur.adresse}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 

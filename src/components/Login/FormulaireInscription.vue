@@ -163,33 +163,33 @@ label {
 <div class="body">
 <div class="page">
   <div class="overlay">
-    <form class="modale-card">
+    <form class="modale-card" action="http://localhost:8082/api" method="POST">
       <h1>Inscription</h1>
       <fieldset class="inscription">
         <div class="container">
-
+          <h2>{{ dataMsg }}</h2>
           <label for="nom">Nom</label>
-          <input type="text" id="nom" placeholder="Nom">
+          <input type="text" id="nom" placeholder="Nom" required name="nom" v-model="utilisateur.nom">
          
           <label for="prenom">Prénom</label>
-          <input type="text" id="prenom" placeholder="Prénom">
+          <input type="text" id="prenom" placeholder="Prénom" required name="prenom" v-model="utilisateur.prenom">
           
           <label for="email">Mail</label>
-          <input type="text" id="email" placeholder="Email">
+          <input type="mail" id="email" placeholder="Email" required name="mail" v-model="utilisateur.mail">
           
           <label for="adresse">Adresse</label>
-          <input type="text" id="address" placeholder="Rue, boulevard, avenue..." >
+          <input type="text" id="address" placeholder="Rue, boulevard, avenue..." required name="addresse" v-model="utilisateur.adresse">
           
           <label for="mdp">Mot de passe</label>
-          <input type="password" id="mdp" placeholder="Mot de passe">
+          <input type="password" id="mdp" placeholder="Mot de passe" required name="password" v-model="utilisateur.password">
           
           <label for="cmdp">Confirmation du mot de passe</label>
-          <input type="password" id="cmdp" placeholder="Confirmation du mot de passe">
+          <input type="password" id="cmdp" placeholder="Confirmation du mot de passe" required>
 
       <div class="boutton">
         <div class="btn">
           <router-link to="/tdb" id="inscrire">
-            <button type="submit">S'inscrire</button>
+            <button type="submit" @click="saveUser">S'inscrire</button>
           </router-link>
           <router-link to="/" id="cancel">
             <button type="cancel">Annuler</button>
@@ -205,8 +205,46 @@ label {
 </template>
 
 <script>
+import UtilisateurService from '../../services/UtilisateurService'
+
 export default {
-    name: 'FormulaireInscription'    
+  name: 'FormulaireInscription',
+  data() {
+    return {
+      dataMsg: '',
+      utilisateur: {
+        id: null,
+        nom: '',
+        prenom: '',
+        mail: '',
+        adresse: '',
+        password: ''
+      }, 
+      utilisateurs: []
+    }
+  },
+  methods: {
+    saveUser(){
+      let data = {
+        nom: this.utilisateur.nom,
+        prenom: this.utilisateur.prenom,
+        mail: this.utilisateur.mail,
+        adresse: this.utilisateur.adresse,
+        password: this.utilisateur.password
+      }
+      UtilisateurService.postUtilisateurs(data)
+        .then(response => {
+          this.utilisateur.id = response.data.id
+        })
+        .catch(e => {
+          alert(e)
+        })
+    },
+    // newUtilisateur(){
+    //   this.submitted = false
+    //   this.utilisateur = {}
+    // },
+  } 
 }
 </script>
 
