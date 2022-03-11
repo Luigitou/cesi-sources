@@ -4,6 +4,7 @@ import fichier from "../../assets/VosFichiers/fichier.png"
 import NouveauFichier from "../../components/VosFichier/NouveauFichier.vue"
 import NouveauDossier from "../../components/VosFichier/NouveauDossier.vue"
 import Invite from "../../components/VosFichier/InviterUnAmi.vue"
+import FichierService from '../../services/FichierService' 
 
 export default {
     name: 'VosFichiersMain',
@@ -11,6 +12,7 @@ export default {
         return {
             isDossier: dossier,
             isFichier: fichier,
+            fichiers: [],
             list: [
                 {
                     nom: "Photos",
@@ -55,7 +57,16 @@ export default {
         toggleNouveauDossier: function() {
         this.reveleDossier=!this.reveleDossier
         },
+
+        getFichiers(){
+            FichierService.getFichiers().then((response) => {
+                this.fichiers = response.data;   
+            });
+        }
     },
+    created() {
+        this.getFichiers();
+    }  
 };
 </script>
 
@@ -95,6 +106,19 @@ export default {
                 <a href=""><img src="../../assets/SuperAdmin/Supprimer.png" alt="Supprimer" id="supprimer"></a>
                 <hr v-for="item in separator" v-bind:key="item.id">
             </tr>
+        </table>
+
+         <table>
+            <tbody>
+                <tr v-for="fichier in fichiers" v-bind:key="fichier.id">
+                    <!-- <td> {{fichier.id }}</td> -->
+                    <td> {{fichier.nom }}</td>  
+                    <td> {{fichier.dateCreation}}</td>
+                    <td> {{fichier.taille}}</td>
+                    <td> {{fichier.type}}</td>  
+                    <td> {{fichier.etat}}</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </template>

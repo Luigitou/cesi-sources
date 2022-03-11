@@ -7,12 +7,20 @@
 
                 <div class="container">
                     <label for="uname"><b>Nom</b></label>
-                    <input type="text" placeholder="Entrez le nom du fichier" name="uname" required>
-
+                    <input type="text" placeholder="Entrez le nom du fichier" name="uname" required v-model="fichier.nom">
+                    <label for="uname"><b>Date de création</b></label>
+                    <input type="date" placeholder="Entrez la date de création" name="dateCreation" required v-model="fichier.dateCreation">
+                    <label for="uname"><b>Taille</b></label>
+                    <input type="number" placeholder="Entrez la taille du fichier" name="taille" required v-model="fichier.taille">
+                    <label for="uname"><b>Extension</b></label>
+                    <input type="text" placeholder="Entrez l'extension du fichier" name="extension" required v-model="fichier.type">
+                    <label for="uname"><b>Etat</b></label>
+                    <input type="text" placeholder="Entrez l'etat du fichier" name="etat" required v-model="fichier.etat">
+                    <br>
                     <input type="file" placeholder="selectionneé votre fichier" name="fichier" required>
-        
+                    <br>
                     <div v-on:click="toggleNouveauFichier">
-                    <button type="submit">Valider</button>
+                    <button type="submit" @click="saveFile">Valider</button>
                     <button type="cancel">Annuler</button>
                     </div>
                 </div>
@@ -21,9 +29,42 @@
 </template>
 
 <script>
+import FichierService from '../../services/FichierService'
+
 export default {
     name: 'NouveauFichier',
-    props: ['revele', 'toggleNouveauFichier']
+    props: ['revele', 'toggleNouveauFichier'],
+    data() {
+    return {
+      fichier: {
+        id: null,
+        nom: '',
+        dateCreation: '',
+        taille: '',
+        type: '',
+        etat: ''
+      }, 
+      fichiers: []
+    }
+  },
+  methods: {
+    saveFile(){
+      let data = {
+        nom: this.fichier.nom,
+        dateCreation: this.fichier.dateCreation,
+        taille: this.fichier.taille,
+        type: this.fichier.type,
+        etat: this.fichier.etat
+      }
+      FichierService.postFichiers(data)
+        .then(response => {
+          this.fichier.id = response.data.id
+        })
+        .catch(e => {
+          alert(e)
+        })
+    },
+  } 
 }
 </script>
 
@@ -73,11 +114,17 @@ export default {
     .btn-modale:focus{
         cursor: pointer;
     }
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
    /* Full-width input fields */
     label{
         padding: 2%;
     }
-    input[type=text], input[type=password] {
+    input[type=text], input[type=number], input[type=date] {
         width: 95%;
         padding: 2%;
         margin: 1%;
