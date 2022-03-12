@@ -2,17 +2,14 @@
 import dossier from "../../assets/VosFichiers/dossier.png"
 import fichier from "../../assets/VosFichiers/fichier.png"
 import NouveauFichier from "../../components/VosFichier/NouveauFichier.vue"
-import NouveauDossier from "../../components/VosFichier/NouveauDossier.vue"
 import Invite from "../../components/VosFichier/InviterUnAmi.vue"
-import FichierService from '../../services/FichierService' 
 
 export default {
-    name: 'VosFichiersMain',
+    name: 'VosFavorisMain',
     data (){
         return {
             isDossier: dossier,
             isFichier: fichier,
-            fichiers: [],
             list: [
                 {
                     nom: "Photos",
@@ -35,17 +32,15 @@ export default {
 
             separator: {
                 line: ""
-            },
+                       },
             revele: false,
-            reveleInvite: false,
-            reveleDossier: false
+            reveleInvite: false
 
         }
     },
     components : {
         'NouveauFichier' : NouveauFichier,
-        'Invite': Invite, //modale est le nom d'utilisation voir dans template
-        'NouveauDossier': NouveauDossier
+        'Invite': Invite //modale est le nom d'utilisation voir dans template
     },
     methods: {
         toggleNouveauFichier: function() {
@@ -53,32 +48,17 @@ export default {
         },
         toggleInvite: function() {
         this.reveleInvite=!this.reveleInvite //si cest false passe a true vis versa et cela a partir de la modale puisque les props sont liées
-        },
-        toggleNouveauDossier: function() {
-        this.reveleDossier=!this.reveleDossier
-        },
-
-        getFichiers(){
-            FichierService.getFichiers().then((response) => {
-                this.fichiers = response.data;   
-            });
-        }
-    },
-    created() {
-        this.getFichiers();
-    }  
+      }
+    }
 };
 </script>
 
 <template>
-<NouveauFichier v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent-->
-<NouveauDossier v-bind:reveleDossier="reveleDossier" v-bind:toggleNouveauDossier="toggleNouveauDossier"></NouveauDossier>
+<NouveauFichier v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent--> 
 <Invite v-bind:reveleInvite="reveleInvite" v-bind:toggleInvite="toggleInvite"></Invite> 
-
-    <div id="vosfichiers">
+    <div id="vosfavoris">
         <div class="menu">
             <button v-on:click="toggleNouveauFichier">Créer un nouveau fichier</button>
-            <button>Créer un nouveau dossier</button>
             <button>Partagé avec moi</button>
             <button v-on:click="toggleInvite">Inviter un ami</button>
         </div>
@@ -102,29 +82,16 @@ export default {
                 <td>{{ item.taille }}</td>
                 <td>{{ item.proprietaire }}</td>
                 <td>{{ item.membres }}</td>
-                <a href=""><img src="../../assets/SuperAdmin/Modifier.png" alt="Modifier" id="modifier"></a>
+                 <a href=""><img src="../../assets/SuperAdmin/Modifier.png" alt="Modifier" id="modifier"></a>
                 <a href=""><img src="../../assets/SuperAdmin/Supprimer.png" alt="Supprimer" id="supprimer"></a>
                 <hr v-for="item in separator" v-bind:key="item.id">
             </tr>
-        </table>
-
-         <table>
-            <tbody>
-                <tr v-for="fichier in fichiers" v-bind:key="fichier.id">
-                    <!-- <td> {{fichier.id }}</td> -->
-                    <td> {{fichier.nom }}</td>  
-                    <td> {{fichier.dateCreation}}</td>
-                    <td> {{fichier.taille}}</td>
-                    <td> {{fichier.type}}</td>  
-                    <td> {{fichier.etat}}</td>
-                </tr>
-            </tbody>
         </table>
     </div>
 </template>
 
 <style lang="scss" scoped>
-#vosfichiers{
+#vosfavoris{
     background-color: #FFF;
     width: 100%;
     height: 90%;
@@ -139,7 +106,6 @@ export default {
     flex-wrap: wrap;
 }
 
-
 button{
     margin: 4rem 0rem 0rem 3rem;
     background-color: #EFFAFF;
@@ -148,6 +114,7 @@ button{
     border-radius: .5rem;
     border: 0.1rem solid #037682;
     cursor: pointer;
+    
 }
 
 button:hover{
@@ -158,7 +125,7 @@ button:hover{
 table{
     margin: 0 auto;
     padding-top: 5rem;
-    width: 70rem;
+    width: 60rem;
 }
 
 table tr th{
@@ -178,24 +145,20 @@ table tr td{
     color: #000000;
 }
 
-#type-icon{
-    width: 1rem;
-}
-
-img{
-    width: 1rem;
-}
-
 #modifier, #supprimer{
     width: 1.5rem;
     padding: .5rem;
     margin: 1.5rem 0rem 0rem 1rem;
 }
 
+img{
+    width: 1rem;
+}
+
 hr{
     position: static;
-    width: 64rem;
-    margin-left: -55rem;
+    width: 56rem;
+    margin-left: -49rem;
     margin-top: 0rem;
 }
 

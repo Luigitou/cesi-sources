@@ -1,27 +1,17 @@
 <template>
-    <div class="bloc-modale" v-if="revele"> <!-- if revele false le modale disparait if revele true le modale apparait --> 
-        <div class="overlay" v-on:click="toggleModale"></div> <!-- click en dehors du modale pour fermer -->
+    <div class="bloc-modale" v-if="reveleDossier"> <!-- if revele false le modale disparait if revele true le modale apparait --> 
+        <div class="overlay" v-on:click="toggleNouveauDossier"></div> <!-- click en dehors du modale pour fermer -->
         <form class="modale-card">
                     
-                <div v-on:click="toggleModale" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
+                <div v-on:click="toggleNouveauDossier" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
 
                 <div class="container">
-                    <label for="uname"><b>Email</b></label>
-                    <input type="text" placeholder="Entrez votre email" name="uname" required>
-
-                    <label for="psw"><b>Mot de passe</b></label>
-                    <input type="password" placeholder="Entrez votre mot de passe" name="psw" required>
-        
-                    <router-link to="/tdb">
-                    <button type="submit">Connexion</button>
-                    </router-link>
-
-                    <label>
-                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label><br>
-                    <label>
-                        Vous n'avez pas de compte? <router-link to="/Inscription"><b>Inscrivez-vous</b></router-link>
-                    </label>
+                    <label for="uname"><b>Nom</b></label>
+                    <input type="text" placeholder="Entrez le nom du dossier" name="uname" required>
+                    <div v-on:click="toggleNouveauDossier">
+                    <button type="submit">Valider</button>
+                    <button type="cancel">Annuler</button>
+                    </div>
                 </div>
         </form>
     </div>
@@ -29,8 +19,8 @@
 
 <script>
 export default {
-    name: 'Modale',
-    props: ['revele', 'toggleModale']
+    name: 'NouveauDossier',
+    props: ['reveleDossier', 'toggleNouveauDossier']
 }
 </script>
 
@@ -94,12 +84,6 @@ export default {
         margin-right: 40%;
     }
 
-    /* Add a background color when the inputs get focus */
-    input[type=text]:focus, input[type=password]:focus {
-        background-color: #ddd;
-        outline: none;
-    }
-
     /* Set a style for all buttons */
     button {
         background-color: $color-android;
@@ -117,9 +101,6 @@ export default {
     }
     a{
         color: $color-special;   
-    }
-    .checkbox {
-        cursor: pointer;
     }
 </style>
 

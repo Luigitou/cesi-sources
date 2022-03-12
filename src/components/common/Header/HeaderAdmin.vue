@@ -1,0 +1,72 @@
+<template>
+  <header>
+    <div class="submenu">
+        <router-link to="/">
+        <img src="../../../assets/Accueil/logo.png" alt="logo">
+        </router-link>
+        <NavBarAdmin />
+        <IconBarAdmin />
+    </div>
+  </header>
+</template>
+
+<script>
+import IconBarAdmin from "./IconBarAdmin.vue";
+import NavBarAdmin from "./NavBarAdmin.vue";
+export default {
+  name: "HeaderAdmin",
+  components: {
+    IconBarAdmin,
+    NavBarAdmin,
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+@import "../../../scss/common.scss";
+
+/*header {
+  background: $color-head;
+  display: flex;
+  position: relative;
+  width: 100vw;
+  padding: 2% 0% 3% 0%;
+  height: 50%;
+  
+  .submenu {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+  }
+}*/
+
+header {
+  background: $color-head;
+  display: flex;
+
+  position: relative;
+  width: 100%;
+  //padding: 2% 0% 3% 0%;
+  height: 5%;
+
+  .submenu {
+    width: 100%;
+    display: flex;
+    align-items: right;
+    justify-content: space-around;
+  }
+  img{
+    margin-left: 10%;
+    width: 100px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+
+  header{
+    width: 150%;
+  }
+}
+
+</style>

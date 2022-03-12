@@ -14,6 +14,7 @@ export default {
                     date: "14/10/2021",
                     statut: "Connecté",
                     compte: "Activé",
+                    nature: "Modérateur",
                 },
 
                 {
@@ -21,6 +22,7 @@ export default {
                     date: "12/10/2021",
                     statut: "Déconnecté",
                     compte: "Désactivé",
+                    nature: "Administrateur",
                 },
             ],
 
@@ -34,36 +36,42 @@ export default {
 
 <template>
     <div id="superadmin">
-        <button>Créer un administrateur</button>
-        <SearchBarAdmin />
+        <router-link to="/superadminform">
+        <button>Créer un compte</button>
+        </router-link>
+        <SearchBarAdmin id="search"/>
+        <div class="table_style">
         <table>
             <tr>
                 <th>Nom</th>
                 <th>Date de création de compte</th>
                 <th>Statut</th>
                 <th>Compte</th>
+                <th>Nature</th>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
                 <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ item.nom }}</a></td>
                 <td>{{ item.date }}</td>
                 <td>{{ item.statut }}</td>
                 <td>{{ item.compte }}</td>
+                <td>{{ item.nature }}</td>
                 <a href=""><img src="../../assets/SuperAdmin/Modifier.png" alt="Modifier" id="modifier"></a>
                 <a href=""><img src="../../assets/SuperAdmin/Supprimer.png" alt="Supprimer" id="supprimer"></a>
                 <hr v-for="item in separator" v-bind:key="item.id">
             </tr>
         </table>
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 #vosfichiers{
     background-color: #FFF;
-    width: 50rem;
+    width: 80%;
 }
 
 button{
-    margin: 2rem 0rem 0rem 3rem;
+    margin: 4rem 0rem 0rem 18rem;
     background-color: #EFFAFF;
     color: #000000;
     padding: .5rem;
@@ -77,9 +85,14 @@ button:hover{
     color: #FFF;
 }
 
+#search{
+    margin-left: 55%;
+}
+
 table{
-    margin: 4rem 0rem 0rem 5rem;
-    padding-bottom: 2rem;
+    margin: 0 auto;
+    padding-top: 5rem;
+    width: 70rem;
 }
 
 table tr th{
@@ -88,6 +101,7 @@ table tr th{
 
 table tr td{
     padding: 1.5rem 0rem 0rem 1rem;
+    text-align: center;
 }
 
 #nom{
@@ -109,10 +123,49 @@ table tr td{
 }
 
 hr{
-    position: absolute;
-    width: 40rem;
-    margin-left: -32rem;
-    margin-top: 0rem;
+    width: 66rem;
+    margin-left: -58rem;
+    margin-top: 1rem;
+}
+
+@media only screen and (max-width: 1190px) {
+  .table_style{
+    overflow-x:auto;
+  }
+
+  button{
+    margin: 60px 0px 0px 70px;
+  }
+
+  #search{
+    margin-left: 25rem;
+  }
+
+  hr{
+    margin-top: 1rem;
+    width: 65rem;
+    margin-left: -55rem;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .table_style{
+    overflow-x:auto;
+  }
+
+  button{
+    margin: 60px 0px 0px 70px;
+  }
+
+  #search{
+    margin-left: 15rem;
+  }
+
+  hr{
+    margin-top: 1rem;
+    width: 65rem;
+    margin-left: -58rem;
+  }
 }
 
 </style>

@@ -12,7 +12,9 @@ export default {
 
 <template>
     <div id="superadminform">
-
+        <router-link to="/superadmin">
+        <button>Gérer un compte</button>
+        </router-link>
         <form action="#" method="POST">
             <div class="wrapperIdent">
                 <div class="wrappernom">
@@ -42,209 +44,243 @@ export default {
                     <input type="text" id="villei">
                 </div>
             </div>
+            <br>
             <div class="wrapperRadio">
                 <input type="radio" id="superadminr" value="Super administrateur" name="admin">
                 <label for="superadmin" id="superadmin">Super administrateur</label>
                 <input type="radio" id="adminr" value="Administrateur" name="admin" checked>
                 <label for="admin" id="admin">Administrateur</label>
+                <input type="radio" id="moderateurr" value="Moderateur" name="admin" checked>
+                <label for="moderateur" id="moderateur">Moderateur</label>
             </div>
-                <br>
-            <input type="submit" value="Creer un compte" id="submit">
+            <div class="submit">
+              <input type="submit" value="Creer un compte" id="submit">
+            </div>
         </form>
-    
-     
     </div>
 </template>
 
 <style lang="scss" scoped>
 @import "../../scss/common.scss";
 
-#superadminform{
-     
-    form{
-        .wrapperIdent{
-            display: flex;
-            justify-content: space-evenly;
-            width: 50%;
-            align-items: center;
+#superadminform{  
+  background-color: #FFF;
+  form{        
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 5%;
 
-            .wrappernom{
-                display: flex;
-                flex-direction: column;
-                width: 40%;
-                margin: 0% 2% 0% 2%;
-            }
+    .wrapperIdent{
+        display: flex;
+        justify-content: space-evenly;
+        width: 50%;
+        align-items: center;
 
-            input[type='text']{
-                border: 1px solid $color-special;
-                width: 15rem;
-                height: 1.8rem;
-            }
-
-            label{
-                font-size: 1.2rem;
-            }
-        }
-        .wrapperMail{
+        .wrappernom{
             display: flex;
             flex-direction: column;
             width: 40%;
-            margin: 1% 2% 0% 3%;
-
-            input[type='text']{
-                border: 1px solid $color-special;
-                width: 38rem;
-                height: 1.8rem;
-            }
-
-            label{
-                font-size: 1.2rem;
-            }
+            margin: 0% 2% 0% 2%;
         }
 
-        .wrapperAdresse{
-            display: flex;
-            justify-content: space-evenly;
-            width: 50%;
-            align-items: center;
-
-            .wrapperadresse{
-                display: flex;
-                flex-direction: column;
-                width: 25%;
-                margin: 2.5% 2% 0% 5%;
-            }
-
-            input[type='text']{
-                border: 1px solid $color-special;
-                width: 15rem;
-                height: 1.8rem;
-            }
-
-            label{
-                font-size: 1.2rem;
-            }
-
-            #codepostal{
-                margin: 0% 0% 0% 20%;
-            }
-
-            #codepostali{
-                width: 6rem;
-                margin: 0% 0% 0% 20%;
-            }
-
-            #villei{
-                width: 6.3rem;
-            }
-        }
-
-        #superadmin, #admin{
-            font-size: 1.2rem;
-        }
-
-        #superadminr, #adminr{          
-            margin: 3% 2% 0% 3%;
-        }
-
-        #submit{
-            display: flex;
-            justify-content: center;
-            background-color: $color-special;
-            color: #fff;
+        input[type='text']{
             border: 1px solid $color-special;
-            width: 38.7rem;
-            height: 2.5rem;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            margin: 2% 0% 0% 2.5%;
-        }
-    }
-    /*    padding: 1rem;
-
-        input[type='text'], #emaili{
-            border: 1px solid $color-special;
-            margin-bottom: 2rem;
             width: 15rem;
             height: 1.8rem;
         }
 
-        #nomi{
-            display: flex;
-            margin: 1rem 0rem 0rem .9rem;
+        label{
+            font-size: 1.2rem;
         }
+    }
+    .wrapperMail{
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        margin: 1% 4% 0% 0%;
 
-        #prenom{
-            display: block;
-            margin: -5.5rem 0rem 0rem 20rem;
-        }
-
-        #prenomi{
-            margin: -.3rem 0rem 0rem 21rem;
-        }
-
-        #email{
-            display: flex;
-            margin: 0rem 0rem 0rem 0rem;
-        }
-
-        #emaili{
-            width: 35rem;
-            margin-left: .9rem;
-        }
-    
-        #adresse{
-            display: block;
-            margin-top: -2rem;
-        }
-
-        #adressei{
-            margin-left: .9rem;
-        }
-
-        #codepostal{
-            display: block;
-            margin: -7.5rem 0rem 0rem 19rem;
-        }
-
-        #codepostali{   
-            width: 5rem;
-            margin: -.3rem 0rem 0rem 20rem;
-        }
-
-        #ville{
-            display: block;
-            margin: -5.5rem 0rem 0rem 28rem;
-        }
-
-        #villei{
-            width: 7rem;
-            margin: -.3rem 0rem 0rem 28.9rem;
+        input[type='text']{
+            border: 1px solid $color-special;
+            width: 38rem;
+            height: 1.8rem;
         }
 
         label{
-            padding: 1rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    .wrapperAdresse{
+        display: flex;
+        justify-content: space-evenly;
+        width: 50%;
+        align-items: center;
+
+        .wrapperadresse{
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+            margin: 2.5% 2% 0% 5%;
+        }
+
+        input[type='text']{
+            border: 1px solid $color-special;
+            width: 15rem;
+            height: 1.8rem;
+        }
+
+        label{
             font-size: 1.2rem;
         }
 
-        #submit{
-            background-color: $color-special;
-            color: #fff;
-            border: 1px solid $color-special;
-            margin-top: 2rem;
-            width: 36.4rem;
-            height: 2.5rem;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
+        #codepostal{
+            margin: 0% 0% 0% 20%;
         }
 
-        #superadminr, #adminr{
-            margin: 3rem 0rem 0rem 0rem;
+        #codepostali{
+            width: 6rem;
+            margin: 0% 0% 0% 20%;
         }
-    */
+
+        #villei{
+            width: 6.3rem;
+        }
+    }
+
+    .wrapperRadio{
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 5%;
+      justify-content: flex-end;
+      padding-top: 1%;
+
+      #superadmin, #admin, #moderateur{
+        font-size: 1.2rem;
+      }
+
+      #superadminr, #adminr, #moderateurr{          
+        margin: 3% 2% 0% 3%;
+      }
+    }
+
+    .submit{
+      padding-top: 2rem;
+      display: flex;
+      padding-right: 3.5%;
+    
+      #submit{
+        background-color: $color-special;
+        color: #fff;
+        border: 1px solid $color-special;
+        width: 38.7rem;
+        height: 2.5rem;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+  button{
+    margin: 4rem 0rem 0rem 18rem;
+    background-color: #EFFAFF;
+    color: #000000;
+    padding: .5rem;
+    border-radius: .5rem;
+    border: 0.1rem solid #037682;
+    cursor: pointer;
+  }
+
+  button:hover{
+    background-color: #037682;
+    color: #FFF;
+  }
+
 }
 
+@media only screen and (max-width: 1350px) {
+  #superadminform{
+    margin-left: -10%;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow-x:auto;
+    
+    form{
+      .wrapperIdent{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .wrappernom{
+          display: flex;
+          flex-direction: column;
+          width: 0%;
+          margin: 2.5% 2% 0% 5%;
+
+          #nomi{
+            width: 30rem;
+          }
+
+          #prenomi{
+            width: 30rem;
+          }
+        }
+      }
+
+      .wrapperMail{
+        #emaili{
+          width: 30rem;
+        }
+      }
+
+      .wrapperAdresse{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .wrapperadresse{
+          display: flex;
+          flex-direction: column;
+          width: 0%;
+          margin: 2.5% 2% 0% 5%;
+        
+          input{
+            width: 30rem;
+          }
+
+          #codepostali{
+            width: 30rem;
+          }
+
+          #villei{
+            width: 30rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #superadminform{
+
+    form{
+      .wrapperRadio{
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 8%;
+      }
+
+      .submit{
+        display: flex;
+        justify-content: flex-start;
+        width: 50%;
+      }
+    }
+  }
+}
 
 </style>

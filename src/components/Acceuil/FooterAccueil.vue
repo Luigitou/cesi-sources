@@ -37,7 +37,7 @@ export default {
   text-align: center;
   position: static;
   width: 100%;
-  margin-bottom: 1%;
+  margin-bottom: 2%;
   bottom: 0;
 }
 
@@ -53,5 +53,14 @@ export default {
 #footer p{
   color: #296870;
   font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
 }
 </style>

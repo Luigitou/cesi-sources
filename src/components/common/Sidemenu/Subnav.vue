@@ -37,12 +37,12 @@ export default {
                 {
                     text: 'Vos groupes',
                     image: fav,
-                    link: 'groups'
+                    link: 'VosGroupes'
                 },
                 {
                     text: 'Vos favoris',
                     image: hearth,
-                    links: 'fav'
+                    link: 'VosFavoris'
                 },
                 {
                     text: 'Contacts',
@@ -61,7 +61,7 @@ export default {
 
 .subnav {
     background: $color-head;
-    height: 75%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

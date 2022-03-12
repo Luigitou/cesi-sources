@@ -3,17 +3,15 @@
     <div class="wrapperLeft">
       <h1>{{ msg }}</h1>
       <p>
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dol esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident,
-        sunt in culpa qui officia deserunt mollit anim"
+        <span>Ressources relationnelles</span> 
+          <br>
+          <br> 
+        L'application idéale qui vous permettrait de partager,
+        d'échanger différents images, vidéos ainsi améliorer votre mode de vie et relations.
       </p>
       <div class="btnWrapper">
         <button class="Button" type="button"><img class="gglLogo" src="../../assets/Accueil/LogoGooglePlay.png" alt="Rejoignez nous !"></button>
-        <button class="Button" type="button">Nous Rejoindre</button>
+        <button class="Button" type="button"> <router-link to="/Inscription"  id="btnInscription">Nous Rejoindre</router-link></button>
       </div>
     </div>
     <div class="imgWrapper">
@@ -47,22 +45,38 @@ export default {
     text-align: justify;
     margin-right: 3%;
 
+    span{
+      color: $color-android;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    p{
+      font-size: 18px;
+    }
+
+    
     .btnWrapper {
       margin-top: 10%;
       display: flex;
       flex-direction: row;
       width: 100%;
+      justify-content: space-around;
 
       .Button {
         flex: 1;
-        margin-right: 5%;
+        //margin-right: 5%;
         background: $color-android;
         color: white;
         border: none;
         border-radius: 10px;
         height: 4em;
         max-width: 35%;
-        
+
+        #btnInscription{
+          text-decoration: none;
+          color: #FFFFFF;
+        }
 
         img {
           width: 50%;
@@ -77,6 +91,33 @@ export default {
 
     img {
       width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .MidAccueil {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .MidAccueil .wrapperLeft .btnWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    height: 5rem;
+    gap: 10%;
+  }
+
+  .imgWrapper{
+    margin-top: 20%;
+    margin-bottom: 20%;
+    width: 100%;
+    display: flex;
+
+    img{
+      width: 80px;
     }
   }
 }

@@ -25,7 +25,7 @@ html {
 
 body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #FFFFFF;
+  background-color: #EFFAFF;
   margin: 0;
   padding: 0;
   height: 100%;

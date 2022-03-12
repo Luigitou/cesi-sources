@@ -35,7 +35,7 @@ header {
 
   position: relative;
   width: 100%;
-  padding: 1% 0% 1% 0%;
+  padding: 2% 0% 3% 0%;
   height: 5%;
 
   h2 {
@@ -49,6 +49,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-around;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  h2{
+    font-size: 15px;
   }
 }
 </style>

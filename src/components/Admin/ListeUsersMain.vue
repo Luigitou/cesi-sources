@@ -3,6 +3,8 @@ import SearchBarAdmin from "../common/Header/SearchBarAdmin.vue";
 import moderateurDesactive from "../../assets/Admin/ModerateurDesactive.png"
 import moderateurActive from "../../assets/Admin/ModerateurActive.png"
 
+import UtilisateurService from '../../services/UtilisateurService'
+
 export default {
     name: 'ListeUsersMain',
     components: {
@@ -12,6 +14,7 @@ export default {
         return {
             isDesactive: moderateurDesactive,
             isActive: moderateurActive,
+            utilisateurs: [],
             list: [
                 {
                     nom: "Louis",
@@ -33,21 +36,32 @@ export default {
             },
         }
     },
+    methods: {
+        getUtilisateurs(){
+            UtilisateurService.getUtilisateurs().then((response) => {
+                this.utilisateurs = response.data;   
+            });
+        }
+    },
+    created() {
+        this.getUtilisateurs();
+    }  
 }
 </script>
 
 <template>
     <div id="listeusers">
-        <button>Liste des utilisateurs</button>
-        <button>Gestions des ressources</button>
+        <!--<button>Liste des utilisateurs</button>
+        <button id="btn2">Gestions des ressources</button>-->
         <SearchBarAdmin id="search" />
+        <div class="table-style">
         <table>
             <tr>
                 <th>Nom</th>
                 <th>Date de création de compte</th>
                 <th>Statut</th>
                 <th>Compte</th>
-                <th>Modérateur</th>
+                <th>Citoyen</th>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
                 <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ item.nom }}</a></td>
@@ -67,6 +81,19 @@ export default {
                 <hr v-for="item in separator" v-bind:key="item.id">
             </tr>
         </table>
+        </div>
+
+        <table>
+            <tbody>
+                <tr v-for="utilisateur in utilisateurs" v-bind:key="utilisateur.id">
+                    <td> {{utilisateur.id }}</td>
+                    <td> {{utilisateur.nom }}</td>
+                    <td> {{utilisateur.prenom}}</td>    
+                    <td> {{utilisateur.email}}</td>
+                    <td> {{utilisateur.adresse}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
@@ -75,12 +102,18 @@ export default {
 
 #listeusers{
     background-color: #FFF;
-    width: 50rem;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 8%;  
 }
 
 #search{
     width: 20rem;
     margin-left: 68%;
+}
+
+.table-style{
+    overflow-x:auto;
 }
 
 button{
@@ -93,15 +126,19 @@ button{
     cursor: pointer;
 }
 
+#btn2{
+    margin-left: 10%;
+}
+
 button:hover{
     background-color: #037682;
     color: #FFF;
 }
 
 table{
-    margin: 4rem 0rem 0rem 2rem;
-    padding-bottom: 2rem;
-    width: 52rem;
+    margin: 0 auto;
+    padding-top: 5rem;
+    width: 70rem;
 }
 
 table tr th{
@@ -110,6 +147,7 @@ table tr th{
 
 table tr td{
     padding: 1.5rem 0rem 0rem 1rem;
+    text-align: center;
 }
 
 #nom{
@@ -127,6 +165,7 @@ table tr td{
 #moderateur{
     display: flex;
     width: 2rem;
+    margin-left: 3rem;
 }
 
 #desactiver{
@@ -138,9 +177,21 @@ table tr td{
 }
 
 hr{
-    position: absolute;
-    width: 50rem;
-    margin-left: -43rem;
+    width: 65rem;
+    margin-left: -58rem;
+}
+
+@media only screen and (max-width: 900px) {
+  #search{
+    margin-top: 50px;
+    margin-left: 60px;
+    width: 170px;
+  }
+
+  #listeusers{
+    width: 150%;
+    padding-bottom: 100%;
+  }
 }
 
 </style>
