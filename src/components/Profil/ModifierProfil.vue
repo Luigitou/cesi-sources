@@ -1,64 +1,77 @@
 <template>
+  <div v-if="currentUtilisateur">
     <div class="bloc-modale" v-if="reveleProfil"> <!-- if revele false le modale disparait if revele true le modale apparait --> 
-        <div class="overlay" v-on:click="toggleModifierProfil"></div> <!-- click en dehors du modale pour fermer -->
-        <form class="modale-card">
-                    
-                <div v-on:click="toggleModifierProfil" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
+      <div class="overlay" v-on:click="toggleModifierProfil"></div> <!-- click en dehors du modale pour fermer -->
+      <form class="modale-card">           
+        <div v-on:click="toggleModifierProfil" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
 
-                <div class="container">
-                    <label for="uname"><b>Nom</b></label>
-                    <input type="text" placeholder="Entrez votre nouveau nom" name="uname" required v-model="utilisateur.nom">
-                    <label for="uname"><b>Prenom</b></label>
-                    <input type="text" placeholder="Entrez votre nouveau prenom" name="prenom" required v-model="utilisateur.dateCreation">
-                    <label for="uname"><b>Mail</b></label>
-                    <input type="text" placeholder="Entrez votre nouveau mail" name="mail" required v-model="utilisateur.taille">
-                    <label for="uname"><b>Adresse</b></label>
-                    <input type="text" placeholder="Entrez votre nouvelle adresse" name="adresse" required v-model="utilisateur.type">
-                    <br>
-                    <div v-on:click="toggleModifierProfil">
-                    <button type="submit" @click="saveFile">Valider</button>
-                    <button type="cancel">Annuler</button>
-                    </div>
-                </div>
-        </form>
+        <div class="container">
+          <label for="uname"><b>Nom</b></label>
+          <input type="text" placeholder="Entrez votre nouveau nom" name="uname" v-model="currentUtilisateur.nom">
+          <label for="uname"><b>Prenom</b></label>
+          <input type="text" placeholder="Entrez votre nouveau prenom" name="prenom" v-model="currentUtilisateur.prenom">
+          <label for="uname"><b>Mail</b></label>
+          <input type="text" placeholder="Entrez votre nouveau mail" name="mail" v-model="currentUtilisateur.mail">
+          <label for="uname"><b>Adresse</b></label>
+          <input type="text" placeholder="Entrez votre nouvelle adresse" name="adresse" v-model="currentUtilisateur.adresse">
+            <br>
+          <div v-on:click="toggleModifierProfil">
+            <button type="submit" @click="updateUtilisateur">Valider</button>
+            <button type="cancel" @click="deleteUtilisateur">Annuler</button>
+          </div>
+          <div class="alert alert-success" role="alert" v-if="message">
+              {{message}}
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
 </template>
 
 <script>
 import UtilisateurService from '../../services/UtilisateurService'
 
 export default {
-    name: 'ModifierProfil',
-    props: ['reveleProfil', 'toggleModifierProfil'],
-    data() {
+  name: 'ModifierProfil',
+  props: ['reveleProfil', 'toggleModifierProfil'],
+  data() {
     return {
-      utilisateur: {
-        id: null,
-        nom: '',
-        prenom: '',
-        mail: '',
-        adresse: '',
-      }, 
-      utilisateurs: []
+      currentUtilisateur: null,
+      message: '',
     }
   },
   methods: {
-    saveFile(){
-      let data = {
-        nom: this.utilisateur.nom,
-        prenom: this.utilisateur.prenom,
-        mail: this.utilisateur.mail,
-        adresse: this.utilisateur.adresse,
-      }
-      UtilisateurService.postFichiers(data)
+    getUtilisateur(id) {
+      UtilisateurService.getUtilisateur(id)
         .then(response => {
-          this.fichier.id = response.data.id
+            this.currentUtilisateur = response.data
         })
         .catch(e => {
-          alert(e)
+            alert(e)
         })
     },
-  } 
+    updateUtilisateur() {
+      UtilisateurService.updateUtilisateur(this.currentUtilisateur.id, this.currentUtilisateur)
+        .then(() => {
+            this.message = 'The customer was updated successfully!'
+        })
+        .catch(e => {
+            alert(e)
+        })
+    },
+    deleteUtilisateur() {
+      UtilisateurService.deleteUtilisateur(this.currentUtilisateur.id)
+        .then(() => {
+            this.$router.push({name: 'utilisateurs'})
+        })
+        .catch(e => {
+            alert(e)
+        })
+    }
+},
+mounted() {
+    this.getUtilisateur(this.$route.params.id)
+}
 }
 </script>
 

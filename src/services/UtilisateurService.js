@@ -11,6 +11,18 @@ class UtilisateurService{
   postUtilisateurs(data){
     return axios.post(UTILISATEUR_API_BASE_URL, data);
   }
+  
+  getUtilisateur(id) {
+    return axios.get(`http://localhost:8082/api/utilisateurs/${id}`)
+  }
+
+  updateUtilisateur(id, data) {
+    return axios.put(`http://localhost:8082/api/utilisateurs/${id}`, data)
+  }
+
+  deleteUtilisateur(id) {
+    return axios.delete(`http://localhost:8082/api/utilisateurs/${id}`)
+  }
 }
 
 export default new UtilisateurService();
