@@ -27,7 +27,25 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  methods: {
+    fetchApi () {
+      fetch("http://localhost:8082/commentaire", {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Access-Control-Allow-Origin' : 'http://localhost/8082',
+          'Access-Control-Allow-Headers': 'http://localhost/8082'
+        }
+      })
+      .then(response => {
+        console.log(response);
+      })
+    }
+  },
+  created: function() {
+    this.fetchApi()
+  },
 }
 </script>
 
