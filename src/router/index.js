@@ -97,7 +97,7 @@ const router = createRouter({
 import store from "../store/index";
 
 router.beforeEach(async (to, from, next) => {
-  if (to.path !== '/') {
+  if (to.path !== '/' && to.path !== '/Inscription') {
     try {
       if (
         store.state.nom === '' ||
@@ -109,7 +109,15 @@ router.beforeEach(async (to, from, next) => {
         next();
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
+    }
+  } else if (to.path === '/') {
+    if (
+      store.state.mail !== ''
+    ) {
+      next('/tdb');
+    } else {
+      next();
     }
   } else {
     next();
