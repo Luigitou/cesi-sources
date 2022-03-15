@@ -94,4 +94,27 @@ const router = createRouter({
   routes,
 });
 
+import store from "../store/index";
+
+router.beforeEach(async (to, from, next) => {
+  if (to.path !== '/') {
+    try {
+      if (
+        store.state.nom === '' ||
+        store.state.prenom === '' ||
+        store.state.mail === ''
+      ) {
+        next('/');
+      } else {
+        next();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  } else {
+    next();
+  }
+});
+
+
 export default router;
