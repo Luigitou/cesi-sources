@@ -4,7 +4,9 @@
         <router-link to="/">
         <img src="../../assets/Accueil/logo.png" alt="logo">
         </router-link>
+        <div class="iconposition">
         <IconBarAdmin />
+        </div>
     </div>
   </header>
 </template>
@@ -49,10 +51,18 @@ header {
 
   .submenu {
     width: 100%;
-    display: flex;
-    align-items: right;
+    display:flex;
+    //align-items: right;
     justify-content: space-around;
-    align-items: center;
+    right: 70%;
+    
+  }
+  .iconposition{
+    width: 100%;
+    display:flex;
+    //align-items: right;
+    justify-content: space-around;
+    right: 50%;
   }
   img{
     margin-left: 10%;

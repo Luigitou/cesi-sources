@@ -1,8 +1,9 @@
 <template>
-    <div class="icon">
-        <a :href='"/#/" + link'>
-            <img class="iconImg" :src="getIconPath()">
-        </a>
+    <div  class="icon">
+         <img class="iconImg" :src="getIconPath()">
+        <!-- <a :href='"/#/" + link'>
+           
+        </a> -->
     </div>
 </template>
 
@@ -10,6 +11,7 @@
 
 import Notifications from "../../../assets/header/Notifications.svg"
 import deconnexion from "../../../assets/header/deconnexion.svg"
+import Profile from "../../../assets/header/Profile.svg"
 
 export default {
     name: 'IconAdmin',
@@ -19,18 +21,28 @@ export default {
     },
     data () {
         return {
-            icon: [Notifications, deconnexion]
+            icon: [Notifications, Profile, deconnexion]
         }
     },
     methods: {
         getIconPath () {
+            console.log(this.$props.iconType,"this.$props.iconType")
             switch (this.$props.iconType) {
                 case "Notifications":
                     return this.$data.icon[0]
-                default:
+                case "Profile":
                     return this.$data.icon[1]
+                case "deconnexion":
+                    return this.$data.icon[2]
+                default:
+                    return this.data.icon[3]
             }
-        }
+        },
+        greet () {
+      // `this` fait référence à l'instance de Vue à l'intérieur de `methods`
+      alert('Bonjour ')
+      // `event` est l'évènement natif du DOM
+    }
     },
 }
 </script>

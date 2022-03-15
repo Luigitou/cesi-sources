@@ -8,31 +8,41 @@
 import Notifications from "../../../assets/header/Notifications.svg"
 import Profile from "../../../assets/header/Profile.svg"
 import Settings from "../../../assets/header/Settings.svg"
+import Deconnexion from "../../../assets/header/deconnexion.svg"
 import Undefined from "../../../assets/header/undefined.svg"
 
 export default {
     name: 'Icon',
     props: {
-        iconType: String
+        iconType: String, 
+        link: String,
+        settings: String
     },
     data () {
         return {
-            icon: [Notifications, Profile, Settings, Undefined]
+            icon: [Notifications, Profile, Settings, Deconnexion, Undefined]
         }
     },
     methods: {
         getIconPath () {
             switch (this.$props.iconType) {
-                case "Settings":
-                    return this.$data.icon[2]
                 case "Notifications":
                     return this.$data.icon[0]
                 case "Profile":
                     return this.$data.icon[1]
+                case "Settings":
+                    return this.$data.icon[2]
+                case "Deconnexion":
+                    return this.$data.icon[3]
                 default:
-                    return this.data.icon[3]
+                    return this.data.icon[4]
             }
-        }
+        },
+        greet () {
+      // `this` fait référence à l'instance de Vue à l'intérieur de `methods`
+      alert('Bonjour ')
+      // `event` est l'évènement natif du DOM
+    }
     },
 }
 </script>

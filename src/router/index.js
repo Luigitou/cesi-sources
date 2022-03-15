@@ -1,11 +1,17 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Accueil from "../views/Accueil.vue";
+import Settings from "../views/Settings.vue";
 
 const routes = [
   {
     path: "/",
     name: "Accueil",
     component: Accueil,
+  },
+  {
+    path: "/Settings",
+    name: "Settings",
+    component: Settings,
   },
   {
     path: "/tdb",
@@ -77,6 +83,11 @@ const routes = [
     name: "Moderateur",
     component: () => import("../views/Moderateur.vue"),
   },
+  /*{
+    path: "/Settings",
+    name: "Settings",
+    component: () => import("../views/Settings.vue"),
+  }*/
 
   /*
   {

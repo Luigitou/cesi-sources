@@ -1,4 +1,4 @@
-mport moderateurActive from "../../components/Admin/ListeUsersMain.vue"
+import moderateurActive from "../../components/Admin/ListeUsersMain.vue"
 <template>
     <nav>
         <div class="menu-item"><router-link to="/listeusers"><b>Utilisateurs</b></router-link></div>
