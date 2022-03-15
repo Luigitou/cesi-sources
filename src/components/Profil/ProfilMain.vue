@@ -20,12 +20,12 @@ export default {
   
     getUtilisateurs(){
         UtilisateurService.getUtilisateurs().then((response) => {
-            this.utilisateurs = response.data;   
+          this.utilisateurs = response.data;   
         });
     }
   },
   created() {
-      this.getUtilisateurs();
+    this.getUtilisateurs();
   }  
 };
 </script>
@@ -36,13 +36,12 @@ export default {
       <div class="personal-info" v-for="utilisateur in utilisateurs" v-bind:key="utilisateur.id">
         <p>Nom : {{utilisateur.nom }}</p>
         <p>Prenom : {{utilisateur.prenom}}</p>
-        <p>Mail : {{utilisateur.email}}</p>
+        <p>Mail : {{utilisateur.mail}}</p>
         <p>Adresse : {{utilisateur.adresse}}</p>
-      </div>
-      
-      <div class="buttons">
-        <button id="update"  v-on:click="toggleModifierProfil">Mettre à jour</button>
-        <button id="delete">Supprimer</button>
+
+        <div class="buttons">
+          <button id="update" v-on:click="toggleModifierProfil">Modifier mon profil</button>
+        </div>
       </div>
   </div>
 </template>

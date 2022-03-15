@@ -16,8 +16,8 @@
           <input type="text" placeholder="Entrez votre nouvelle adresse" name="adresse" v-model="currentUtilisateur.adresse">
             <br>
           <div v-on:click="toggleModifierProfil">
-            <button type="submit" @click="updateUtilisateur">Valider</button>
-            <button type="cancel" @click="deleteUtilisateur">Annuler</button>
+            <button type="submit" @click="updateUtilisateur">Mettre à jour</button>
+            <button type="cancel" @click="deleteUtilisateur" id="delete">Supprimer</button>
           </div>
           <div class="alert alert-success" role="alert" v-if="message">
               {{message}}
@@ -44,34 +44,34 @@ export default {
     getUtilisateur(id) {
       UtilisateurService.getUtilisateur(id)
         .then(response => {
-            this.currentUtilisateur = response.data
+          this.currentUtilisateur = response.data
         })
         .catch(e => {
-            alert(e)
+          alert(e)
         })
     },
     updateUtilisateur() {
       UtilisateurService.updateUtilisateur(this.currentUtilisateur.id, this.currentUtilisateur)
         .then(() => {
-            this.message = 'The customer was updated successfully!'
+          this.message = "Votre profil a bien été mis à jour !"
         })
         .catch(e => {
-            alert(e)
+          alert(e)
         })
     },
     deleteUtilisateur() {
       UtilisateurService.deleteUtilisateur(this.currentUtilisateur.id)
         .then(() => {
-            this.$router.push({name: 'utilisateurs'})
+          this.$router.push({name: 'utilisateurs'})
         })
         .catch(e => {
-            alert(e)
+          alert(e)
         })
     }
-},
-mounted() {
+  },
+  mounted() {
     this.getUtilisateur(this.$route.params.id)
-}
+  }
 }
 </script>
 
@@ -157,8 +157,13 @@ mounted() {
     button:hover {
         opacity: 0.8;
     }
+
     a{
         color: $color-special;   
+    }
+
+    #delete{
+      background-color: rgb(238, 83, 83);
     }
 </style>
 

@@ -13,15 +13,15 @@ class UtilisateurService{
   }
   
   getUtilisateur(id) {
-    return axios.get(`http://localhost:8082/api/utilisateurs/${id}`)
+    return axios.get(UTILISATEUR_API_BASE_URL + `?=${id}`)
   }
 
   updateUtilisateur(id, data) {
-    return axios.put(`http://localhost:8082/api/utilisateurs/${id}`, data)
+    return axios.put(UTILISATEUR_API_BASE_URL + `?=${id}`, data)
   }
 
   deleteUtilisateur(id) {
-    return axios.delete(`http://localhost:8082/api/utilisateurs/${id}`)
+    return axios.delete(UTILISATEUR_API_BASE_URL + `?=${id}`)
   }
 }
 
