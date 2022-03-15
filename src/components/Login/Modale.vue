@@ -7,14 +7,12 @@
 
                 <div class="container">
                     <label for="uname"><b>Email</b></label>
-                    <input type="text" placeholder="Entrez votre email" name="uname" required>
+                    <input type="text" placeholder="Entrez votre email" name="uname" required v-model="mail">
 
                     <label for="psw"><b>Mot de passe</b></label>
-                    <input type="password" placeholder="Entrez votre mot de passe" name="psw" required>
+                    <input type="password" placeholder="Entrez votre mot de passe" name="psw" required v-model="pwd">
         
-                    <router-link to="/tdb">
-                    <button type="submit">Connexion</button>
-                    </router-link>
+                    <button type="submit" @click="connect">Connexion</button>
 
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -28,9 +26,38 @@
 </template>
 
 <script>
+import AuthServices from '../../services/AuthServices';
+
 export default {
     name: 'Modale',
-    props: ['revele', 'toggleModale']
+    props: ['revele', 'toggleModale'],
+    data () {
+        return {
+            mail: '',
+            pwd: ''
+        }
+    },
+    methods: {
+        connect (e) {
+            e.preventDefault();
+            const form = new FormData();
+            form.append('mail', this.$data.mail);
+            form.append('pwd', this.$data.pwd);
+
+            AuthServices.auth(form)
+            .then((response) => {
+                this.setDataToStore(response.data);
+            });
+        }, 
+        setDataToStore(data) {
+            this.$store.state.nom = data["nom"];
+            this.$store.state.prenom = data["prenom"];
+            this.$store.state.mail = data["mail"];
+            this.$store.state.adresse = data["adresse"];
+
+            this.$router.push('/tdb');
+        }
+    }
 }
 </script>
 

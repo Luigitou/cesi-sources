@@ -99,4 +99,35 @@ const router = createRouter({
   routes,
 });
 
+import store from "../store/index";
+
+router.beforeEach(async (to, from, next) => {
+  if (to.path !== '/' && to.path !== '/Inscription') {
+    try {
+      if (
+        store.state.nom === '' ||
+        store.state.prenom === '' ||
+        store.state.mail === ''
+      ) {
+        next('/');
+      } else {
+        next();
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  } else if (to.path === '/') {
+    if (
+      store.state.mail !== ''
+    ) {
+      next('/tdb');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+
 export default router;

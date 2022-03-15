@@ -9,7 +9,14 @@ class FichierService{
   }
 
   postFichiers(data){
-    return axios.post(FICHIER_API_BASE_URL, data);
+    return axios.post(FICHIER_API_BASE_URL, 
+      data,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    );
   }
 }
 
