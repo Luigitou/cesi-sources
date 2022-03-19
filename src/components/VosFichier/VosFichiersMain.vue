@@ -14,23 +14,6 @@ export default {
             isFichier: fichier,
             fichiers: [],
             list: [
-                {
-                    nom: "Photos",
-                    date: "14/10/2021",
-                    proprietaire: "Edomiyas",
-                    membres: "Louis, Imen...",
-                    taille: 1 + "Go",
-                    type: "dossier"
-                },
-
-                {
-                    nom: "logo.png",
-                    date: "12/10/2021",
-                    proprietaire: "Louis",
-                    membres: "Edomiyas, Imen...",
-                    taille: 100 + "Mo",
-                    type: "fichier"
-                },
             ],
 
             separator: {
@@ -65,7 +48,16 @@ export default {
         },
         parseData(data) {
             data.forEach(element => {
-                console.log(element);
+                this.$data.list.push(
+                    {
+                    nom: element.nom,
+                    date: element.dateCreation,
+                    proprietaire: "",
+                    membres: "",
+                    taille: element.taille + " octets",
+                    type: element.type
+                    }
+                )
             });
         }
     },
@@ -91,9 +83,9 @@ export default {
         <table>
             <tr>
                 <th>Nom</th>
-                <th>Date de modification</th>
+                <th>Date</th>
                 <th>Taille</th>
-                <th>Propriétaire</th>
+                <th>Type</th>
                 <th>Membres</th>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
@@ -105,25 +97,12 @@ export default {
                 </td>
                 <td>{{ item.date }}</td>
                 <td>{{ item.taille }}</td>
-                <td>{{ item.proprietaire }}</td>
+                <td>{{ item.type }}</td>
                 <td>{{ item.membres }}</td>
-                <a href=""><img src="../../assets/SuperAdmin/Modifier.png" alt="Modifier" id="modifier"></a>
+                <!--<a href=""><img src="../../assets/SuperAdmin/Modifier.png" alt="Modifier" id="modifier"></a>
                 <a href=""><img src="../../assets/SuperAdmin/Supprimer.png" alt="Supprimer" id="supprimer"></a>
-                <hr v-for="item in separator" v-bind:key="item.id">
+                <hr v-for="item in separator" v-bind:key="item.id">-->
             </tr>
-        </table>
-
-         <table>
-            <tbody>
-                <tr v-for="fichier in fichiers" v-bind:key="fichier.id">
-                    <!-- <td> {{fichier.id }}</td> -->
-                    <td> {{fichier.nom }}</td>  
-                    <td> {{fichier.dateCreation}}</td>
-                    <td> {{fichier.taille}}</td>
-                    <td> {{fichier.type}}</td>  
-                    <td> {{fichier.etat}}</td>
-                </tr>
-            </tbody>
         </table>
     </div>
 </template>
@@ -138,15 +117,15 @@ export default {
 
 .menu{
     display: flex;
-    justify-content: center;
-    gap: 10%;
-    margin-right: 10%;
+    width: 70%;
+    margin-left: 15%;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
 
 button{
-    margin: 4rem 0rem 0rem 3rem;
+    margin: 2rem 0rem 0rem 2rem;
     background-color: #EFFAFF;
     color: #000000;
     padding: .5rem;
@@ -161,9 +140,10 @@ button:hover{
 }
 
 table{
-    margin: 0 auto;
-    padding-top: 5rem;
+    margin: 2% auto;
+    padding-top: rem;
     width: 70rem;
+    border-collapse: collapse;
 }
 
 table tr th{
@@ -172,7 +152,18 @@ table tr th{
 
 table tr td{
     padding: 1.5rem 0rem 0rem 1rem;
-    text-align: center;
+}
+
+tr {
+    border-bottom: 1px solid black;
+}
+
+th {
+    text-align: left !important;
+}
+
+td {
+    padding-bottom: 10px !important;
 }
 
 #nom{
@@ -195,13 +186,6 @@ img{
     width: 1.5rem;
     padding: .5rem;
     margin: 1.5rem 0rem 0rem 1rem;
-}
-
-hr{
-    position: static;
-    width: 64rem;
-    margin-left: -55rem;
-    margin-top: 0rem;
 }
 
 </style>

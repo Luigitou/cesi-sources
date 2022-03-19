@@ -46,7 +46,11 @@ export default {
 
             AuthServices.auth(form)
             .then((response) => {
-                this.setDataToStore(response.data);
+                if (response === "User not found") {
+                    console.log("erreur");
+                } else {
+                    this.setDataToStore(response.data);
+                }
             });
         }, 
         setDataToStore(data) {

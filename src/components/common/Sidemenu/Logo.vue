@@ -1,12 +1,18 @@
 <template>
   <div>
-      <img src="../../../assets/Accueil/logo.png" alt="Logo">
+      <img src="../../../assets/Accueil/logo.png" alt="Logo" @click="clearcache">
   </div>
 </template>
 
 <script>
 export default {
   name: "Logo",
+  methods: {
+    clearcache () {
+      localStorage.clear();
+      console.log("clean");
+    }
+  }
 };
 </script>
 

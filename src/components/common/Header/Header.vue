@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="submenu">
-      <h2>Bonjour, {{ name }}</h2>
+      <h2>Bonjour, {{ this.$store.state.nom }}</h2>
       <SearchBar />
       <IconBar />
     </div>
@@ -17,12 +17,7 @@ export default {
   components: {
     SearchBar,
     IconBar,
-  },
-  data() {
-    return {
-      name: "Louis",
-    };
-  },
+  }
 };
 </script>
 
