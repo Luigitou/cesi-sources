@@ -15,7 +15,6 @@ export default {
             fichiers: [],
             list: [
             ],
-
             separator: {
                 line: ""
             },
@@ -75,7 +74,7 @@ export default {
     <div id="vosfichiers">
         <div class="menu">
             <button v-on:click="toggleNouveauFichier">Créer un nouveau fichier</button>
-            <button>Créer un nouveau dossier</button>
+            <button @click="toggleNouveauDossier">Créer un nouveau dossier</button>
             <button>Partagé avec moi</button>
             <button v-on:click="toggleInvite">Inviter un ami</button>
         </div>

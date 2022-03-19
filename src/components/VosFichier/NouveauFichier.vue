@@ -54,7 +54,7 @@ export default {
                     console.log(response);
                 })
                 .catch((e) => {
-                    alert(e);
+                    console.error(e);
                 });
         },
     },
