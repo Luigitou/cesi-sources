@@ -15,25 +15,27 @@ export default {
             isDesactive: moderateurDesactive,
             isActive: moderateurActive,
             utilisateurs: [],
-            list: [
-                {
-                    nom: "Louis",
-                    date: "14/10/2021",
-                    statut: "Connecté",
-                    compte: "Activé",
-                },
+            // dev à masquer
+            // list: [
+            //     {
+            //         nom: "Louis",
+            //         date: "14/10/2021",
+            //         statut: "Connecté",
+            //         compte: "Activé",
+            //     },
 
-                {
-                    nom: "Yannis",
-                    date: "12/10/2021",
-                    statut: "Déconnecté",
-                    compte: "Désactivé",
-                },
-            ],
-
+            //     {
+            //         nom: "Yannis",
+            //         date: "12/10/2021",
+            //         statut: "Déconnecté",
+            //         compte: "Désactivé",
+            //     },
+            // ],
+            actif: true,
             separator: {
                 line: ""
             },
+            search: ""
         }
     },
     methods: {
@@ -45,7 +47,17 @@ export default {
     },
     created() {
         this.getUtilisateurs();
-    }  
+    },
+    computed: {
+        filteredUsers() {
+            return this.utilisateurs.filter(u => {
+                return u.nom.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||  
+                u.adresse.toLowerCase().indexOf(this.search.toLowerCase()) != -1 || 
+                u.prenom.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||
+                u.mail.toLowerCase().indexOf(this.search.toLowerCase()) != -1;
+            });
+        }
+  }  
 }
 </script>
 
@@ -53,17 +65,27 @@ export default {
     <div id="listeusers">
         <!--<button>Liste des utilisateurs</button>
         <button id="btn2">Gestions des ressources</button>-->
-        <SearchBarAdmin id="search" />
+        <SearchBarAdmin id="search" v-model="search"/>
+
         <div class="table-style">
         <table>
             <tr>
-                <th>Nom</th>
+                <!-- Dev masqué -->
+                <!-- <th>Nom</th>
                 <th>Date de création de compte</th>
                 <th>Statut</th>
                 <th>Compte</th>
-                <th>Citoyen</th>
+                <th>Citoyen</th> -->
+
+                <!-- Dev a afficher -->
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>adresse</th>
+                <th>Mail</th>
+                <th>Actif</th>
             </tr>
-            <tr v-for="item in list" v-bind:key="item.id">
+                <!-- Dev masqué -->
+            <!-- <tr v-for="item in list" v-bind:key="item.id">
                 <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ item.nom }}</a></td>
                 <td>{{ item.date }}</td>
                 <td>{{ item.statut }}</td>
@@ -79,21 +101,25 @@ export default {
                     <span v-else><button id="desactiver">Activer</button></span>
                 </div>
                 <hr v-for="item in separator" v-bind:key="item.id">
+            </tr> -->
+             <!-- Dev a afficher -->
+            <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
+                <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ utilisateur.nom }}</a></td>
+                <td> {{utilisateur.prenom}}</td>    
+                <td> {{utilisateur.adresse}}</td>
+                <td> {{utilisateur.mail}}</td>
+                <td>
+                    <span v-if="this.actif == true"><img :src="isActive" alt="moderateurActive" id="moderateur"></span>
+                    <span v-else><img :src="isDesactive" alt="moderateurDesactive" id="moderateur"></span>
+                </td>
+                <div>
+                    <span v-if="this.actif == true"><button id="desactiver" @click="actif = false">Désactiver</button></span>
+                    <span v-else><button id="desactiver" @click="actif = true">Activer</button></span>
+                </div>
+                <hr v-for="utilisateur in separator" v-bind:key="utilisateur.id">
             </tr>
         </table>
         </div>
-
-        <table>
-            <tbody>
-                <tr v-for="utilisateur in utilisateurs" v-bind:key="utilisateur.id">
-                    <td> {{utilisateur.id }}</td>
-                    <td> {{utilisateur.nom }}</td>
-                    <td> {{utilisateur.prenom}}</td>    
-                    <td> {{utilisateur.email}}</td>
-                    <td> {{utilisateur.adresse}}</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </template>
 

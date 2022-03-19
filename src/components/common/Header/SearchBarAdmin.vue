@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input class="input" type="text" placeholder="Rechercher..." id="search" name="search"/>
+    <input class="input" type="text" placeholder="Rechercher..." id="search" name="search" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"/>
     <button class="btn" type="submit"><img src="../../../assets/SuperAdmin/chercher.png"></button>
   </div>
 </template>
@@ -8,6 +8,10 @@
 <script>
 export default {
   name: "SearchBarAdmin",
+  props: {
+    modelValue: String
+  },
+  emits: ['update:modelValue'],
 };
 </script>
 
