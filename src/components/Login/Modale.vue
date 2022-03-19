@@ -55,7 +55,15 @@ export default {
             this.$store.state.mail = data["mail"];
             this.$store.state.adresse = data["adresse"];
 
+            this.setInlocalStorage();
+
             this.$router.push('/tdb');
+        },
+        setInlocalStorage() {
+            localStorage.nom = this.$store.state.nom;
+            localStorage.prenom = this.$store.state.prenom;
+            localStorage.mail = this.$store.state.mail;
+            localStorage.adresse = this.$store.state.adresse;
         }
     }
 }

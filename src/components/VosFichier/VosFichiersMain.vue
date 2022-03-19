@@ -60,7 +60,12 @@ export default {
 
         getFichiers(){
             FichierService.getFichiers().then((response) => {
-                this.fichiers = response.data;   
+                this.parseData(response.data);   
+            });
+        },
+        parseData(data) {
+            data.forEach(element => {
+                console.log(element);
             });
         }
     },
