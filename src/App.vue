@@ -14,6 +14,19 @@
 
 export default {
   name: 'App',
+  methods: {
+    getLocalStorage() {
+      if (localStorage.mail) {
+        this.$store.state.nom = localStorage.nom;
+        this.$store.state.prenom = localStorage.prenom;
+        this.$store.state.mail = localStorage.mail;
+        this.$store.state.adresse = localStorage.adresse;
+      }
+    }
+  },
+  created () {
+    this.getLocalStorage();
+  }
 }
 </script>
 
@@ -25,7 +38,7 @@ html {
 
 body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #FFFFFF;
+  background-color: #EFFAFF;
   margin: 0;
   padding: 0;
   height: 100%;

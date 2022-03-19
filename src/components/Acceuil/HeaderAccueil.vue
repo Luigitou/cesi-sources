@@ -48,41 +48,46 @@ export default {
 @import "../../scss/common.scss";
 
 .nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    position: relative;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: static;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0%;
 
-    .wrapperLogo {
-        width: 15%;
-        //position: absolute;
-        position: static;
-        top: 5;
+  .wrapperLogo {
+    width: 15%;
+    //position: absolute;
+    position: static;
+    top: 10;
 
-        .logo {
-            width: 80%;
-        }
+    .logo {
+      width: 40%;
+       margin-left: 25%;
     }
+  }
+
+  .wrapperInput {
+    width: 50%;
+    //margin-left: -2%
+    margin-right: 7%;
 
     .wrapperInput {
         width: 50%;
         //margin-left: -2%
         margin-right: 5%;
 
-        input {
-            width: 100%;
-            padding: 10px 80px 10px 20px;
-            background-image: url("../../assets/Accueil/searchicon.png");
-            background-position: 98% 50%;
-            background-repeat: no-repeat;
-            background-size: 20px 20px;
-            border: none;
-            outline: 0;
-            border-radius: 10px;
-            border: 1px solid $color-text;
+    input {
+      width: 100%;
+      padding: 10px 80px 10px 50px;
+      background-image: url("../../assets/Accueil/searchicon.png");
+      background-position: 98% 50%;
+      background-repeat: no-repeat;
+      background-size: 20px 20px;
+      border:none;
+      outline: 0;
+      border-radius: 10px;
 
             &:hover {
                 border: 1px solid $color-special;
@@ -112,8 +117,29 @@ export default {
         cursor: pointer;
     }
 }
-</style>
+}
+
+@media only screen and (max-width: 900px) {
+  .nav {
+    display: flex;
+    flex-direction: column;
+
+    .wrapperLogo {
+      .logo {
+        width: 100%;
+        margin-left: 0%;
+      }
+    }
+
+    .wrapperInput {
+      width: 40%;
+      margin-right: 25%;
+    }
+  }
+}
 
 /* background-image: url("../../assets/Accueil/searchicon.png");
 background-position: 95% 50%; background-repeat: no-repeat; background-size:
 20px 20px; */
+
+</style>

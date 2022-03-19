@@ -1,17 +1,9 @@
 <script>
 import dossier from "../../assets/VosFichiers/dossier.png"
 import fichier from "../../assets/VosFichiers/fichier.png"
-import SearchBarAdmin from "../common/Header/SearchBarAdmin.vue";
-import NouveauFichier from "../../components/VosFichier/NouveauFichier.vue"
-import Categorie from "../../components/Admin/NouvelleCategorie.vue"
 
 export default {
-    name: 'VosFichiersMain',
-     components: {
-        SearchBarAdmin,
-        'NouveauFichier' : NouveauFichier,
-        'Categorie' : Categorie
-    },
+    name: 'ModerateurMain',
     data (){
         return {
             isDossier: dossier,
@@ -22,7 +14,6 @@ export default {
                     date: "14/10/2021",
                     proprietaire: "Edomiyas",
                     categorie: "Image",
-                    statut: "maintenu",
                     taille: 1 + "Go",
                     type: "dossier"
                 },
@@ -32,7 +23,6 @@ export default {
                     date: "12/10/2021",
                     proprietaire: "Louis",
                     categorie: "Fichier",
-                    statut: "suspendu",
                     taille: 100 + "Mo",
                     type: "fichier"
                 },
@@ -41,31 +31,14 @@ export default {
             separator: {
                 line: ""
             },
-            revele: false,
-            reveleCategorie : false
         }
     },
-    methods: {
-        toggleNouveauFichier: function() {
-            this.revele=!this.revele
-        },
-        toggleCategorie: function() {
-            this.reveleCategorie=!this.reveleCategorie
-        }
-    }
 };
 </script>
 
-<template>
-<NouveauFichier v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent--> 
-<Categorie v-bind:reveleCategorie="reveleCategorie" v-bind:toggleCategorie="toggleCategorie"></Categorie>    
+<template>    
     <div id="vosfichiers">
-        <div class="buttons">
-            <button v-on:click="toggleNouveauFichier" id="creer">Créer un nouveau fichier</button>
-            <button v-on:click="toggleCategorie">Créer une nouvelle catégorie</button>
-        </div>
-
-        <SearchBarAdmin id="search" />
+        <div class="table_style">
         <table>
             <tr>
                 <th>Nom</th>
@@ -73,7 +46,6 @@ export default {
                 <th>Taille</th>
                 <th>Propriétaire</th>
                 <th>Catégorie</th>
-                <th>Statut</th>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
                 <td>
@@ -88,14 +60,12 @@ export default {
                 <td>{{ item.proprietaire }}</td>
                 <td>{{ item.categorie }}</td>
                 <td>{{ item.statut }}</td>
-                <td><a href=""><img src="../../assets/SuperAdmin/Modifier.png" alt="Modifier" id="modifier"></a></td>
-                <td><a href=""><img src="../../assets/SuperAdmin/Supprimer.png" alt="Supprimer" id="supprimer"></a></td>
-                <td>
-                    <span v-if="item.statut == 'maintenu'"><img src="../../assets/SuperAdmin/suspendre.png" alt="Suspendre" id="suspendre"></span>
-                </td>
+                <td><a href=""><img src="../../assets/SuperAdmin/maintenir.png" alt="Maintenir" id="maintenir"></a></td>
+                <td><a href=""><img src="../../assets/SuperAdmin/suspendre.png" alt="Suspendre" id="suspendre"></a></td>
                 <hr v-for="item in separator" v-bind:key="item.id">
             </tr>
         </table>
+        </div>
     </div>
 </template>
 
@@ -162,7 +132,7 @@ img{
     
 }
 
-#modifier, #supprimer, #suspendre{
+#suspendre, #maintenir{
     width: 1.5rem;
     padding: .5rem;
     margin: 0.1rem 0rem 0rem 1rem;
@@ -193,40 +163,23 @@ hr{
     color: #000000;
 }
 
-@media only screen and (max-width: 1100px) {
-  #search{
-    margin-top: 50px;
-    margin-left: 12rem;
-    width: 20rem;
-  }
+@media only screen and (max-width: 1000px) {
 
   table{
     margin: 0;
     width: 50rem;
   }
 
-  .buttons{
-    display: flex;
-    flex-direction: column;
-    width: 20rem;
-    margin: 0 auto;
-  }
-
   #vosfichiers{
-    width: 150%;
-    padding-bottom: 100%;
+    margin: 0;
+    width: 100%;
     overflow-x:auto;
   }
 
-  #creer{
-    margin-left: 15%;
-    width: 17rem;
-  }
-
   hr{
-    margin-top: 6rem;
-    width: 57rem;
-    margin-left: -51rem;
+    width: 48.5rem;
+    margin-left: -49rem;
+    margin-top: 7rem;
   }
 }
 

@@ -1,18 +1,20 @@
 <template>
-  <div class="superadmin">
+  <div class="gestionressource">
     <HeaderModerateur/>
-    <SuperAdminMain />
+    <ModerateurMain/>
+    
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import SuperAdminMain from '../components/SuperAdmin/SuperAdminMain.vue'
+import ModerateurMain from '../components/Moderateur/ModerateurMain.vue'
 import HeaderModerateur from '../components/Moderateur/HeaderModerateur.vue'
+
 export default {
-  name: 'Super admin',
+  name: 'Moderateur',
   components: {
-    SuperAdminMain,
+    ModerateurMain,
     HeaderModerateur
   }
 }

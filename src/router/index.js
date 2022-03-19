@@ -18,6 +18,16 @@ const routes = [
     component: () => import("../views/VosFichiers.vue"),
   },
   {
+    path: "/vosgroupes",
+    name: "Vos Groupes",
+    component: () => import("../views/VosGroupes.vue"),
+  },
+  {
+    path: "/VosFavoris",
+    name: "Vos Favoris",
+    component: () => import("../views/VosFavoris.vue"),
+  },
+  {
     path: "/fichiersrecents",
     name: "Fichiers recents",
     component: () => import("../views/FichiersRecent.vue"),
@@ -62,6 +72,12 @@ const routes = [
     name: "Statistique",
     component: () => import("../views/Statistique.vue"),
   },
+  {
+    path: "/Moderateur",
+    name: "Moderateur",
+    component: () => import("../views/Moderateur.vue"),
+  },
+
   /*
   {
     path: '/about',
@@ -77,5 +93,36 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
+import store from "../store/index";
+
+router.beforeEach(async (to, from, next) => {
+  if (to.path !== '/' && to.path !== '/Inscription') {
+    try {
+      if (
+        store.state.nom === '' ||
+        store.state.prenom === '' ||
+        store.state.mail === ''
+      ) {
+        next('/');
+      } else {
+        next();
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  } else if (to.path === '/') {
+    if (
+      store.state.mail !== ''
+    ) {
+      next('/tdb');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
 
 export default router;

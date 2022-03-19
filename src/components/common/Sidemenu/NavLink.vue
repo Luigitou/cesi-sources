@@ -2,7 +2,7 @@
     <div class="navLink" :class="isHighlight() ? 'active' : ''">
         <a :href="'/#/' + link">
             <img class="icon" :src="img" :alt="img"/>
-            {{ text }}
+            <span id="text">{{ text }}</span>
         </a>
     </div>
 </template>
@@ -89,6 +89,14 @@ export default {
         }
 
     }
+}
+
+@media only screen and (max-width: 600px) {
+  .navLink {
+    #text{
+      display: none;
+    }
+  }
 }
 
 </style>

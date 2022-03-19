@@ -1,5 +1,201 @@
 <template>
 <div class="body">
+<div class="page">
+  <div class="overlay">
+    <form class="modale-card" action="http://localhost:8082/api" method="POST">
+      <h1>Inscription</h1>
+      <fieldset class="inscription">
+        <div class="container">
+          <h2>{{ dataMsg }}</h2>
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" placeholder="Nom" required name="nom" v-model="utilisateur.nom">
+         
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" placeholder="Prénom" required name="prenom" v-model="utilisateur.prenom">
+          
+          <label for="email">Mail</label>
+          <input type="mail" id="email" placeholder="Email" required name="mail" v-model="utilisateur.mail">
+          
+          <label for="adresse">Adresse</label>
+          <input type="text" id="address" placeholder="Rue, boulevard, avenue..." required name="addresse" v-model="utilisateur.adresse">
+          
+          <label for="mdp">Mot de passe</label>
+          <input type="password" id="mdp" placeholder="Mot de passe" required name="password" v-model="utilisateur.password">
+          
+          <label for="cmdp">Confirmation du mot de passe</label>
+          <input type="password" id="cmdp" placeholder="Confirmation du mot de passe" required>
+
+      <div class="boutton">
+        <div class="btn">
+          <router-link to="/tdb" id="inscrire">
+            <button type="submit" @click="saveUser">S'inscrire</button>
+          </router-link>
+          <router-link to="/" id="cancel">
+            <button type="cancel">Annuler</button>
+          </router-link>
+        </div>
+      </div>
+    </div> 
+      </fieldset>
+    </form>
+  </div>
+</div>
+</div>   
+</template>
+
+<script>
+import UtilisateurService from '../../services/UtilisateurService'
+
+export default {
+  name: 'FormulaireInscription',
+  data() {
+    return {
+      dataMsg: '',
+      utilisateur: {
+        id: null,
+        nom: '',
+        prenom: '',
+        mail: '',
+        adresse: '',
+        password: ''
+      }, 
+      utilisateurs: []
+    }
+  },
+  methods: {
+    saveUser(){
+      let data = {
+        nom: this.utilisateur.nom,
+        prenom: this.utilisateur.prenom,
+        mail: this.utilisateur.mail,
+        adresse: this.utilisateur.adresse,
+        password: this.utilisateur.password
+      }
+      UtilisateurService.postUtilisateurs(data)
+        .then(response => {
+          this.utilisateur.id = response.data.id
+        })
+        .catch(e => {
+          alert(e)
+        })
+    },
+    // newUtilisateur(){
+    //   this.submitted = false
+    //   this.utilisateur = {}
+    // },
+  } 
+}
+</script>
+
+<style lang="scss" scoped>
+@import "../../scss/common.scss";
+
+.page {
+  position: fixed;
+  top: 10;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay{
+  background-color: $color-head;
+  position: fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  overflow:scroll;
+  scroll-behavior: smooth;
+}
+
+.modale-card{
+  background: white;
+  color: #333;
+  padding: 5%;
+  top: 15%; 
+  width : 50%; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  margin: 0;
+  font-weight: normal;
+  border-top: 1px dashed;
+  padding: 0.4em 0 0.1em 0em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.inscription {
+  padding: 0px;
+  margin: 0px;
+  border: 0;
+}
+
+label{
+  padding: 2%;
+  margin-left: 3%;
+}
+
+input{
+  width: 85%;
+  padding: 2%;
+  margin: 1%;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  //margin-right: 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: $color-android;
+  color: white;
+  padding: 2%;
+  margin: 4%;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+  margin-left: 1%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+button:hover {
+  opacity: 0.8;
+}
+
+#inscrire{
+  text-decoration: none;
+}
+
+#cancel{
+  text-decoration: none;
+}
+
+</style>
+
+
+<!--<template>
+<div class="body">
 <section class="page">
 <h1>Inscription</h1>
   <form class="form">
@@ -158,5 +354,4 @@ label {
   transition: 1s;
 }
 
-</style>
-
+</style>-->
