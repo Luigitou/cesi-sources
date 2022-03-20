@@ -34,10 +34,17 @@ export default {
                     image: file,
                     link: 'vosfichiers'
                 },
+                // Dev à masquer
+                // {
+                //     text: 'Vos groupes',
+                //     image: fav,
+                //     link: 'VosGroupes'
+                // },
+                // Dev à montrer
                 {
-                    text: 'Vos groupes',
+                    text: 'Vos amis',
                     image: fav,
-                    link: 'VosGroupes'
+                    link: 'VosAmis'
                 },
                 {
                     text: 'Vos favoris',

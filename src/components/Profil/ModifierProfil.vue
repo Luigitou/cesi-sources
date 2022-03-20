@@ -44,14 +44,14 @@ export default {
     getUtilisateur(id) {
       UtilisateurService.getUtilisateur(id)
         .then(response => {
-          this.currentUtilisateur = response.data
+          this.$store.state.id = response.data
         })
         .catch(e => {
           alert(e)
         })
     },
     updateUtilisateur() {
-      UtilisateurService.updateUtilisateur(this.currentUtilisateur.id, this.currentUtilisateur)
+      UtilisateurService.updateUtilisateur(this.$store.state.id, this.currentUtilisateur)
         .then(() => {
           this.message = "Votre profil a bien été mis à jour !"
         })
@@ -60,7 +60,7 @@ export default {
         })
     },
     deleteUtilisateur() {
-      UtilisateurService.deleteUtilisateur(this.currentUtilisateur.id)
+      UtilisateurService.deleteUtilisateur(this.$store.state.id)
         .then(() => {
           this.$router.push({name: 'utilisateurs'})
         })
@@ -71,7 +71,7 @@ export default {
   },
   mounted() {
     this.getUtilisateur(this.$route.params.id)
-  }
+  },
 }
 </script>
 
