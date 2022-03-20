@@ -85,7 +85,7 @@ export default {
     background-color: #FFF;
     width: 80%;
     margin: 0 auto;
-    padding-top: 8%;  
+    padding-top: 6%;  
 }
 
 #search{
@@ -118,7 +118,7 @@ button:hover{
 
 table{
     margin: 0 auto;
-    padding-top: 5rem;
+    padding-top: 6rem;
     width: 60rem;
 }
 

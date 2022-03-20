@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="submenu">
-      <h2>Bonjour, {{ name }}</h2>
+      <h2>Bonjour, {{ this.$store.state.prenom }}</h2>
       <SearchBar />
       <IconBar />
     </div>
