@@ -5,12 +5,24 @@ const DOSSIER_API_BASE_URL = 'http://localhost:8082/api/dossiers';
 
 class FichierService{
 
-  getFichiers(){
-    return axios.get(FICHIER_API_BASE_URL);
+  getFichiers(folder, mail){
+    const params = new URLSearchParams();
+    params.append("dossier", folder);
+    params.append("mail", mail);
+
+    return axios.get(FICHIER_API_BASE_URL, { 
+      params: params
+    });
   }
 
-  getDossier() {
-    return axios.get(DOSSIER_API_BASE_URL);
+  getDossier(mail, folder) {
+    const params = new URLSearchParams();
+    params.append("dossier", folder);
+    params.append("mail", mail);
+    
+    return axios.get(DOSSIER_API_BASE_URL, {
+      params: params
+    });
   }
 
   postDossier(data) {

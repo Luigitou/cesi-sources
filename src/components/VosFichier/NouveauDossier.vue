@@ -22,7 +22,7 @@ import FichierService from "../../services/FichierService";
 
 export default {
     name: 'NouveauDossier',
-    props: ['reveleDossier', 'toggleNouveauDossier'],
+    props: ['reveleDossier', 'toggleNouveauDossier', 'dossier'],
     data () {
         return {
             dossierName: ""
@@ -33,6 +33,7 @@ export default {
             const form = new FormData();
             form.append("mail", this.$store.state.mail);
             form.append("name", this.$data.dossierName);
+            form.append("dossier", this.$props.dossier);
 
             FichierService.postDossier(form)
                 .then((response) => {

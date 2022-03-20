@@ -34,7 +34,7 @@ import FichierService from "../../services/FichierService";
 
 export default {
     name: "NouveauFichier",
-    props: ["revele", "toggleNouveauFichier"],
+    props: ["revele", "toggleNouveauFichier", 'dossier'],
     data() {
         return {
             fichiers: [],
@@ -47,6 +47,8 @@ export default {
         saveFile() {
             const formData = new FormData();
             formData.append("file", this.$data.fichiers[0]);
+            formData.append("dossier", this.$props.dossier);
+            formData.append("mail", this.$store.state.mail);
             console.log(formData);
 
             FichierService.postFichiers(formData)

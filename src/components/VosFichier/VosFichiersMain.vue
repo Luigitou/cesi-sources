@@ -3,7 +3,7 @@ import dossier from "../../assets/VosFichiers/dossier.png"
 import fichier from "../../assets/VosFichiers/fichier.png"
 import NouveauFichier from "../../components/VosFichier/NouveauFichier.vue"
 import NouveauDossier from "../../components/VosFichier/NouveauDossier.vue"
-import Invite from "../../components/VosFichier/InviterUnAmi.vue"
+//import Invite from "../../components/VosFichier/InviterUnAmi.vue"
 import FichierService from '../../services/FichierService' 
 
 export default {
@@ -20,13 +20,13 @@ export default {
             },
             revele: false,
             reveleInvite: false,
-            reveleDossier: false
-
+            reveleDossier: false,
+            currentDossier: "base"
         }
     },
     components : {
         'NouveauFichier' : NouveauFichier,
-        'Invite': Invite, //modale est le nom d'utilisation voir dans template
+        //'Invite': Invite, //modale est le nom d'utilisation voir dans template
         'NouveauDossier': NouveauDossier
     },
     methods: {
@@ -39,44 +39,83 @@ export default {
         toggleNouveauDossier: function() {
         this.reveleDossier=!this.reveleDossier
         },
-
+        refreshList() {
+            this.$data.list = [];
+            this.getDossier();
+            this.getFichiers();
+        },
+        getDossier() {
+            FichierService.getDossier(this.$store.state.mail, this.$data.currentDossier).then((response) => {
+                this.parseDossier(response.data);
+            })
+        },
         getFichiers(){
-            FichierService.getFichiers().then((response) => {
+            FichierService.getFichiers(this.$data.currentDossier, this.$store.state.mail).then((response) => {
                 this.parseData(response.data);   
+            });
+        },
+        parseDossier(data) {
+            data.forEach(element => {
+                const json = JSON.parse(element);
+                this.$data.list.push(
+                    {
+                        nom: json.nom,
+                        date: json.date,
+                        proprietaire: json.user,
+                        membres: json.user,
+                        taille: "",
+                        type: "dossier"
+                    }
+                )
             });
         },
         parseData(data) {
             data.forEach(element => {
+                const json = JSON.parse(element);
                 this.$data.list.push(
                     {
-                    nom: element.nom,
-                    date: element.dateCreation,
+                    nom: json.nom,
+                    date: json.date,
                     proprietaire: "",
-                    membres: "",
-                    taille: element.taille + " octets",
-                    type: element.type
+                    membres: json.user,
+                    taille: json.taille + " octets",
+                    type: json.type
                     }
                 )
             });
+        },
+        changeFolder (nom, type) {
+            if (type === "dossier") {
+                this.$data.currentDossier = nom;
+                this.refreshList();
+            }
+        },
+        home() {
+            this.$data.currentDossier = 'base';
+            this.refreshList();
         }
     },
     created() {
+        this.getDossier();
         this.getFichiers();
     }  
 };
 </script>
 
 <template>
-<NouveauFichier v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent-->
-<NouveauDossier v-bind:reveleDossier="reveleDossier" v-bind:toggleNouveauDossier="toggleNouveauDossier"></NouveauDossier>
-<Invite v-bind:reveleInvite="reveleInvite" v-bind:toggleInvite="toggleInvite"></Invite> 
+<NouveauFichier :dossier="currentDossier" v-bind:revele="revele" v-bind:toggleNouveauFichier="toggleNouveauFichier"></NouveauFichier> <!--lier les données au composent-->
+<NouveauDossier :dossier="currentDossier" v-bind:reveleDossier="reveleDossier" v-bind:toggleNouveauDossier="toggleNouveauDossier"></NouveauDossier>
+<!--<Invite v-bind:reveleInvite="reveleInvite" v-bind:toggleInvite="toggleInvite"></Invite> -->
 
     <div id="vosfichiers">
         <div class="menu">
             <button v-on:click="toggleNouveauFichier">Créer un nouveau fichier</button>
             <button @click="toggleNouveauDossier">Créer un nouveau dossier</button>
-            <button>Partagé avec moi</button>
-            <button v-on:click="toggleInvite">Inviter un ami</button>
+            <!--<button>Partagé avec moi</button>
+            <button v-on:click="toggleInvite">Inviter un ami</button>-->
+            <p>Dossier: {{ currentDossier }}</p>
+            <button @click="refreshList">Recharger</button>
+            <button @click="home">Home</button>
         </div>
         
         <table>
@@ -88,7 +127,7 @@ export default {
                 <th>Membres</th>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
-                <td><a href="#" id="nom">
+                <td><a style="cursor: pointer" id="nom" @click="changeFolder(item.nom, item.type)">
                         <span v-if="item.type == 'dossier'"><img :src="isDossier" alt="Dossier"></span>
                         <span v-else><img :src="isFichier" alt="fichier"></span>
                     {{ item.nom }}
@@ -115,16 +154,17 @@ export default {
 }
 
 .menu{
+    margin-top: 1rem;
     display: flex;
     width: 70%;
     margin-left: 15%;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
 }
 
 
 button{
-    margin: 2rem 0rem 0rem 2rem;
     background-color: #EFFAFF;
     color: #000000;
     padding: .5rem;
