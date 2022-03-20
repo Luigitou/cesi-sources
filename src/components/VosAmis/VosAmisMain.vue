@@ -15,7 +15,7 @@ export default {
             isDesactive: moderateurDesactive,
             isActive: moderateurActive,
             utilisateurs: [],
-            actif: true,
+            actif: false,
             separator: {
                 line: ""
             },
