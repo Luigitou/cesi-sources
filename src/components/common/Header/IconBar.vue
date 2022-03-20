@@ -29,9 +29,10 @@ export default {
         greet(data,type) {
             if(type==="Notifications"){
               this.$data.isNotification = !data  
-            }/*else if(type==="Profile"){
-                window.location.href = '/' + link
-            }*/
+            }else if(type==="Profile"){
+                //window.location.href = '/' + link
+                this.$router.push({ name: 'Profil' });
+            }
             else if(type==="Settings"){
                 this.$router.push({ name: 'Settings' });
             }
