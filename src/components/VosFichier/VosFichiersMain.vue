@@ -88,7 +88,22 @@ export default {
             if (type === "dossier") {
                 this.$data.currentDossier = nom;
                 this.refreshList();
+            } else {
+                this.downloadFile(nom, type);
             }
+        },
+        downloadFile(nom, type) {
+            console.log("download");
+            FichierService.downloadFile(nom).then((response) => {
+                const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                const fileLink = document.createElement('a');
+            
+                fileLink.href = fileURL;
+                fileLink.setAttribute('download', 'file.' + type);
+                document.body.appendChild(fileLink);
+            
+                fileLink.click();
+            });
         },
         home() {
             this.$data.currentDossier = 'base';

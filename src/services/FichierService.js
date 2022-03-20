@@ -5,6 +5,16 @@ const DOSSIER_API_BASE_URL = 'http://localhost:8082/api/dossiers';
 
 class FichierService{
 
+  downloadFile(nom) {
+    const params = new URLSearchParams();
+    params.append("nom", nom);
+
+    return axios.get(FICHIER_API_BASE_URL + "/download", {
+      params: params,
+      responseType: Blob
+    },);
+  }
+
   getFichiers(folder, mail){
     const params = new URLSearchParams();
     params.append("dossier", folder);
