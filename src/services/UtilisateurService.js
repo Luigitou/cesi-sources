@@ -23,6 +23,11 @@ class UtilisateurService{
   deleteUtilisateur(id) {
     return axios.delete(UTILISATEUR_API_BASE_URL + `?=${id}`)
   }
+
+  // getAmi(){
+  //   return axios.get(UTILISATEUR_API_BASE_URL);
+  // }
+
 }
 
 export default new UtilisateurService();

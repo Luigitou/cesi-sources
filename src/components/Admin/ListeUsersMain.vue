@@ -2,7 +2,6 @@
 import SearchBarAdmin from "../common/Header/SearchBarAdmin.vue";
 import moderateurDesactive from "../../assets/Admin/ModerateurDesactive.png"
 import moderateurActive from "../../assets/Admin/ModerateurActive.png"
-
 import UtilisateurService from '../../services/UtilisateurService'
 
 export default {
@@ -15,22 +14,6 @@ export default {
             isDesactive: moderateurDesactive,
             isActive: moderateurActive,
             utilisateurs: [],
-            // dev à masquer
-            // list: [
-            //     {
-            //         nom: "Louis",
-            //         date: "14/10/2021",
-            //         statut: "Connecté",
-            //         compte: "Activé",
-            //     },
-
-            //     {
-            //         nom: "Yannis",
-            //         date: "12/10/2021",
-            //         statut: "Déconnecté",
-            //         compte: "Désactivé",
-            //     },
-            // ],
             actif: true,
             separator: {
                 line: ""
@@ -63,59 +46,22 @@ export default {
 
 <template>
     <div id="listeusers">
-        <!--<button>Liste des utilisateurs</button>
-        <button id="btn2">Gestions des ressources</button>-->
         <SearchBarAdmin id="search" v-model="search"/>
-
         <div class="table-style">
         <table>
             <tr>
-                <!-- Dev masqué -->
-                <!-- <th>Nom</th>
-                <th>Date de création de compte</th>
-                <th>Statut</th>
-                <th>Compte</th>
-                <th>Citoyen</th> -->
-
-                <!-- Dev a afficher -->
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>adresse</th>
                 <th>Mail</th>
-                <th>Actif</th>
             </tr>
-                <!-- Dev masqué -->
-            <!-- <tr v-for="item in list" v-bind:key="item.id">
-                <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ item.nom }}</a></td>
-                <td>{{ item.date }}</td>
-                <td>{{ item.statut }}</td>
-                <td>{{ item.compte }}</td>
-                <td>
-                    <a href=""> 
-                        <span v-if="item.compte == 'Activé'"><img :src="isActive" alt="moderateurActive" id="moderateur"></span>
-                        <span v-else><img :src="isDesactive" alt="moderateurDesactive" id="moderateur"></span>
-                    </a>
-                </td>
-                <div>
-                    <span v-if="item.compte == 'Activé'"><button id="desactiver">Désactiver</button></span>
-                    <span v-else><button id="desactiver">Activer</button></span>
-                </div>
-                <hr v-for="item in separator" v-bind:key="item.id">
-            </tr> -->
-             <!-- Dev a afficher -->
             <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
                 <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ utilisateur.nom }}</a></td>
                 <td> {{utilisateur.prenom}}</td>    
                 <td> {{utilisateur.adresse}}</td>
                 <td> {{utilisateur.mail}}</td>
-                <td>
-                    <span v-if="this.actif == true"><img :src="isActive" alt="moderateurActive" id="moderateur"></span>
-                    <span v-else><img :src="isDesactive" alt="moderateurDesactive" id="moderateur"></span>
-                </td>
-                <div>
-                    <span v-if="this.actif == true"><button id="desactiver" @click="actif = false">Désactiver</button></span>
-                    <span v-else><button id="desactiver" @click="actif = true">Activer</button></span>
-                </div>
+                <td><a href=""><img src="../../assets/SuperAdmin/Modifier.png" alt="Modifier" id="modifier"></a></td>
+                <td><a href=""><img src="../../assets/SuperAdmin/Supprimer.png" alt="Supprimer" id="supprimer"></a></td>
                 <hr v-for="utilisateur in separator" v-bind:key="utilisateur.id">
             </tr>
         </table>
@@ -188,23 +134,15 @@ table tr td{
     width: 1rem;
 }
 
-#moderateur{
+#modifier, #supprimer{
     display: flex;
-    width: 2rem;
-    margin-left: 3rem;
-}
-
-#desactiver{
-    background-color: $color-special;
-    border: none;
-    color: #FFF;
-    width: 7rem;
-    margin: 2rem 0rem .3rem 0rem;
+    width: 1.7rem;
 }
 
 hr{
     width: 65rem;
     margin-left: -58rem;
+    margin-top: 5rem;
 }
 
 @media only screen and (max-width: 900px) {

@@ -2,7 +2,6 @@
 import SearchBarAdmin from "../common/Header/SearchBarAdmin.vue";
 import moderateurDesactive from "../../assets/Admin/ModerateurDesactive.png"
 import moderateurActive from "../../assets/Admin/ModerateurActive.png"
-
 import UtilisateurService from '../../services/UtilisateurService'
 
 export default {
@@ -16,10 +15,8 @@ export default {
             isActive: moderateurActive,
             utilisateurs: [],
             actif: false,
-            separator: {
-                line: ""
-            },
-            search: ""
+            search: "",
+            // listAmi: [],
         }
     },
     methods: {
@@ -27,10 +24,17 @@ export default {
             UtilisateurService.getUtilisateurs().then((response) => {
                 this.utilisateurs = response.data;   
             });
-        }
+        },
+
+        // getAmi(){
+        //     UtilisateurService.getAmi(this.$store.state.mail).then((response) => {
+        //         this.listAmi = response.data;   
+        //     });
+        // },
     },
     created() {
         this.getUtilisateurs();
+    //    this.getAmi();
     },
     computed: {
         filteredUsers() {
@@ -41,7 +45,7 @@ export default {
                 u.mail.toLowerCase().indexOf(this.search.toLowerCase()) != -1;
             });
         }
-  }  
+    }  
 }
 </script>
 
@@ -59,22 +63,30 @@ export default {
                 <th>Amis</th>
             </tr>
             <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
-                <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ utilisateur.nom }}</a></td>
-                <td> {{utilisateur.prenom}}</td>    
-                <td> {{utilisateur.adresse}}</td>
-                <td> {{utilisateur.mail}}</td>
-                <td>
+                <td  v-if="this.$store.state.nom != utilisateur.nom"><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ utilisateur.nom }}</a></td>
+                <td  v-if="this.$store.state.prenom != utilisateur.prenom"> {{utilisateur.prenom}}</td>    
+                <td  v-if="this.$store.state.adresse != utilisateur.adresse"> {{utilisateur.adresse}}</td>
+                <td  v-if="this.$store.state.mail != utilisateur.mail"> {{utilisateur.mail}}</td>
+                <td></td>
+                <!-- <td>
                     <span v-if="this.actif == true"><p id="oui">Oui</p></span>
                     <span v-else><p id="non">Non</p></span>
-                </td>
-                <div>
+                </td> -->
+                <div v-if="this.$store.state.nom != utilisateur.nom">
                     <span v-if="this.actif == true"><button id="desactiver" @click="actif = false">Supprimer</button></span>
                     <span v-else><button id="desactiver" @click="actif = true">Ajouter</button></span>
                 </div>
-                <hr v-for="utilisateur in separator" v-bind:key="utilisateur.id">
+                <hr v-if="this.$store.state.nom != utilisateur.nom">
             </tr>
         </table>
         </div>
+
+        <!-- <div v-for="ami in listAmi" v-bind:key="ami.id">
+            <p>{{ ami.nom }}</p>
+            <p>{{ ami.prenom }}</p>
+            <p>{{ ami.adresse }}</p>
+            <p>{{ ami.mail }}</p>
+        </div> -->
     </div>
 </template>
 
