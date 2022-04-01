@@ -2,18 +2,17 @@
     <div class="bloc-modale" v-if="revele"> <!-- if revele false le modale disparait if revele true le modale apparait --> 
         <div class="overlay" v-on:click="toggleCurrentResearch"></div> <!-- click en dehors du modale pour fermer -->
         <form class="modale-card">
-                <div v-on:click="toggleCurrentResearch" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
+            <div v-on:click="toggleCurrentResearch" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
                 <div class="container">
                     <p>Résultats de votre recherche :</p>
                     <table>
-                        <tr v-for="item in list" v-bind:key="item.id">
+                        <tr v-for="fichiers in files" v-bind:key="fichiers.id">
                             <td><a href="#" id="nom">
-                                {{ item.nom }}
+                                {{ fichier.nom }}
                                 </a>
                             </td>
-                            <td>{{ item.date }}</td>
-                            <td>{{ item.taille }}</td>
-                            <td>{{ item.proprietaire }}</td>
+                            <td>{{ fichier.date }}</td>
+                            <td>{{ fichier.taille }}</td>
                         </tr>
                     </table>
                 </div>
@@ -25,7 +24,7 @@
 
 export default {
     name: 'CurrentResearch',
-    props: ['revele', 'toggleCurrentResearch','list','inputVal']
+    props: ['revele', 'toggleCurrentResearch','files','searchVal']
 
 }
 </script>

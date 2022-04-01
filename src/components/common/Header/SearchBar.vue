@@ -1,63 +1,48 @@
 <template>
-<CurrentResearch v-bind:revele="revele" v-bind:inputVal="inputVal" v-bind:list="list" v-bind:toggleCurrentResearch="toggleCurrentResearch"></CurrentResearch>
+<CurrentResearch v-bind:revele="revele" v-bind:searchVal="searchVal" v-bind:files="files" v-bind:toggleCurrentResearch="toggleCurrentResearch"></CurrentResearch>
   <div>
-    <input class="input" type="text" v-model="inputVal" placeholder="Rechercher un fichier .." id="search" name="search"/>
+    <input class="input" type="text" v-model="searchVal" placeholder="Rechercher un fichier .." id="search" name="search"/>
     <button class="btn" v-on:click="toggleCurrentResearch" type="submit"><img src="../../../assets/header/Search.svg"></button>
-
   </div>
 </template>
 
 <script>
 import CurrentResearch from "../../common/Header/CurrentResearch.vue"
-import FichierService from '../../../services/FichierService'
+//import FichierService from '../../../services/FichierService'
 
 export default {
   
   data() {
     return {
       revele: false,
-      inputVal: "",
-      list: [
-                {
-                    nom: "Photos",
-                    date: "14/10/2021",
-                    proprietaire: "Edomiyas"
-                },
-
-                {
-                    nom: "logo.png",
-                    date: "12/10/2021",
-                    proprietaire: "Louis"
-                },
-
-                {
-                    nom: "Vacances.jpg",
-                    date: "19/10/2021",
-                    proprietaire: "Imen"
-                },
-
-                {
-                    nom: "Carte.txt",
-                    date: "22/10/2021",
-                    proprietaire: "Yannis"
-                },
-      ]
+      searchVal: "",
+      files: []
     }
   },
 
   components : {
-        'CurrentResearch' : CurrentResearch
+      'CurrentResearch' : CurrentResearch
     },
     methods: {
+      
+       getFichiers(){
+         console.log("here");
+              /*FichierService.getFichiers().then((response) => {
+              console.log(response.data)   
+            });*/
+          },
+
         toggleCurrentResearch: function() {
             this.revele=!this.revele
+              console.log(this.files);
         },
-        getFichiers(){
-            FichierService.getFichiers().then((response) => {
-                this.parseData(response.data);   
-            });
+
+        mounted(){
+          this.getFichiers();
+          console.log("test");
         },
     },
+
   name: "SearchBar",
 };
 </script>
