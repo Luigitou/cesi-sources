@@ -4,15 +4,16 @@
         <form class="modale-card">
             <div v-on:click="toggleCurrentResearch" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
                 <div class="container">
-                    <p>Résultats de votre recherche :</p>
+                    <p>Résultats pour : "{{searchValue}}"</p>
                     <table>
-                        <tr v-for="fichiers in files" v-bind:key="fichiers.id">
+                        <tr v-for="fichiers in files" v-bind:key="fichiers.nom">
+                            <span><img :src="isFichier" alt="fichier"></span>
                             <td><a href="#" id="nom">
-                                {{ fichier.nom }}
+                                {{ fichiers.nom }}
                                 </a>
                             </td>
-                            <td>{{ fichier.date }}</td>
-                            <td>{{ fichier.taille }}</td>
+                            <td width="15%"></td>
+                            <td>{{ fichiers.date }}</td>
                         </tr>
                     </table>
                 </div>
@@ -21,11 +22,16 @@
 </template>
 
 <script>
+import fichier from "../../../assets/VosFichiers/fichier.png"
 
 export default {
+data (){
+    return{
+        isFichier : fichier
+    }
+},
     name: 'CurrentResearch',
-    props: ['revele', 'toggleCurrentResearch','files','searchVal']
-
+    props: ['revele', 'toggleCurrentResearch', 'files', 'searchValue']
 }
 </script>
 
@@ -59,7 +65,14 @@ export default {
         position: fixed;
         top: 8%;
         border-bottom-right-radius: 50px;
-        border-bottom-left-radius: 50px;   
+        border-bottom-left-radius: 50px; 
+        
+        .container{
+            td{
+                color: #296870;
+                font-weight: bold;
+            }
+        }
     }
     .btn-modale{
         position: absolute;
@@ -77,37 +90,7 @@ export default {
     .btn-modale:focus{
         cursor: pointer;
     }
-   /* Full-width input fields */
-    label{
-        padding: 2%;
-    }
-    input[type=text], input[type=password] {
-        width: 95%;
-        padding: 2%;
-        margin: 1%;
-        display: inline-block;
-        border: none;
-        background: #f1f1f1;
-        margin-right: 40%;
-    }
-
-    /* Set a style for all buttons */
-    button {
-        background-color: $color-android;
-        color: white;
-        padding: 2%;
-        margin: 1%;
-        border: none;
-        cursor: pointer;
-        width: 99%;
-        margin-left: 1%;
-    }
-
-    button:hover {
-        opacity: 0.8;
-    }
     a{
         color: $color-special;   
     }
 </style>
-
