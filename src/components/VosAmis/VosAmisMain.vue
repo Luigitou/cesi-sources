@@ -14,11 +14,9 @@ export default {
             isDesactive: moderateurDesactive,
             isActive: moderateurActive,
             utilisateurs: [],
-            actif: true,
-            separator: {
-                line: ""
-            },
-            search: ""
+            actif: false,
+            search: "",
+            // listAmi: [],
         }
     },
     methods: {
@@ -26,10 +24,17 @@ export default {
             UtilisateurService.getUtilisateurs().then((response) => {
                 this.utilisateurs = response.data;   
             });
-        }
+        },
+
+        // getAmi(){
+        //     UtilisateurService.getAmi(this.$store.state.mail).then((response) => {
+        //         this.listAmi = response.data;   
+        //     });
+        // },
     },
     created() {
         this.getUtilisateurs();
+    //    this.getAmi();
     },
     computed: {
         filteredUsers() {
@@ -40,13 +45,14 @@ export default {
                 u.mail.toLowerCase().indexOf(this.search.toLowerCase()) != -1;
             });
         }
-  }  
+    }  
 }
 </script>
 
 <template>
     <div id="listeusers">
         <SearchBarAdmin id="search" v-model="search"/>
+
         <div class="table-style">
         <table>
             <tr>
@@ -54,18 +60,33 @@ export default {
                 <th>Prenom</th>
                 <th>adresse</th>
                 <th>Mail</th>
+                <th>Amis</th>
             </tr>
             <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
-                <td><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ utilisateur.nom }}</a></td>
-                <td> {{utilisateur.prenom}}</td>    
-                <td> {{utilisateur.adresse}}</td>
-                <td> {{utilisateur.mail}}</td>
-                <td><a href=""><img src="../../assets/SuperAdmin/Modifier.png" alt="Modifier" id="modifier"></a></td>
-                <td><a href=""><img src="../../assets/SuperAdmin/Supprimer.png" alt="Supprimer" id="supprimer"></a></td>
-                <hr v-for="utilisateur in separator" v-bind:key="utilisateur.id">
+                <td  v-if="this.$store.state.nom != utilisateur.nom"><a href="#" id="nom"><img src="../../assets/SuperAdmin/profile.png" alt="profile" id="type-icon"> {{ utilisateur.nom }}</a></td>
+                <td  v-if="this.$store.state.prenom != utilisateur.prenom"> {{utilisateur.prenom}}</td>    
+                <td  v-if="this.$store.state.adresse != utilisateur.adresse"> {{utilisateur.adresse}}</td>
+                <td  v-if="this.$store.state.mail != utilisateur.mail"> {{utilisateur.mail}}</td>
+                <td></td>
+                <!-- <td>
+                    <span v-if="this.actif == true"><p id="oui">Oui</p></span>
+                    <span v-else><p id="non">Non</p></span>
+                </td> -->
+                <div v-if="this.$store.state.nom != utilisateur.nom">
+                    <span v-if="this.actif == true"><button id="desactiver" @click="actif = false">Supprimer</button></span>
+                    <span v-else><button id="desactiver" @click="actif = true">Ajouter</button></span>
+                </div>
+                <hr v-if="this.$store.state.nom != utilisateur.nom">
             </tr>
         </table>
         </div>
+
+        <!-- <div v-for="ami in listAmi" v-bind:key="ami.id">
+            <p>{{ ami.nom }}</p>
+            <p>{{ ami.prenom }}</p>
+            <p>{{ ami.adresse }}</p>
+            <p>{{ ami.mail }}</p>
+        </div> -->
     </div>
 </template>
 
@@ -76,7 +97,7 @@ export default {
     background-color: #FFF;
     width: 80%;
     margin: 0 auto;
-    padding-top: 8%;  
+    padding-top: 6%;  
 }
 
 #search{
@@ -109,8 +130,8 @@ button:hover{
 
 table{
     margin: 0 auto;
-    padding-top: 5rem;
-    width: 70rem;
+    padding-top: 6rem;
+    width: 60rem;
 }
 
 table tr th{
@@ -134,15 +155,25 @@ table tr td{
     width: 1rem;
 }
 
-#modifier, #supprimer{
-    display: flex;
-    width: 1.7rem;
+#oui{
+  color: rgb(11, 165, 11);
+}
+
+#non{
+  color: red;
+}
+
+#desactiver{
+    background-color: $color-special;
+    border: none;
+    color: #FFF;
+    width: 7rem;
+    margin: 2rem 0rem .3rem 0rem;
 }
 
 hr{
-    width: 65rem;
-    margin-left: -58rem;
-    margin-top: 5rem;
+    width: 55rem;
+    margin-left: -48rem;
 }
 
 @media only screen and (max-width: 900px) {

@@ -11,6 +11,23 @@ class UtilisateurService{
   postUtilisateurs(data){
     return axios.post(UTILISATEUR_API_BASE_URL, data);
   }
+  
+  getUtilisateur(id) {
+    return axios.get(UTILISATEUR_API_BASE_URL + `?=${id}`)
+  }
+
+  updateUtilisateur(id, data) {
+    return axios.put(UTILISATEUR_API_BASE_URL + `?=${id}`, data)
+  }
+
+  deleteUtilisateur(id) {
+    return axios.delete(UTILISATEUR_API_BASE_URL + `?=${id}`)
+  }
+
+  // getAmi(){
+  //   return axios.get(UTILISATEUR_API_BASE_URL);
+  // }
+
 }
 
 export default new UtilisateurService();
