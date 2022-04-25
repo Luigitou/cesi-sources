@@ -1,65 +1,69 @@
 <script>
 //import UtilisateurService from '../../services/UtilisateurService'
-import ModifierProfil from "../../components/Profil/ModifierProfil.vue"
-
+import ModifierProfil from "../../components/Profil/ModifierProfil.vue";
 export default {
   name: "ProfilMain",
   components: {
-    'ModifierProfil': ModifierProfil
+    ModifierProfil: ModifierProfil,
   },
-  data (){
+  data() {
     return {
       // utilisateurs: [],
-      reveleProfil: false
-    }
+      reveleProfil: false,
+    };
   },
   methods: {
-    toggleModifierProfil: function() {
-      this.reveleProfil=!this.reveleProfil
+    toggleModifierProfil: function () {
+      this.reveleProfil = !this.reveleProfil;
     },
-  }
+  },
 };
 </script>
 
 <template>
   <div id="profil">
-    <ModifierProfil v-bind:reveleProfil="reveleProfil" v-bind:toggleModifierProfil="toggleModifierProfil"></ModifierProfil>
-      <div class="personal-info">
-        <p>Nom : {{this.$store.state.nom }}</p>
-        <p>Prenom : {{this.$store.state.prenom}}</p>
-        <p>Mail : {{this.$store.state.mail}}</p>
-        <p>Adresse : {{this.$store.state.adresse}}</p>
+    <ModifierProfil
+      v-bind:reveleProfil="reveleProfil"
+      v-bind:toggleModifierProfil="toggleModifierProfil"
+    ></ModifierProfil>
+    <div class="personal-info">
+      <p>Nom : {{ this.$store.state.nom }}</p>
+      <p>Prenom : {{ this.$store.state.prenom }}</p>
+      <p>Mail : {{ this.$store.state.mail }}</p>
+      <p>Adresse : {{ this.$store.state.adresse }}</p>
 
-        <div class="buttons">
-          <button id="update" v-on:click="toggleModifierProfil">Modifier mon profil</button>
-        </div>
+      <div class="buttons">
+        <button id="update" v-on:click="toggleModifierProfil">
+          Modifier mon profil
+        </button>
       </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import "../../scss/common.scss";
-#profil{
-  .personal-info{
+#profil {
+  .personal-info {
     display: flex;
     margin: 0 auto;
     flex-direction: column;
     margin-left: 20%;
     margin-top: 50px;
-    
-    p{
+
+    p {
       font-size: 1.2rem;
     }
   }
-      
-  .buttons{
+
+  .buttons {
     display: flex;
     justify-content: center;
     gap: 10%;
     margin-left: 11rem;
     width: 50%;
-
-    #update, #delete{
+    #update,
+    #delete {
       background-color: $color-android;
       text-decoration: none;
       color: $color-head;
@@ -67,24 +71,20 @@ export default {
       cursor: pointer;
       margin-top: 30px;
     }
-
-    #update{
+    #update {
       padding: 1rem;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
     }
-
-    #delete{
+    #delete {
       padding: 1rem;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       background-color: rgb(230, 49, 49);
     }
-  }    
+  }
 }
-
 @media only screen and (max-width: 600px) {
-  .buttons{
+  .buttons {
     width: 100%;
   }
-
 }
 </style>
