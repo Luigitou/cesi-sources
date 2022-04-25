@@ -17,12 +17,7 @@ export default {
   components: {
     SearchBar,
     IconBar,
-  },
-  data() {
-    return {
-      name: "Louis",
-    };
-  },
+  }
 };
 </script>
 

@@ -7,9 +7,9 @@
 
                 <div class="container">
                     <label for="uname"><b>Nom</b></label>
-                    <input type="text" placeholder="Entrez le nom du dossier" name="uname" required>
+                    <input type="text" placeholder="Entrez le nom du dossier" name="uname" required v-model="dossierName">
                     <div v-on:click="toggleNouveauDossier">
-                    <button type="submit">Valider</button>
+                    <button type="submit" @click="saveDossier">Valider</button>
                     <button type="cancel">Annuler</button>
                     </div>
                 </div>
@@ -18,9 +18,32 @@
 </template>
 
 <script>
+import FichierService from "../../services/FichierService";
+
 export default {
     name: 'NouveauDossier',
-    props: ['reveleDossier', 'toggleNouveauDossier']
+    props: ['reveleDossier', 'toggleNouveauDossier', 'dossier'],
+    data () {
+        return {
+            dossierName: ""
+        }
+    },
+    methods: {
+        saveDossier() {
+            const form = new FormData();
+            form.append("mail", this.$store.state.mail);
+            form.append("name", this.$data.dossierName);
+            form.append("dossier", this.$props.dossier);
+
+            FichierService.postDossier(form)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((e) => {
+                    console.error(e);
+                })
+        }
+    }
 }
 </script>
 
