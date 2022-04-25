@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const UTILISATEUR_API_BASE_URL = 'http://localhost:8082/api/utilisateurs';
+const AMI_API_BASE_URL = 'http://localhost:8082/api/1/ami'; // Pourquoi 1 ?
 
 class UtilisateurService{
 
@@ -24,9 +25,9 @@ class UtilisateurService{
     return axios.delete(UTILISATEUR_API_BASE_URL + `?=${id}`)
   }
 
-  // getAmi(){
-  //   return axios.get(UTILISATEUR_API_BASE_URL);
-  // }
+  getAmi(){
+    return axios.get(AMI_API_BASE_URL);
+  }
 
 }
 
