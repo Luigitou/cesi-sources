@@ -1,55 +1,66 @@
 <template>
-<CurrentResearch v-bind:revele="revele" v-bind:toggleCurrentResearch="toggleCurrentResearch" v-bind:searchValue="searchValue" v-bind:files="files"></CurrentResearch>
+  <CurrentResearch
+    v-bind:revele="revele"
+    v-bind:toggleCurrentResearch="toggleCurrentResearch"
+    v-bind:searchValue="searchValue"
+    v-bind:files="files"
+  ></CurrentResearch>
   <div>
-    <input class="input" type="text" placeholder="Rechercher un fichier .." id="search" name="search" v-model="searchValue"/>
-    <button class="btn" v-on:click="toggleCurrentResearch" type="submit"><img src="../../../assets/header/Search.svg"></button>
+    <input
+      class="input"
+      type="text"
+      placeholder="Rechercher un fichier .."
+      id="search"
+      name="search"
+      v-model="searchValue"
+    />
+    <button class="btn" v-on:click="toggleCurrentResearch" type="submit">
+      <img src="../../../assets/header/Search.svg" />
+    </button>
   </div>
 </template>
 
 <script>
-import CurrentResearch from "../../common/Header/CurrentResearch.vue"
-import FichierService from "../../../services/FichierService"
+import CurrentResearch from "../../common/Header/CurrentResearch.vue";
+import FichierService from "../../../services/FichierService";
 export default {
-
-  data(){
-    return{
+  data() {
+    return {
       revele: false,
       searchValue: "",
-      files: []
-    }
+      files: [],
+    };
   },
 
-  methods:{
-    toggleCurrentResearch: function() {
-      this.revele=!this.revele
+  methods: {
+    toggleCurrentResearch: function () {
+      this.revele = !this.revele;
       this.getFichiers(this.$data.searchValue).then((response) => {
-         this.parseResult(response.data);
-          console.log(this.$data.files)
-      })
+        this.parseResult(response.data);
+        console.log(this.$data.files);
+      });
     },
 
     parseResult(data) {
-          this.$data.files=[];
-            data.forEach(content => {
-                if(content.nom == this.$data.searchValue){
-                const json = JSON.parse(JSON.stringify(content));
-                this.$data.files.push(
-                    {
-                        nom: json.nom,
-                        date: json.dateCreation,
-                        proprietaire: json.user,
-                    }
-                )
-                }
-            });
-        },
-    getFichiers(searchValue){
+      this.$data.files = [];
+      data.forEach((content) => {
+        if (content.nom == this.$data.searchValue) {
+          const json = JSON.parse(JSON.stringify(content));
+          this.$data.files.push({
+            nom: json.nom,
+            date: json.dateCreation,
+            proprietaire: json.user,
+          });
+        }
+      });
+    },
+    getFichiers(searchValue) {
       return FichierService.getFichiers(searchValue);
     },
-},
+  },
 
-  components : {
-    'CurrentResearch' : CurrentResearch
+  components: {
+    CurrentResearch: CurrentResearch,
   },
 
   name: "SearchBar",
@@ -60,7 +71,6 @@ export default {
 @import "../../../scss/common.scss";
 
 div {
-
   width: 50%;
   display: flex;
 
@@ -90,7 +100,6 @@ div {
   }
 
   .btn {
-
     width: 5%;
     border-top: 1px solid $color-text;
     border-right: 1px solid $color-text;
@@ -103,7 +112,7 @@ div {
     justify-content: center;
     background: white;
     cursor: pointer;
-    transition: background ease .15s, filter ease .15s;
+    transition: background ease 0.15s, filter ease 0.15s;
 
     img {
       width: 75%;
@@ -117,7 +126,5 @@ div {
       }
     }
   }
-
 }
-
 </style>

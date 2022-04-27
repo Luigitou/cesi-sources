@@ -34,7 +34,7 @@ export default {
       this.revele = !this.revele;
     },
     toggleInvite: function () {
-      this.reveleInvite = !this.reveleInvite; //si cest false passe a true vis versa et cela a partir de la modale puisque les props sont liées
+      this.reveleInvite = !this.reveleInvite; //si c'est false passe a true vis versa et cela a partir de la modale puisque les props sont liées
     },
     toggleNouveauDossier: function () {
       this.reveleDossier = !this.reveleDossier;
