@@ -16,7 +16,7 @@ export default {
             utilisateurs: [],
             actif: false,
             search: "",
-            // listAmi: [],
+            listAmi: [],
         }
     },
     methods: {
@@ -26,15 +26,15 @@ export default {
             });
         },
 
-        // getAmi(){
-        //     UtilisateurService.getAmi(this.$store.state.mail).then((response) => {
-        //         this.listAmi = response.data;   
-        //     });
-        // },
+        getAmi(){
+            UtilisateurService.getAmi().then((response) => {
+                this.listAmi = response.data;   
+            });
+        },
     },
     created() {
         this.getUtilisateurs();
-    //    this.getAmi();
+        this.getAmi();
     },
     computed: {
         filteredUsers() {
@@ -81,12 +81,12 @@ export default {
         </table>
         </div>
 
-        <!-- <div v-for="ami in listAmi" v-bind:key="ami.id">
+        <div v-for="ami in listAmi" v-bind:key="ami.id">
             <p>{{ ami.nom }}</p>
             <p>{{ ami.prenom }}</p>
             <p>{{ ami.adresse }}</p>
             <p>{{ ami.mail }}</p>
-        </div> -->
+        </div>
     </div>
 </template>
 
