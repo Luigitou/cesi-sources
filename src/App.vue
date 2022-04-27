@@ -6,46 +6,31 @@
 
 <template>
   <div id="main">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  methods: {
-    getLocalStorage() {
-      if (localStorage.mail) {
-        this.$store.state.nom = localStorage.nom;
-        this.$store.state.prenom = localStorage.prenom;
-        this.$store.state.mail = localStorage.mail;
-        this.$store.state.adresse = localStorage.adresse;
-      }
-    }
-  },
-  created () {
-    this.getLocalStorage();
-  }
-}
+  name: "App",
+};
 </script>
 
 <style>
-
 html {
   height: 100%;
 }
 
-body{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #EFFAFF;
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #effaff;
   margin: 0;
   padding: 0;
   height: 100%;
 }
 
 #app {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   height: 100%;
 }
 
@@ -64,5 +49,4 @@ body{
   margin: 0;
   padding: 0;
 }
-
 </style>
