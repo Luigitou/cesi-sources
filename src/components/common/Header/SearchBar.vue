@@ -55,7 +55,7 @@ export default {
       });
     },
     getFichiers(searchValue) {
-      return FichierService.getFichiers(searchValue);
+      return FichierService.getAll(searchValue);
     },
   },
 

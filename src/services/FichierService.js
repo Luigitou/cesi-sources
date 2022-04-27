@@ -51,6 +51,16 @@ class FichierService {
       }
     );
   }
+
+  researchFile(nom) {
+    const params = new URLSearchParams();
+    params.append("nom", nom);
+
+    return axios.get(FICHIER_API_BASE_URL + "/recherche", params);
+  }
+  getAll() {
+    return axios.get("http://localhost:8082/api/allFichiers")
+  }
 }
 
 export default new FichierService();
