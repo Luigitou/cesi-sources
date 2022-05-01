@@ -1,7 +1,7 @@
 <template>
   <div class="vosamis">
     <div class="title">
-      <h1>Vos amis</h1>
+      <h2>Vos amis</h2>
     </div>
 
     <div class="searchbar">
@@ -12,12 +12,16 @@
     </div>
 
     <div class="tableau">
-     <DataTable :value="amis" :paginator="true" :rows="5" sortMode="multiple" responsiveLayout="stack" breakpoint="960px">
+      <DataTable :value="amis" :paginator="true" :rows="5" sortMode="multiple" responsiveLayout="scroll"
+        v-model:filters="filters"
+        filterDisplay="row"
+        class="data"
+      >
        <template #header>
           <div class="flex justify-content-between">
               <span class="p-input-icon-right">
                 <i class="pi pi-search" />
-                <InputText  placeholder="Cherchez vos amis..." />
+                <InputText v-model="filters['global'].value" placeholder="Cherchez vos amis..." />
               </span>
           </div>
         </template>
@@ -44,6 +48,7 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
+import { FilterMatchMode, FilterOperator } from "primevue/api";
 
 export default {
   name: 'VosAmis',
@@ -55,6 +60,12 @@ export default {
   },
   data() {
     return {
+      filters: {
+        'global': {value: null, matchMode: FilterMatchMode.CONTAINS},
+        'nom': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
+        'prenom': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
+        'mail': {value: null, matchMode: FilterMatchMode.IN}
+      },
       amis: [
         {
           nom: "Temesgen",
@@ -81,12 +92,12 @@ export default {
           prenom: "Edomiyas", 
           mail: "temesgen.edomiyas@yahoo.com",  
         },
-           {
-          nom: "Temesgen",
-          prenom: "Edomiyas", 
-          mail: "temesgen.edomiyas@yahoo.com",  
+        {
+          nom: "John",
+          prenom: "Doe", 
+          mail: "john.doe@gmail.com",  
         },
-      ]
+      ],
     }
   }
 }
@@ -97,9 +108,9 @@ export default {
 
 .vosamis{
   .title{
-    h1{
+    h2{
       display: flex;
-      margin: 4% 0 0 5%;
+      margin: 2% 0 0 10%;
     }
   }
 
@@ -146,6 +157,10 @@ export default {
     justify-content: center;
     overflow-x: hidden;
     overflow-y: auto;
+
+    .data{
+      width: 80%;
+    }
 
     #check{
       color: $color-button;

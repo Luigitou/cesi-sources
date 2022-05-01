@@ -1,19 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import VosAmis from '../views/VosAmis.vue'
+import VosAmis from '../views/VosAmis'
+import AjouterUser from '../views/AjouterUser';
 
 const routes = [
   {
     path: '/vosamis',
     name: 'VosAmis',
     component: VosAmis,
-    // children: [
-    //   {
-    //     // UserProfile will be rendered inside User's <router-view>
-    //     // when /user/:id/profile is matched
-    //     path: '/users',
-    //     component: UserProfile,
-    //   },
-    // ]
+  },
+  {
+    path: '/ajouteruser',
+    name: 'AjouterUser',
+    component: AjouterUser,
   },
 ]
 
