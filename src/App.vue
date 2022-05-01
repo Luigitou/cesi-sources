@@ -1,52 +1,67 @@
-<!-- Vue router to implement
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-  </div>
--->
-
 <template>
   <div id="main">
-    <router-view />
+    <div v-if="showHeader()">
+      <Splitter class="splitter-side">
+        <SplitterPanel :size="10">
+          <Sidemenu></Sidemenu>
+        </SplitterPanel>
+        <SplitterPanel :size="90">
+          <Splitter layout="vertical" class="splitter-vertical">
+            <SplitterPanel :size="5">
+              <Header></Header>
+            </SplitterPanel>
+            <SplitterPanel :size="95">
+              <router-view />
+            </SplitterPanel>
+          </Splitter>
+        </SplitterPanel>
+      </Splitter>
+    </div>
+    <div v-else>
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
+import Header from "./components/navigation/header/Header.vue";
+import Sidemenu from "./components/navigation/sidemenu/Sidemenu.vue";
+import Splitter from "primevue/splitter";
+import SplitterPanel from "primevue/splitterpanel";
+
 export default {
   name: "App",
+  components: {
+    Header,
+    Sidemenu,
+    Splitter,
+    SplitterPanel,
+  },
+  methods: {
+    showHeader() {
+      if (this.$route.path === "/") {
+        return false;
+      } else {
+        return true;
+      }
+    },
+  },
 };
 </script>
 
-<style>
-html {
-  height: 100%;
-}
-
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #effaff;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-#app {
-  background-color: #ffffff;
-  height: 100%;
-}
+<style lang="scss">
+@import "./scss/Global.scss";
 
 #main {
   height: 100%;
-}
+  width: 100%;
 
-.view {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-}
+  div {
+    height: 100%;
 
-.wrap {
-  width: 90%;
-  margin: 0;
-  padding: 0;
+    .splitter-side {
+      height: 100%;
+    }
+  }
 }
 </style>
