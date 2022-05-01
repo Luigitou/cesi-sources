@@ -1,52 +1,26 @@
-<!-- Vue router to implement
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-  </div>
--->
-
 <template>
-  <div id="main">
-    <router-view />
-  </div>
+  <router-view/>
 </template>
 
-<script>
-export default {
-  name: "App",
-};
-</script>
-
-<style>
-html {
-  height: 100%;
-}
-
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #effaff;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
+<style lang="scss">
 #app {
-  background-color: #ffffff;
-  height: 100%;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
-#main {
-  height: 100%;
-}
+#nav {
+  padding: 30px;
 
-.view {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-}
+  a {
+    font-weight: bold;
+    color: #2c3e50;
 
-.wrap {
-  width: 90%;
-  margin: 0;
-  padding: 0;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>
