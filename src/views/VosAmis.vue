@@ -104,7 +104,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../scss/common.scss';
+@import '../scss/Global.scss';
 
 .vosamis{
   .title{
