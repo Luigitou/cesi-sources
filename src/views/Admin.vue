@@ -2,24 +2,39 @@
   <div class="admin">
     <div class="categories_users">
       <div class="categories">
-        <div class="image">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Circle-icons-document.svg/768px-Circle-icons-document.svg.png" alt="icon">
-          <p><b>Images</b></p>
-          <br>
-          <p>2500 images</p>
-        </div>
-        <div class="document">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Circle-icons-document.svg/768px-Circle-icons-document.svg.png" alt="icon">
-          <p><b>Documents</b></p>
-          <br>
-          <p>3000 fichiers</p>
-        </div>
-        <div class="videos">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Circle-icons-document.svg/768px-Circle-icons-document.svg.png" alt="icon">
-          <p><b>Videos</b></p>
-          <br>
-          <p>500 vidéos</p>
-        </div>
+        <Card class="image">
+          <template #header>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Circle-icons-document.svg/768px-Circle-icons-document.svg.png" alt="icon">
+          </template>
+          <template #title>
+            Images
+          </template>
+          <template #content>
+              2500 images
+          </template>
+        </Card>
+        <Card class="document">
+          <template #header>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Circle-icons-document.svg/768px-Circle-icons-document.svg.png" alt="icon">
+          </template>
+          <template #title>
+            Documents
+          </template>
+          <template #content>
+              3000 fichiers
+          </template>
+        </Card>
+        <Card class="videos">
+          <template #header>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Circle-icons-document.svg/768px-Circle-icons-document.svg.png" alt="icon">
+          </template>
+          <template #title>
+              Vidéos
+          </template>
+          <template #content>
+              500 vidéos
+          </template>
+        </Card>
       </div>
 
       <div class="users">
@@ -56,7 +71,29 @@
     
 
     <div class="statistique">
-
+      <div class="graph">
+        <Chart type="doughnut" :data="chartData" :options="lightOptions" />
+      </div>
+      <br>
+      <div class="pourcentage">
+        <div class="image_pourcent">
+          <h3>Images</h3>
+          <br>
+          <ProgressBar :value="image" />
+        </div>
+        <br>
+        <div class="document_pourcent">
+          <h3>Documents</h3>
+          <br>
+          <ProgressBar :value="document" />
+        </div>
+        <br>
+        <div class="video_pourcent">
+          <h3>Vidéos</h3>
+          <br>
+          <ProgressBar :value="video" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -66,6 +103,9 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
+import Card from 'primevue/card';
+import Chart from 'primevue/chart';
+import ProgressBar from 'primevue/progressbar';
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 
 export default {
@@ -74,7 +114,10 @@ export default {
     DataTable,
     Column,
     Button,
-    InputText
+    InputText,
+    Card,
+    Chart,
+    ProgressBar
   },
   data() {
     return {
@@ -111,6 +154,29 @@ export default {
           adresse: '160, Rue jean baptiste 75009 Paris' 
         },
       ],
+
+      chartData: {
+        labels: ['Images','Vidéos','Documents'],
+        datasets: [
+          {
+            data: [3000, 500, 2500],
+            backgroundColor: ["#FF6384","#36A2EB","#FFCE56"],
+            hoverBackgroundColor: ["#FF6384","#36A2EB","#FFCE56"]
+          }
+        ]
+      },
+			lightOptions: {
+				plugins: {
+          legend: {
+              labels: {
+                color: '#495057'
+              }
+          }
+        }
+			},
+      image: 60,
+      document: 30,
+      video: 10 
     }
   }
 }
@@ -127,14 +193,14 @@ export default {
       display: flex;
       justify-content: space-between;
       .image, .document, .videos{
-        border: 1px solid rgb(199, 199, 199);
         transition: 0.3s;
         width: 30%;
         border-radius: 10px;
-        padding: 30px;
+        padding: 10px;
 
         img{
           width: 40px;
+          margin-left: 15px;
         }
       }
       .image:hover, .document:hover, .videos:hover{
@@ -163,8 +229,13 @@ export default {
   }
 
   .statistique{
-    border: 2px solid #222222;
-    padding: 10%;
+    border: 1px solid #dedddd;
+    border-radius: 10px;
+    padding: 30px;
+
+    .graph{
+      width: 18rem;
+    }
   }
 }
 </style>
