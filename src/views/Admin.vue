@@ -188,10 +188,14 @@ export default {
   display: flex;
   justify-content: space-around;
   margin-top: 50px;
+  flex-wrap: wrap;
+
   .categories_users{
+
     .categories{
       display: flex;
       justify-content: space-between;
+    
       .image, .document, .videos{
         transition: 0.3s;
         width: 30%;
@@ -203,6 +207,7 @@ export default {
           margin-left: 15px;
         }
       }
+      
       .image:hover, .document:hover, .videos:hover{
         box-shadow: 0 4px 8px 0 rgba(109, 109, 109, 0.2);
       }
