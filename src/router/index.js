@@ -12,6 +12,12 @@ const routes = [
     name: "Home",
     component: () => import("../views/Home.vue"),
   },
+  {
+    path: "/vosFichiers",
+    name: "Vos Fichiers",
+    component: () => import("../views/VosFichiers.vue"),
+  },
+
 ];
 
 const router = createRouter({

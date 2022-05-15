@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <div v-if="showHeader()">
+    <div class="frame" v-if="showHeader()">
       <Splitter class="splitter-side">
         <SplitterPanel :size="10">
           <Sidemenu></Sidemenu>
@@ -28,6 +28,7 @@ import Header from "./components/navigation/header/Header.vue";
 import Sidemenu from "./components/navigation/sidemenu/Sidemenu.vue";
 import Splitter from "primevue/splitter";
 import SplitterPanel from "primevue/splitterpanel";
+import "primeicons/primeicons.css";
 
 export default {
   name: "App",
@@ -56,7 +57,7 @@ export default {
   height: 100%;
   width: 100%;
 
-  div {
+  .frame {
     height: 100%;
 
     .splitter-side {
