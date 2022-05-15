@@ -57,7 +57,7 @@ export default {
   width: 100%;
 
   div {
-    height: 100%; // Pousse mon composant vers le bas
+    // height: 100%; // Pousse mon composant vers le bas
 
     .splitter-side {
       height: 100%;
