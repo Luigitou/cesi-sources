@@ -2,7 +2,7 @@
   <div class="categories">
     <Card class="image">
       <template #header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Circle-icons-document.svg/768px-Circle-icons-document.svg.png" alt="icon">
+        <img src="../../assets/admin/image.png" alt="images">
       </template>
       <template #title>
         Images
@@ -13,7 +13,7 @@
     </Card>
     <Card class="document">
       <template #header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Circle-icons-document.svg/768px-Circle-icons-document.svg.png" alt="icon">
+        <img src="../../assets/admin/document.png" alt="documents">
       </template>
       <template #title>
         Documents
@@ -24,7 +24,7 @@
     </Card>
     <Card class="videos">
       <template #header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Circle-icons-document.svg/768px-Circle-icons-document.svg.png" alt="icon">
+        <img src="../../assets/admin/video.png" alt="videos">
       </template>
       <template #title>
           Vidéos
