@@ -57,7 +57,7 @@ export default {
   width: 100%;
 
   div {
-    height: 100%;
+    // height: 100%;
 
     .splitter-side {
       height: 100%;
