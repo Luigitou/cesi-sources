@@ -9,11 +9,8 @@
         </template>
       </AutoComplete>
     </div>
-    <div class="Buttons"> 
-      <Button icon="pi pi-cog" class="p-button-raised p-button-rounded" type="button" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
-      <Menu id="overlay_menu" ref="menu" :model="items" :popup="true" />
-      <Button icon="pi pi-bell" class="p-button-raised p-button-rounded" />
-      <Button icon="pi pi-sign-out" class="p-button-raised p-button-rounded" />
+    <div class="Buttons">
+      <Button icon="pi pi-user" class="p-button-raised p-button-rounded" label="Connexion"/>
     </div>  
   </div>
 </template>
@@ -21,39 +18,34 @@
 <script>
 import Button from 'primevue/button';
 import AutoComplete from 'primevue/autocomplete';
-import Menu from 'primevue/menu';
 
 export default {
-  name: "Header",
+  name: "HeaderAcceuil",
   components: {
   Button,
-  AutoComplete,
-  Menu
+  AutoComplete
   },
   data(){
     return{
       searchValue: null,
-      filteredFiles: [
-      ],
-
+      filteredFiles: [],
       files: [ 
-      "Photo3",
-      "Photo2",
-      "TPhoto1",
-      "TPhoto2",
-      "APhoto1",
-      "APhoto1",
-      "BPhoto2",
-      "VPhoto1",
-      "VPhoto2",
-      ],
-
+        "Photo3",
+        "Photo2",
+        "TPhoto1",
+        "TPhoto2",
+        "APhoto1",
+        "APhoto1",
+        "BPhoto2",
+        "VPhoto1",
+        "VPhoto2",
+        ],
       items: [{
         label: 'Options',
         items: [{
           label: 'Update profile',
           icon: 'pi pi-user-edit',
-            command: () => {
+          command: () => {
             this.$toast.add({severity:'success', summary:'Updated', detail:'Data Updated', life: 3000});
           }
         },
@@ -75,45 +67,13 @@ export default {
       }
       this.filteredFiles = this.files.filter((f) => f.includes(query));
     },
-
     toggle(event) {
       this.$refs.menu.toggle(event);
     },
-
     save() {
       this.$toast.add({severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000});
-    },
-    // tg(){
-    //   console.log(this.$data.files)
-    // },
-
-    // parseResult(data) {
-    //   this.$data.files = [];
-    //   data.forEach((content) => {
-    //     if (content.nom == this.$data.searchValue) {
-    //       const json = JSON.parse(JSON.stringify(content));
-    //       this.$data.files.push({
-    //         nom: json.nom,
-    //         date: json.dateCreation,
-    //         proprietaire: json.user,
-    //       });
-    //     }
-    //   });
-    // },
-    
-    // getFichiers() {
-    //   FichierService.getFichiers(
-    //     this.getFichiers(
-    //     this.$data.searchValue
-    //     ).then((response) => {
-    //     this.parseResult(response.data);
-    //   }));
-    // },
-
-    // created() {
-    //   this.getFichiers;
-    // }
-  },    
+    }
+  },
 };
 </script>
 
@@ -126,8 +86,8 @@ export default {
   display: inline-flex;
 
   .searchBar{
-    width: 50%;
-    margin: 0% 20% 0% 20%;
+    width: 30%;
+    margin: 0% 25% 0% 35%;
     .Bar{
       width: 100%;
     }
