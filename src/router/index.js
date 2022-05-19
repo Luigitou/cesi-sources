@@ -17,11 +17,11 @@ const routes = [
     name: 'VosAmis',
     component: () => import("../views/VosAmis.vue"),
   },
-  {
-    path: '/ajouteruser',
-    name: 'AjouterUser',
-    component: () => import("../views/AjouterUser.vue"),
-  },
+  // {
+  //   path: '/ajouteruser',
+  //   name: 'AjouterUser',
+  //   component: () => import("../views/AjouterUser.vue"),
+  // },
 ];
 
 const router = createRouter({

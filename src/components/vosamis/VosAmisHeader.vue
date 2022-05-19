@@ -5,20 +5,99 @@
 
   <div class="searchbar">
     <div class="search">
-      <input type="text" class="searchTerm" placeholder="Rechercher un ami...">
+      <input type="text" class="searchTerm" placeholder="Rechercher un ami..." @keyup="showResults" v-model="search" id="search">
       <button type="submit" class="searchButton"><img class="img" src="../../assets/chercher.png" alt="chercher"></button>
+      {{ hideResults() }}
+    </div>
+  
+    <div id="users">
+      <table>
+        <tr>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Mail</th>
+        </tr>
+        <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
+          <td>{{ utilisateur.nom }}</td>
+          <td> {{utilisateur.prenom}}</td>    
+          <td> {{utilisateur.mail}}</td>
+          <td><button>Ajouter</button></td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
 
 <script>
+import UtilisateurService from '../../service/UtilisateurService';
 
 export default{
-  name: 'vosamisheader'
+  name: 'vosamisheader',
+  components: {
+
+  },
+  data(){
+    return{
+      users: [
+        {
+          nom: "Temesgen",
+          prenom: "Edomiyas", 
+          mail: "temesgen.edomiyas@yahoo.com",  
+        },
+        {
+          nom: "Felix",
+          prenom: "Bale", 
+          mail: "felix.bale@yahoo.com",  
+        },
+        {
+          nom: "Maria",
+          prenom: "feliz", 
+          mail: "maria.feliz@yahoo.com",  
+        },
+        {
+          nom: "John",
+          prenom: "Doe", 
+          mail: "john.doe@gmail.com",  
+        },
+      ],
+      utilisateurs: [],
+      search: "",
+    }
+  },
+  methods: {
+    showResults(){
+      document.getElementById('users').style = "display: flex;";
+    },
+    hideResults(){
+      window.addEventListener('click', function(e){
+        if (!document.getElementById('search').contains(e.target)){
+          document.getElementById('users').style = "display: none;";
+        } 
+      })
+    },
+    getUtilisateurs(){
+      UtilisateurService.getUtilisateurs().then((response) => {
+        this.utilisateurs = response.data;   
+      });
+    }
+  },
+  created() {
+    this.getUtilisateurs();
+  },
+  computed: {
+    filteredUsers() {
+      return this.utilisateurs.filter(u => {
+          return u.nom.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||  
+            u.prenom.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||
+          u.mail.toLowerCase().indexOf(this.search.toLowerCase()) != -1;
+      });
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../scss/Global.scss';
 .title{
   h2{
     display: flex;
@@ -34,7 +113,7 @@ export default{
     justify-content: center;
 
     .searchTerm {
-      width: 30%;
+      width: 47.3%;
       border: 2px solid rgb(217, 217, 217);
       border-right: none;
       padding: 5px;
@@ -60,6 +139,45 @@ export default{
         width: 20px;
       }
     }
+  }
+
+  #users{
+    display: none;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 80%;
+    justify-content: center;
+    margin: 0 auto;
+    overflow-x:auto;
+
+    table{
+      overflow: hidden;
+      width: 100px;
+    }
+
+    table tr th{
+      padding: 1rem;
+    }
+  
+    table tr td{
+      padding: 1.5rem 0rem 0rem 1rem;
+      text-align: center;
+    }
+
+    button {
+			color: #ffffff;
+			background-color: #ffc800;
+			font-size: 0.9rem;
+			border: 1px solid #ffc800;
+			border-radius: 5px;
+			padding: 5px 20px;
+			cursor: pointer
+		}
+
+		button:hover {
+			color: #ffc800;
+			background-color: #ffffff;
+		}
   }
 }
 </style>
