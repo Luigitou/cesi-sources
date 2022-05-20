@@ -38,40 +38,27 @@ export default{
   },
   data(){
     return{
-      users: [
-        {
-          nom: "Temesgen",
-          prenom: "Edomiyas", 
-          mail: "temesgen.edomiyas@yahoo.com",  
-        },
-        {
-          nom: "Felix",
-          prenom: "Bale", 
-          mail: "felix.bale@yahoo.com",  
-        },
-        {
-          nom: "Maria",
-          prenom: "feliz", 
-          mail: "maria.feliz@yahoo.com",  
-        },
-        {
-          nom: "John",
-          prenom: "Doe", 
-          mail: "john.doe@gmail.com",  
-        },
-      ],
       utilisateurs: [],
       search: "",
     }
   },
   methods: {
-    showResults(){
-      document.getElementById('users').style = "display: flex;";
+    showResults(e){
+      let users = document.getElementById('users');
+
+      users.style = "display: flex;";
+
+      if(e.target.selectionStart == 0){
+        users.style = "display: none;";
+      }    
     },
     hideResults(){
+      let search = document.getElementById('search');
+      let users = document.getElementById('users');
+
       window.addEventListener('click', function(e){
-        if (!document.getElementById('search').contains(e.target)){
-          document.getElementById('users').style = "display: none;";
+        if (e.target != search){
+         users.style = "display: none;";
         } 
       })
     },
