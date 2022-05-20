@@ -36,6 +36,7 @@ import Column from 'primevue/column';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import { FilterMatchMode, FilterOperator } from "primevue/api";
+import UtilisateurService from '../../services/UtilisateurService';
 
 export default{
   name: 'vosamismain',
@@ -45,7 +46,7 @@ export default{
     Button,
     InputText
   },
-   data() {
+  data() {
     return {
       filters: {
         'global': {value: null, matchMode: FilterMatchMode.CONTAINS},
@@ -53,40 +54,19 @@ export default{
         'prenom': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
         'mail': {value: null, matchMode: FilterMatchMode.IN}
       },
-      amis: [
-        {
-          nom: "Temesgen",
-          prenom: "Edomiyas", 
-          mail: "temesgen.edomiyas@yahoo.com",  
-        },
-        {
-          nom: "Temesgen",
-          prenom: "Edomiyas", 
-          mail: "temesgen.edomiyas@yahoo.com",  
-        },
-        {
-          nom: "Temesgen",
-          prenom: "Edomiyas", 
-          mail: "temesgen.edomiyas@yahoo.com",  
-        },
-        {
-          nom: "Temesgen",
-          prenom: "Edomiyas", 
-          mail: "temesgen.edomiyas@yahoo.com",  
-        },
-        {
-          nom: "Temesgen",
-          prenom: "Edomiyas", 
-          mail: "temesgen.edomiyas@yahoo.com",  
-        },
-        {
-          nom: "John",
-          prenom: "Doe", 
-          mail: "john.doe@gmail.com",  
-        },
-      ],
+      amis: [],
     }
-  }
+  },
+  methods: {
+    getAmi(){
+      UtilisateurService.getAmi().then((response) => {
+          this.amis = response.data;   
+      });
+    },
+  },
+  created() {      
+    this.getAmi();
+  },
 }
 </script>
 

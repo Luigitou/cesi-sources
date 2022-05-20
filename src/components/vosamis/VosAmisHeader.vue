@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import UtilisateurService from '../../service/UtilisateurService';
+import UtilisateurService from '../../services/UtilisateurService';
 
 export default{
   name: 'vosamisheader',
