@@ -1,121 +1,175 @@
 <template>
-  <Card style="height: 80%" class="card">
-      <template #content>                   
-        <label for="nom">Nom</label>
-        <InputText class="input" type="text" id="nom"/>
-        <label for="prenom">Prénom</label> 
-        <InputText class="input" type="text" id="prenom"/>
-        <label for="email">Mail</label>
-        <InputText class="input" type="email" id="email"/>
-        <label for="adresse">Adresse</label>
-        <InputText class="input" type="text" id="address"/>
-        <label for="mdp">Mot de passe</label>
-        <InputText class="input" type="password" id="mdp"/>
-        <label for="cmdp">Confirmation</label>
-        <InputText class="input" type="password" id="cmdp"/>
-        <router-link to="/tdb" id="inscrire" >
-          <Button label="S'inscrire" class="p-button-info" @click="saveUser"/>
-        </router-link>
-        <!--<router-link to="/" id="annuler">
-          <Button label="Annuler" class="p-button-info" />
-        </router-link>-->
-         <!--
-          <input type="text" id="nom" placeholder="Nom" required name="nom"  v-model="Utilisateur.nom">
-          <input type="text" id="prenom" placeholder="Prénom" required name="prenom" v-model="utilisateur.prenom">
-          <input type="email" id="email" placeholder="Email" required name="mail" v-model="utilisateur.mail">
-          <input type="text" id="address" placeholder="Rue, boulevard, avenue..." required name="addresse" v-model="utilisateur.adresse">
-          <input type="password" id="mdp" placeholder="Mot de passe" required name="password" v-model="utilisateur.password">
-          
-          
-          <input type="password" id="cmdp" placeholder="Confirmation du mot de passe" required>-->
-      </template>
-  </Card>
+<div class="form-demo">   
+  <div class="justify-content-center">
+    <div class="card">
+      <router-link to="/">
+        <img src="assets/Accueil/logo.png">
+      </router-link>
+      <form @submit="validateAndSubmit" class="p-fluid">
+        <div v-if="errors.length">
+          <div
+            class="alert alert-danger"
+            v-bind:key="index"
+            v-for="(error, index) in errors">
+            {{ error }}
+          </div>
+        </div>
+        <div class="field">
+        <div class="p-float-label">
+          <InputText id="nom" type="text" required
+           v-model="nom" />
+          <label for="nom">Nom*</label>
+        </div>
+        </div>
+        <div class="field">
+        <div class="p-float-label">
+          <InputText id="prenom" type="text" required
+           v-model="prenom" />
+          <label for="prenom">Prenom*</label>
+        </div>
+        </div>
+        <div class="field">
+        <div class="p-float-label p-input-icon-right">
+          <i class="pi pi-envelope" />
+          <InputText type="email" required
+          v-model="mail" />
+          <label for="email">Email*</label>
+        </div>
+        </div>
+        <div class="field">
+        <div class="p-float-label p-input-icon-right">
+          <i class="pi pi-map-marker" />
+          <InputText type="text" required
+          v-model="adresse" />
+          <label for="Adresse">Adresse*</label>
+        </div>
+        </div>
+        <div class="field">
+        <div class="p-float-label">
+          <InputText type="password" required 
+          v-model="password"/>
+          <label for="Adresse">Mot de passe*</label>
+        </div>
+        </div>
+        <Button label="s'inscrire" type="submit" class="p-button-info"/>      
+      </form>
+      </div>
+  </div>
+</div>
 </template>
 <script>
-import Card from 'primevue/card';
+import UtilisateurService from "../../../services/UtilisateurService";
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 
-import UtilisateurService from '../../../services/UtilisateurService.js'
 export default {
-  name: 'FormulaireInscription',
+  name: "FormulaireInscription",
   components:{
-      Card,
-      InputText,
-      Button
+    InputText,
+    Button,
   },
-   data() {
+data() {
     return {
-      dataMsg: '',
-      utilisateur: {
-        id: null,
-        nom: '',
-        prenom: '',
-        mail: '',
-        adresse: '',
-        password: ''
-      }, 
-      utilisateurs: []
-    }
+      nom: "",
+      prenom: "",
+      email: "",
+      adresse: "",
+      errors: [],
+    };
+  },
+  computed: {
+    id() {
+      return this.$route.params.id;
+    },
   },
   methods: {
-    saveUser(){
-      let data = {
-        nom: this.utilisateur.nom,
-        prenom: this.utilisateur.prenom,
-        mail: this.utilisateur.mail,
-        adresse: this.utilisateur.adresse,
-        password: this.utilisateur.password
-      }
-      UtilisateurService.postUtilisateurs(data)
-        .then(response => {
-          this.utilisateur.id = response.data.id
-        })
-        .catch(e => {
-          alert(e)
-        })
+    refreshUserDetails() {
+      UtilisateurService.retrieveUser(this.id).then((res) => {
+        this.nom = res.data.nom;
+        this.prenom = res.data.prenom;
+        this.mail = res.data.mail;
+        this.adresse = res.data.adresse;
+      });
     },
-  } 
-}
+    validateAndSubmit(e) {
+      e.preventDefault();
+      this.errors = [];
+      if (this.nom.length < 4) {
+        this.errors.push("Entrez au moins 4 caractères en nom ");
+      }
+      if (this.prenom.length < 4) {
+        this.errors.push("Entrez au moins 4 caractères en nom");
+      }
+      if (!this.mail) {
+        this.errors.push("Entrez une adresse mail valide");
+      }
+      if (this.errors.length === 0) {
+        if (this.id == -1) {
+          UtilisateurService.createUser({
+            nom: this.nom,
+            penom: this.prenom,
+            mail: this.mail,
+          }).then(() => {
+            this.$router.push("/");
+          });
+        } else {
+          UtilisateurService.updateUser(this.id, {
+            id: this.id,
+            nom: this.nom,
+            prenom: this.prenom,
+            mail: this.mail,
+            adresse: this.adresse,
+          }).then(() => {
+            this.$router.push("/");
+          });
+        }
+      }
+    },
+  },
+  created() {
+    this.refreshUserDetails();
+  },
+};
 </script>
 <style lang="scss" scoped>
-.card{
-  transition: 0.3s;
-  width: 25%;
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  margin-top: 3%;
-  margin-left: 38%;
-}
-.card:hover{
-  box-shadow: 0 4px 8px 0 rgba(109, 109, 109, 0.2);
-}
+  .form-demo {
 
-.input{
-  width: 150%;
-  padding: 3%;
-  margin: 3%;
-  display: inline-block;
-  margin-right: auto;
-  margin-left: auto;
-  display: block;
-}
-label{
-  margin: 3%;
-  font-family:Arial, Helvetica, sans-serif;
-}
-button {
-  padding: 4%;
-  margin-left: 25%;
-  margin-top: 5%;
-  width: 100%;
-}
-#inscrire{
-  text-decoration: none;
-}
-/*#annuler{
-  text-decoration: none;
-}*/
+    .justify-content-center{
+        display: flex;
+        justify-content: center;
+        margin-top: 8%;
 
+        .card {
+        min-width: 450px;
+        transition: 0.3s;
+        border-radius: 10px;
+        padding: 20px;
+
+          img{
+            width: 20%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          form {
+            margin-top: 2rem;
+            transition: 0.3s;
+          }
+
+          .field {
+            margin-bottom: 1.5rem;
+          }
+    }
+}
+    
+    .card:hover{
+      box-shadow: 0 4px 8px 0 rgba(109, 109, 109, 0.2);
+    }
+    @media screen and (max-width: 960px) {
+        .card {
+            width: 80%;
+        }
+    }
+}
 </style>

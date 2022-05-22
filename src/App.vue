@@ -41,7 +41,10 @@ export default {
     showHeader() {
       if (this.$route.path === "/") {
         return false;
-      } else {
+      }else if (this.$route.path === "/Inscription"){
+        return false;
+      }
+       else {
         return true;
       }
     },
