@@ -59,6 +59,9 @@ export default {
       justify-content: space-around;
         #btnInscription{
           text-decoration: none;
+          .p-button-rounded{
+            position: static;
+          }
         }
         img {
           width: 50%;
@@ -68,6 +71,7 @@ export default {
   .imgWrapper {
     position: static;
     width: 40%;
+    margin-top: 50%;
     img {
       width: 100%;
     }
