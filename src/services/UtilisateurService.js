@@ -4,31 +4,33 @@ const UTILISATEUR_API_BASE_URL = 'http://localhost:8082/api/utilisateurs';
 
 class UtilisateurService{
 
-    retrieveAllUsers() {
+    getUtilisateurs() {
 
         return axios.get(UTILISATEUR_API_BASE_URL)
     }
 
-    retrieveUser(id) {
+    postUtilisateurs(data) {
 
-        return axios.get(UTILISATEUR_API_BASE_URL + `${id}`)
+        return axios.post(UTILISATEUR_API_BASE_URL, data)
     }
 
-    deleteUser(id) {
+    getUtilisateur(id) {
 
-        return axios.delete(UTILISATEUR_API_BASE_URL + `${id}`)
+        return axios.get(UTILISATEUR_API_BASE_URL + `?=${id}`)
     }
 
-    updateUser(id, utilisateur) {
+    deleteUtilisateur(id) {
 
-        return axios.put(UTILISATEUR_API_BASE_URL + `${id}`, utilisateur)
+        return axios.delete(UTILISATEUR_API_BASE_URL + `?=${id}`)
+    }
+
+    updateUtilisateur(id, data) {
+
+        return axios.put(UTILISATEUR_API_BASE_URL + `?=${id}`, data)
 
     }
 
-    createUser(utilisateur) {
-
-        return axios.post(UTILISATEUR_API_BASE_URL, utilisateur);
-    }   
+       
 }
 
 export default new UtilisateurService();
