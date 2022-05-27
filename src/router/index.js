@@ -16,6 +16,11 @@ const routes = [
     path: "/inscription",
     name: "Inscription",
     component: () => import("../views/Inscription.vue"),
+  },
+  {
+    path: "/profil",
+    name: "Profil",
+    component: () => import("../views/Profil.vue"),
   }
 ];
 
