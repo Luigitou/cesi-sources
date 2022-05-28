@@ -29,7 +29,9 @@
           <label for="Adresse">Mot de passe*</label>
           <InputText type="password"/>
         </div>
-        <Button label="Enregistrer" type="submit" class="p-button-info"/>      
+        <Button label="Enregistrer" type="submit" class="p-button-info"/> 
+        <Button label="Supprimer mon compte" type="cancel" class="p-button-info"/>      
+     
       </form>
       </div>
   </div>
@@ -82,6 +84,9 @@ export default {
                 top: 70%;
             }
           }
+    }
+    button{
+       margin-bottom: 1.5rem; 
     }
 }
     
