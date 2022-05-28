@@ -78,8 +78,6 @@ export default {
         position: fixed;
         top: 10;
         bottom: 0;
-        left: 0;
-        right: 0;
         width: 100%;
         height: 100%;
         display: flex;

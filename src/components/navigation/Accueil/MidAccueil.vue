@@ -39,6 +39,7 @@ export default {
   align-items: center;
   justify-content: center;
   align-self: baseline;
+  margin-top: 10%;
   .wrapperLeft {
     width: 40%;
     text-align: justify;
@@ -71,7 +72,7 @@ export default {
   .imgWrapper {
     position: static;
     width: 40%;
-    margin-top: 50%;
+    //margin-top: 50%;
     img {
       width: 100%;
     }
@@ -95,9 +96,6 @@ export default {
     margin-bottom: 20%;
     width: 100%;
     display: flex;
-    img{
-      width: 80px;
-    }
   }
 }
 </style>
