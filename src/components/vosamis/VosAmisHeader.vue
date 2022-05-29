@@ -1,29 +1,25 @@
 <template>
   <div class="title">
     <h2>Vos amis</h2>
-  </div>
 
-  <div class="searchbar">
     <div class="search">
       <input type="text" class="searchTerm" placeholder="Rechercher un ami..." @keyup="showResults" v-model="search" id="search">
       <button type="submit" class="searchButton"><img class="img" src="../../assets/chercher.png" alt="chercher"></button>
       {{ hideResults() }}
-    </div>
-  
-    <div id="users">
-      <table>
-        <tr>
-          <th>Nom</th>
-          <th>Prenom</th>
-          <th>Mail</th>
-        </tr>
-        <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
-          <td>{{ utilisateur.nom }}</td>
-          <td> {{utilisateur.prenom}}</td>    
-          <td> {{utilisateur.mail}}</td>
-          <td><button>Ajouter</button></td>
-        </tr>
-      </table>
+
+      <div id="users">
+        <table>
+          <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+          </tr>
+          <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
+            <td>{{ utilisateur.nom }}</td>
+            <td> {{utilisateur.prenom}}</td>    
+            <td><button>Ajouter</button></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -86,85 +82,87 @@ export default{
 <style lang="scss" scoped>
 @import '../../scss/Global.scss';
 .title{
+  display: flex;
+  margin: 2% 0 0 10%;
+
   h2{
-    display: flex;
-    margin: 2% 0 0 10%;
+    flex: 0 0 50%;
   }
 }
 
-.searchbar{
-  .search {
-    width: 100%;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
+.search {
+  width: 100%;
 
-    .searchTerm {
-      width: 47.3%;
-      border: 2px solid rgb(217, 217, 217);
-      border-right: none;
-      padding: 5px;
-      height: 35px;
-      border-radius: 5px 0 0 5px;
-      outline: none;
-      color: #222222;
-    }
-
-    .searchButton {
-      width: 40px;
-      border: 1px solid gainsboro;
-      background: gainsboro;
-      text-align: center;
-      color: #fff;
-      border-radius: 0 5px 5px 0;
-      cursor: pointer;
-      font-size: 20px;
-
-      img{
-        position: relative;
-        top: 2.5px;
-        width: 20px;
-      }
-    }
+  .searchTerm {
+    width: 70%;
+    border: 1px solid rgb(217, 217, 217);
+    border-right: none;
+    padding: 5px;
+    height: 33px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #222222;
   }
 
-  #users{
-    display: none;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    width: 80%;
-    justify-content: center;
-    margin: 0 auto;
-    overflow-x:auto;
+  .searchButton {
+    position: relative;
+    top: 2.5px;
+    width: 40px;
+    height: 33px;
+    border: 1px solid gainsboro;
+    background: rgb(238, 238, 238);
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
 
-    table{
-      overflow: hidden;
-      width: 100px;
+    img{
+      position: relative;
+      top: 2px;
+      width: 17px;
     }
-
-    table tr th{
-      padding: 1rem;
-    }
-  
-    table tr td{
-      padding: 1.5rem 0rem 0rem 1rem;
-      text-align: center;
-    }
-
-    button {
-			color: #ffffff;
-			background-color: #ffc800;
-			font-size: 0.9rem;
-			border: 1px solid #ffc800;
-			border-radius: 5px;
-			padding: 5px 20px;
-			cursor: pointer
-		}
-
-		button:hover {
-			color: #ffc800;
-			background-color: #ffffff;
-		}
   }
 }
+
+#users{
+  display: none;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  overflow-x: auto;
+  position: absolute;
+  z-index: 1;
+
+  table{
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 1px dotted #ffc800;
+    border-radius: 0 0 10px 10px;
+  }
+
+  table tr th{
+    padding: 15px;
+  }
+
+  table tr td{
+    text-align: left;
+    padding: 27.5px;
+  }
+
+  button {
+    color: #ffffff;
+    background-color: #ffc800;
+    font-size: 0.9rem;
+    border: 1px solid #ffc800;
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer
+  }
+
+  button:hover {
+    color: #ffc800;
+    background-color: #ffffff;
+  }
+}
+
 </style>
