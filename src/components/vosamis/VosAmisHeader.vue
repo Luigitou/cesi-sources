@@ -132,21 +132,25 @@ export default{
   overflow-x: auto;
   position: absolute;
   z-index: 1;
+  box-shadow: 0 4px 8px 0 rgba(70, 70, 70, 0.2);
 
   table{
     overflow: hidden;
     background-color: #ffffff;
-    border: 1px dotted #ffc800;
+    border: 1px solid #dbdbdb;
     border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(70, 70, 70, 0.2);
   }
 
   table tr th{
     padding: 15px;
+    text-align: left;
   }
 
   table tr td{
     text-align: left;
-    padding: 27.5px;
+    padding: 10px;
+    width: 9.7rem;
   }
 
   button {
