@@ -1,23 +1,19 @@
 <template>
   <div id="main">
-    <div v-if="showHeader()">
-      <Splitter class="splitter-side">
-        <SplitterPanel :size="10">
-          <Sidemenu></Sidemenu>
-        </SplitterPanel>
-        <SplitterPanel :size="90">
-          <Splitter layout="vertical" class="splitter-vertical">
-            <SplitterPanel :size="5">
-              <Header></Header>
-            </SplitterPanel>
-            <SplitterPanel :size="95">
-              <router-view />
-            </SplitterPanel>
-          </Splitter>
-        </SplitterPanel>
-      </Splitter>
+    <div v-if="showHeader()" class="all">
+      <div class="side">
+        <Sidemenu />
+      </div>
+      <div class="main">
+        <div class="head">
+          <Header />
+        </div>
+        <div class="views">
+          <router-view />
+        </div>
+      </div>
     </div>
-    <div v-else>
+    <div v-else class="all">
       <router-view />
     </div>
   </div>
@@ -26,16 +22,12 @@
 <script>
 import Header from "./components/navigation/header/Header.vue";
 import Sidemenu from "./components/navigation/sidemenu/Sidemenu.vue";
-import Splitter from "primevue/splitter";
-import SplitterPanel from "primevue/splitterpanel";
 
 export default {
   name: "App",
   components: {
     Header,
     Sidemenu,
-    Splitter,
-    SplitterPanel,
   },
   methods: {
     showHeader() {
@@ -56,11 +48,30 @@ export default {
   height: 100%;
   width: 100%;
 
-  div {
+  .all {
     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 
-    .splitter-side {
+    .side {
+      width: 10%;
       height: 100%;
+    }
+
+    .main {
+      width: 90%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .head {
+        height: 5%;
+      }
+
+      .views {
+        height: 95%;
+      }
     }
   }
 }
