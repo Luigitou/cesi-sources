@@ -1,8 +1,8 @@
 <template>
   <div class="wrapperTableau">
     <DataTable
-      :value="data"
-      stripedRows="true"
+      :value="childs"
+      stripedRows
       responsiveLayout="scroll"
       selectionMode="single"
       dataKey="id"
@@ -29,6 +29,7 @@
 <script>
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
+import VosFichiersServices from "../../services/VosFichiersServices";
 
 export default {
   name: "VosFichiersTab",
@@ -39,41 +40,34 @@ export default {
   data() {
     return {
       selection: null,
-      data: [
-        {
-          id: 0,
-          date: "15/05/2022",
-          taille: "NA",
-          propriétaire: "Louis Bellefemine",
-          folder: true,
-          nom: "test 0",
-        },
-        {
-          id: 1,
-          date: "15/05/2022",
-          taille: "NA",
-          propriétaire: "Louis Bellefemine",
-          folder: true,
-          nom: "test 1",
-        },
-        {
-          id: 2,
-          date: "15/05/2022",
-          taille: "NA",
-          propriétaire: "Louis Bellefemine",
-          folder: false,
-          nom: "test 2",
-        },
-        {
-          id: 3,
-          date: "15/05/2022",
-          taille: "NA",
-          propriétaire: "Louis Bellefemine",
-          folder: false,
-          nom: "test 3",
-        },
-      ],
+      childs: [],
+      currentFolder: null,
+      idBase: null,
     };
+  },
+  methods: {
+    getBaseId() {
+      VosFichiersServices.getBase(0).then((response) => {
+        this.$data.idBase = response.data.id;
+        this.$data.currentFolder = response.data;
+        this.generateChildsFolders(response.data.dossiersEnfant);
+      });
+    },
+    generateChildsFolders(childs) {
+      childs.forEach((child) => {
+        this.$data.childs.push({
+          id: child.id,
+          date: child.dateCreation,
+          taille: "",
+          propriétaire: child.utilisateur.nom,
+          folder: true,
+          nom: child.name,
+        });
+      });
+    },
+  },
+  mounted() {
+    this.getBaseId();
   },
 };
 </script>
