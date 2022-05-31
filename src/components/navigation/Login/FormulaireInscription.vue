@@ -3,7 +3,7 @@
   <div class="justify-content-center">
     <div class="card">
       <router-link to="/">
-        <img src="assets/Accueil/logo.png">
+        <img src="assets/Accueil/logo.png" alt="logo home">
       </router-link>
       <form class="p-fluid">
         <div class="field">

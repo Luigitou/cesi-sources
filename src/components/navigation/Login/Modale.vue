@@ -6,16 +6,16 @@
                 <div v-on:click="toggleModale" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
 
                 <div class="container">
-                    <label for="uname"><b>Email</b></label>
+                    <label for="uname"><strong>Email</strong></label>
                     <InputText type="text" placeholder="Entrez votre email" name="uname" required v-model="mail"/>
 
-                    <label for="psw"><b>Mot de passe</b></label>
+                    <label for="psw"><strong>Mot de passe</strong></label>
                     <InputText type="password" placeholder="Entrez votre mot de passe" name="psw" required v-model="pwd"/>
         
                     <Button label="se connecter" type="submit" class="p-button-info" @click="connect"/>
 
                     <label>
-                        Vous n'avez pas de compte? <router-link to="/Inscription"><b>Inscrivez-vous</b></router-link>
+                        Vous n'avez pas de compte? <router-link to="/Inscription"><strong>Inscrivez-vous</strong></router-link>
                     </label>
                 </div>
         </form>
