@@ -52,11 +52,7 @@ export default {
   },
   methods: {
     showHeader() {
-      if (this.$route.path === "/") {
-        return false;
-      } else {
-        return true;
-      }
+      return this.$route.path !== "/";
     },
   },
 };

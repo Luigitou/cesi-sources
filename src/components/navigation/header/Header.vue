@@ -1,10 +1,10 @@
 <template>
   <div class="header" >
     <div class="searchBar">
-      <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="filteredFiles" @complete="search($event)" placeholder="Search..." field="searchValue">
+      <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files" @complete="search($event)" placeholder="Search..." field="searchValue">
         <template #item="{ item }">
           <div>
-            <div>{{ item }} {{ item }}</div>
+            <div>{{ item.nom }}</div>
           </div>
         </template>
       </AutoComplete>
@@ -13,7 +13,7 @@
       <Button icon="pi pi-cog" class="p-button-raised p-button-rounded" type="button" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
       <Menu id="overlay_menu" ref="menu" :model="items" :popup="true" />
       <Button icon="pi pi-bell" class="p-button-raised p-button-rounded" />
-      <Button icon="pi pi-sign-out" class="p-button-raised p-button-rounded" />
+      <Button icon="pi pi-sign-out" class="p-button-raised p-button-rounded"/>
     </div>  
   </div>
 </template>
@@ -22,6 +22,7 @@
 import Button from 'primevue/button';
 import AutoComplete from 'primevue/autocomplete';
 import Menu from 'primevue/menu';
+import FichierService from '../../../FichierServices/FichierServices'
 
 export default {
   name: "Header",
@@ -32,21 +33,9 @@ export default {
   },
   data(){
     return{
-      searchValue: null,
-      filteredFiles: [
-      ],
-
-      files: [ 
-      "Photo3",
-      "Photo2",
-      "TPhoto1",
-      "TPhoto2",
-      "APhoto1",
-      "APhoto1",
-      "BPhoto2",
-      "VPhoto1",
-      "VPhoto2",
-      ],
+      searchValue: null, // Paramètre d'entrée de la barre de recherche.
+      filteredFiles: [],  
+      files: [],
 
       items: [{
         label: 'Options',
@@ -68,51 +57,42 @@ export default {
     }
   },
   methods: {
-    search({ query }) {
-      if (!query.trim()) {
-        this.filteredFiles = [...this.files];
-        return;
-      }
-      this.filteredFiles = this.files.filter((f) => f.includes(query));
+
+    search(event) {
+        setTimeout(() => {
+            if (!event.query.trim().length) {
+                this.filteredFiles = [...this.$data.files];
+            }
+            else {
+              this.searchFiles();
+              //console.log(this.$data.files, "Here") //Test pour verifier le centenu de files
+                this.filteredFiles = this.$data.files.filter((file) => {
+                    return file.name.toLowerCase().startsWith(event.query.toLowerCase());
+                });
+            }
+        }, 500);
     },
 
     toggle(event) {
       this.$refs.menu.toggle(event);
     },
 
-    save() {
-      this.$toast.add({severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000});
+    parseData(data) {
+      this.$data.files = [];
+      data.forEach((element) => {
+        //console.log(element.nom)  //Test pour verifier le centenu de element
+        this.$data.files.push({
+          nom: element.nom,
+        });
+      });
     },
-    // tg(){
-    //   console.log(this.$data.files)
-    // },
 
-    // parseResult(data) {
-    //   this.$data.files = [];
-    //   data.forEach((content) => {
-    //     if (content.nom == this.$data.searchValue) {
-    //       const json = JSON.parse(JSON.stringify(content));
-    //       this.$data.files.push({
-    //         nom: json.nom,
-    //         date: json.dateCreation,
-    //         proprietaire: json.user,
-    //       });
-    //     }
-    //   });
-    // },
-    
-    // getFichiers() {
-    //   FichierService.getFichiers(
-    //     this.getFichiers(
-    //     this.$data.searchValue
-    //     ).then((response) => {
-    //     this.parseResult(response.data);
-    //   }));
-    // },
-
-    // created() {
-    //   this.getFichiers;
-    // }
+    searchFiles() {
+      FichierService.searchFile(this.$data.searchValue).then((response) => {
+        this.parseData(response.data);
+        //console.log(response.data) //Test pour verifier le centenu de data
+      });
+    },
   },    
 };
 </script>
