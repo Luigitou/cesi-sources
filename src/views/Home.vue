@@ -1,17 +1,14 @@
 <template>
   <div class="home">
-    <MidHome></MidHome>
   </div>
 </template>
 
 <script>
-import MidHome from "../components/navigation/midHome/MidHome.vue";
 
 export default {
   name: "Home",
 
   components: {
-    MidHome,
   },
 };
 </script>

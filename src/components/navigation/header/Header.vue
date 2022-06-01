@@ -1,5 +1,9 @@
 <template>
   <div class="header" >
+    <div class="greetings">
+      <p><span class="default-text">Bonjour,</span></p>
+      <p><span class="dynamic-name">Louis</span></p>
+    </div>
     <div class="searchBar">
       <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files" @complete="search($event)" placeholder="Search..." field="searchValue">
         <template #item="{ item }">
@@ -70,7 +74,7 @@ export default {
                     return file.name.toLowerCase().startsWith(event.query.toLowerCase());
                 });
             }
-        }, 500);
+        }, 250);
     },
 
     toggle(event) {
@@ -101,22 +105,38 @@ export default {
 @import "../../../scss/Variables.scss";
 .header {
   color: $color-head;
-  height: 100%;
   width: 100%;
   display: inline-flex;
+  justify-content: space-around;
+
+  .greetings{
+    width: 10%;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    .default-text{
+      color: $color-text;
+    }
+
+    .dynamic-name{
+      color: $color-special;
+      text-align: end;
+    }
+  }
 
   .searchBar{
     width: 50%;
-    margin: 0% 20% 0% 20%;
+    padding: 1%;
     .Bar{
       width: 100%;
     }
   }
   .Buttons{
-    width: 10%;
+    width: 12%;
     display: inline-flex;
+    padding: 1%;
     .p-button-raised{
-      margin-left: 1%;
+      margin-left: 5%;
     }
   }
 }
