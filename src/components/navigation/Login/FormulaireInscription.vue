@@ -5,7 +5,8 @@
       <router-link to="/">
         <img src="assets/Accueil/logo.png">
       </router-link>
-      <form class="p-fluid" method="POST">
+      <form class="p-fluid">
+        <h4 id="success"></h4>
         <div class="field">
         <div class="p-float-label">
           <InputText id="nom" type="text" required=false
@@ -43,7 +44,7 @@
           <label for="Adresse">Mot de passe*</label>
         </div>
         </div>
-        <Button label="s'inscrire" type="submit" class="p-button-info" @click="saveUser"/>
+        <Button label="S'inscrire" type="submit" class="p-button-info" @click="saveUser"/>
       </form>
       </div>
   </div>
@@ -85,6 +86,8 @@ saveUser(){
       UtilisateurService.postUtilisateurs(data)
         .then(response => {
           this.utilisateur.id = response.data.id
+          this.$router.push("/");
+
         })
         .catch(e => {
           alert(e)
@@ -117,6 +120,13 @@ saveUser(){
           form {
             margin-top: 2rem;
             transition: 0.3s;
+
+            #success{
+              color: green;
+            }
+            #inscrire{
+              text-decoration: none;
+            }
           }
           
 
