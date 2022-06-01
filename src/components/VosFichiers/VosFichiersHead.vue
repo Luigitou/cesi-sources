@@ -2,7 +2,9 @@
   <div class="wrapperNavigation">
     <Breadcrumb class="breadcrumb" :home="home" :model="items">
       <template #item="{ item }">
-        <span><i :class="item.icon"></i>{{ item.label }}</span>
+        <span @click="() => changeFolder(item.id)"
+          ><i :class="item.icon"></i>{{ item.label }}</span
+        >
       </template>
     </Breadcrumb>
     <Button class="btn" label="Ajouter un fichier" icon="pi pi-file"></Button>
@@ -20,18 +22,35 @@ export default {
     Breadcrumb,
     Button,
   },
-  data() {
-    return {
-      home: { icon: "pi pi-home" },
-      items: [
-        {
-          label: "Folder",
-        },
-        {
-          label: "File",
-        },
-      ],
-    };
+  props: {
+    currentFolder: Object,
+    idBase: Number,
+    history: Array,
+  },
+  computed: {
+    items() {
+      const res = [];
+      this.$props.history.forEach((element) => {
+        if (this.idBase !== element.id) {
+          res.push({ label: element.name, id: element.id });
+        }
+      });
+      return res;
+    },
+    home() {
+      return {
+        icon: "pi pi-home",
+        id: this.idBase,
+      };
+    },
+  },
+  methods: {
+    changeFolder(id) {
+      console.log(this.history);
+      if (this.currentFolder.id === id) {
+        console.log("same");
+      }
+    },
   },
 };
 </script>

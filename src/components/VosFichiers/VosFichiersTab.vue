@@ -6,22 +6,22 @@
       responsiveLayout="scroll"
       selectionMode="single"
       dataKey="id"
-      :selection="selection"
+      @row-select="getIntoFolder"
     >
-      <Column field="nom" header="Nom" :sortable="true">
+      <Column field="nom" header="Nom" :sortable="true" style="width: 60%">
         <template #body="sortProps">
-          <i v-if="sortProps.data.folder" class="pi pi-folder iconRight"></i>
+          <i v-if="!sortProps.data.taille" class="pi pi-folder iconRight"></i>
           <i v-else class="pi pi-file iconRight"></i>
-          {{ sortProps.data.nom }}
+          {{ sortProps.data.name }}
         </template>
       </Column>
-      <Column field="date" header="Date" :sortable="true"></Column>
-      <Column field="taille" header="Taille" :sortable="true"></Column>
+      <Column field="dateCreation" header="Date" :sortable="true"></Column>
       <Column
-        field="propriétaire"
+        field="utilisateur.nom"
         header="Propriétaire"
         :sortable="true"
       ></Column>
+      <Column field="taille" header="Taille" :sortable="true"></Column>
     </DataTable>
   </div>
 </template>
@@ -29,7 +29,6 @@
 <script>
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import VosFichiersServices from "../../services/VosFichiersServices";
 
 export default {
   name: "VosFichiersTab",
@@ -37,37 +36,21 @@ export default {
     DataTable,
     Column,
   },
-  data() {
-    return {
-      selection: null,
-      childs: [],
-      currentFolder: null,
-      idBase: null,
-    };
+  props: {
+    currentFolder: Object,
+    idBase: Number,
+    childs: Object,
   },
   methods: {
-    getBaseId() {
-      VosFichiersServices.getBase(0).then((response) => {
-        this.$data.idBase = response.data.id;
-        this.$data.currentFolder = response.data;
-        this.generateChildsFolders(response.data.dossiersEnfant);
-      });
-    },
-    generateChildsFolders(childs) {
-      childs.forEach((child) => {
-        this.$data.childs.push({
-          id: child.id,
-          date: child.dateCreation,
-          taille: "",
-          propriétaire: child.utilisateur.nom,
-          folder: true,
-          nom: child.name,
-        });
-      });
+    getIntoFolder(e) {
+      this.$emit("change-to-folder", { newFolder: e.data });
     },
   },
   mounted() {
-    this.getBaseId();
+    setTimeout(() => {
+      console.log("childs", this.$props.childs);
+      console.log("currentFolder", this.$props.currentFolder);
+    }, 250);
   },
 };
 </script>

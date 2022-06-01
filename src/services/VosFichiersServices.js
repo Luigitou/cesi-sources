@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_PATH = "http://localhost:8082";
+const API_PATH = process.env.VUE_APP_URL_API;
 
 class FichierService {
 
