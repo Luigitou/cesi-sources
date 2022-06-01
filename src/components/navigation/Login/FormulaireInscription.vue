@@ -5,10 +5,10 @@
       <router-link to="/">
         <img src="assets/Accueil/logo.png">
       </router-link>
-      <form class="p-fluid">
+      <form class="p-fluid" method="POST">
         <div class="field">
         <div class="p-float-label">
-          <InputText id="nom" type="text" required
+          <InputText id="nom" type="text" required=false
            v-model="utilisateur.nom" />
           <label for="nom">Nom*</label>
         </div>
@@ -43,7 +43,7 @@
           <label for="Adresse">Mot de passe*</label>
         </div>
         </div>
-        <Button label="s'inscrire" type="submit" class="p-button-info" @click="saveUser"/>      
+        <Button label="s'inscrire" type="submit" class="p-button-info" @click="saveUser"/>
       </form>
       </div>
   </div>
@@ -118,6 +118,7 @@ saveUser(){
             margin-top: 2rem;
             transition: 0.3s;
           }
+          
 
           .field {
             margin-bottom: 1.5rem;
