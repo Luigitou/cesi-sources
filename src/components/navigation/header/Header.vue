@@ -8,7 +8,7 @@
       <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files" @complete="search($event)" placeholder="Search..." field="searchValue">
         <template #item="{ item }">
           <div>
-            <div>{{ item.nom }}</div>
+            <div> ""Insert Image"" / Nom Fichier :  {{ item.nom }} / Date de Publication : {{ item.date }}</div>
           </div>
         </template>
       </AutoComplete>
@@ -86,7 +86,11 @@ export default {
       data.forEach((element) => {
         //console.log(element.nom)  //Test pour verifier le centenu de element
         this.$data.files.push({
-          nom: element.nom,
+          nom: element.nom,          
+          date: element.dateCreation,
+          membres: element.user,
+          taille: element.taille + " octets",
+          type: element.type,
         });
       });
     },
