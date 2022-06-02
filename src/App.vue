@@ -67,16 +67,11 @@ export default {
   height: 100%;
   width: 100%;
 
-<<<<<<< HEAD
-  div {
-    // height: 100%; // Pousse mon composant vers le bas
-=======
   .all {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
->>>>>>> origin/Louis/Sidemenu
 
     .side {
       width: 10%;
