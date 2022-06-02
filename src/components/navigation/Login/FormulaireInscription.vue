@@ -92,7 +92,7 @@ saveUser(){
         UtilisateurService.postUtilisateurs(data)
           .then(response => {
             this.utilisateur.id = response.data.id
-            this.$router.push("/");
+            window.location.href = '/';
           })
           .catch(e => {
             alert(e)
