@@ -3,10 +3,9 @@
   <div class="justify-content-center">
     <div class="card">
       <router-link to="/">
-        <img src="assets/Accueil/logo.png">
+        <img src="../../../assets/Accueil/logo_transparent.png">
       </router-link>
       <form class="p-fluid">
-        <h4 id="success"></h4>
         <div class="field">
         <div class="p-float-label">
           <InputText id="nom" type="text" required=false
@@ -45,6 +44,7 @@
         </div>
         </div>
         <Button label="S'inscrire" type="submit" class="p-button-info" @click="saveUser"/>
+        <p>Vous possèdez déja un compte ? <a href="/"><strong>Connectez-vous</strong></a></p>
       </form>
       </div>
   </div>
@@ -83,15 +83,17 @@ saveUser(){
         adresse: this.utilisateur.adresse,
         password: this.utilisateur.password
       }
-      UtilisateurService.postUtilisateurs(data)
-        .then(response => {
-          this.utilisateur.id = response.data.id
-          this.$router.push("/");
 
-        })
-        .catch(e => {
-          alert(e)
-        })
+      if(data.nom != "" && data.prenom != "" && data.mail != "" && data.adresse != "" && data.password != ""){
+        UtilisateurService.postUtilisateurs(data)
+          .then(response => {
+            this.utilisateur.id = response.data.id
+            this.$router.push("/");
+          })
+          .catch(e => {
+            alert(e)
+          })
+      }
     },
   }
 };
@@ -102,7 +104,7 @@ saveUser(){
     .justify-content-center{
         display: flex;
         justify-content: center;
-        margin-top: 3%;
+        margin-top: 2%;
 
         .card {
         min-width: 450px;
@@ -111,7 +113,7 @@ saveUser(){
         padding: 20px;
 
           img{
-            width: 20%;
+            width: 30%;
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -126,6 +128,10 @@ saveUser(){
             }
             #inscrire{
               text-decoration: none;
+            }
+            a{
+              
+              color: black;
             }
           }
           
