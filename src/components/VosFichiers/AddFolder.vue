@@ -1,9 +1,9 @@
 <template>
   <div class="addFolder">
     <div class="form">
-      <InputText type="text" :placeholder="'Nom du dossier'" />
+      <InputText type="text" :placeholder="'Nom du dossier'" v-model="name" />
       <Dropdown v-model="selectedStatut" :options="statut" optionLabel="name" />
-      <Button label="Valider" />
+      <Button label="Valider" @click="sendNewDossier" />
     </div>
   </div>
 </template>
@@ -22,19 +22,29 @@ export default {
   },
   data() {
     return {
-      selectedStatut: null,
+      name: "",
       statut: [
         { id: 0, name: "Public" },
         { id: 1, name: "Privé" },
       ],
+      selectedStatut: { id: 0, name: "Public" },
+      errorName: false,
     };
+  },
+  methods: {
+    sendNewDossier() {
+      if (this.name !== "") {
+      } else {
+        this.errorName = true;
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .addFolder {
-  width: 50vw;
+  width: 40vw;
   height: 25vh;
   padding: 2rem 0;
 
