@@ -96,9 +96,10 @@ export default {
     .modale-card{
         background: white;
         color: #333;
-        padding: 5%;
+        padding: 3%;
         position: fixed;
-        top: 15%;   
+        top: 20%; 
+        width: 50%;  
     }
     .btn-modale{
         position: absolute;
