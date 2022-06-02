@@ -1,10 +1,15 @@
 <template>
-  <div class="header" >
+  <div class="header" >            
+    <div class="wrapperLogo">
+      <router-link to="/">
+          <img src="../../../../assets/logo.png" class="logo" alt="Logo"/>
+      </router-link>
+    </div>
     <div class="searchBar">
-      <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="filteredFiles" @complete="search($event)" placeholder="Search..." field="searchValue">
+      <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files" @complete="search($event)" placeholder="Search..." field="searchValue">
         <template #item="{ item }">
           <div>
-            <div>{{ item }} {{ item }}</div>
+            <div> ""Insert Image"" / Nom Fichier :  {{ item.nom }} / Date de Publication : {{ item.date }}</div>
           </div>
         </template>
       </AutoComplete>
@@ -18,6 +23,7 @@
 <script>
 import Button from 'primevue/button';
 import AutoComplete from 'primevue/autocomplete';
+import FichierService from '../../../FichierServices/FichierServices'
 
 export default {
   name: "HeaderAcceuil",
@@ -29,17 +35,7 @@ export default {
     return{
       searchValue: null,
       filteredFiles: [],
-      files: [ 
-        "Photo3",
-        "Photo2",
-        "TPhoto1",
-        "TPhoto2",
-        "APhoto1",
-        "APhoto1",
-        "BPhoto2",
-        "VPhoto1",
-        "VPhoto2",
-        ],
+      files: [],
       items: [{
         label: 'Options',
         items: [{
@@ -60,16 +56,46 @@ export default {
     }
   },
   methods: {
-    search({ query }) {
-      if (!query.trim()) {
-        this.filteredFiles = [...this.files];
-        return;
-      }
-      this.filteredFiles = this.files.filter((f) => f.includes(query));
+    search(event) {
+        setTimeout(() => {
+            if (!event.query.trim().length) {
+                this.filteredFiles = [...this.$data.files];
+            }
+            else {
+              this.searchFiles();
+              //console.log(this.$data.files, "Here") //Test pour verifier le centenu de files
+                this.filteredFiles = this.$data.files.filter((file) => {
+                    return file.name.toLowerCase().startsWith(event.query.toLowerCase());
+                });
+            }
+        }, 250);
     },
+
     toggle(event) {
       this.$refs.menu.toggle(event);
     },
+
+    parseData(data) {
+      this.$data.files = [];
+      data.forEach((element) => {
+        //console.log(element.nom)  //Test pour verifier le centenu de element
+        this.$data.files.push({
+          nom: element.nom,          
+          date: element.dateCreation,
+          membres: element.user,
+          taille: element.taille + " octets",
+          type: element.type,
+        });
+      });
+    },
+
+    searchFiles() {
+      FichierService.searchFile(this.$data.searchValue).then((response) => {
+        this.parseData(response.data);
+        //console.log(response.data) //Test pour verifier le centenu de data
+      });
+    },
+
     save() {
       this.$toast.add({severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000});
     }
@@ -84,20 +110,29 @@ export default {
   height: 100%;
   width: 100%;
   display: inline-flex;
+  justify-content: space-between;
+  
+  .wrapperLogo {
+    width: 15%;
+    //position: absolute;
+    position: static;
+    top: 10;
+    .logo {
+      width: 40%;
+    }
+  }
 
   .searchBar{
-    width: 30%;
-    margin: 0% 25% 0% 35%;
+    width: 50%;
+    padding: 1%;
     .Bar{
       width: 100%;
     }
   }
   .Buttons{
-    width: 10%;
+    width: 12%;
     display: inline-flex;
-    .p-button-raised{
-      margin-left: 1%;
-    }
+    padding: 1%;
   }
 }
 </style>
