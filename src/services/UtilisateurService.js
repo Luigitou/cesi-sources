@@ -1,16 +1,5 @@
 import axios from 'axios';
 
-<<<<<<< HEAD
-class UtilisateurService{
-
-  getUtilisateurs(){
-    return axios.get(process.env.VUE_APP_URL_API + 'utilisateurs');
-  }
-
-  getAmi(){
-    return axios.get(process.env.VUE_APP_URL_API + '1/ami');
-  }
-=======
 const UTILISATEUR_API_BASE_URL = 'http://localhost:8082/api/utilisateurs';
 
 class UtilisateurService{
@@ -40,9 +29,11 @@ class UtilisateurService{
         return axios.put(UTILISATEUR_API_BASE_URL + `?=${id}`, data)
 
     }
-
+    
+    getAmi(){
+      return axios.get(process.env.VUE_APP_URL_API + '1/ami');
+    }
        
->>>>>>> imen/accueilConnexion
 }
 
 export default new UtilisateurService();
