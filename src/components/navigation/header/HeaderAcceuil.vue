@@ -1,10 +1,5 @@
 <template>
-  <div class="header" >            
-    <div class="wrapperLogo">
-      <router-link to="/">
-          <img src="../../../../assets/logo.png" class="logo" alt="Logo"/>
-      </router-link>
-    </div>
+  <div class="header" >
     <div class="searchBar">
       <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files" @complete="search($event)" placeholder="Search..." field="searchValue">
         <template #item="{ item }">
