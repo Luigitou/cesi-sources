@@ -5,7 +5,8 @@
       <form class="p-fluid">
         <div class="field">
           <label for="nom">Nom*</label>
-          <InputText id="nom" type="text"/> 
+          <InputText id="nom" type="text" v-model="utilisateur.nom"/> 
+          <!---->
         </div>
         <div class="field">
           <label for="prenom">Prenom*</label>
@@ -45,9 +46,22 @@ import Button from 'primevue/button';
 
 export default {
   name: "ProfilMain",
-  components: {
+   components:{
     InputText,
     Button,
+  },
+data() {
+    return {
+      utilisateur: {
+        id: null,
+        nom: '',
+        prenom: '',
+        mail: '',
+        adresse: '',
+        password: ''
+      }, 
+      utilisateurs: []
+    }
   },
 };
 </script>
