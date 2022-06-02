@@ -1,5 +1,6 @@
 <template>
   <div class="addFolder">
+    <Toast position="bottom-right" />
     <div class="form">
       <InputText type="text" :placeholder="'Nom du dossier'" v-model="name" />
       <Dropdown v-model="selectedStatut" :options="statut" optionLabel="name" />
@@ -12,6 +13,8 @@
 import InputText from "primevue/inputtext";
 import Dropdown from "primevue/dropdown";
 import Button from "primevue/button";
+import VosFichiersServices from "../../services/VosFichiersServices";
+import Toast from "primevue/toast";
 
 export default {
   name: "AddFolder",
@@ -19,6 +22,10 @@ export default {
     InputText,
     Dropdown,
     Button,
+    Toast,
+  },
+  props: {
+    idDossier: Number,
   },
   data() {
     return {
@@ -34,9 +41,41 @@ export default {
   methods: {
     sendNewDossier() {
       if (this.name !== "") {
+        console.log(this.idDossier);
+        VosFichiersServices.createFolder(
+          0,
+          this.idDossier,
+          this.name,
+          this.selectedStatut.id
+        ).then((response) => {
+          if (response.status === 201) {
+            this.showSuccess();
+          } else {
+            this.showError();
+          }
+          setTimeout(() => {
+            this.$emit("close-modal");
+          }, 3000);
+        });
       } else {
         this.errorName = true;
       }
+    },
+    showSuccess() {
+      this.$toast.add({
+        severity: "success",
+        summary: "Opération réussie",
+        detail: "Un dossier a été crée.",
+        life: 2500,
+      });
+    },
+    showError() {
+      this.$toast.add({
+        severity: "error",
+        summary: "Erreur",
+        detail: "Le dossier n'a pas pu être crée.",
+        life: 2500,
+      });
     },
   },
 };

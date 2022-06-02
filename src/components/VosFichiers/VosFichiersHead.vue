@@ -25,7 +25,10 @@
       :modal="true"
       :dismissableMask="true"
     >
-      <AddFolder />
+      <AddFolder
+        :idDossier="currentFolder.id"
+        @close-modal="closeFolderModal"
+      />
     </Dialog>
     <Dialog
       header="Ajouter un fichier"
@@ -33,7 +36,7 @@
       :modal="true"
       :dismissableMask="true"
     >
-      <AddFile />
+      <AddFile :idDossier="currentFolder.id" @close-modal="closeFileModal" />
     </Dialog>
   </div>
 </template>
@@ -97,10 +100,16 @@ export default {
       }
     },
     addFolder() {
-      this.displayModalFolder = !this.displayModalFolder;
+      this.displayModalFolder = true;
     },
     addFile() {
-      this.displayModalFile = !this.displayModalFile;
+      this.displayModalFile = true;
+    },
+    closeFolderModal() {
+      this.displayModalFolder = false;
+    },
+    closeFileModal() {
+      this.displayModalFile = false;
     },
   },
 };
