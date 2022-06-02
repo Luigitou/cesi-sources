@@ -12,9 +12,9 @@
                     <label for="psw"><strong>Mot de passe</strong></label>
                     <InputText type="password" placeholder="Entrez votre mot de passe" name="psw" required v-model="pwd"/>
         
-                    <Button label="se connecter" type="submit" class="p-button-info" @click="connect"/>
+                    <Button label="Se connecter" type="submit" class="p-button-info" @click="connect"/>
 
-                    <label>
+                    <label v-on:click="toggleModale">
                         Vous n'avez pas de compte? <router-link to="/Inscription"><strong>Inscrivez-vous</strong></router-link>
                     </label>
                 </div>
@@ -83,6 +83,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 1;
     }
     
     .overlay{

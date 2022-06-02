@@ -36,7 +36,7 @@ export default{
   margin-top: 5%;
 
   .champs{
-    width: 30%;
+    width: 50%;
     padding: 5px;
   }
 
@@ -61,7 +61,7 @@ export default{
     margin-top: 40px;
 
     #btn{
-      width: 30%;
+      width: 50%;
       background-color: $color-text;
       padding: 8px;
     }

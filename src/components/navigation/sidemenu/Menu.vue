@@ -29,6 +29,11 @@ export default {
           icon: "pi pi-heart iconR",
           to: "vosfav",
         },
+        {
+          label: "Contact",
+          icon: "pi pi-send iconR",
+          to: "contact",
+        },
       ],
     };
   },
@@ -36,6 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../scss/Global.scss';
 .menu {
   .item {
     padding: 2rem 0.5rem;
@@ -52,6 +58,11 @@ export default {
       .iconR {
         margin-right: 0.5rem;
         font-size: 200%;
+        color: $color-android;
+      }
+
+      .iconR:hover{
+        color: $color-special;
       }
     }
   }

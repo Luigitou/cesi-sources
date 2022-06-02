@@ -87,6 +87,7 @@ export default{
 
   h2{
     flex: 0 0 50%;
+    color: #565656;
   }
 }
 
@@ -155,16 +156,16 @@ export default{
 
   button {
     color: #ffffff;
-    background-color: #ffc800;
+    background-color: $color-special;
     font-size: 0.9rem;
-    border: 1px solid #ffc800;
+    border: 1px solid rgb(255, 166, 0);
     border-radius: 5px;
     padding: 5px 20px;
     cursor: pointer
   }
 
   button:hover {
-    color: #ffc800;
+    color: $color-special;
     background-color: #ffffff;
   }
 }

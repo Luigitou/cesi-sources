@@ -16,7 +16,22 @@ const routes = [
     path: "/inscription",
     name: "Inscription",
     component: () => import("../views/Inscription.vue"),
-  }
+  },
+  {
+    path: "/vosamis",
+    name: "Vos amis",
+    component: () => import("../views/VosAmis.vue"),
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: () => import("../views/Contact.vue"),
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: () => import("../views/Admin.vue"),
+  },
 ];
 
 const router = createRouter({

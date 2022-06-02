@@ -73,7 +73,7 @@ export default{
   padding: 30px;
 
   .graph{
-    width: 18rem;
+    width: 15rem;
   }
 }
 </style>

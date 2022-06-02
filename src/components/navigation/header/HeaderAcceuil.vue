@@ -1,4 +1,5 @@
 <template>
+  <modale v-bind:revele="revele" v-bind:toggleModale="toggleModale"></modale>
   <div class="header" >
     <div class="searchBar">
       <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files" @complete="search($event)" placeholder="Search..." field="searchValue">
@@ -19,15 +20,18 @@
 import Button from 'primevue/button';
 import AutoComplete from 'primevue/autocomplete';
 import FichierService from '../../../FichierServices/FichierServices'
+import Modale from "../../navigation/Login/Modale.vue";
 
 export default {
   name: "HeaderAcceuil",
   components: {
   Button,
-  AutoComplete
+  AutoComplete,
+  Modale
   },
   data(){
     return{
+      revele: false,
       searchValue: null,
       filteredFiles: [],
       files: [],
@@ -68,6 +72,10 @@ export default {
 
     toggle(event) {
       this.$refs.menu.toggle(event);
+    },
+
+    toggleModale: function(){
+      this.revele = !this.revele;
     },
 
     parseData(data) {

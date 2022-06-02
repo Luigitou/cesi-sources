@@ -39,7 +39,7 @@ export default {
   align-items: center;
   justify-content: center;
   align-self: baseline;
-  margin-top: 10%;
+  margin-top: 5%;
   .wrapperLeft {
     width: 40%;
     text-align: justify;

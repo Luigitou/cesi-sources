@@ -2,35 +2,35 @@
   <div class="categories">
     <Card class="image">
       <template #header>
-        <img src="../../assets/admin/image.png" alt="images">
-      </template>
-      <template #title>
-        Images
+        <div class="header">
+          <img src="../../assets/admin/image.png" alt="images">
+          <h3>Images</h3>
+        </div>
       </template>
       <template #content>
-          2500 images
+        <p class="content">2500 images</p> 
       </template>
     </Card>
     <Card class="document">
       <template #header>
-        <img src="../../assets/admin/document.png" alt="documents">
-      </template>
-      <template #title>
-        Documents
+        <div class="header">
+          <img src="../../assets/admin/document.png" alt="documents">
+          <h3>Documents</h3>
+        </div>
       </template>
       <template #content>
-          3000 fichiers
+        <p class="content">3000 fichiers</p> 
       </template>
     </Card>
     <Card class="videos">
       <template #header>
-        <img src="../../assets/admin/video.png" alt="videos">
-      </template>
-      <template #title>
-          Vidéos
+        <div class="header">
+          <img src="../../assets/admin/video.png" alt="videos">
+          <h3>Vidéos</h3>
+        </div>  
       </template>
       <template #content>
-          500 vidéos
+        <p class="content">500 vidéos</p>  
       </template>
     </Card>
   </div>
@@ -48,19 +48,31 @@ export default{
 </script>
 
 <style lang="scss" scoped>
+@import '../../scss/Global.scss';
 .categories{
   display: flex;
   justify-content: space-between;
 
   .image, .document, .videos{
     transition: 0.3s;
-    width: 30%;
+    width: 25%;
+    height: 6rem;
     border-radius: 10px;
     padding: 10px;
 
     img{
-      width: 40px;
+      width: 30px;
       margin-left: 15px;
+    }
+    .header{
+      display: flex;
+      justify-content: space-between;
+      margin-right: 10px;
+    }
+
+    .content{
+      position: relative;
+      bottom: 15px;
     }
   }
   
