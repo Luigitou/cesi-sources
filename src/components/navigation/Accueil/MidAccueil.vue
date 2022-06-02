@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="imgWrapper">
-      <img class="ImageHome" src="assets/Accueil/HomePageGroup.png" alt="Image Home page">
+      <img class="ImageHome" src="../../../assets/Accueil/HomePageGroup.png" alt="Image Home page">
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@ export default {
     }
     
     .btnWrapper {
-      margin-top: 10%;
+      margin-top: 7%;
       display: flex;
       flex-direction: row;
       width: 100%;
@@ -87,9 +87,6 @@ export default {
   .MidAccueil .wrapperLeft .btnWrapper {
     display: flex;
     flex-direction: column;
-    width: 30rem;
-    height: 5rem;
-    gap: 10%;
   }
   .imgWrapper{
     margin-top: 20%;
