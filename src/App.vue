@@ -40,7 +40,6 @@ import HeaderAcceuil from "./components/navigation/header/HeaderAcceuil.vue"
 import Sidemenu from "./components/navigation/sidemenu/Sidemenu.vue";
 import Splitter from "primevue/splitter";
 import SplitterPanel from "primevue/splitterpanel";
-
 export default {
   name: "App",
   components: {
@@ -52,7 +51,14 @@ export default {
   },
   methods: {
     showHeader() {
-      return this.$route.path !== "/";
+      if (this.$route.path === "/") {
+        return false;
+      }else if (this.$route.path === "/Inscription"){
+        return false;
+      }
+       else {
+        return true;
+      }
     },
   },
 };

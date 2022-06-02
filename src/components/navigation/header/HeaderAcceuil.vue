@@ -9,7 +9,7 @@
         </template>
       </AutoComplete>
     </div>
-    <div class="Buttons">
+    <div v-on:click="toggleModale" class="Buttons">
       <Button icon="pi pi-user" class="p-button-raised p-button-rounded" label="Connexion"/>
     </div>  
   </div>
