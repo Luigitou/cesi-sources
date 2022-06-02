@@ -1,9 +1,5 @@
 <template>
   <div class="header" >
-    <div class="greetings">
-      <p><span class="default-text">Bonjour,</span></p>
-      <p><span class="dynamic-name">Louis</span></p>
-    </div>
     <div class="searchBar">
       <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files" @complete="search($event)" placeholder="Search..." field="searchValue">
         <template #item="{ item }">
@@ -13,11 +9,8 @@
         </template>
       </AutoComplete>
     </div>
-    <div class="Buttons"> 
-      <Button icon="pi pi-cog" class="p-button-raised p-button-rounded" type="button" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
-      <Menu id="overlay_menu" ref="menu" :model="items" :popup="true" />
-      <Button icon="pi pi-bell" class="p-button-raised p-button-rounded" />
-      <Button icon="pi pi-sign-out" class="p-button-raised p-button-rounded"/>
+    <div class="Buttons">
+      <Button icon="pi pi-user" class="p-button-raised p-button-rounded" label="Connexion"/>
     </div>  
   </div>
 </template>
@@ -25,28 +18,25 @@
 <script>
 import Button from 'primevue/button';
 import AutoComplete from 'primevue/autocomplete';
-import Menu from 'primevue/menu';
 import FichierService from '../../../FichierServices/FichierServices'
 
 export default {
-  name: "Header",
+  name: "HeaderAcceuil",
   components: {
   Button,
-  AutoComplete,
-  Menu
+  AutoComplete
   },
   data(){
     return{
-      searchValue: null, // Paramètre d'entrée de la barre de recherche.
-      filteredFiles: [],  
+      searchValue: null,
+      filteredFiles: [],
       files: [],
-
       items: [{
         label: 'Options',
         items: [{
           label: 'Update profile',
           icon: 'pi pi-user-edit',
-            command: () => {
+          command: () => {
             this.$toast.add({severity:'success', summary:'Updated', detail:'Data Updated', life: 3000});
           }
         },
@@ -61,7 +51,6 @@ export default {
     }
   },
   methods: {
-
     search(event) {
         setTimeout(() => {
             if (!event.query.trim().length) {
@@ -101,7 +90,11 @@ export default {
         //console.log(response.data) //Test pour verifier le centenu de data
       });
     },
-  },    
+
+    save() {
+      this.$toast.add({severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000});
+    }
+  },
 };
 </script>
 
@@ -109,22 +102,18 @@ export default {
 @import "../../../scss/Variables.scss";
 .header {
   color: $color-head;
+  height: 100%;
   width: 100%;
   display: inline-flex;
-  justify-content: space-around;
-
-  .greetings{
-    width: 10%;
-    font-size: 1.5rem;
-    font-weight: bold;
-
-    .default-text{
-      color: $color-text;
-    }
-
-    .dynamic-name{
-      color: $color-special;
-      text-align: end;
+  justify-content: space-between;
+  
+  .wrapperLogo {
+    width: 15%;
+    //position: absolute;
+    position: static;
+    top: 10;
+    .logo {
+      width: 40%;
     }
   }
 
@@ -139,9 +128,6 @@ export default {
     width: 12%;
     display: inline-flex;
     padding: 1%;
-    .p-button-raised{
-      margin-left: 5%;
-    }
   }
 }
 </style>
