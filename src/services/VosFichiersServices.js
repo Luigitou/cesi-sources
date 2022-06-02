@@ -13,6 +13,16 @@ class FichierService {
     });
   }
 
+  getFilesFromFolder(idUtilisateur, idDossierParent) {
+    const params = new URLSearchParams();
+    params.append("idUtilisateur", idUtilisateur);
+    params.append("idDossierParent", idDossierParent);
+
+    return axios.get(API_PATH + "/getFichiers", {
+      params: params
+    })
+  }
+
 
 }
 

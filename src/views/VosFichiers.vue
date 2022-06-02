@@ -4,12 +4,15 @@
       :currentFolder="currentFolder"
       :idBase="idBase"
       :history="history"
+      @get-back-in-folder="getBackInFolder"
     />
     <VosFichiersTab
       :currentFolder="currentFolder"
       :idBase="idBase"
       :childs="childs"
+      :files="files"
       @change-to-folder="changeToFolder"
+      @open-file="openFile"
     />
   </div>
 </template>
@@ -32,25 +35,53 @@ export default {
       idBase: null,
       history: [],
       base: null,
+      files: [],
     };
   },
   methods: {
-    generateChildsFolders(childs) {
-      this.$data.childs = childs;
-    },
     getBaseId() {
       VosFichiersServices.getBase(0).then((response) => {
         this.$data.idBase = response.data.id;
         this.$data.currentFolder = response.data;
         this.base = response.data;
-        this.generateChildsFolders(response.data.dossiersEnfant);
+        this.$data.childs = response.data.dossiersEnfant;
         this.$data.history.push(response.data);
+        this.fetchAllFiles();
       });
     },
     changeToFolder(payload) {
       this.history.push(payload.newFolder);
       this.currentFolder = payload.newFolder;
-      this.generateChildsFolders(payload.newFolder.enfants);
+      this.$data.childs = payload.newFolder.dossiersEnfant;
+      this.fetchAllFiles();
+    },
+    getBackInFolder(payload) {
+      this.history = payload.newHistory;
+      this.currentFolder = payload.newCurrentFolder;
+      this.$data.childs = payload.newCurrentFolder.dossiersEnfant;
+      this.fetchAllFiles();
+    },
+    fetchAllFiles() {
+      this.files = [];
+      VosFichiersServices.getFilesFromFolder(0, this.currentFolder.id).then(
+        (response) => {
+          response.data.forEach((element) => {
+            this.files.push({
+              id: element.id,
+              name: element.nom,
+              dateCreation: element.dateCreation,
+              utilisateur: element.dossier.utilisateur,
+              taille: element.taille,
+              type: element.type,
+              etat: element.etat,
+              file: true,
+            });
+          });
+        }
+      );
+    },
+    openFile(payload) {
+      console.log(payload.file);
     },
   },
   mounted() {

@@ -1,7 +1,7 @@
 <template>
   <div class="wrapperTableau">
     <DataTable
-      :value="childs"
+      :value="rows"
       stripedRows
       responsiveLayout="scroll"
       selectionMode="single"
@@ -10,7 +10,7 @@
     >
       <Column field="nom" header="Nom" :sortable="true" style="width: 60%">
         <template #body="sortProps">
-          <i v-if="!sortProps.data.taille" class="pi pi-folder iconRight"></i>
+          <i v-if="!sortProps.data.file" class="pi pi-folder iconRight"></i>
           <i v-else class="pi pi-file iconRight"></i>
           {{ sortProps.data.name }}
         </template>
@@ -39,18 +39,22 @@ export default {
   props: {
     currentFolder: Object,
     idBase: Number,
-    childs: Object,
+    childs: Array,
+    files: Array,
   },
   methods: {
     getIntoFolder(e) {
-      this.$emit("change-to-folder", { newFolder: e.data });
+      if (!e.data.file) {
+        this.$emit("change-to-folder", { newFolder: e.data });
+      } else {
+        this.$emit("open-file", { file: e.data });
+      }
     },
   },
-  mounted() {
-    setTimeout(() => {
-      console.log("childs", this.$props.childs);
-      console.log("currentFolder", this.$props.currentFolder);
-    }, 250);
+  computed: {
+    rows() {
+      return this.childs.concat(this.files);
+    },
   },
 };
 </script>
