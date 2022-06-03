@@ -25,7 +25,7 @@
 import Button from 'primevue/button';
 import AutoComplete from 'primevue/autocomplete';
 import Menu from 'primevue/menu';
-import FichierService from '../../../FichierServices/FichierServices'
+import FichierService from '../../../services/FichierServices'
 
 export default {
   name: "Header",
