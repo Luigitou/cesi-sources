@@ -22,7 +22,7 @@
 <script>
 import Button from 'primevue/button';
 import AutoComplete from 'primevue/autocomplete';
-import FichierService from '../../../FichierServices/FichierServices'
+import FichierService from '../../../services/FichierServices'
 import Modale from "../../navigation/Login/Modale.vue";
 
 export default {
