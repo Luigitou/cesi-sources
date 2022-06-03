@@ -1,8 +1,7 @@
 <template>
   <div class="header" >
     <div class="greetings">
-      <p><span class="default-text">Bonjour,</span></p>
-      <p><span class="dynamic-name">Louis</span></p>
+      <p><span class="default-text">Bonjour, </span><span class="dynamic-name">Louis</span></p>
     </div>
     <div class="searchBar">
       <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files" @complete="search($event)" placeholder="Search..." field="searchValue">
@@ -17,7 +16,7 @@
       <Button icon="pi pi-cog" class="p-button-raised p-button-rounded" type="button" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
       <Menu id="overlay_menu" ref="menu" :model="items" :popup="true" />
       <Button icon="pi pi-bell" class="p-button-raised p-button-rounded" />
-      <Button icon="pi pi-sign-out" class="p-button-raised p-button-rounded"/>
+      <Button icon="pi pi-sign-out" class="p-button-raised p-button-rounded" @click="toAccueil"/>
     </div>  
   </div>
 </template>
@@ -44,19 +43,28 @@ export default {
       items: [{
         label: 'Options',
         items: [{
-          label: 'Update profile',
+          label: 'Modifier profile',
           icon: 'pi pi-user-edit',
             command: () => {
             this.$toast.add({severity:'success', summary:'Updated', detail:'Data Updated', life: 3000});
           }
         },
         {
-          label: 'Delete account',
+          label: 'Passer Admin',
+          icon: 'pi pi-user',
+          command: () => {
+            // this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
+            this.$router.push("/admin");
+          }
+        },
+        {
+          label: 'Supprimer compte',
           icon: 'pi pi-times',
           command: () => {
             this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
           }
-        }]
+        }
+        ]
       }],
     }
   },
@@ -101,6 +109,10 @@ export default {
         //console.log(response.data) //Test pour verifier le centenu de data
       });
     },
+
+    toAccueil(){
+      window.location.href = '/';
+    }
   },    
 };
 </script>
@@ -109,14 +121,18 @@ export default {
 @import "../../../scss/Variables.scss";
 .header {
   color: $color-head;
+  background-color: $color-head;
   width: 100%;
   display: inline-flex;
   justify-content: space-around;
+  padding: 1% 0 1% 0 ;
 
   .greetings{
-    width: 10%;
+    width: 15%;
     font-size: 1.5rem;
     font-weight: bold;
+    position: relative;
+    top: 15px;
 
     .default-text{
       color: $color-text;
@@ -124,7 +140,6 @@ export default {
 
     .dynamic-name{
       color: $color-special;
-      text-align: end;
     }
   }
 
@@ -141,6 +156,8 @@ export default {
     padding: 1%;
     .p-button-raised{
       margin-left: 5%;
+      background-color: $color-android;
+      border: 1px solid $color-button;
     }
   }
 }

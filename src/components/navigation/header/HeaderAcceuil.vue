@@ -1,5 +1,9 @@
 <template>
+  <modale v-bind:revele="revele" v-bind:toggleModale="toggleModale"></modale>
   <div class="header" >
+    <div class="logo">
+      <img src="../../../assets/Accueil/logo_transparent.png" alt="logo">
+    </div>
     <div class="searchBar">
       <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files" @complete="search($event)" placeholder="Search..." field="searchValue">
         <template #item="{ item }">
@@ -19,15 +23,18 @@
 import Button from 'primevue/button';
 import AutoComplete from 'primevue/autocomplete';
 import FichierService from '../../../FichierServices/FichierServices'
+import Modale from "../../navigation/Login/Modale.vue";
 
 export default {
   name: "HeaderAcceuil",
   components: {
   Button,
-  AutoComplete
+  AutoComplete,
+  Modale
   },
   data(){
     return{
+      revele: false,
       searchValue: null,
       filteredFiles: [],
       files: [],
@@ -70,6 +77,10 @@ export default {
       this.$refs.menu.toggle(event);
     },
 
+    toggleModale: function(){
+      this.revele = !this.revele;
+    },
+
     parseData(data) {
       this.$data.files = [];
       data.forEach((element) => {
@@ -104,30 +115,34 @@ export default {
   color: $color-head;
   height: 100%;
   width: 100%;
-  display: inline-flex;
+  display: flex;
   justify-content: space-between;
+  align-items: center;
   
-  .wrapperLogo {
-    width: 15%;
-    //position: absolute;
-    position: static;
-    top: 10;
-    .logo {
-      width: 40%;
+  
+  .logo {
+    img{
+      width: 30%;
     }
   }
-
+  
   .searchBar{
     width: 50%;
     padding: 1%;
+    margin-right: 20%;
     .Bar{
       width: 100%;
     }
   }
   .Buttons{
     width: 12%;
-    display: inline-flex;
     padding: 1%;
+    margin-right: 2%;
+
+    .p-button-raised{
+      background-color: $color-text;
+      border: 1px solid $color-text;
+    }
   }
 }
 </style>

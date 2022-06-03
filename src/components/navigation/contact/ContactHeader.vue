@@ -14,7 +14,8 @@ export default{
 <style lang="scss" scoped>
   .title{
     h2{
-      margin-top: 5%;
+      margin-top: 3%;
+      color: #565656;
     }
   }
 </style>

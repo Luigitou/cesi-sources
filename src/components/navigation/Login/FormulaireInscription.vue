@@ -1,4 +1,5 @@
 <template>
+<modale v-bind:revele="revele" v-bind:toggleModale="toggleModale"></modale>
 <div class="form-demo">   
   <div class="justify-content-center">
     <div class="card">
@@ -44,7 +45,7 @@
         </div>
         </div>
         <Button label="S'inscrire" type="submit" class="p-button-info" @click="saveUser"/>
-        <p>Vous possèdez déja un compte ? <a href="/"><strong>Connectez-vous</strong></a></p>
+        <p>Vous possèdez déja un compte ? <strong v-on:click="toggleModale" class="connect">Connectez-vous</strong></p>
       </form>
       </div>
   </div>
@@ -54,15 +55,18 @@
 import UtilisateurService from "../../../services/UtilisateurService";
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
+import Modale from "../../navigation/Login/Modale.vue";
 
 export default {
   name: "FormulaireInscription",
   components:{
     InputText,
     Button,
+    Modale
   },
 data() {
     return {
+      revele: false,
       utilisateur: {
         id: null,
         nom: '',
@@ -88,12 +92,16 @@ saveUser(){
         UtilisateurService.postUtilisateurs(data)
           .then(response => {
             this.utilisateur.id = response.data.id
-            this.$router.push("/");
+            window.location.href = '/';
           })
           .catch(e => {
             alert(e)
           })
       }
+    },
+
+    toggleModale: function(){
+      this.revele = !this.revele;
     },
   }
 };
@@ -129,9 +137,9 @@ saveUser(){
             #inscrire{
               text-decoration: none;
             }
-            a{
-              
-              color: black;
+            
+            .connect{
+              cursor: pointer;
             }
           }
           

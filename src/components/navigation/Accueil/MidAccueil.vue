@@ -33,13 +33,14 @@ export default {
 
 
 <style lang="scss" scoped>
+@import "../../../scss/Variables.scss";
 .MidAccueil {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   align-self: baseline;
-  margin-top: 10%;
+  margin-top: 5%;
   .wrapperLeft {
     width: 40%;
     text-align: justify;
@@ -62,7 +63,10 @@ export default {
           text-decoration: none;
           .p-button-rounded{
             position: static;
+            background-color: $color-text;
+            border: 1px solid $color-text;
           }
+          
         }
         img {
           width: 50%;

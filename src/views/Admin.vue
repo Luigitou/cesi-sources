@@ -28,7 +28,9 @@ export default {
 .admin{
   display: flex;
   justify-content: space-around;
-  margin-top: 50px;
+  // margin-top: 50px;
   flex-wrap: wrap;
+  // position: relative;
+  // bottom: 5%;
 }
 </style>
