@@ -17,7 +17,7 @@ export default {
         {
           label: "Home",
           icon: "pi pi-home iconR",
-          to: "home",
+          to: "Home",
         },
         {
           label: "Vos fichiers",
