@@ -72,7 +72,7 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: row;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
     .side {
       width: 10%;
@@ -96,7 +96,7 @@ export default {
     }
   }
 
-  .splitter-side{
+  .splitter-side {
     border: none;
   }
 }
