@@ -15,6 +15,11 @@ export default {
     return {
       links: [
         {
+          label: "Home",
+          icon: "pi pi-home iconR",
+          to: "home",
+        },
+        {
           label: "Vos fichiers",
           icon: "pi pi-file iconR",
           to: "vosfichiers",
