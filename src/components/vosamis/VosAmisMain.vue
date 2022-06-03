@@ -60,7 +60,7 @@ export default{
   methods: {
     getAmi(){
       UtilisateurService.getAmi().then((response) => {
-          this.amis = response.data;   
+        this.amis = response.data;   
       });
     },
   },
