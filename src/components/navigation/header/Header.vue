@@ -161,16 +161,16 @@ export default {
   color: $color-head;
   background-color: $color-head;
   width: 100%;
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-around;
-  padding: 1% 0 1% 0;
+  height: 100%;
 
   .greetings {
     width: 15%;
     font-size: 1.5rem;
     font-weight: bold;
-    position: relative;
-    top: 15px;
 
     .default-text {
       color: $color-text;
@@ -189,11 +189,12 @@ export default {
     }
   }
   .Buttons {
-    width: 12%;
     display: inline-flex;
     padding: 1%;
     .p-button-raised {
-      margin-left: 5%;
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
       background-color: $color-android;
       border: 1px solid $color-button;
     }
