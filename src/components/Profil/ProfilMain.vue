@@ -5,30 +5,30 @@
       <form class="p-fluid">
         <div class="field">
           <label for="nom">Nom*</label>
-          <InputText id="nom" type="text" v-model="utilisateur.nom"/> 
+          <InputText id="nom" type="text" v-model="utilisateur.nom" :value="utilisateur.nom"/> 
           <!---->
         </div>
         <div class="field">
           <label for="prenom">Prenom*</label>
-          <InputText id="prenom" type="text"/>
+          <InputText id="prenom" type="text" v-model="utilisateur.prenom" :value="utilisateur.prenom"/>
         </div>
         <div class="field">
         <div class="p-input-icon-right">
           <i class="pi pi-envelope" />
           <label for="email">Email*</label>
-          <InputText type="email"/>
+          <InputText type="email" v-model="utilisateur.mail" :value="utilisateur.mail"/>
         </div>
         </div>
         <div class="field">
         <div class="p-input-icon-right">
           <i class="pi pi-map-marker" />
           <label for="Adresse">Adresse*</label>
-          <InputText type="text"/>
+          <InputText type="text" v-model="utilisateur.adresse" :value="utilisateur.adresse" />
         </div>
         </div>
         <div class="field">
           <label for="Adresse">Mot de passe*</label>
-          <InputText type="password"/>
+          <InputText type="password" v-model="utilisateur.password" :value="utilisateur.password"/>
         </div>
         <Button label="Enregistrer" type="submit" class="p-button-info"/> 
         <Button label="Supprimer mon compte" type="cancel" class="p-button-info"/>      
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-
+import UtilisateurService from "../../services/UtilisateurService";
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 
@@ -50,7 +50,7 @@ export default {
     InputText,
     Button,
   },
-data() {
+  data() {
     return {
       utilisateur: {
         id: null,
@@ -63,6 +63,30 @@ data() {
       utilisateurs: []
     }
   },
+  async mounted(){
+     UtilisateurService.updateUtilisateur(data)
+     
+  },
+   methods: {
+    updateUser(){
+      let data = {
+        nom: this.utilisateur.nom,
+        prenom: this.utilisateur.prenom,
+        mail: this.utilisateur.mail,
+        adresse: this.utilisateur.adresse,
+        password: this.utilisateur.password
+      }
+      if(data.nom != "" && data.prenom != "" && data.mail != "" && data.adresse != "" && data.password != ""){
+        UtilisateurService.updateUtilisateur(data)
+          .then(response => {
+            this.utilisateur.id = response.data.id
+          })
+          .catch(e => {
+            alert(e)
+          })
+      }
+    }
+   }
 };
 </script>
 
