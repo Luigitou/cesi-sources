@@ -2,9 +2,17 @@
   <div class="addFolder">
     <Toast position="bottom-right" />
     <div class="form">
-      <InputText type="text" :placeholder="'Nom du dossier'" v-model="name" />
+      <InputText
+        type="text"
+        :placeholder="'Nom du dossier'"
+        v-model="name"
+        @input="() => (errorName = false)"
+      />
       <Dropdown v-model="selectedStatut" :options="statut" optionLabel="name" />
-      <Button label="Valider" @click="sendNewDossier" />
+      <div class="wrapperSubmit">
+        <p v-if="errorName">Le champs fichier est nécessaire.</p>
+        <Button label="Valider" @click="sendNewDossier" />
+      </div>
     </div>
   </div>
 </template>
@@ -41,7 +49,6 @@ export default {
   methods: {
     sendNewDossier() {
       if (this.name !== "") {
-        console.log(this.idDossier);
         VosFichiersServices.createFolder(
           0,
           this.idDossier,
@@ -53,6 +60,7 @@ export default {
           } else {
             this.showError();
           }
+          this.$emit("refresh-head");
           setTimeout(() => {
             this.$emit("close-modal");
           }, 3000);
@@ -84,7 +92,7 @@ export default {
 <style lang="scss" scoped>
 .addFolder {
   width: 40vw;
-  height: 25vh;
+  height: 30vh;
   padding: 2rem 0;
 
   .form {
@@ -92,6 +100,23 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     height: 80%;
+
+    .wrapperSubmit {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        color: red;
+        font-size: 80%;
+      }
+
+      button {
+        margin-top: 5px;
+        width: 100%;
+      }
+    }
   }
 }
 </style>

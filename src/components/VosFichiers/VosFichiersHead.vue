@@ -28,6 +28,7 @@
       <AddFolder
         :idDossier="currentFolder.id"
         @close-modal="closeFolderModal"
+        @refresh-head="refresh"
       />
     </Dialog>
     <Dialog
@@ -36,7 +37,11 @@
       :modal="true"
       :dismissableMask="true"
     >
-      <AddFile :idDossier="currentFolder.id" @close-modal="closeFileModal" />
+      <AddFile
+        :idDossier="currentFolder.id"
+        @close-modal="closeFileModal"
+        @refresh-head="refresh"
+      />
     </Dialog>
   </div>
 </template>
@@ -71,7 +76,7 @@ export default {
   computed: {
     items() {
       const res = [];
-      let idx = 1;
+      let idx = 0;
       this.$props.history.forEach((element) => {
         if (this.idBase !== element.id) {
           res.push({ label: element.name, id: element.id, idx: idx });
@@ -104,6 +109,9 @@ export default {
     },
     addFile() {
       this.displayModalFile = true;
+    },
+    refresh() {
+      this.$emit("refresh-page");
     },
     closeFolderModal() {
       this.displayModalFolder = false;

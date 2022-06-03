@@ -6,13 +6,19 @@
         chooseLabel="Choisir un fichier"
         url="file"
         style="width: 100%"
-        @select="sendNewFichier"
+        @select="setFile"
         :showUploadButton="false"
         :showCancelButton="false"
+        @remove="() => (file = null)"
       />
+
       <Dropdown v-model="selectedStatut" :options="statut" optionLabel="name" />
-      <Button label="Valider" @click="sendNewFichier" />
+      <div class="wrapperSubmit">
+        <p v-if="errorFile">Le champs fichier est nécessaire.</p>
+        <Button label="Valider" @click="sendNewFichier" />
+      </div>
     </div>
+    <Toast position="bottom-right" />
   </div>
 </template>
 
@@ -20,6 +26,8 @@
 import Dropdown from "primevue/dropdown";
 import Button from "primevue/button";
 import FileUpload from "primevue/fileupload";
+import VosFichiersServices from "../../services/VosFichiersServices";
+import Toast from "primevue/toast";
 
 export default {
   name: "AddFile",
@@ -27,6 +35,7 @@ export default {
     Dropdown,
     Button,
     FileUpload,
+    Toast,
   },
   props: {
     idDossier: Number,
@@ -44,10 +53,46 @@ export default {
   },
   methods: {
     setFile(e) {
-      console.log(e.file);
+      this.file = e.files[0];
+      this.errorFile = false;
     },
-    sendNewFichier(e) {
-      console.log(e);
+    sendNewFichier() {
+      if (this.file !== null) {
+        VosFichiersServices.createFile(
+          0,
+          this.idDossier,
+          this.selectedStatut.id,
+          this.file
+        ).then((response) => {
+          if (response.status === 201) {
+            this.showSuccess();
+          } else {
+            this.showError();
+          }
+          this.$emit("refresh-head");
+          setTimeout(() => {
+            this.$emit("close-modal");
+          }, 3000);
+        });
+      } else {
+        this.errorFile = true;
+      }
+    },
+    showSuccess() {
+      this.$toast.add({
+        severity: "success",
+        summary: "Opération réussie",
+        detail: "Un fichier a été crée.",
+        life: 2500,
+      });
+    },
+    showError() {
+      this.$toast.add({
+        severity: "error",
+        summary: "Erreur",
+        detail: "Le fichier n'a pas pu être crée.",
+        life: 2500,
+      });
     },
   },
 };
@@ -67,6 +112,23 @@ export default {
     justify-content: space-between;
     height: 100%;
     width: 100%;
+
+    .wrapperSubmit {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        color: red;
+        font-size: 80%;
+      }
+
+      button {
+        margin-top: 5px;
+        width: 100%;
+      }
+    }
   }
 }
 </style>

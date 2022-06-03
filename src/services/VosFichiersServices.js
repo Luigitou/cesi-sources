@@ -26,7 +26,6 @@ class FichierService {
   createFolder(idUtilisateur, idDossierParent, name, statut) {
     const data = new FormData();
 
-    console.log(idUtilisateur);
     data.append("idUtilisateur", idUtilisateur);
     data.append("idDossierParent", idDossierParent);
     data.append("name", name);
@@ -35,6 +34,20 @@ class FichierService {
     return axios.post(API_PATH + "/createDossier",
       data
     );
+  }
+
+  createFile(idUtilisateur, idDossierParent, statut, file) {
+    const data = new FormData();
+
+    data.append("idUtilisateur", idUtilisateur);
+    data.append("idDossierParent", idDossierParent);
+    data.append("statut", statut);
+    data.append("file", file);
+
+    return axios.post(API_PATH + "/createFichier",
+      data
+    )
+
   }
 
 

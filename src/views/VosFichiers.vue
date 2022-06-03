@@ -5,6 +5,8 @@
       :idBase="idBase"
       :history="history"
       @get-back-in-folder="getBackInFolder"
+      @refresh-page="refresh"
+      :key="reset"
     />
     <VosFichiersTab
       :currentFolder="currentFolder"
@@ -13,6 +15,7 @@
       :files="files"
       @change-to-folder="changeToFolder"
       @open-file="openFile"
+      :key="reset"
     />
   </div>
 </template>
@@ -36,9 +39,14 @@ export default {
       history: [],
       base: null,
       files: [],
+      reset: 0,
     };
   },
   methods: {
+    refresh() {
+      this.history = [];
+      this.getBaseId();
+    },
     getBaseId() {
       VosFichiersServices.getBase(0).then((response) => {
         this.$data.idBase = response.data.id;
@@ -79,6 +87,7 @@ export default {
           });
         }
       );
+      this.reset = this.reset + 1;
     },
     openFile(payload) {
       console.log(payload.file);
