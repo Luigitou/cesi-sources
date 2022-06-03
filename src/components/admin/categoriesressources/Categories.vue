@@ -1,9 +1,9 @@
 <template>
   <div class="categories">
-    <Card class="image">
+    <Card class="image" @click="toImages">
       <template #header>
         <div class="header">
-          <img src="../../assets/admin/image.png" alt="images">
+          <img src="../../../assets/admin/image.png" alt="images">
           <h3>Images</h3>
         </div>
       </template>
@@ -11,10 +11,10 @@
         <p class="content">2500 images</p> 
       </template>
     </Card>
-    <Card class="document">
+    <Card class="document" @click="toDocuments">
       <template #header>
         <div class="header">
-          <img src="../../assets/admin/document.png" alt="documents">
+          <img src="../../../assets/admin/document.png" alt="documents">
           <h3>Documents</h3>
         </div>
       </template>
@@ -22,10 +22,10 @@
         <p class="content">3000 fichiers</p> 
       </template>
     </Card>
-    <Card class="videos">
+    <Card class="videos" @click="toVideos">
       <template #header>
         <div class="header">
-          <img src="../../assets/admin/video.png" alt="videos">
+          <img src="../../../assets/admin/video.png" alt="videos">
           <h3>Vidéos</h3>
         </div>  
       </template>
@@ -43,12 +43,23 @@ export default{
   name: "categories",
   components: {
     Card
+  },
+  methods:{
+    toImages(){
+      this.$router.push('/admin/images');
+    },
+    toDocuments(){
+      this.$router.push('/admin/documents');
+    },
+    toVideos(){
+      this.$router.push('/admin/videos');
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/Global.scss';
+@import '../../../scss/Global.scss';
 .categories{
   display: flex;
   justify-content: space-between;
@@ -59,6 +70,7 @@ export default{
     height: 6rem;
     border-radius: 10px;
     padding: 10px;
+    cursor: pointer;
 
     img{
       width: 30px;

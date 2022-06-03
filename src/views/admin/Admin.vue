@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Categories from '../components/admin/Categories.vue';
-import Users from '../components/admin/Users.vue';
-import Statistiques from '../components/admin/Statistiques.vue';
+import Categories from '../../components/admin/categoriesressources/Categories.vue';
+import Users from '../../components/admin/Users.vue';
+import Statistiques from '../../components/admin/Statistiques.vue';
 
 export default {
   name: 'Admin',
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../scss/Global.scss';
+@import '../../scss/Global.scss';
 .admin{
   display: flex;
   justify-content: space-around;

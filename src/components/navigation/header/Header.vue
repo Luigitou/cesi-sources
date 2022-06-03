@@ -53,8 +53,14 @@ export default {
           label: 'Passer Admin',
           icon: 'pi pi-user',
           command: () => {
-            // this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
             this.$router.push("/admin");
+          }
+        },
+        {
+          label: 'Passer Super-admin',
+          icon: 'pi pi-user-plus',
+          command: () => {
+            this.$router.push("/superadmin");
           }
         },
         {
