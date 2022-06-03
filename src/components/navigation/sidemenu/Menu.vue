@@ -49,7 +49,7 @@ export default {
 @import '../../../scss/Global.scss';
 .menu {
   .item {
-    padding: 2rem 0.5rem;
+    padding: 1.8rem 0.5rem;
 
     .textMenu {
       font-size: 110%;
