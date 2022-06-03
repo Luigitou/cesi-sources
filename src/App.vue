@@ -86,12 +86,11 @@ export default {
       flex-direction: column;
 
       .head {
-        height: 5%;
+        height: 80px;
       }
 
       .views {
-        height: 95%;
-        margin-top: 6%;
+        height: calc(100% - 80px);
       }
     }
   }
