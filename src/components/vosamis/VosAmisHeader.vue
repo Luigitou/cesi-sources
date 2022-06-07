@@ -16,7 +16,7 @@
           <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
             <td>{{ utilisateur.nom }}</td>
             <td> {{utilisateur.prenom}}</td>    
-            <td><button>Ajouter</button></td>
+            <td><Button label="Ajouter" id="btn">Ajouter</Button></td>
           </tr>
         </table>
       </div>
@@ -26,11 +26,12 @@
 
 <script>
 import UtilisateurService from '../../services/UtilisateurService';
+import Button from 'primevue/button';
 
 export default{
   name: 'vosamisheader',
   components: {
-
+    Button
   },
   data(){
     return{
@@ -154,17 +155,18 @@ export default{
     width: 9.7rem;
   }
 
-  button {
-    color: #ffffff;
+  #btn{
     background-color: $color-special;
-    font-size: 0.9rem;
-    border: 1px solid rgb(255, 166, 0);
+    padding: 1% 5% 4% 5%;
     border-radius: 5px;
-    padding: 5px 20px;
-    cursor: pointer
+    border: 1px solid rgb(255, 166, 0);
   }
 
-  button:hover {
+  #btn:focus{
+    box-shadow: rgb(255, 203, 155) 0px 0px 0px 3px;
+  }
+
+  #btn:hover{
     color: $color-special;
     background-color: #ffffff;
   }
