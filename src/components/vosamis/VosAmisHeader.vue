@@ -1,12 +1,9 @@
 <template>
   <div class="title">
     <h2>Vos amis</h2>
-
     <div class="search">
       <input type="text" class="searchTerm" placeholder="Rechercher un ami..." @keyup="showResults" v-model="search" id="search">
       <button type="submit" class="searchButton"><img class="img" src="../../assets/chercher.png" alt="chercher"></button>
-      {{ hideResults() }}
-
       <div id="users">
         <table>
           <tr>
@@ -14,9 +11,10 @@
             <th>Prenom</th>
           </tr>
           <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
-            <td>{{ utilisateur.nom }}</td>
-            <td> {{utilisateur.prenom}}</td>    
-            <td><Button label="Ajouter" id="btn">Ajouter</Button></td>
+            <td v-if="this.id_utilisateur != utilisateur.id">{{ utilisateur.id }}</td>
+            <td v-if="this.nom_utilisateur != utilisateur.nom">{{ utilisateur.nom }}</td>
+            <td v-if="this.prenom_utilisateur != utilisateur.prenom">{{ utilisateur.prenom }}</td>    
+            <td v-if="this.nom_utilisateur != utilisateur.nom"><Button label="Ajouter" id="btn" @click="addAmi">Ajouter</Button></td>
           </tr>
         </table>
       </div>
@@ -36,6 +34,10 @@ export default{
   data(){
     return{
       utilisateurs: [],
+      id_utilisateur: null,
+      nom_utilisateur: null,
+      prenom_utilisateur: null,
+      id_ami: null,
       search: "",
     }
   },
@@ -49,24 +51,53 @@ export default{
         users.style = "display: none;";
       }    
     },
-    hideResults(){
-      let search = document.getElementById('search');
-      let users = document.getElementById('users');
-
-      window.addEventListener('click', function(e){
-        if (e.target != search){
-         users.style = "display: none;";
-        } 
-      })
-    },
     getUtilisateurs(){
       UtilisateurService.getUtilisateurs().then((response) => {
-        this.utilisateurs = response.data;   
+        this.utilisateurs = response.data; 
+        
+        for(const utilisateur of this.utilisateurs){
+          
+          // console.log(utilisateur.id);
+          // console.log(utilisateur.mail);
+
+          this.id_ami = utilisateur.id;  // Attribuer l'id des utilisateurs listé pour ajout en tant que id_ami
+
+          // console.log(this.$store.state.mail); // Mail stocké lors de la connexion du user
+
+
+          if(this.$store.state.mail == utilisateur.mail){
+            
+            // On retourne les infos de l'utilisateur connecté
+
+            this.id_utilisateur = utilisateur.id; 
+            this.nom_utilisateur = utilisateur.nom;
+            this.prenom_utilisateur = utilisateur.prenom;
+
+            
+            // console.log(this.id_utilisateur); 
+            // console.log(this.nom_utilisateur); 
+            // console.log(this.prenom_utilisateur); 
+
+            return this.id_utilisateur + this.id_ami;
+          } 
+        }
       });
+    },
+    addAmi(){
+      let data = {
+        id_utilisateur: this.id_utilisateur,
+        id_ami: this.id_ami
+      }
+
+      UtilisateurService.addAmi(data).then((response) => {
+        this.data.id_utilisateur = response.data.id_utilisateur;
+        this.data.id_ami = response.data.id_ami;
+      })
     }
   },
   created() {
     this.getUtilisateurs();
+    // this.addAmi();
   },
   computed: {
     filteredUsers() {

@@ -58,7 +58,7 @@ export default {
         setDataToStore(data) {
             this.$store.state.nom = data["nom"];
             this.$store.state.prenom = data["prenom"];
-            this.$store.state.mail = data["mail"];
+            this.$store.state.mail = this.mail; // Corrigé car le mail ne se stockait pas dans le store
             this.$store.state.adresse = data["adresse"];
             this.setInlocalStorage();
             this.$router.push('/tdb');
