@@ -22,9 +22,8 @@ export default {
 <style lang="scss" scoped>
 .sidemenu {
   background-color: #effaff;
-  height: 102%;
+  height: 100%;
   position: relative;
-  bottom: 2%;
 
   .logo {
     width: 100%;

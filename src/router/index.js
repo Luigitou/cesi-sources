@@ -57,6 +57,12 @@ const routes = [
     name: "Superadminform",
     component: () => import("../views/superadmin/SuperAdminForm.vue"),
   },
+  {
+    path: "/vosFichiers",
+    name: "Vos Fichiers",
+    component: () => import("../views/VosFichiers.vue"),
+  },
+
 ];
 
 const router = createRouter({
