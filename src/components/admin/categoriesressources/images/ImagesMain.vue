@@ -1,6 +1,6 @@
 <template>
   <div class="tableau">
-    <DataTable :value="images" :paginator="true" :rows="5" sortMode="multiple" responsiveLayout="scroll"
+    <DataTable :value="fichiers" :paginator="true" :rows="5" sortMode="multiple" responsiveLayout="scroll"
       v-model:filters="filters"
       filterDisplay="row"
       class="data"
@@ -14,7 +14,7 @@
         </div>
       </template>
       <Column field="nom" header="Nom" :sortable="true"></Column>
-      <Column field="extension" header="Extension" :sortable="true"></Column>
+      <Column field="type" header="type" :sortable="true"></Column>
       <Column field="taille" header="Taille" :sortable="true"></Column>
       <Column header="Supprimer">
         <template #body>
@@ -31,7 +31,7 @@ import Column from 'primevue/column';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import { FilterMatchMode, FilterOperator } from "primevue/api";
-// import UtilisateurService from '../../services/UtilisateurService';  A remplacer par fichiers service
+import VosFichiersService from '../../../../services/VosFichiersServices';
 
 export default{
   name: 'imagesmain',
@@ -46,22 +46,23 @@ export default{
       filters: {
         'global': {value: null, matchMode: FilterMatchMode.CONTAINS},
         'nom': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
-        'prenom': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
-        'mail': {value: null, matchMode: FilterMatchMode.IN}
+        'type': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
+        'taille': {value: null, matchMode: FilterMatchMode.IN}
       },
-      amis: [],
+      fichiers: [],
     }
   },
-  // methods: {
-  //   getAmi(){
-  //     UtilisateurService.getAmi().then((response) => {
-  //         this.amis = response.data;   
-  //     });
-  //   },
-  // },
-  // created() {      
-  //   this.getAmi();
-  // },
+  methods: {
+    getFichiers(){
+      VosFichiersService.getFilesFromFolder(0, 1).then((response) => {
+          this.fichiers = response.data;   
+          console.log(this.fichiers);
+      });
+    },
+  },
+  created() {      
+    this.getFichiers();
+  },
 }
 </script>
 
