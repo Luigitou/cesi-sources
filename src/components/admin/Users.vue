@@ -1,6 +1,6 @@
 <template>
    <div class="users">
-    <DataTable :value="users" :paginator="true" :rows="5" sortMode="multiple" responsiveLayout="scroll"
+    <DataTable :value="utilisateurs" :paginator="true" :rows="5" sortMode="multiple" responsiveLayout="scroll"
       v-model:filters="filters"
       filterDisplay="row"
       class="data"
@@ -17,7 +17,7 @@
       <Column field="prenom" header="Prenom" :sortable="true"></Column>
       <Column field="mail" header="Mail" :sortable="true"></Column>
       <Column field="adresse" header="Adresse" :sortable="true"></Column>
-      <Column field="moderateur" header="Modérateur">
+      <Column header="Modérateur">
         <template #body>
           <i class="pi pi-check" id="check"></i>
         </template>
@@ -37,6 +37,7 @@ import Column from 'primevue/column';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import { FilterMatchMode, FilterOperator } from "primevue/api";
+import UtilisateurService from '../../services/UtilisateurService';
 
 export default{
   name: 'users',
@@ -80,8 +81,19 @@ export default{
           mail: "john.doe@gmail.com",
           adresse: '160, Rue jean baptiste 75009 Paris' 
         },
-      ]
+      ],
+      utilisateurs: []
     }
+  },
+  methods: {
+    getUtilisateurs(){
+      UtilisateurService.getUtilisateurs().then((response) => {
+        this.utilisateurs = response.data;
+      });
+    }
+  },
+  created(){
+    this.getUtilisateurs();
   }
 }
 </script>

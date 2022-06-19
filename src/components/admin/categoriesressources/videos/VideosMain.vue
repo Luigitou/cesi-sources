@@ -13,12 +13,32 @@
             </span>
         </div>
       </template>
-      <Column field="nom" header="Nom" :sortable="true"></Column>
-      <Column field="extension" header="Extension" :sortable="true"></Column>
-      <Column field="taille" header="Taille" :sortable="true"></Column>
+      <Column field="nom" header="Nom" :sortable="true">
+        <template #body="slotProps">
+          <div v-if="slotProps.data.type == 'mp4'">
+            {{ slotProps.data.nom }}
+          </div>
+        </template>
+      </Column>
+      <Column field="type" header="type" :sortable="true">
+        <template #body="slotProps">
+          <div v-if="slotProps.data.type == 'mp4'">
+            {{ slotProps.data.type }}
+          </div>
+        </template>
+      </Column>
+      <Column field="taille" header="Taille" :sortable="true">
+        <template #body="slotProps">
+          <div v-if="slotProps.data.type == 'mp4'">
+            {{ slotProps.data.taille }}
+          </div>
+        </template>
+      </Column>
       <Column header="Supprimer">
-        <template #body>
-          <Button icon="pi pi-times" class="p-button-raised p-button-rounded p-button-danger" id="supp" />
+        <template #body="slotProps">
+          <div v-if="slotProps.data.type == 'mp4'">
+            <Button icon="pi pi-times" class="p-button-raised p-button-rounded p-button-danger" id="supp" />
+          </div>
         </template>
       </Column>
     </DataTable>
@@ -31,7 +51,7 @@ import Column from 'primevue/column';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import { FilterMatchMode, FilterOperator } from "primevue/api";
-// import UtilisateurService from '../../services/UtilisateurService';  A remplacer par fichiers service
+import VosFichiersService from '../../../../services/VosFichiersServices';
 
 export default{
   name: 'imagesmain',
@@ -49,19 +69,19 @@ export default{
         'prenom': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
         'mail': {value: null, matchMode: FilterMatchMode.IN}
       },
-      amis: [],
+      videos: [],
     }
   },
-  // methods: {
-  //   getAmi(){
-  //     UtilisateurService.getAmi().then((response) => {
-  //         this.amis = response.data;   
-  //     });
-  //   },
-  // },
-  // created() {      
-  //   this.getAmi();
-  // },
+ methods: {
+    getFichiers(){
+      VosFichiersService.getFilesFromFolder(0, 1).then((response) => {
+        this.videos = response.data;             
+      });
+    },
+  },
+  created() {      
+    this.getFichiers();
+  },
 }
 </script>
 
