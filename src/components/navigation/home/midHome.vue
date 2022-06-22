@@ -67,7 +67,7 @@ export default {
         <Carousel :value="files" :numVisible="3" :numScroll="3" :responsiveOptions="responsiveOptions" :circular="true" :autoplayInterval="3000">
             <template #header>
                 <div class="title">
-                    <h5>Your Files</h5>
+                    <h5>Vos Fichiers :</h5>
                 </div>
             </template>
             <template #item="slotProps">
