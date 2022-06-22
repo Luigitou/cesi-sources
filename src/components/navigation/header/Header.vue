@@ -19,8 +19,11 @@
         <template #item="{ item }">
           <div>
             <div>
-              ""Insert Image"" / Nom Fichier : {{ item.nom }} / Date de
-              Publication : {{ item.date }}
+              <span v-if="item.type == 'png'"><i class="pi pi-images" style="font-size: 2rem"></i></span>
+              <span v-else><i class="pi pi-file" style="font-size: 2rem"></i></span>
+               / Nom Fichier : {{ item.nom }}
+               / Date de Publication : {{ item.date }}
+               / Etat: {{ item.etat }}
             </div>
           </div>
         </template>
@@ -135,6 +138,7 @@ export default {
           nom: element.nom,
           date: element.dateCreation,
           membres: element.user,
+          etat: element.etat,
           taille: element.taille + " octets",
           type: element.type,
         });

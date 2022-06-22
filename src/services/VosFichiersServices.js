@@ -53,8 +53,6 @@ class FichierService {
     )
 
   }
-
-
 }
 
 export default new FichierService();
