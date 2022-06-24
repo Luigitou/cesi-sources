@@ -8,7 +8,7 @@
         </div>
       </template>
       <template #content>
-        <p class="content">2500 images</p> 
+        <p class="content">{{ nombreImages }} image(s)</p> 
       </template>
     </Card>
     <Card class="document" @click="toDocuments">
@@ -19,7 +19,7 @@
         </div>
       </template>
       <template #content>
-        <p class="content">3000 fichiers</p> 
+        <p class="content">{{ nombreDocuments }} fichier(s)</p> 
       </template>
     </Card>
     <Card class="videos" @click="toVideos">
@@ -30,7 +30,7 @@
         </div>  
       </template>
       <template #content>
-        <p class="content">500 vidéos</p>  
+        <p class="content">{{ nombreVideos }} Vidéo(s)</p>  
       </template>
     </Card>
   </div>
@@ -43,6 +43,11 @@ export default{
   name: "categories",
   components: {
     Card
+  },
+  props: {
+    nombreImages: Number,
+    nombreDocuments: Number,
+    nombreVideos: Number
   },
   methods:{
     toImages(){

@@ -8,19 +8,19 @@
       <div class="image_pourcent">
         <h3>Images</h3>
         <br>
-        <ProgressBar :value="image" />
+        <ProgressBar :value="nombreImages" />
       </div>
       <br>
       <div class="document_pourcent">
         <h3>Documents</h3>
         <br>
-        <ProgressBar :value="document" />
+        <ProgressBar :value="nombreDocuments" />
       </div>
       <br>
       <div class="video_pourcent">
         <h3>Vidéos</h3>
         <br>
-        <ProgressBar :value="video" />
+        <ProgressBar :value="nombreVideos" />
       </div>
     </div>
   </div>
@@ -36,13 +36,18 @@ export default{
     Chart,
     ProgressBar
   },
+  props: {
+    nombreImages: Number,
+    nombreDocuments: Number,
+    nombreVideos: Number
+  },
   data() {
     return {
       chartData: {
         labels: ['Images','Vidéos','Documents'],
         datasets: [
           {
-            data: [3000, 500, 2500],
+            data: [this.nombreImages, this.nombreDocuments, this.nombreVideos],
             backgroundColor: ["#FF6384","#36A2EB","#FFCE56"],
             hoverBackgroundColor: ["#FF6384","#36A2EB","#FFCE56"]
           }
@@ -56,10 +61,7 @@ export default{
               }
           }
         }
-			},
-      image: 60,
-      document: 30,
-      video: 10 
+			}
     }
   }
 }
