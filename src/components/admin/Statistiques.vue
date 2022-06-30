@@ -47,7 +47,7 @@ export default{
         labels: ['Images','Vidéos','Documents'],
         datasets: [
           {
-            data: [this.nombreImages, this.nombreDocuments, this.nombreVideos],
+            data: [this.$store.state.nombreImages, this.$store.state.nombreDocuments, this.$store.state.nombreVideos],
             backgroundColor: ["#FF6384","#36A2EB","#FFCE56"],
             hoverBackgroundColor: ["#FF6384","#36A2EB","#FFCE56"]
           }

@@ -34,7 +34,7 @@ import { FilterMatchMode, FilterOperator } from "primevue/api";
 import VosFichiersService from '../../../../services/VosFichiersServices';
 
 export default{
-  name: 'imagesmain',
+  name: 'videosmain',
   components: {
     DataTable,
     Column,
@@ -53,14 +53,14 @@ export default{
     }
   },
  methods: {
-    getFichiers(){
+    getVideos(){
       VosFichiersService.getVideos().then((response) => {
         this.videos = response.data;
       });
     },
   },
   created() {      
-    this.getFichiers();
+    this.getVideos();
   },
 }
 </script>

@@ -31,20 +31,26 @@ export default {
   methods: {
     getImages(){
       VosFichiersService.getImages().then((response) => {
-        this.videos = response.data;
-        this.nombreImages = this.videos.length;
+        const images = response.data;
+        this.nombreImages = images.length;
+
+        return this.$store.state.nombreImages = this.nombreImages;
       });
     },
     getDocuments(){
       VosFichiersService.getDocuments().then((response) => {
-        this.videos = response.data;
-        this.nombreDocuments = this.videos.length;
+        const documents = response.data;
+        this.nombreDocuments = documents.length;
+
+        return this.$store.state.nombreDocuments = this.nombreDocuments;
       });
     },
     getVideos(){
       VosFichiersService.getVideos().then((response) => {
-        this.videos = response.data;
-        this.nombreVideos = this.videos.length;
+        const videos = response.data;
+        this.nombreVideos = videos.length;
+
+        return this.$store.state.nombreVideos = this.nombreVideos;
       });
     },
   },

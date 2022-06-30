@@ -13,32 +13,12 @@
             </span>
         </div>
       </template>
-      <Column field="nom" header="Nom" :sortable="true">
-        <template #body="slotProps">
-          <div v-if="slotProps.data.type == 'jpg' || slotProps.data.type == 'png'">
-            {{ slotProps.data.nom }}
-          </div>
-        </template>
-      </Column>
-      <Column field="type" header="type" :sortable="true">
-        <template #body="slotProps">
-          <div v-if="slotProps.data.type == 'jpg' || slotProps.data.type == 'png'">
-            {{ slotProps.data.type }}
-          </div>
-        </template>
-      </Column>
-      <Column field="taille" header="Taille" :sortable="true">
-        <template #body="slotProps">
-          <div v-if="slotProps.data.type == 'jpg' || slotProps.data.type == 'png'">
-            {{ slotProps.data.taille }}
-          </div>
-        </template>
-      </Column>
+      <Column field="nom" header="Nom" :sortable="true"></Column>
+      <Column field="type" header="type" :sortable="true"></Column>
+      <Column field="taille" header="Taille" :sortable="true"></Column>
       <Column header="Supprimer">
-        <template #body="slotProps">
-          <div v-if="slotProps.data.type == 'jpg' || slotProps.data.type == 'png'">
-            <Button icon="pi pi-times" class="p-button-raised p-button-rounded p-button-danger" id="supp" />
-          </div>
+        <template #body>
+          <Button icon="pi pi-times" class="p-button-raised p-button-rounded p-button-danger" id="supp" />
         </template>
       </Column>
     </DataTable>
@@ -73,14 +53,15 @@ export default{
     }
   },
   methods: {
-    getFichiers(){
-      VosFichiersService.getFilesFromFolder(0, 1).then((response) => {
-        this.fichiers = response.data;             
+    getImages(){
+      VosFichiersService.getImages().then((response) => {
+        this.fichiers = response.data;     
+        console.log(this.fichiers);        
       });
     }
   },
   created() {      
-    this.getFichiers();
+    this.getImages();
   },
 }
 </script>

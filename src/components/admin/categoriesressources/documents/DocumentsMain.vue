@@ -13,39 +13,15 @@
             </span>
         </div>
       </template>
-      <Column field="nom" header="Nom" :sortable="true">
-        <template #body="slotProps">
-          <div v-if="slotProps.data.type == 'pdf' || slotProps.data.type == 'doc'">
-            {{ slotProps.data.nom }}
-          </div>
-        </template>
-      </Column>
-      <Column field="type" header="type" :sortable="true">
-        <template #body="slotProps">
-          <div v-if="slotProps.data.type == 'pdf' || slotProps.data.type == 'doc'">
-            {{ slotProps.data.type }}
-          </div>
-        </template>
-      </Column>
-      <Column field="taille" header="Taille" :sortable="true">
-        <template #body="slotProps">
-          <div v-if="slotProps.data.type == 'pdf' || slotProps.data.type == 'doc'">
-            {{ slotProps.data.taille }}
-          </div>
-        </template>
-      </Column>
+      <Column field="nom" header="Nom" :sortable="true"></Column>
+      <Column field="type" header="type" :sortable="true"></Column>
+      <Column field="taille" header="Taille" :sortable="true"></Column>
       <Column header="Supprimer">
-        <template #body="slotProps">
-          <div v-if="slotProps.data.type == 'pdf' || slotProps.data.type == 'doc'">
+        <template #body>
             <Button icon="pi pi-times" class="p-button-raised p-button-rounded p-button-danger" id="supp" />
-          </div>
         </template>
       </Column>
     </DataTable>
-
-    <!-- <span v-for="fichierDocument in this.documents" :key="fichierDocument.id">
-      <p v-if="fichierDocument.type == 'pdf' || fichierDocument.type == 'doc'">{{ fichierDocument.nom + " " + fichierDocument.type + " " + fichierDocument.taille }}</p>
-    </span> -->
   </div>
 </template>
 
@@ -58,7 +34,7 @@ import { FilterMatchMode, FilterOperator } from "primevue/api";
 import VosFichiersService from '../../../../services/VosFichiersServices';
 
 export default{
-  name: 'imagesmain',
+  name: 'documentsmain',
   components: {
     DataTable,
     Column,
@@ -77,14 +53,14 @@ export default{
     }
   },
   methods: {
-    getFichiers(){
-      VosFichiersService.getFilesFromFolder(0, 1).then((response) => {
+    getDocuments(){
+      VosFichiersService.getDocuments().then((response) => {
         this.documents = response.data;             
       });
     },
   },
   created() {      
-    this.getFichiers();
+    this.getDocuments();
   },
 }
 </script>
