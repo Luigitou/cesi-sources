@@ -59,7 +59,7 @@ export default{
   },
   methods: {
     getAmi(){
-      UtilisateurService.getAmi().then((response) => {
+      UtilisateurService.getAmi(1).then((response) => {
         this.amis = response.data;   
       });
     },

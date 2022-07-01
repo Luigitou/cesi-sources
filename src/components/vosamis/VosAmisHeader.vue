@@ -84,20 +84,13 @@ export default{
       });
     },
     addAmi(){
-      let data = {
-        id_utilisateur: this.id_utilisateur,
-        id_ami: this.id_ami
-      }
-
-      UtilisateurService.addAmi(data).then((response) => {
-        this.data.id_utilisateur = response.data.id_utilisateur;
-        this.data.id_ami = response.data.id_ami;
+      UtilisateurService.addAmi(this.id_utilisateur, 4).then((response) => {
+        console.log(response);
       })
     }
   },
   created() {
     this.getUtilisateurs();
-    // this.addAmi();
   },
   computed: {
     filteredUsers() {
