@@ -96,7 +96,7 @@ export default {
     }
   }
 
-  .splitter-side{
+  .splitter-side {
     border: none;
   }
 }

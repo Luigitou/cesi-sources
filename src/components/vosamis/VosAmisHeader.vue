@@ -2,8 +2,10 @@
   <div class="title">
     <h2>Vos amis</h2>
     <div class="search">
-      <input type="text" class="searchTerm" placeholder="Rechercher un ami..." @keyup="showResults" v-model="search" id="search">
-      <button type="submit" class="searchButton"><img class="img" src="../../assets/chercher.png" alt="chercher"></button>
+      <input type="text" class="searchTerm" placeholder="Rechercher un ami..." @keyup="showResults" v-model="search"
+        id="search">
+      <button type="submit" class="searchButton"><img class="img" src="../../assets/chercher.png"
+          alt="chercher"></button>
       <div id="users">
         <table>
           <tr>
@@ -13,8 +15,9 @@
           <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
             <td v-if="this.id_utilisateur != utilisateur.id">{{ utilisateur.id }}</td>
             <td v-if="this.nom_utilisateur != utilisateur.nom">{{ utilisateur.nom }}</td>
-            <td v-if="this.prenom_utilisateur != utilisateur.prenom">{{ utilisateur.prenom }}</td>    
-            <td v-if="this.nom_utilisateur != utilisateur.nom"><Button label="Ajouter" id="btn" @click="addAmi">Ajouter</Button></td>
+            <td v-if="this.prenom_utilisateur != utilisateur.prenom">{{ utilisateur.prenom }}</td>
+            <td v-if="this.nom_utilisateur != utilisateur.nom"><Button label="Ajouter" id="btn"
+                @click="addAmi(utilisateur.id)">Ajouter</Button></td>
           </tr>
         </table>
       </div>
@@ -26,66 +29,53 @@
 import UtilisateurService from '../../services/UtilisateurService';
 import Button from 'primevue/button';
 
-export default{
+export default {
   name: 'vosamisheader',
   components: {
     Button
   },
-  data(){
-    return{
+  data() {
+    return {
       utilisateurs: [],
       id_utilisateur: null,
       nom_utilisateur: null,
       prenom_utilisateur: null,
-      id_ami: null,
       search: "",
     }
   },
   methods: {
-    showResults(e){
+    showResults(e) {
       let users = document.getElementById('users');
 
       users.style = "display: flex;";
 
-      if(e.target.selectionStart == 0){
+      if (e.target.selectionStart == 0) {
         users.style = "display: none;";
-      }    
+      }
     },
-    getUtilisateurs(){
+    getUtilisateurs() {
       UtilisateurService.getUtilisateurs().then((response) => {
-        this.utilisateurs = response.data; 
-        
-        for(const utilisateur of this.utilisateurs){
-          
-          // console.log(utilisateur.id);
-          // console.log(utilisateur.mail);
+        this.utilisateurs = response.data;
 
-          this.id_ami = utilisateur.id;  // Attribuer l'id des utilisateurs listé pour ajout en tant que id_ami
+        for (const utilisateur of this.utilisateurs) {
 
-          // console.log(this.$store.state.mail); // Mail stocké lors de la connexion du user
-
-
-          if(this.$store.state.mail == utilisateur.mail){
-            
+          if (localStorage.getItem('mail') == utilisateur.mail) {
             // On retourne les infos de l'utilisateur connecté
-
-            this.id_utilisateur = utilisateur.id; 
+            this.id_utilisateur = utilisateur.id;
             this.nom_utilisateur = utilisateur.nom;
             this.prenom_utilisateur = utilisateur.prenom;
 
-            
-            // console.log(this.id_utilisateur); 
-            // console.log(this.nom_utilisateur); 
-            // console.log(this.prenom_utilisateur); 
+            localStorage.setItem('id_user_connecte', this.id_utilisateur);
+            localStorage.setItem('nom_user_connecte', this.nom_utilisateur);
 
-            return this.id_utilisateur + this.id_ami;
-          } 
+            return this.id_utilisateur;
+          }
         }
       });
     },
-    addAmi(){
-      UtilisateurService.addAmi(this.id_utilisateur, 4).then((response) => {
-        console.log(response);
+    addAmi(id_ami) {
+      UtilisateurService.addAmi(this.id_utilisateur, id_ami).then((response) => {
+        console.log(response.data);
       })
     }
   },
@@ -95,8 +85,8 @@ export default{
   computed: {
     filteredUsers() {
       return this.utilisateurs.filter(u => {
-          return u.nom.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||  
-            u.prenom.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||
+        return u.nom.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||
+          u.prenom.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||
           u.mail.toLowerCase().indexOf(this.search.toLowerCase()) != -1;
       });
     }
@@ -106,11 +96,12 @@ export default{
 
 <style lang="scss" scoped>
 @import '../../scss/Global.scss';
-.title{
+
+.title {
   display: flex;
   margin: 2% 0 0 10%;
 
-  h2{
+  h2 {
     flex: 0 0 50%;
     color: #565656;
   }
@@ -143,7 +134,7 @@ export default{
     cursor: pointer;
     font-size: 20px;
 
-    img{
+    img {
       position: relative;
       top: 2px;
       width: 17px;
@@ -151,7 +142,7 @@ export default{
   }
 }
 
-#users{
+#users {
   display: none;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -160,7 +151,7 @@ export default{
   z-index: 1;
   box-shadow: 0 4px 8px 0 rgba(70, 70, 70, 0.2);
 
-  table{
+  table {
     overflow: hidden;
     background-color: #ffffff;
     border: 1px solid #dbdbdb;
@@ -168,32 +159,31 @@ export default{
     box-shadow: 0 4px 8px 0 rgba(70, 70, 70, 0.2);
   }
 
-  table tr th{
+  table tr th {
     padding: 15px;
     text-align: left;
   }
 
-  table tr td{
+  table tr td {
     text-align: left;
     padding: 10px;
     width: 9.7rem;
   }
 
-  #btn{
+  #btn {
     background-color: $color-special;
     padding: 1% 5% 4% 5%;
     border-radius: 5px;
     border: 1px solid rgb(255, 166, 0);
   }
 
-  #btn:focus{
+  #btn:focus {
     box-shadow: rgb(255, 203, 155) 0px 0px 0px 3px;
   }
 
-  #btn:hover{
+  #btn:hover {
     color: $color-special;
     background-color: #ffffff;
   }
 }
-
 </style>

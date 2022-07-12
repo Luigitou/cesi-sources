@@ -37,6 +37,10 @@ class UtilisateurService{
     addAmi(id_utilisateur, id_ami){
         return axios.post(process.env.VUE_APP_URL_API + 'addAmi' + `?id_utilisateur=${id_utilisateur}&` + `id_ami=${id_ami}`);
     }
+
+    deleteAmi(id_utilisateur, id_ami){
+        return axios.delete(process.env.VUE_APP_URL_API + 'deleteAmi' + `?id_utilisateur=${id_utilisateur}&` + `id_ami=${id_ami}`);
+    }
        
 }
 

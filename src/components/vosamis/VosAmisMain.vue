@@ -1,16 +1,13 @@
 <template>
   <div class="tableau">
     <DataTable :value="amis" :paginator="true" :rows="5" sortMode="multiple" responsiveLayout="scroll"
-      v-model:filters="filters"
-      filterDisplay="row"
-      class="data"
-    >
+      v-model:filters="filters" filterDisplay="row" class="data">
       <template #header>
         <div class="flex justify-content-between">
-            <span class="p-input-icon-right">
-              <i class="pi pi-search" />
-              <InputText v-model="filters['global'].value" placeholder="Cherchez vos amis..." />
-            </span>
+          <span class="p-input-icon-right">
+            <i class="pi pi-search" />
+            <InputText v-model="filters['global'].value" placeholder="Cherchez vos amis..." />
+          </span>
         </div>
       </template>
       <Column field="nom" header="Nom" :sortable="true"></Column>
@@ -23,7 +20,8 @@
       </Column>
       <Column header="Supprimer">
         <template #body>
-          <Button icon="pi pi-times" class="p-button-raised p-button-rounded p-button-danger" id="supp" />
+          <Button icon="pi pi-times" class="p-button-raised p-button-rounded p-button-danger" id="supp"
+            @click="deleteAmi(utilisateur.id)" />
         </template>
       </Column>
     </DataTable>
@@ -38,7 +36,7 @@ import InputText from 'primevue/inputtext';
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 import UtilisateurService from '../../services/UtilisateurService';
 
-export default{
+export default {
   name: 'vosamismain',
   components: {
     DataTable,
@@ -49,22 +47,27 @@ export default{
   data() {
     return {
       filters: {
-        'global': {value: null, matchMode: FilterMatchMode.CONTAINS},
-        'nom': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
-        'prenom': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
-        'mail': {value: null, matchMode: FilterMatchMode.IN}
+        'global': { value: null, matchMode: FilterMatchMode.CONTAINS },
+        'nom': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        'prenom': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        'mail': { value: null, matchMode: FilterMatchMode.IN }
       },
       amis: [],
     }
   },
   methods: {
-    getAmi(){
-      UtilisateurService.getAmi(1).then((response) => {
-        this.amis = response.data;   
+    getAmi() {
+      UtilisateurService.getAmi(localStorage.getItem('id_user_connecte')).then((response) => {
+        this.amis = response.data;
       });
     },
+    deleteAmi(id_ami) {
+      UtilisateurService.deleteAmi(this.id_utilisateur, id_ami).then((response) => {
+        console.log(response.data);
+      })
+    }
   },
-  created() {      
+  created() {
     this.getAmi();
   },
 }
@@ -73,23 +76,23 @@ export default{
 <style lang="scss" scoped>
 @import '../../scss/Global.scss';
 
-.tableau{
+.tableau {
   margin-top: 40px;
   display: flex;
   justify-content: center;
   overflow-x: hidden;
   overflow-y: auto;
 
-  .data{
+  .data {
     width: 80%;
   }
 
-  #check{
+  #check {
     color: $color-button;
     margin-left: 10px;
   }
 
-  #supp{
+  #supp {
     width: 30px;
     height: 30px;
     margin-left: 20px;
