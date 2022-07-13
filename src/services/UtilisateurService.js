@@ -30,8 +30,8 @@ class UtilisateurService{
 
     }
     
-    getAmi(id){
-      return axios.get(process.env.VUE_APP_URL_API + `${id}` + '/ami');
+    getAmi(id_utilisateur){
+      return axios.get(process.env.VUE_APP_URL_API + 'ami' + `?id_utilisateur=${id_utilisateur}`);
     }
 
     addAmi(id_utilisateur, id_ami){

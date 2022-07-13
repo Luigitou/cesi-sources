@@ -18,10 +18,10 @@
           <i class="pi pi-check" id="check"></i>
         </template>
       </Column>
-      <Column header="Supprimer">
-        <template #body>
+      <Column field="id" header="Supprimer">
+        <template #body="slotProps">
           <Button icon="pi pi-times" class="p-button-raised p-button-rounded p-button-danger" id="supp"
-            @click="deleteAmi(utilisateur.id)" />
+            @click="deleteAmi(slotProps.data.id)" />
         </template>
       </Column>
     </DataTable>
@@ -62,7 +62,7 @@ export default {
       });
     },
     deleteAmi(id_ami) {
-      UtilisateurService.deleteAmi(this.id_utilisateur, id_ami).then((response) => {
+      UtilisateurService.deleteAmi(localStorage.getItem('id_user_connecte'), id_ami).then((response) => {
         console.log(response.data);
       })
     }

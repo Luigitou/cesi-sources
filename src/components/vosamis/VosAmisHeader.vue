@@ -74,8 +74,7 @@ export default {
       });
     },
     addAmi(id_ami) {
-      UtilisateurService.addAmi(this.id_utilisateur, id_ami).then((response) => {
-        console.log(response.data);
+      UtilisateurService.addAmi(this.id_utilisateur, id_ami).then(() => {
       })
     }
   },
