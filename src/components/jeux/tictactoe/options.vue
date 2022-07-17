@@ -1,10 +1,6 @@
 <template>
   <section>
-    <input type="radio"/>
-    <label>
-      {{ level }}
-    </label>
-    <div @click="$emit('click')" class="diff">{{ level }}</div>
+    <div @click="$emit('click')" class="diff"><span>Niveau :</span> {{ level }}</div>
   </section>
 </template>
 
@@ -33,10 +29,10 @@ export default {
 <style lang="scss" scoped>
 .diff {
   margin: 2vw auto;
-  width: 20vw;
-  align-items: center;
-  color: #A28BA4;
-  border-radius: 25px;
-  border: 2px solid #6E272F;
+  color: #FF914D;
+
+  span{
+    color: #296870;
+  }
 }
 </style>

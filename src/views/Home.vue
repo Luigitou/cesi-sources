@@ -32,14 +32,15 @@ export default {
 
 .container_jeux{
   display: flex;
+  justify-content: space-around;
 }
 
 .snake_game{
-  display: flex;
   width: 50%;
 }
 
 .tictactoe{
   width: 50%;
+  flex-wrap: wrap;
 }
 </style>

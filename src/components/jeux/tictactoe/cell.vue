@@ -21,30 +21,23 @@ export default {
 
 <style lang="scss" scoped>
 .xx {
-  color: #41385F;
+  color: #FF914D;
 }
 .yy {
-  color: #C89298;
+  color: #296870;
 }
 .cell {
   display: flex;
-  flex-grow: 1;
   flex-basis: 100%;
-  border: 0.05em solid #866488;
   border-radius: 10%;
-  box-shadow: inset 0.5em 0.5em 0.5em #A28AA5, inset -0.5em -0.5em 0.5em #846388;
-
-  width: calc(calc(0.5 * 13vw) + calc(0.3 * 10vh));
-  height: calc(calc(0.5 * 13vw) + calc(0.3 * 10vh));
-  min-width: 8vw;
-  min-height: 8vw;
-  max-width: calc(calc(0.7 * 15vw) + calc(0.3 * 15vh));
-  max-height: calc(calc(0.7 * 15vw) + calc(0.3 * 15vh));
-  /* border: 3px solid #A28BA4; */
-  font-size: calc(calc(0.5 * 14vw) + calc(0.2 * 12vh));
-  display: flex;
+  margin: 5px 5px 10px 5px;
+  background-color: #EFFAFF;
+  border: 1px solid #296870;
+  width: 50px;
+  height: 50px;
+  font-size: 2rem;
   align-items: center;
-
   justify-content: center;
+  cursor: pointer;
 }
 </style>

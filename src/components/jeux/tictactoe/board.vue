@@ -15,8 +15,9 @@
         </div>
       </div>
     </div>
+    <br>
     <div class="restart" @click="restart()">
-      <h3>Restart</h3>
+      <h3>Recommencer</h3>
     </div>
   </div>
 </template>
@@ -65,13 +66,13 @@ export default {
       if (this.board.isGameOver()) {
         this.gameOver = true;
         this.gameOverText = this.board.playerHas3InARow("x")
-          ? "You win!"
-          : "Draw";
+          ? "T'as gagné 😎"
+          : "Egalité 👀";
         return;
       }
 
       let aiMove =
-        this.diffLevel === "Easy"
+        this.diffLevel === "Facile"
           ? this.randMax(this.board.clone(), "o")
           : this.minimax(this.board.clone(), "o");
 
@@ -80,8 +81,8 @@ export default {
         if (this.board.isGameOver()) {
           this.gameOver = true;
           this.gameOverText = this.board.playerHas3InARow("o")
-            ? "You lose! CHIBI!!!"
-            : "Draw";
+            ? "T'as perdu 😥"
+            : "Egalité 👀";
         }
         this.$forceUpdate();
       }, 400);
@@ -164,19 +165,18 @@ export default {
 <style lang="scss" scoped>
 .game-over-text {
   margin: 5%;
-  font-size: 10vw;
 }
 
 .tictactoe-board {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+}
 
-  display: flex;
-  background-color: #866488;
-  border-radius: 2%;
-  padding: 1em;
-  box-shadow: inset -0.25em -0.25em 0.5em #866488,
-    inset 0.25em 0.25em 0.5em #A28BA4, 0 0.5em 2em black;
+.restart{
+  cursor: pointer;
+}
+
+.restart:hover{
+  color: #FF914D;
 }
 </style>

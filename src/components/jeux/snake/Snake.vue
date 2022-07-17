@@ -1,4 +1,5 @@
 <template>
+  <p id="fin"></p>
   <canvas ref="board" id="snake-canvas" :width="boardSizePx" :height="boardSizePx"></canvas>
 </template>
 
@@ -73,7 +74,7 @@ export default {
         this.amountCellsInSnake(this.snake[0]) > 1
       ) {
         this.stop();
-        alert(`Game over! You've scored ${this.scores} points.`);
+        document.getElementById("fin").innerHTML=`Game over! Votre score est de ${this.scores} points.`;
       }
 
       if (this.isTargetNewHead()) {
@@ -101,7 +102,7 @@ export default {
         this.cellSize,
         this.cellSize
       );
-      this.boardContext.fillStyle = "black";
+      this.boardContext.fillStyle = "#296870";
       this.boardContext.fill();
     },
     getMoveDelay() {
@@ -137,7 +138,7 @@ export default {
         this.cellSize,
         this.cellSize
       );
-      this.boardContext.fillStyle = "red";
+      this.boardContext.fillStyle = "#FF914D";
       this.boardContext.fill();
       this.boardContext.closePath();
     },
