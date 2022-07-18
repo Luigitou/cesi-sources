@@ -6,6 +6,7 @@ export default createStore({
     nom: "",
     prenom: "",
     mail: "",
-    adresse: ""
+    adresse: "",
+    btnAdd: null
   }
 })

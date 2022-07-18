@@ -41,6 +41,7 @@ export default {
       nom_utilisateur: null,
       prenom_utilisateur: null,
       search: "",
+      btnAdd: null
     }
   },
   methods: {
@@ -75,6 +76,9 @@ export default {
     },
     addAmi(id_ami) {
       UtilisateurService.addAmi(this.id_utilisateur, id_ami).then(() => {
+        this.btnAdd = 1;
+
+        return this.$store.state.btnAdd = this.btnAdd;
       })
     }
   },

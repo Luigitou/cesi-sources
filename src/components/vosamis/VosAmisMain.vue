@@ -1,5 +1,6 @@
 <template>
   <div class="tableau">
+    {{ refresh }}
     <DataTable :value="amis" :paginator="true" :rows="5" sortMode="multiple" responsiveLayout="scroll"
       v-model:filters="filters" filterDisplay="row" class="data">
       <template #header>
@@ -13,11 +14,6 @@
       <Column field="nom" header="Nom" :sortable="true"></Column>
       <Column field="prenom" header="Prenom" :sortable="true"></Column>
       <Column field="mail" header="Mail" :sortable="true"></Column>
-      <Column field="ami" header="Amis">
-        <template #body>
-          <i class="pi pi-check" id="check"></i>
-        </template>
-      </Column>
       <Column field="id" header="Supprimer">
         <template #body="slotProps">
           <Button icon="pi pi-times" class="p-button-raised p-button-rounded p-button-danger" id="supp"
@@ -62,14 +58,26 @@ export default {
       });
     },
     deleteAmi(id_ami) {
-      UtilisateurService.deleteAmi(localStorage.getItem('id_user_connecte'), id_ami).then((response) => {
-        console.log(response.data);
+      UtilisateurService.deleteAmi(localStorage.getItem('id_user_connecte'), id_ami).then(() => {
+        this.amis = [];
+        this.getAmi();
       })
+    },
+    refreshListeAmis(){
+      if(this.$store.state.btnAdd == 1){
+        this.amis = [];
+      }
+      this.getAmi();
     }
   },
   created() {
     this.getAmi();
   },
+  computed:{
+    refresh(){
+      return this.refreshListeAmis();
+    }
+  }
 }
 </script>
 
