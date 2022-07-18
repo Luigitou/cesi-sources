@@ -46,7 +46,8 @@ export default {
           label: 'Modifier profile',
           icon: 'pi pi-user-edit',
             command: () => {
-            this.$toast.add({severity:'success', summary:'Updated', detail:'Data Updated', life: 3000});
+            //this.$toast.add({severity:'success', summary:'Updated', detail:'Data Updated', life: 3000});
+            this.$router.push("/profil");
           }
         },
         {

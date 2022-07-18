@@ -6,11 +6,11 @@
                 <div v-on:click="toggleModale" class="btn-modale">x</div> <!-- click sur la x pour fermer -->
 
                 <div class="container">
-                    <label for="uname"><strong>Email</strong></label>
-                    <InputText type="text" placeholder="Entrez votre email" name="uname" required v-model="mail"/>
+                    <label for="uname"><strong>Identifiant</strong></label>
+                    <InputText type="text" placeholder="Entrez votre identifiant" name="uname" required v-model="username"/>
 
                     <label for="psw"><strong>Mot de passe</strong></label>
-                    <InputText type="password" placeholder="Entrez votre mot de passe" name="psw" required v-model="pwd"/>
+                    <InputText type="password" placeholder="Entrez votre mot de passe" name="psw" required v-model="password"/>
         
                     <Button label="Se connecter" type="submit" class="p-button-info" @click="connect"/>
 
@@ -36,16 +36,16 @@ export default {
     },
     data () {
         return {
-            mail: '',
-            pwd: ''
+            username: '',
+            password: ''
         }
     },
     methods: {
         connect (e) {
             e.preventDefault();
             const form = new FormData();
-            form.append('mail', this.$data.mail);
-            form.append('pwd', this.$data.pwd);
+            form.append('username', this.$data.username);
+            form.append('password', this.$data.password);
             AuthServices.auth(form)
             .then((response) => {
                 if (response === "User not found") {
@@ -58,6 +58,7 @@ export default {
         setDataToStore(data) {
             this.$store.state.nom = data["nom"];
             this.$store.state.prenom = data["prenom"];
+            this.$store.state.username = data["username"];
             this.$store.state.mail = data["mail"];
             this.$store.state.adresse = data["adresse"];
             this.setInlocalStorage();
@@ -66,6 +67,7 @@ export default {
         setInlocalStorage() {
             localStorage.nom = this.$store.state.nom;
             localStorage.prenom = this.$store.state.prenom;
+            localStorage.username = this.$store.state.username;
             localStorage.mail = this.$store.state.mail;
             localStorage.adresse = this.$store.state.adresse;
         }

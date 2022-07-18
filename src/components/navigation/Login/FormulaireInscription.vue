@@ -22,6 +22,13 @@
         </div>
         </div>
         <div class="field">
+        <div class="p-float-label">
+          <InputText id="username" type="text" required
+           v-model="utilisateur.username" />
+          <label for="username">Identifiant*</label>
+        </div>
+        </div>
+        <div class="field">
         <div class="p-float-label p-input-icon-right">
           <i class="pi pi-envelope" />
           <InputText type="email" required
@@ -71,6 +78,7 @@ data() {
         id: null,
         nom: '',
         prenom: '',
+        username: '',
         mail: '',
         adresse: '',
         password: ''
@@ -83,12 +91,12 @@ saveUser(){
       let data = {
         nom: this.utilisateur.nom,
         prenom: this.utilisateur.prenom,
+        username: this.utilisateur.username,
         mail: this.utilisateur.mail,
         adresse: this.utilisateur.adresse,
         password: this.utilisateur.password
       }
-
-      if(data.nom != "" && data.prenom != "" && data.mail != "" && data.adresse != "" && data.password != ""){
+      if(data.nom != "" && data.prenom != "" && data.username != "" && data.mail != "" && data.adresse != "" && data.password != ""){
         UtilisateurService.postUtilisateurs(data)
           .then(response => {
             this.utilisateur.id = response.data.id
