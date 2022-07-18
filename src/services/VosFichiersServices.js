@@ -69,6 +69,16 @@ class FichierService {
     )
   }
 
+  getHeaderFromFile(idfichier) {
+    return axios.get(`${API_PATH}/getHeaderFromFile?idFichier=${idfichier}`);
+  }
+
+  downloadFile(idFichier) {
+    return axios.get(`${API_PATH}/downloadFile?idFichier=${idFichier}`, {
+      responseType: 'blob'
+    });
+  }
+
 }
 
 export default new FichierService();

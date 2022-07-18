@@ -1,14 +1,15 @@
 <template>
   <div class="header">
     <div class="left">
-      <div class="nom">Nom du fichier</div>
-      <div class="proprietaire">Propriétaire</div>
+      <div class="nom">{{ data.name }}</div>
+      <div class="proprietaire">utilisateur</div>
     </div>
     <div class="right">
       <div class="icons">
         <Button
           icon="pi pi-download"
           class="p-button-text p-button-rounded"
+          @click="downloadFile"
         ></Button>
         <Button
           icon="pi pi-heart"
@@ -25,11 +26,47 @@
 
 <script>
 import Button from "primevue/button";
+import VosFichiersServices from "../../services/VosFichiersServices";
 
 export default {
   name: "Header",
   components: {
     Button,
+  },
+  data() {
+    return {
+      data: {
+        name: "",
+        type: "",
+      },
+    };
+  },
+  methods: {
+    fetchData() {
+      VosFichiersServices.getHeaderFromFile(this.$route.params.id).then(
+        (response) => {
+          this.$data.data = response.data;
+        }
+      );
+    },
+    downloadFile() {
+      console.log("go");
+      VosFichiersServices.downloadFile(this.$route.params.id).then(
+        (response) => {
+          const blob = new Blob([response.data], {
+            type: response.headers["content-type"],
+          });
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = this.$data.data.name;
+          link.click();
+          URL.revokeObjectURL(link.href);
+        }
+      );
+    },
+  },
+  mounted() {
+    this.fetchData();
   },
 };
 </script>
