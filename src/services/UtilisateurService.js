@@ -31,8 +31,16 @@ class UtilisateurService{
 
     }
     
-    getAmi(){
-      return axios.get(process.env.VUE_APP_URL_API + '1/ami');
+    getAmi(id_utilisateur){
+      return axios.get(process.env.VUE_APP_URL_API + 'ami' + `?id_utilisateur=${id_utilisateur}`);
+    }
+
+    addAmi(id_utilisateur, id_ami){
+        return axios.post(process.env.VUE_APP_URL_API + 'addAmi' + `?id_utilisateur=${id_utilisateur}&` + `id_ami=${id_ami}`);
+    }
+
+    deleteAmi(id_utilisateur, id_ami){
+        return axios.delete(process.env.VUE_APP_URL_API + 'deleteAmi' + `?id_utilisateur=${id_utilisateur}&` + `id_ami=${id_ami}`);
     }
        
 }

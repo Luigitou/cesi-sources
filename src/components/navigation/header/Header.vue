@@ -1,6 +1,7 @@
 <template>
   <div class="header">
     <div class="greetings">
+<<<<<<< HEAD
       <p>
         <span class="default-text">Bonjour, </span
         ><span class="dynamic-name">Louis</span>
@@ -25,11 +26,22 @@
                / Date de Publication : {{ item.date }}
                / Etat: {{ item.etat }}
             </div>
+=======
+      <p><span class="default-text">Bonjour, </span><span class="dynamic-name">{{ getUserName() }}</span></p>
+    </div>
+    <div class="searchBar">
+      <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files"
+        @complete="search($event)" placeholder="Search..." field="searchValue">
+        <template #item="{ item }">
+          <div>
+            <div> ""Insert Image"" / Nom Fichier : {{ item.nom }} / Date de Publication : {{ item.date }}</div>
+>>>>>>> Edomiyas/amis
           </div>
         </template>
       </AutoComplete>
     </div>
     <div class="Buttons">
+<<<<<<< HEAD
       <Button
         icon="pi pi-cog"
         class="p-button-raised p-button-rounded"
@@ -45,6 +57,13 @@
         class="p-button-raised p-button-rounded"
         @click="toAccueil"
       />
+=======
+      <Button icon="pi pi-cog" class="p-button-raised p-button-rounded" type="button" @click="toggle"
+        aria-haspopup="true" aria-controls="overlay_menu" />
+      <Menu id="overlay_menu" ref="menu" :model="items" :popup="true" />
+      <Button icon="pi pi-bell" class="p-button-raised p-button-rounded" />
+      <Button icon="pi pi-sign-out" class="p-button-raised p-button-rounded" @click="toAccueil" />
+>>>>>>> Edomiyas/amis
     </div>
   </div>
 </template>
@@ -60,7 +79,11 @@ export default {
   components: {
     Button,
     AutoComplete,
+<<<<<<< HEAD
     Menu,
+=======
+    Menu
+>>>>>>> Edomiyas/amis
   },
   data() {
     return {
@@ -73,6 +96,7 @@ export default {
         items: [{
           label: 'Modifier profile',
           icon: 'pi pi-user-edit',
+<<<<<<< HEAD
             command: () => {
             //this.$toast.add({severity:'success', summary:'Updated', detail:'Data Updated', life: 3000});
             this.$router.push("/profil");
@@ -121,10 +145,38 @@ export default {
   }
 },
   methods: {
+=======
+          command: () => {
+            this.$toast.add({ severity: 'success', summary: 'Updated', detail: 'Data Updated', life: 3000 });
+          }
+        },
+        {
+          label: 'Passer Admin',
+          icon: 'pi pi-user',
+          command: () => {
+            // this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
+            this.$router.push("/admin");
+          }
+        },
+        {
+          label: 'Supprimer compte',
+          icon: 'pi pi-times',
+          command: () => {
+            this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
+          }
+        }
+        ]
+      }],
+    }
+  },
+  methods: {
+
+>>>>>>> Edomiyas/amis
     search(event) {
       setTimeout(() => {
         if (!event.query.trim().length) {
           this.filteredFiles = [...this.$data.files];
+<<<<<<< HEAD
         } else {
           this.searchFiles();
           //console.log(this.$data.files, "Here") //Test pour verifier le centenu de files
@@ -132,6 +184,14 @@ export default {
             return file.name
               .toLowerCase()
               .startsWith(event.query.toLowerCase());
+=======
+        }
+        else {
+          this.searchFiles();
+          //console.log(this.$data.files, "Here") //Test pour verifier le centenu de files
+          this.filteredFiles = this.$data.files.filter((file) => {
+            return file.name.toLowerCase().startsWith(event.query.toLowerCase());
+>>>>>>> Edomiyas/amis
           });
         }
       }, 250);
@@ -164,15 +224,25 @@ export default {
     },
 
     toAccueil() {
+<<<<<<< HEAD
       window.location.href = "/";
     },
   },
 
+=======
+      window.location.href = '/';
+    },
+    getUserName() {
+      return localStorage.getItem("nom");
+    }
+  },
+>>>>>>> Edomiyas/amis
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../../../scss/Variables.scss";
+
 .header {
   color: $color-head;
   background-color: $color-head;
@@ -181,7 +251,11 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+<<<<<<< HEAD
   height: 100%;
+=======
+  padding: 1% 0 1% 0;
+>>>>>>> Edomiyas/amis
 
   .greetings {
     width: 15%;
@@ -200,10 +274,15 @@ export default {
   .searchBar {
     width: 50%;
     padding: 1%;
+<<<<<<< HEAD
+=======
+
+>>>>>>> Edomiyas/amis
     .Bar {
       width: 100%;
     }
   }
+<<<<<<< HEAD
   .Buttons {
     display: inline-flex;
     padding: 1%;
@@ -211,6 +290,16 @@ export default {
       width: 40px;
       height: 40px;
       margin-left: 10px;
+=======
+
+  .Buttons {
+    width: 12%;
+    display: inline-flex;
+    padding: 1%;
+
+    .p-button-raised {
+      margin-left: 5%;
+>>>>>>> Edomiyas/amis
       background-color: $color-android;
       border: 1px solid $color-button;
     }
