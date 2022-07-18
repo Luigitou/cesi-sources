@@ -57,12 +57,23 @@ export default {
       );
     },
     createCommentaire() {
+      if (this.newCommentaire === "" || this.newCommentaire === null) {
+        return false;
+      }
+
       VosFichiersServices.createCommentaire(
         this.$route.params.id,
         0,
         this.newCommentaire
-      );
-      this.$emit("refresh-file");
+      )
+        .then((response) => {
+          if (response.status !== 200) {
+            return Promise.reject();
+          }
+        })
+        .then(() => {
+          this.fetchData();
+        });
     },
   },
   mounted() {

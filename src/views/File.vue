@@ -2,7 +2,7 @@
   <div class="file">
     <Header />
     <Preview />
-    <Commentaires @refresh-file="refresh" :key="key" />
+    <Commentaires />
   </div>
 </template>
 
@@ -22,11 +22,6 @@ export default {
     return {
       key: 0,
     };
-  },
-  methods: {
-    refresh() {
-      this.$data.key = this.$data.key + 1;
-    },
   },
 };
 </script>
