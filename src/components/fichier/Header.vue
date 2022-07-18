@@ -45,7 +45,7 @@ export default {
           });
           const link = document.createElement("a");
           link.href = URL.createObjectURL(blob);
-          link.download = this.$data.data.name;
+          link.download = this.$props.data.name;
           link.click();
           URL.revokeObjectURL(link.href);
         }
