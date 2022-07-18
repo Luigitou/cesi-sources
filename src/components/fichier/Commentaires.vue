@@ -73,6 +73,7 @@ export default {
         })
         .then(() => {
           this.fetchData();
+          this.newCommentaire = "";
         });
     },
   },

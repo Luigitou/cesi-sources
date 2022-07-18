@@ -33,24 +33,11 @@ export default {
   components: {
     Button,
   },
-  data() {
-    return {
-      data: {
-        name: "",
-        type: "",
-      },
-    };
+  props: {
+    data: Object,
   },
   methods: {
-    fetchData() {
-      VosFichiersServices.getHeaderFromFile(this.$route.params.id).then(
-        (response) => {
-          this.$data.data = response.data;
-        }
-      );
-    },
     downloadFile() {
-      console.log("go");
       VosFichiersServices.downloadFile(this.$route.params.id).then(
         (response) => {
           const blob = new Blob([response.data], {
@@ -64,9 +51,6 @@ export default {
         }
       );
     },
-  },
-  mounted() {
-    this.fetchData();
   },
 };
 </script>
