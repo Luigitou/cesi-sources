@@ -1,21 +1,23 @@
 <template>
   <div class="home">
+    <midHome/>
   </div>
 </template>
 
 <script>
+import midHome from "../components/navigation/home/midHome.vue"
 
 export default {
-  name: "Home",
+  name: "home",
 
   components: {
+    midHome,
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .home {
-  background: brown;
   height: 100%;
 }
 </style>

@@ -37,6 +37,12 @@ const routes = [
     name: "Profil",
     component: () => import("../views/Profil.vue"),
   },
+  {
+    path: "/vosFichiers",
+    name: "Vos Fichiers",
+    component: () => import("../views/VosFichiers.vue"),
+  },
+
 ];
 
 const router = createRouter({

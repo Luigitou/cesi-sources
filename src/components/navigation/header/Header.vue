@@ -1,43 +1,71 @@
 <template>
-  <div class="header" >
+  <div class="header">
     <div class="greetings">
-      <p><span class="default-text">Bonjour, </span><span class="dynamic-name">Louis</span></p>
+      <p>
+        <span class="default-text">Bonjour, </span
+        ><span class="dynamic-name">Louis</span>
+      </p>
     </div>
     <div class="searchBar">
-      <AutoComplete inputStyle="width:100%" class="Bar" v-model="searchValue" :suggestions="files" @complete="search($event)" placeholder="Search..." field="searchValue">
+      <AutoComplete
+        inputStyle="width:100%"
+        class="Bar"
+        v-model="searchValue"
+        :suggestions="files"
+        @complete="search($event)"
+        placeholder="Search..."
+        field="searchValue"
+      >
         <template #item="{ item }">
           <div>
-            <div> ""Insert Image"" / Nom Fichier :  {{ item.nom }} / Date de Publication : {{ item.date }}</div>
+            <div>
+              <span v-if="item.type == 'png'"><i class="pi pi-images" style="font-size: 2rem"></i></span>
+              <span v-else><i class="pi pi-file" style="font-size: 2rem"></i></span>
+               / Nom Fichier : {{ item.nom }}
+               / Date de Publication : {{ item.date }}
+               / Etat: {{ item.etat }}
+            </div>
           </div>
         </template>
       </AutoComplete>
     </div>
-    <div class="Buttons"> 
-      <Button icon="pi pi-cog" class="p-button-raised p-button-rounded" type="button" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
+    <div class="Buttons">
+      <Button
+        icon="pi pi-cog"
+        class="p-button-raised p-button-rounded"
+        type="button"
+        @click="toggle"
+        aria-haspopup="true"
+        aria-controls="overlay_menu"
+      />
       <Menu id="overlay_menu" ref="menu" :model="items" :popup="true" />
       <Button icon="pi pi-bell" class="p-button-raised p-button-rounded" />
-      <Button icon="pi pi-sign-out" class="p-button-raised p-button-rounded" @click="toAccueil"/>
-    </div>  
+      <Button
+        icon="pi pi-sign-out"
+        class="p-button-raised p-button-rounded"
+        @click="toAccueil"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import Button from 'primevue/button';
-import AutoComplete from 'primevue/autocomplete';
-import Menu from 'primevue/menu';
-import FichierService from '../../../services/FichierServices'
+import Button from "primevue/button";
+import AutoComplete from "primevue/autocomplete";
+import Menu from "primevue/menu";
+import FichierService from "../../../services/VosFichiersServices";
 
 export default {
   name: "Header",
   components: {
-  Button,
-  AutoComplete,
-  Menu
+    Button,
+    AutoComplete,
+    Menu,
   },
-  data(){
-    return{
+  data() {
+    return {
       searchValue: null, // Paramètre d'entrée de la barre de recherche.
-      filteredFiles: [],  
+      filteredFiles: [],
       files: [],
 
       items: [{
@@ -51,39 +79,62 @@ export default {
           }
         },
         {
-          label: 'Passer Admin',
-          icon: 'pi pi-user',
-          command: () => {
-            // this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
-            this.$router.push("/admin");
-          }
-        },
-        {
-          label: 'Supprimer compte',
-          icon: 'pi pi-times',
-          command: () => {
-            this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
-          }
-        }
-        ]
-      }],
-    }
-  },
-  methods: {
-
-    search(event) {
-        setTimeout(() => {
-            if (!event.query.trim().length) {
-                this.filteredFiles = [...this.$data.files];
-            }
-            else {
-              this.searchFiles();
-              //console.log(this.$data.files, "Here") //Test pour verifier le centenu de files
-                this.filteredFiles = this.$data.files.filter((file) => {
-                    return file.name.toLowerCase().startsWith(event.query.toLowerCase());
+          label: "Options",
+          items: [
+            {
+              label: "Modifier profile",
+              icon: "pi pi-user-edit",
+              command: () => {
+                this.$toast.add({
+                  severity: "success",
+                  summary: "Updated",
+                  detail: "Data Updated",
+                  life: 3000,
                 });
-            }
-        }, 250);
+              },
+            },
+            {
+              label: "Passer Admin",
+              icon: "pi pi-user",
+              command: () => {
+                // this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
+                this.$router.push("/admin");
+              },
+            },
+            {
+              label: "Supprimer compte",
+              icon: "pi pi-times",
+              command: () => {
+                this.$toast.add({
+                  severity: "warn",
+                  summary: "Delete",
+                  detail: "Data Deleted",
+                  life: 3000,
+                });
+              },
+            },
+          ],
+        },
+      ],
+  },
+    
+  }
+},
+  methods: {
+    search(event) {
+      setTimeout(() => {
+        if (!event.query.trim().length) {
+          this.filteredFiles = [...this.$data.files];
+        } else {
+          this.searchFiles();
+          //console.log(this.$data.files, "Here") //Test pour verifier le centenu de files
+          this.filteredFiles = this.$data.files.filter((file) => {
+            return file.name
+              .toLowerCase()
+              .startsWith(event.query.toLowerCase());
+          });
+        }
+      }, 250);
     },
 
     toggle(event) {
@@ -95,9 +146,10 @@ export default {
       data.forEach((element) => {
         //console.log(element.nom)  //Test pour verifier le centenu de element
         this.$data.files.push({
-          nom: element.nom,          
+          nom: element.nom,
           date: element.dateCreation,
           membres: element.user,
+          etat: element.etat,
           taille: element.taille + " octets",
           type: element.type,
         });
@@ -111,10 +163,11 @@ export default {
       });
     },
 
-    toAccueil(){
-      window.location.href = '/';
-    }
-  },    
+    toAccueil() {
+      window.location.href = "/";
+    },
+  },
+
 };
 </script>
 
@@ -124,39 +177,40 @@ export default {
   color: $color-head;
   background-color: $color-head;
   width: 100%;
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-around;
-  padding: 1% 0 1% 0 ;
+  height: 100%;
 
-  .greetings{
+  .greetings {
     width: 15%;
     font-size: 1.5rem;
     font-weight: bold;
-    position: relative;
-    top: 15px;
 
-    .default-text{
+    .default-text {
       color: $color-text;
     }
 
-    .dynamic-name{
+    .dynamic-name {
       color: $color-special;
     }
   }
 
-  .searchBar{
+  .searchBar {
     width: 50%;
     padding: 1%;
-    .Bar{
+    .Bar {
       width: 100%;
     }
   }
-  .Buttons{
-    width: 12%;
+  .Buttons {
     display: inline-flex;
     padding: 1%;
-    .p-button-raised{
-      margin-left: 5%;
+    .p-button-raised {
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
       background-color: $color-android;
       border: 1px solid $color-button;
     }
