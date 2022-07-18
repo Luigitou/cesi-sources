@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import VosFichiersHead from "../components/VosFichiers/VosFichiersHead.vue";
-import VosFichiersTab from "../components/VosFichiers/VosFichiersTab.vue";
+import VosFichiersHead from "../components/vosFichiers/VosFichiersHead.vue";
+import VosFichiersTab from "../components/vosFichiers/VosFichiersTab.vue";
 import VosFichiersServices from "../services/VosFichiersServices";
 
 export default {
@@ -90,7 +90,7 @@ export default {
       this.reset = this.reset + 1;
     },
     openFile(payload) {
-      console.log(payload.file);
+      this.$router.push(`/fichier/${payload.file.id}`);
     },
   },
   mounted() {

@@ -37,6 +37,11 @@ const routes = [
     name: "Vos Fichiers",
     component: () => import("../views/VosFichiers.vue"),
   },
+  {
+    path: "/fichier/:id",
+    name: "File",
+    component: () => import("../views/File.vue")
+  }
 
 ];
 

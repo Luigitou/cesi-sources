@@ -54,6 +54,20 @@ class FichierService {
 
   }
 
+  getCommentaires(idFichier) {
+    return axios.get(`${API_PATH}/getCommentaires?idFichier=${idFichier}`);
+  }
+
+  createCommentaire(idFichier, idUtilisateur, text) {
+    const data = new FormData();
+    data.append("idFichier", idFichier);
+    data.append("idUtilisateur", idUtilisateur);
+    data.append("text", text);
+
+    return axios.post(API_PATH + "/createCommentaire",
+      data
+    )
+  }
 
 }
 
