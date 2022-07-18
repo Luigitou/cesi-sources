@@ -33,9 +33,9 @@ export default {
   margin: 5px 5px 10px 5px;
   background-color: #EFFAFF;
   border: 1px solid #296870;
-  width: 50px;
-  height: 50px;
-  font-size: 2rem;
+  width: 100px;
+  height: 100px;
+  font-size: 4rem;
   align-items: center;
   justify-content: center;
   cursor: pointer;

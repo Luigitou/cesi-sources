@@ -36,8 +36,8 @@ export default {
   },
   data() {
     return {
-      cellSize: 10,
-      boardSize: 20,
+      cellSize: 15,
+      boardSize: 25,
       speed: 10,
       scores: 0,
       isPlaying: false
@@ -70,7 +70,7 @@ export default {
 .column {
   display: flex;
   justify-content: center;
-  width: 30%;
+  width: 27.5%;
   background-color: #f4f4f4;
   border-radius: 4px;
   padding: 10px 5px;
@@ -83,6 +83,7 @@ export default {
   border-radius: 4px;
   border: 1px solid #ccc;
   line-height: 20px;
+  padding-left: 5px;
 }
 
 #play-btn {

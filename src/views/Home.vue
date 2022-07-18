@@ -1,27 +1,15 @@
 <template>
   <div class="home">
-    <div class="container_jeux">
-      <div class="snake_game">
-        <SnakePage :cellSize="cellSize" :boardSize="boardSize" :speed="speed" :isPlaying="isPlaying" :stop="stop" :addScores="addScores" :scores="scores"></SnakePage>
-      </div>
-      <div class="tictactoe">
-        <TicTacToePage></TicTacToePage>
-      </div>
+    <div class="lien_jeux">
+      <h3>Cliquez ici pour jouer à <router-link to="/snake">Snake 🐍</router-link> ou <router-link to="/tictactoe"> Tic Tac Toe <img src="../assets/Jeux/tic-tac-toe.png" alt="tictactoe" class="tictactoe"></router-link> !</h3>
     </div>
   </div>
 </template>
 
 <script>
-import SnakePage from '../components/jeux/snake/SnakePage.vue';
-import TicTacToePage from '../components/jeux/tictactoe/TicTacToePage.vue';
 
 export default {
   name: "Home",
-
-  components: {
-    SnakePage,
-    TicTacToePage
-  },
 };
 </script>
 
@@ -30,17 +18,15 @@ export default {
   height: 100%;
 }
 
-.container_jeux{
-  display: flex;
-  justify-content: space-around;
-}
-
-.snake_game{
-  width: 50%;
+.lien_jeux{
+  color: #296870;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .tictactoe{
-  width: 50%;
-  flex-wrap: wrap;
+  align-items: baseline;
+  position: relative;
+  top: 5px;
 }
 </style>

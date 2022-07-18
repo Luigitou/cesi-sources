@@ -165,6 +165,7 @@ export default {
 <style lang="scss" scoped>
 .game-over-text {
   margin: 5%;
+  font-size: 1.5rem;
 }
 
 .tictactoe-board {
