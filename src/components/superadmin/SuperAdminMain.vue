@@ -1,6 +1,6 @@
 <template>
   <div class="users">
-    <DataTable :value="users" :paginator="true" :rows="5" sortMode="multiple" responsiveLayout="scroll"
+    <DataTable :value="utilisateurs" :paginator="true" :rows="5" sortMode="multiple" responsiveLayout="scroll"
       v-model:filters="filters"
       filterDisplay="row"
       class="data"
@@ -17,11 +17,6 @@
       <Column field="prenom" header="Prenom" :sortable="true"></Column>
       <Column field="mail" header="Mail" :sortable="true"></Column>
       <Column field="adresse" header="Adresse" :sortable="true"></Column>
-      <Column field="moderateur" header="Modérateur">
-        <template #body>
-          <i class="pi pi-check" id="check"></i>
-        </template>
-      </Column>
       <Column header="Supprimer">
         <template #body>
           <Button icon="pi pi-times" class="p-button-raised p-button-rounded p-button-danger" id="supp" />
@@ -37,6 +32,7 @@ import Column from 'primevue/column';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import { FilterMatchMode, FilterOperator } from "primevue/api";
+import UtilisateurService from '../../services/UtilisateurService';
 
 export default{
   name: 'users',
@@ -55,33 +51,18 @@ export default{
         'mail': {value: null, matchMode: FilterMatchMode.IN},
         'adresse': {value: null, matchMode: FilterMatchMode.IN}
       },
-      users: [
-        {
-          nom: "Temesgen",
-          prenom: "Edomiyas", 
-          mail: "temesgen.edomiyas@yahoo.com",  
-          adresse: '170, Rue anatole 75015 Paris' 
-        },
-        {
-          nom: "Temesgen",
-          prenom: "Edomiyas", 
-          mail: "temesgen.edomiyas@yahoo.com",  
-          adresse: '170, Rue anatole 75015 Paris' 
-        },
-        {
-          nom: "Temesgen",
-          prenom: "Edomiyas", 
-          mail: "temesgen.edomiyas@yahoo.com",  
-          adresse: '170, Rue anatole 75015 Paris' 
-        },
-        {
-          nom: "John",
-          prenom: "Doe", 
-          mail: "john.doe@gmail.com",
-          adresse: '160, Rue jean baptiste 75009 Paris' 
-        },
-      ]
+      utilisateurs: []
     }
+  },
+  methods: {
+    getUtilisateurs(){
+      UtilisateurService.getUtilisateurs(localStorage.getItem('token')).then((response) => {
+        this.utilisateurs = response.data;
+      });
+    }
+  },
+  created(){
+    this.getUtilisateurs();
   }
 }
 </script>
