@@ -97,4 +97,16 @@ export default{
     box-shadow: 0 4px 8px 0 rgba(109, 109, 109, 0.2);
   }
 }
+
+@media (max-width: 443px) {
+  .categories{
+    flex-direction: column;
+    align-items: center;
+
+    .image, .document, .videos{
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
+}
 </style>

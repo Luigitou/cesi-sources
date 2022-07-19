@@ -125,7 +125,6 @@ saveUser(){
         margin-top: 2%;
 
         .card {
-        min-width: 450px;
         transition: 0.3s;
         border-radius: 10px;
         padding: 20px;
@@ -164,10 +163,10 @@ saveUser(){
     .card:hover{
       box-shadow: 0 4px 8px 0 rgba(109, 109, 109, 0.2);
     }
-    @media screen and (max-width: 960px) {
-        .card {
-            width: 80%;
-        }
+    @media (max-width: 443px) {
+      .card{
+        margin-top: 10%;
+      }
     }
 
     .p-button{

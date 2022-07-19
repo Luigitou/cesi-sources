@@ -182,4 +182,25 @@ export default {
     }
   }
 }
+
+@media (max-width: 443px){
+  .header{
+    flex-wrap: wrap;
+
+    .logo{
+      display: flex;
+      justify-content: center
+    }
+
+    .searchBar{
+      margin-left: 20px;
+    }
+    
+    .Buttons{
+      position: relative;
+      right: 100px;
+    }
+  }
+ 
+}
 </style>
