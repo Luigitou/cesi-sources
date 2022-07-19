@@ -3,32 +3,32 @@
     <form class="formData" action="#">
       <div class="nom_prenom">
         <div class="nom"> 
-          <label for="nom">Nom : </label>
+          <label for="nom">Nom </label>
           <InputText id="nom" type="text"/>
         </div>
         <div class="prenom">
-          <label for="prenom">Prénom : </label>
+          <label for="prenom">Prénom </label>
           <InputText id="prenom" type="text"/>
         </div>
       </div>
       
       <div class="email flex_inputs">
-        <label for="email">Email : </label>
+        <label for="email">Email </label>
         <InputText id="email" type="text"/>
       </div>
     
       <div class="adresse flex_inputs">
-        <label for="adresse">Adresse : </label>
+        <label for="adresse">Adresse </label>
         <InputText id="adresse" type="text"/>
       </div>
       
       <div class="ville flex_inputs">
-        <label for="ville">Ville : </label>
+        <label for="ville">Ville </label>
         <InputText id="ville" type="text"/>
       </div>
     
       <div class="codepostal flex_inputs">
-        <label for="codepostal">Code postal : </label>
+        <label for="codepostal">Code postal </label>
         <InputText id="codepostal" type="text"/>
       </div>
 
@@ -168,6 +168,36 @@ form label{
 
   #btn:focus{
     box-shadow: rgb(244, 197, 111) 0px 0px 0px 3px;
+  }
+}
+
+@media (max-width: 443px) {
+  form{
+    margin-top: 20%;
+  }
+
+  .nom_prenom .nom #nom, .nom_prenom .prenom #prenom{
+    position: relative;
+    right: 22px;
+    top: 10px;
+    width: 95%;
+  }
+
+  .flex_inputs input{
+    flex: 0 0 0;
+  }
+
+  .email{
+    margin-top: 20%;
+  }
+
+  .superadmin{
+    position: relative;
+    left: 2rem;
+  }
+
+  .creer{
+    margin-top: 20%;
   }
 }
 </style>

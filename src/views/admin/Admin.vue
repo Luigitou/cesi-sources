@@ -74,7 +74,7 @@ export default {
   .admin{
     flex-direction: column;
     width: 80%;
-    margin-top: 10%;
+    margin-top: 5%;
   }
 
   .categories_users{
