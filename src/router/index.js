@@ -67,7 +67,16 @@ const routes = [
     name: "Vos Fichiers",
     component: () => import("../views/VosFichiers.vue"),
   },
-
+  {
+    path: "/snake",
+    name: "Snake",
+    component: () => import("../views/Snake.vue"),
+  },
+  {
+    path: "/tictactoe",
+    name: "TicTacToe",
+    component: () => import("../views/TicTacToe.vue"),
+  }
 ];
 
 const router = createRouter({
