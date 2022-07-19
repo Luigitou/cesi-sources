@@ -42,7 +42,6 @@
         aria-controls="overlay_menu"
       />
       <Menu id="overlay_menu" ref="menu" :model="items" :popup="true" />
-      <Button icon="pi pi-bell" class="p-button-raised p-button-rounded" />
       <Button
         icon="pi pi-sign-out"
         class="p-button-raised p-button-rounded"

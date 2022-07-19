@@ -1,10 +1,9 @@
 import axios from "axios";
 
 const API_PATH = process.env.VUE_APP_URL_API;
-const token = localStorage.getItem('user_token');
+const token = localStorage.getItem("user_token");
 
 class FichierService {
-
   searchFile(searchValue) {
     return axios.get(`${API_PATH}/rechercheFichier?nom=${searchValue}`);
   }
@@ -24,31 +23,31 @@ class FichierService {
     params.append("idDossierParent", idDossierParent);
 
     return axios.get(API_PATH + "/getFichiers", {
-      params: params
-    })
+      params: params,
+    });
   }
 
-  getImages(){
+  getImages() {
     return axios.get(API_PATH + "/getImages", {
       headers: {
-        'Authorization': `Bearer ${token}` 
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
-  getDocuments(){
+  getDocuments() {
     return axios.get(API_PATH + "/getDocuments", {
       headers: {
-        'Authorization': `Bearer ${token}` 
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
-  getVideos(){
+  getVideos() {
     return axios.get(API_PATH + "/getVideos", {
       headers: {
-        'Authorization': `Bearer ${token}` 
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
@@ -60,9 +59,7 @@ class FichierService {
     data.append("name", name);
     data.append("statut", statut);
 
-    return axios.post(API_PATH + "/createDossier",
-      data
-    );
+    return axios.post(API_PATH + "/createDossier", data);
   }
 
   createFile(idUtilisateur, idDossierParent, statut, file) {
@@ -73,10 +70,7 @@ class FichierService {
     data.append("statut", statut);
     data.append("file", file);
 
-    return axios.post(API_PATH + "/createFichier",
-      data
-    )
-
+    return axios.post(API_PATH + "/createFichier", data);
   }
 }
 
