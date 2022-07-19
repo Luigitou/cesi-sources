@@ -7,26 +7,32 @@
 </template>
 
 <script>
-import Menu from "./Menu.vue";
-//import FooterMenu from "./FooterMenu.vue";
+  import Menu from "./Menu.vue";
+  //import FooterMenu from "./FooterMenu.vue";
 
-export default {
-  name: "Sidemenu",
-  components: {
-    Menu,
-    //FooterMenu,
-  },
-};
+  export default {
+    name: "Sidemenu",
+    components: {
+      Menu,
+      //FooterMenu,
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-.sidemenu {
-  background-color: #effaff;
-  height: 100%;
-  position: relative;
+  .sidemenu {
+    background-color: #effaff;
+    height: 100%;
+    position: relative;
 
-  .logo {
-    width: 100%;
+    .logo {
+      width: 100%;
+    }
   }
-}
+
+  @media (max-width: 443px) {
+    .sidemenu .logo {
+      display: none;
+    }
+  }
 </style>

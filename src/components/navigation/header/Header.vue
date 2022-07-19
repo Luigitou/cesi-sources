@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="greetings">
-      <p>
+      <p id="HelloText">
         <span class="default-text">Bonjour, </span
         ><span class="dynamic-name">Louis</span>
       </p>
@@ -53,165 +53,187 @@
 </template>
 
 <script>
-import Button from "primevue/button";
-import AutoComplete from "primevue/autocomplete";
-import Menu from "primevue/menu";
-import FichierService from "../../../services/VosFichiersServices";
+  import Button from "primevue/button";
+  import AutoComplete from "primevue/autocomplete";
+  import Menu from "primevue/menu";
+  import FichierService from "../../../services/VosFichiersServices";
 
-export default {
-  name: "Header",
-  components: {
-    Button,
-    AutoComplete,
-    Menu,
-  },
-  data() {
-    return {
-      searchValue: null, // Paramètre d'entrée de la barre de recherche.
-      filteredFiles: [],
-      files: [],
-      items: [
-        {
-          label: "Options",
-          items: [
-            {
-              label: "Modifier profile",
-              icon: "pi pi-user-edit",
-              command: () => {
-                //this.$toast.add({severity:'success', summary:'Updated', detail:'Data Updated', life: 3000});
-                this.$router.push("/profil");
+  export default {
+    name: "Header",
+    components: {
+      Button,
+      AutoComplete,
+      Menu,
+    },
+    data() {
+      return {
+        searchValue: null, // Paramètre d'entrée de la barre de recherche.
+        filteredFiles: [],
+        files: [],
+        items: [
+          {
+            label: "Options",
+            items: [
+              {
+                label: "Modifier profile",
+                icon: "pi pi-user-edit",
+                command: () => {
+                  //this.$toast.add({severity:'success', summary:'Updated', detail:'Data Updated', life: 3000});
+                  this.$router.push("/profil");
+                },
               },
-            },
-            {
-              label: "Passer Admin",
-              icon: "pi pi-user",
-              command: () => {
-                // this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
-                this.$router.push("/admin");
+              {
+                label: "Passer Admin",
+                icon: "pi pi-user",
+                command: () => {
+                  // this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
+                  this.$router.push("/admin");
+                },
               },
-            },
-            {
-              label: 'Passer Super-admin',
-              icon: 'pi pi-user-plus',
-              command: () => {
-                this.$router.push("/superadmin");
-              }
-            },
-            {
-              label: "Supprimer compte",
-              icon: "pi pi-times",
-              command: () => {
-                this.$toast.add({
-                  severity: "warn",
-                  summary: "Delete",
-                  detail: "Data Deleted",
-                  life: 3000,
-                });
+              {
+                label: "Passer Super-admin",
+                icon: "pi pi-user-plus",
+                command: () => {
+                  this.$router.push("/superadmin");
+                },
               },
-            },
-          ],
-        },
-      ],
-    };
-  },
-  methods: {
-    search(event) {
-      setTimeout(() => {
-        if (!event.query.trim().length) {
-          this.filteredFiles = [...this.$data.files];
-        } else {
-          this.searchFiles();
-          //console.log(this.$data.files, "Here") //Test pour verifier le centenu de files
-          this.filteredFiles = this.$data.files.filter((file) => {
-            return file.name
-              .toLowerCase()
-              .startsWith(event.query.toLowerCase());
+              {
+                label: "Supprimer compte",
+                icon: "pi pi-times",
+                command: () => {
+                  this.$toast.add({
+                    severity: "warn",
+                    summary: "Delete",
+                    detail: "Data Deleted",
+                    life: 3000,
+                  });
+                },
+              },
+            ],
+          },
+        ],
+      };
+    },
+    methods: {
+      search(event) {
+        setTimeout(() => {
+          if (!event.query.trim().length) {
+            this.filteredFiles = [...this.$data.files];
+          } else {
+            this.searchFiles();
+            //console.log(this.$data.files, "Here") //Test pour verifier le centenu de files
+            this.filteredFiles = this.$data.files.filter((file) => {
+              return file.name
+                .toLowerCase()
+                .startsWith(event.query.toLowerCase());
+            });
+          }
+        }, 250);
+      },
+
+      toggle(event) {
+        this.$refs.menu.toggle(event);
+      },
+
+      parseData(data) {
+        this.$data.files = [];
+        data.forEach((element) => {
+          //console.log(element.nom)  //Test pour verifier le centenu de element
+          this.$data.files.push({
+            nom: element.nom,
+            date: element.dateCreation,
+            membres: element.user,
+            etat: element.etat,
+            taille: element.taille + " octets",
+            type: element.type,
           });
-        }
-      }, 250);
-    },
-
-    toggle(event) {
-      this.$refs.menu.toggle(event);
-    },
-
-    parseData(data) {
-      this.$data.files = [];
-      data.forEach((element) => {
-        //console.log(element.nom)  //Test pour verifier le centenu de element
-        this.$data.files.push({
-          nom: element.nom,
-          date: element.dateCreation,
-          membres: element.user,
-          etat: element.etat,
-          taille: element.taille + " octets",
-          type: element.type,
         });
-      });
-    },
+      },
 
-    searchFiles() {
-      FichierService.searchFile(this.$data.searchValue).then((response) => {
-        this.parseData(response.data);
-        //console.log(response.data) //Test pour verifier le centenu de data
-      });
-    },
+      searchFiles() {
+        FichierService.searchFile(this.$data.searchValue).then((response) => {
+          this.parseData(response.data);
+          //console.log(response.data) //Test pour verifier le centenu de data
+        });
+      },
 
-    toAccueil() {
-      window.location.href = "/";
+      toAccueil() {
+        window.location.href = "/";
+      },
+      getUserName() {
+        return localStorage.getItem("nom");
+      },
     },
-    getUserName() {
-      return localStorage.getItem("nom");
-    },
-  },
-};
+  };
 </script>
 
 <style lang="scss" scoped>
-@import "../../../scss/Variables.scss";
+  @import "../../../scss/Variables.scss";
 
-.header {
-  color: $color-head;
-  background-color: $color-head;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  padding: 1% 0 1% 0;
+  .header {
+    color: $color-head;
+    background-color: $color-head;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1% 0 1% 0;
 
-  .greetings {
-    width: 15%;
-    font-size: 1.5rem;
-    font-weight: bold;
+    .greetings {
+      width: 15%;
+      font-size: 20px;
+      font-weight: bold;
 
-    .default-text {
-      color: $color-text;
+      .default-text {
+        color: $color-text;
+      }
+
+      .dynamic-name {
+        color: $color-special;
+      }
     }
 
-    .dynamic-name {
-      color: $color-special;
+    .searchBar {
+      width: 50%;
+      padding: 1%;
+      .Bar {
+        width: 100%;
+      }
+    }
+
+    .Buttons {
+      display: inline-flex;
+      padding: 1%;
+
+      .p-button-raised {
+        margin-left: 5%;
+        background-color: $color-android;
+        border: 1px solid $color-button;
+      }
+    }
+
+    @media (max-width: 443px) {
+      .header {
+        display: flex;
+        max-width: 100%;
+
+        .header .Buttons {
+          display: none;
+        }
+      }
     }
   }
-
-  .searchBar {
-    width: 50%;
-    padding: 1%;
-    .Bar {
-      width: 100%;
+  @media (max-width: 443px) {
+    .MidAccueil {
+      display: flex;
+      max-width: 100%;
+    }
+    .header .greetings {
+      font-size: 15px;
+    }
+    .header .searchBar {
+      width: 40%;
     }
   }
-
-  .Buttons {
-    width: 12%;
-    display: inline-flex;
-    padding: 1%;
-
-    .p-button-raised {
-      margin-left: 5%;
-      background-color: $color-android;
-      border: 1px solid $color-button;
-    }
-  }
-}
 </style>
