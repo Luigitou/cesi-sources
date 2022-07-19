@@ -19,5 +19,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@media (max-width: 443px) {
+  .documents{
+    margin-top: 10%;
+  }
+}
 </style>

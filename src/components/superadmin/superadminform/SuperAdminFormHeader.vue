@@ -41,4 +41,10 @@ export default{
   }
   
 }
+
+@media (max-width: 443px) {
+  .title{
+    margin-top: 10%;
+  }
+}
 </style>
