@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     getImages(){
-      VosFichiersService.getImages().then((response) => {
+      VosFichiersService.getImages(localStorage.getItem('token')).then((response) => {
         const images = response.data;
         this.nombreImages = images.length;
 
@@ -38,7 +38,7 @@ export default {
       });
     },
     getDocuments(){
-      VosFichiersService.getDocuments().then((response) => {
+      VosFichiersService.getDocuments(localStorage.getItem('token')).then((response) => {
         const documents = response.data;
         this.nombreDocuments = documents.length;
 
@@ -46,7 +46,7 @@ export default {
       });
     },
     getVideos(){
-      VosFichiersService.getVideos().then((response) => {
+      VosFichiersService.getVideos(localStorage.getItem('token')).then((response) => {
         const videos = response.data;
         this.nombreVideos = videos.length;
 

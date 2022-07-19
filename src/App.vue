@@ -92,6 +92,7 @@ export default {
 
       .views {
         height: calc(100% - 80px);
+        margin-top: 7%;
       }
     }
   }
