@@ -27,15 +27,15 @@ class FichierService {
     })
   }
 
-  getImages(){
+  getImages() {
     return axios.get(API_PATH + "/getImages");
   }
 
-  getDocuments(){
+  getDocuments() {
     return axios.get(API_PATH + "/getDocuments");
   }
 
-  getVideos(){
+  getVideos() {
     return axios.get(API_PATH + "/getVideos");
   }
 
@@ -65,6 +65,32 @@ class FichierService {
     )
 
   }
+
+  getCommentaires(idFichier) {
+    return axios.get(`${API_PATH}/getCommentaires?idFichier=${idFichier}`);
+  }
+
+  createCommentaire(idFichier, idUtilisateur, text) {
+    const data = new FormData();
+    data.append("idFichier", idFichier);
+    data.append("idUtilisateur", idUtilisateur);
+    data.append("text", text);
+
+    return axios.post(API_PATH + "/createCommentaire",
+      data
+    )
+  }
+
+  getHeaderFromFile(idfichier) {
+    return axios.get(`${API_PATH}/getHeaderFromFile?idFichier=${idfichier}`);
+  }
+
+  downloadFile(idFichier) {
+    return axios.get(`${API_PATH}/downloadFile?idFichier=${idFichier}`, {
+      responseType: 'blob'
+    });
+  }
+
 }
 
 export default new FichierService();

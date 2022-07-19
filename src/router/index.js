@@ -58,7 +58,7 @@ const routes = [
     component: () => import("../views/superadmin/SuperAdminForm.vue"),
   },
   {
-    path:"/profil",
+    path: "/profil",
     name: "Profil",
     component: () => import("../views/Profil.vue"),
   },
@@ -76,7 +76,13 @@ const routes = [
     path: "/tictactoe",
     name: "TicTacToe",
     component: () => import("../views/TicTacToe.vue"),
+  },
+  {
+    path: "/fichier/:id",
+    name: "File",
+    component: () => import("../views/File.vue")
   }
+
 ];
 
 const router = createRouter({
