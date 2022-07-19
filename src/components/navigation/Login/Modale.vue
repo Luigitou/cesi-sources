@@ -11,12 +11,7 @@
                     <label for="psw"><strong>Mot de passe</strong></label>
                     <InputText type="password" placeholder="Entrez votre mot de passe" name="psw" required v-model="password"/>
         
-                    <Button label="Se connecter" type="submit" class="p-button-info" @click="connect"/>
-
-                <label for="psw"><strong>Mot de passe</strong></label>
-                <InputText type="password" placeholder="Entrez votre mot de passe" name="psw" required v-model="pwd" />
-
-                <Button label="Se connecter" type="submit" class="p-button-info" @click="connect" />
+                    <Button label="Se connecter" type="submit" id="button" @click="connect"/>
 
                 <label v-on:click="toggleModale">
                     Vous n'avez pas de compte? <router-link to="/Inscription"><strong>Inscrivez-vous</strong>
@@ -81,6 +76,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../scss/Variables.scss";
+
 .bloc-modale {
     position: fixed;
     top: 10;
@@ -135,19 +132,22 @@ input[type=password] {
 }
 
 /* Set a style for all buttons */
-button {
+#button {
     padding: 1%;
     margin: 1%;
     cursor: pointer;
     width: 95%;
     margin-left: 1%;
+    background-color: $color-text;
+    border: 1px solid $color-text;
 }
 
-button:hover {
+#button:hover{
     opacity: 0.8;
 }
 
 a {
     color: black;
 }
+
 </style>

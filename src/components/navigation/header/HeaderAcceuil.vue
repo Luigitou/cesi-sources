@@ -1,9 +1,11 @@
 <template>
   <modale v-bind:revele="revele" v-bind:toggleModale="toggleModale"></modale>
   <div class="header">
-    <div class="logo">
-      <img src="../../../assets/Accueil/logo_transparent.png" alt="logo" />
-    </div>
+    <router-link to="/">
+      <div class="logo">
+        <img src="../../../assets/Accueil/logo_transparent.png" alt="logo" />
+      </div>
+    </router-link>
     <div class="searchBar">
       <AutoComplete
         inputStyle="width:100%"
@@ -153,6 +155,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: $color-head;
 
   .logo {
     img {
@@ -163,9 +166,9 @@ export default {
   .searchBar {
     width: 50%;
     padding: 1%;
-    margin-right: 20%;
+    flex: 0 0 60%;
     .Bar {
-      width: 100%;
+      width: 75%;
     }
   }
   .Buttons {

@@ -66,6 +66,7 @@ export default {
 #main {
   height: 100%;
   width: 100%;
+  background-color: $color-head;
 
   .all {
     height: 100%;
@@ -97,6 +98,14 @@ export default {
 
   .splitter-side {
     border: none;
+  }
+
+  .p-splitter-gutter{
+    display: none;
+  }
+
+  .p-splitter-panel{
+    background-color: $color-head;
   }
 }
 </style>
