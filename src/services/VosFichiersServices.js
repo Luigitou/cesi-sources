@@ -27,6 +27,18 @@ class FichierService {
     })
   }
 
+  getImages(){
+    return axios.get(API_PATH + "/getImages");
+  }
+
+  getDocuments(){
+    return axios.get(API_PATH + "/getDocuments");
+  }
+
+  getVideos(){
+    return axios.get(API_PATH + "/getVideos");
+  }
+
   createFolder(idUtilisateur, idDossierParent, name, statut) {
     const data = new FormData();
 

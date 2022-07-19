@@ -70,7 +70,6 @@ export default {
       searchValue: null, // Paramètre d'entrée de la barre de recherche.
       filteredFiles: [],
       files: [],
-
       items: [
         {
           label: "Options",
@@ -105,6 +104,13 @@ export default {
                     // this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
                     this.$router.push("/admin");
                   },
+                },
+                {
+                  label: 'Passer Super-admin',
+                  icon: 'pi pi-user-plus',
+                  command: () => {
+                    this.$router.push("/superadmin");
+                  }
                 },
                 {
                   label: "Supprimer compte",

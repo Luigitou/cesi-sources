@@ -7,6 +7,9 @@ export default createStore({
     prenom: "",
     mail: "",
     adresse: "",
-    btnAdd: null
+    btnAdd: null,
+    nombreImages: 0,
+    nombreDocuments: 0,
+    nombreVideos: 0
   }
 })

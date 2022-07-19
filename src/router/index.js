@@ -30,7 +30,32 @@ const routes = [
   {
     path: "/admin",
     name: "Admin",
-    component: () => import("../views/Admin.vue"),
+    component: () => import("../views/admin/Admin.vue"),
+  },
+  {
+    path: '/admin/images',
+    name: 'Images',
+    component: () => import("../views/admin/Images.vue"),
+  },
+  {
+    path: '/admin/documents',
+    name: 'Documents',
+    component: () => import("../views/admin/Documents.vue"),
+  },
+  {
+    path: '/admin/videos',
+    name: 'Videos',
+    component: () => import("../views/admin/Videos.vue")
+  },
+  {
+    path: "/superadmin",
+    name: "Superadmin",
+    component: () => import("../views/superadmin/SuperAdmin.vue"),
+  },
+  {
+    path: "/superadminform",
+    name: "Superadminform",
+    component: () => import("../views/superadmin/SuperAdminForm.vue"),
   },
   {
     path:"/profil",
