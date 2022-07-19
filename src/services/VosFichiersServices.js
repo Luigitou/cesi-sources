@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_PATH = process.env.VUE_APP_URL_API;
+const token = localStorage.getItem('user_token');
 
 class FichierService {
 
@@ -28,15 +29,27 @@ class FichierService {
   }
 
   getImages() {
-    return axios.get(API_PATH + "/getImages");
+    return axios.get(API_PATH + "/getImages", {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
   getDocuments() {
-    return axios.get(API_PATH + "/getDocuments");
+    return axios.get(API_PATH + "/getDocuments", {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
   getVideos() {
-    return axios.get(API_PATH + "/getVideos");
+    return axios.get(API_PATH + "/getVideos", {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
   createFolder(idUtilisateur, idDossierParent, name, statut) {

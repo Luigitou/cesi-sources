@@ -64,12 +64,17 @@ export default {
       flex-direction: row;
       width: 100%;
       justify-content: space-around;
-      #btnInscription {
-        text-decoration: none;
-        .p-button-rounded {
-          position: static;
-          background-color: $color-text;
-          border: 1px solid $color-text;
+        #btnInscription{
+          text-decoration: none;
+          .p-button-rounded{
+            position: static;
+            background-color: $color-text;
+            border: 1px solid $color-text;
+          }
+
+        }
+        img {
+          width: 50%;
         }
       }
       img {
@@ -85,19 +90,25 @@ export default {
       width: 100%;
     }
   }
-
-  @media only screen and (max-width: 700px) {
-    width: 100%;
+}
+@media (max-width: 443px) {
+  .MidAccueil {
     display: flex;
     flex-direction: column;
+    max-width: 100%;
+    margin-top: 25%;
+  }
+  .MidAccueil .wrapperLeft .btnWrapper {
+    margin-top: 20%;
+  }
 
-    .wrapperLeft {
-      width: 80%;
-    }
+  .MidAccueil .wrapperLeft {
+    width: 80%;
+  }
 
-    .imgWrapper {
-      width: 60%;
-    }
+  .MidAccueil .imgWrapper{
+    margin-top: 15%;
+    width: 90%;
   }
 }
 </style>

@@ -116,6 +116,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../scss/Variables.scss";
+
 .bloc-modale {
   position: fixed;
   top: 10;
@@ -170,15 +172,17 @@ input[type="password"] {
 }
 
 /* Set a style for all buttons */
-button {
+#button {
   padding: 1%;
   margin: 1%;
   cursor: pointer;
   width: 95%;
   margin-left: 1%;
+  background-color: $color-text;
+  border: 1px solid $color-text;
 }
 
-button:hover {
+#button:hover {
   opacity: 0.8;
 }
 

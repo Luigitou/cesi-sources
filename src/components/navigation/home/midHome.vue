@@ -9,6 +9,7 @@ export default {
   },
     data() {
         return {
+            showNoFile: false,
             files: [],
             responsiveOptions: [
                 {
@@ -41,12 +42,12 @@ export default {
             data.forEach((element) => {
                 //console.log(element.nom)  //Test pour verifier le centenu de element
                 this.$data.files.push({
-                nom: element.nom,
-                date: element.dateCreation,
-                membres: element.user,
-                etat: element.etat,
-                taille: element.taille + " octets",
-                type: element.type,
+                    nom: element.nom,
+                    date: element.dateCreation,
+                    membres: element.user,
+                    etat: element.etat,
+                    taille: element.taille + " octets",
+                    type: element.type,
                 });
             });
         },
@@ -55,6 +56,10 @@ export default {
             FichiersServices.getFilesFromFolder(1,1).then((response) => {
                 this.parseData(response.data);
                 console.log(this.files) //Test pour verifier le centenu de data
+
+                if(response.data.length == 0){
+                    this.showNoFile == true;
+                }
             });
         },
     }
@@ -64,11 +69,13 @@ export default {
 <template>
   <div class="MidHome">
      <div class="fistCarousel">
+        {{ loadUserFiles() }}
         <Carousel :value="files" :numVisible="3" :numScroll="3" :responsiveOptions="responsiveOptions" :circular="true" :autoplayInterval="3000">
             <template #header>
                 <div class="title">
                     <h5>Vos Fichiers :</h5>
                 </div>
+                <a v-if="showNoFile">Aucun fichier pour le moment : <span id="create_file">Créer un fichier</span></a>
             </template>
             <template #item="slotProps">
                 <div class="user-items">
@@ -112,6 +119,24 @@ export default {
 
     .pi{
         color: $color-special;
+    }
+
+    #create_file{
+        background-color: $color-special;
+        padding: 10px;
+        border-radius: 10px;
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+
+    #no_file{
+        display: none;
+    }
+
+    #create_file:hover{
+        background-color: transparent;
+        color: $color-special;
+        border: 1px solid $color-special;
     }
 </style>
 

@@ -83,48 +83,31 @@ export default {
               },
             },
             {
-              label: "Options",
-              items: [
-                {
-                  label: "Modifier profile",
-                  icon: "pi pi-user-edit",
-                  command: () => {
-                    this.$toast.add({
-                      severity: "success",
-                      summary: "Updated",
-                      detail: "Data Updated",
-                      life: 3000,
-                    });
-                  },
-                },
-                {
-                  label: "Passer Admin",
-                  icon: "pi pi-user",
-                  command: () => {
-                    // this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
-                    this.$router.push("/admin");
-                  },
-                },
-                {
-                  label: 'Passer Super-admin',
-                  icon: 'pi pi-user-plus',
-                  command: () => {
-                    this.$router.push("/superadmin");
-                  }
-                },
-                {
-                  label: "Supprimer compte",
-                  icon: "pi pi-times",
-                  command: () => {
-                    this.$toast.add({
-                      severity: "warn",
-                      summary: "Delete",
-                      detail: "Data Deleted",
-                      life: 3000,
-                    });
-                  },
-                },
-              ],
+              label: "Passer Admin",
+              icon: "pi pi-user",
+              command: () => {
+                // this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
+                this.$router.push("/admin");
+              },
+            },
+            {
+              label: 'Passer Super-admin',
+              icon: 'pi pi-user-plus',
+              command: () => {
+                this.$router.push("/superadmin");
+              }
+            },
+            {
+              label: "Supprimer compte",
+              icon: "pi pi-times",
+              command: () => {
+                this.$toast.add({
+                  severity: "warn",
+                  summary: "Delete",
+                  detail: "Data Deleted",
+                  life: 3000,
+                });
+              },
             },
           ],
         },

@@ -25,7 +25,7 @@
         <div class="p-float-label">
           <InputText id="username" type="text" required
            v-model="utilisateur.username" />
-          <label for="username">Identifiant*</label>
+          <label for="username">Pseudo*</label>
         </div>
         </div>
         <div class="field">
@@ -51,7 +51,7 @@
           <label for="Adresse">Mot de passe*</label>
         </div>
         </div>
-        <Button label="S'inscrire" type="submit" class="p-button-info" @click="saveUser"/>
+        <Button label="S'inscrire" type="submit" class="p-button" @click="saveUser"/>
         <p>Vous possèdez déja un compte ? <strong v-on:click="toggleModale" class="connect">Connectez-vous</strong></p>
       </form>
       </div>
@@ -115,6 +115,8 @@ saveUser(){
 };
 </script>
 <style lang="scss" scoped>
+@import "../../../scss/Variables.scss";
+
   .form-demo {
 
     .justify-content-center{
@@ -123,10 +125,10 @@ saveUser(){
         margin-top: 2%;
 
         .card {
-        min-width: 450px;
         transition: 0.3s;
         border-radius: 10px;
         padding: 20px;
+        background-color: #FFFFFF;
 
           img{
             width: 30%;
@@ -161,10 +163,19 @@ saveUser(){
     .card:hover{
       box-shadow: 0 4px 8px 0 rgba(109, 109, 109, 0.2);
     }
-    @media screen and (max-width: 960px) {
-        .card {
-            width: 80%;
-        }
+    @media (max-width: 443px) {
+      .card{
+        margin-top: 10%;
+      }
+    }
+
+    .p-button{
+      background-color: $color-text;
+      border: 1px solid $color-text;
+    }
+    
+    .p-button:hover{
+      opacity: 0.8;
     }
 }
 </style>
