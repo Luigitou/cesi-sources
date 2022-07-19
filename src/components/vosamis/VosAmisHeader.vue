@@ -9,16 +9,19 @@
       <div id="users">
         <table>
           <tr>
-            <th>Nom</th>
-            <th>Prenom</th>
+            <div class="labels">
+              <th>Nom</th>
+              <th>Prenom</th>
+            </div>
           </tr>
-          <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
-            <td v-if="this.id_utilisateur != utilisateur.id">{{ utilisateur.id }}</td>
-            <td v-if="this.nom_utilisateur != utilisateur.nom">{{ utilisateur.nom }}</td>
-            <td v-if="this.prenom_utilisateur != utilisateur.prenom">{{ utilisateur.prenom }}</td>
-            <td v-if="this.nom_utilisateur != utilisateur.nom"><Button label="Ajouter" id="btn"
-                @click="addAmi(utilisateur.id)">Ajouter</Button></td>
-          </tr>
+            <tr v-for="utilisateur in filteredUsers" v-bind:key="utilisateur.id">
+              <div v-if="this.$store.state.amiDansListe != utilisateur.id">
+                <td v-if="this.nom_utilisateur != utilisateur.nom">{{ utilisateur.nom }}</td>
+                <td v-if="this.prenom_utilisateur != utilisateur.prenom">{{ utilisateur.prenom }}</td>
+                <td v-if="this.nom_utilisateur != utilisateur.nom"><Button label="Ajouter" id="btn"
+                    @click="addAmi(utilisateur.id)">Ajouter</Button></td>
+              </div>
+            </tr>
         </table>
       </div>
     </div>
@@ -55,27 +58,19 @@ export default {
       }
     },
     getUtilisateurs() {
-      UtilisateurService.getUtilisateurs().then((response) => {
+      UtilisateurService.getUtilisateurs(localStorage.getItem('token')).then((response) => {
         this.utilisateurs = response.data;
 
-        for (const utilisateur of this.utilisateurs) {
-
-          if (localStorage.getItem('mail') == utilisateur.mail) {
-            // On retourne les infos de l'utilisateur connecté
-            this.id_utilisateur = utilisateur.id;
-            this.nom_utilisateur = utilisateur.nom;
-            this.prenom_utilisateur = utilisateur.prenom;
-
-            localStorage.setItem('id_user_connecte', this.id_utilisateur);
-            localStorage.setItem('nom_user_connecte', this.nom_utilisateur);
-
-            return this.id_utilisateur;
+        for(const utilisateur of this.utilisateurs){
+          if(localStorage.getItem('username') == utilisateur.username){
+            this.nom_utilisateur = utilisateur.nom
+            this.prenom_utilisateur = utilisateur.prenom
           }
         }
       });
     },
     addAmi(id_ami) {
-      UtilisateurService.addAmi(this.id_utilisateur, id_ami).then(() => {
+      UtilisateurService.addAmi(localStorage.getItem('id'), id_ami, localStorage.getItem('token')).then(() => {
         this.btnAdd = 1;
 
         return this.$store.state.btnAdd = this.btnAdd;
@@ -92,7 +87,7 @@ export default {
           u.prenom.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||
           u.mail.toLowerCase().indexOf(this.search.toLowerCase()) != -1;
       });
-    }
+    },
   }
 }
 </script>
@@ -162,15 +157,17 @@ export default {
     box-shadow: 0 4px 8px 0 rgba(70, 70, 70, 0.2);
   }
 
+  .labels{
+    display: flex;
+  }
+
   table tr th {
     padding: 15px;
-    text-align: left;
   }
 
   table tr td {
     text-align: left;
-    padding: 10px;
-    width: 9.7rem;
+    padding: 10px 10px 10px 20px;
   }
 
   #btn {
@@ -178,6 +175,7 @@ export default {
     padding: 1% 5% 4% 5%;
     border-radius: 5px;
     border: 1px solid rgb(255, 166, 0);
+    margin-left: 20px;
   }
 
   #btn:focus {
@@ -187,6 +185,13 @@ export default {
   #btn:hover {
     color: $color-special;
     background-color: #ffffff;
+  }
+}
+
+@media(max-width: 443px){
+  #users{
+    right: 0.7rem;
+    width: 50%;
   }
 }
 </style>

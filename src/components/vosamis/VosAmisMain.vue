@@ -52,13 +52,19 @@ export default {
     }
   },
   methods: {
-    getAmi() {
-      UtilisateurService.getAmi(localStorage.getItem('id_user_connecte')).then((response) => {
+    getAmi(amiDansListe) {
+      UtilisateurService.getAmi(localStorage.getItem('id'), localStorage.getItem('token')).then((response) => {
         this.amis = response.data;
+
+        for(const idAmi of this.amis){
+          amiDansListe = idAmi.id;
+        }
+
+        return this.$store.state.amiDansListe = amiDansListe;
       });
     },
     deleteAmi(id_ami) {
-      UtilisateurService.deleteAmi(localStorage.getItem('id_user_connecte'), id_ami).then(() => {
+      UtilisateurService.deleteAmi(localStorage.getItem('id'), id_ami, localStorage.getItem('token')).then(() => {
         this.amis = [];
         this.getAmi();
       })

@@ -5,6 +5,7 @@ export default createStore({
     token: null,
     id: null,
     username: null,
+    amiDansListe: null
   },
   getters: {
     getToken(state) {

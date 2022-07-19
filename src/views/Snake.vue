@@ -1,7 +1,7 @@
 <template>
   <div class="snake">
       <div class="snake_game">
-        <SnakePage :cellSize="cellSize" :boardSize="boardSize" :speed="speed" :isPlaying="isPlaying" :stop="stop" :addScores="addScores" :scores="scores"></SnakePage>
+        <SnakePage></SnakePage>
       </div>
   </div>
 </template>

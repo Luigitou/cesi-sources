@@ -89,7 +89,6 @@ export default {
     }
   }
 }
-
 @media (max-width: 443px) {
   .MidAccueil {
     display: flex;

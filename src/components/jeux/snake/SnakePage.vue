@@ -71,17 +71,21 @@ export default {
   display: flex;
   justify-content: center;
   width: 27.5%;
-  background-color: #f4f4f4;
+  background-color: #FF914D;
   border-radius: 4px;
   padding: 10px 5px;
   margin: 5px auto;
+
+  label{
+    color: #FFFFFF;
+  }
 }
 
 .column input {
   margin: 2px 0 0 10px;
   width: 40px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #296870;
   line-height: 20px;
   padding-left: 5px;
 }

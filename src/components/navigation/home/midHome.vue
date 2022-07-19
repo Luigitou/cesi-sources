@@ -69,7 +69,6 @@ export default {
 <template>
   <div class="MidHome">
      <div class="fistCarousel">
-        {{ loadUserFiles() }}
         <Carousel :value="files" :numVisible="3" :numScroll="3" :responsiveOptions="responsiveOptions" :circular="true" :autoplayInterval="3000">
             <template #header>
                 <div class="title">
