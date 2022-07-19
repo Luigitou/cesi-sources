@@ -54,9 +54,8 @@ export default{
   },
   methods: {
     getImages(){
-      VosFichiersService.getImages().then((response) => {
+      VosFichiersService.getImages(localStorage.getItem('token')).then((response) => {
         this.fichiers = response.data;     
-        console.log(this.fichiers);        
       });
     }
   },
