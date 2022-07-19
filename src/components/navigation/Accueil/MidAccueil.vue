@@ -2,35 +2,39 @@
   <div class="MidAccueil">
     <div class="wrapperLeft">
       <p>
-        <span>Ressources relationnelles</span> 
-          <br>
-          <br> 
-        L'application idéale qui vous permettrait de partager,
-        d'échanger différents images, vidéos ainsi améliorer votre mode de vie et relations.
+        <span>Ressources relationnelles</span>
+        <br />
+        <br />
+        L'application idéale qui vous permettrait de partager, d'échanger
+        différents images, vidéos ainsi améliorer votre mode de vie et
+        relations.
       </p>
       <div class="btnWrapper">
         <!--<Button class="Button" type="button"> <router-link to="/Inscription"  id="btnInscription">Nous Rejoindre</router-link></button>-->
-        <router-link to="/Inscription"  id="btnInscription">
-            <Button label="Nous rejoindre" class="p-button-rounded" />
+        <router-link to="/Inscription" id="btnInscription">
+          <Button label="Nous rejoindre" class="p-button-rounded" />
         </router-link>
       </div>
     </div>
     <div class="imgWrapper">
-      <img class="ImageHome" src="../../../assets/Accueil/HomePageGroup.png" alt="Image Home page">
+      <img
+        class="ImageHome"
+        src="../../../assets/Accueil/HomePageGroup.png"
+        alt="Image Home page"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Button from 'primevue/button';
+import Button from "primevue/button";
 export default {
-  name: 'MidAccueil',
-  components:{
-    Button
-  }
-}
+  name: "MidAccueil",
+  components: {
+    Button,
+  },
+};
 </script>
-
 
 <style lang="scss" scoped>
 @import "../../../scss/Variables.scss";
@@ -41,36 +45,36 @@ export default {
   justify-content: center;
   align-self: baseline;
   margin-top: 5%;
+
   .wrapperLeft {
     width: 40%;
     text-align: justify;
     margin-right: 3%;
-    span{
+    span {
       font-size: 30px;
       font-weight: bold;
     }
-    p{
+    p {
       font-size: 18px;
     }
-    
+
     .btnWrapper {
       margin-top: 7%;
       display: flex;
       flex-direction: row;
       width: 100%;
       justify-content: space-around;
-        #btnInscription{
-          text-decoration: none;
-          .p-button-rounded{
-            position: static;
-            background-color: $color-text;
-            border: 1px solid $color-text;
-          }
-          
+      #btnInscription {
+        text-decoration: none;
+        .p-button-rounded {
+          position: static;
+          background-color: $color-text;
+          border: 1px solid $color-text;
         }
-        img {
-          width: 50%;
-        }
+      }
+      img {
+        width: 50%;
+      }
     }
   }
   .imgWrapper {
@@ -81,23 +85,19 @@ export default {
       width: 100%;
     }
   }
-}
-@media only screen and (max-width: 600px) {
-  .MidAccueil {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-  }
-  .MidAccueil .wrapperLeft .btnWrapper {
-    display: flex;
-    flex-direction: column;
-  }
-  .imgWrapper{
-    margin-top: 20%;
-    margin-bottom: 20%;
+
+  @media only screen and (max-width: 700px) {
     width: 100%;
     display: flex;
+    flex-direction: column;
+
+    .wrapperLeft {
+      width: 80%;
+    }
+
+    .imgWrapper {
+      width: 60%;
+    }
   }
 }
 </style>
-

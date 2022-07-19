@@ -178,5 +178,32 @@ export default {
       border: 1px solid $color-text;
     }
   }
+
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-content: center;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .searchBar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0;
+    }
+
+    .Buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+    }
+  }
 }
 </style>
