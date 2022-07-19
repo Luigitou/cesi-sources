@@ -90,7 +90,6 @@ export default {
       width: 100%;
     }
   }
-}
 @media (max-width: 443px) {
   .MidAccueil {
     display: flex;

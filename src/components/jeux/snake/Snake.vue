@@ -166,7 +166,7 @@ export default {
 <style lang="scss" scoped>
 
 #snake-canvas {
-  border: 1px solid #ccc;
+  border: 1px solid #296870;
   margin: 10px 0;
 }
 </style>

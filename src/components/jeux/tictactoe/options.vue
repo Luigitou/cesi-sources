@@ -13,14 +13,6 @@ export default {
   },
   props: {
     level: String,
-    opt: {
-      type: String,
-      required: true,
-    },
-    items: {
-      type: Array,
-      required: true,
-    },
     value: {},
   },
 };

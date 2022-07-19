@@ -30,22 +30,6 @@
           @click="connect"
         />
 
-        <label for="psw"><strong>Mot de passe</strong></label>
-        <InputText
-          type="password"
-          placeholder="Entrez votre mot de passe"
-          name="psw"
-          required
-          v-model="pwd"
-        />
-
-        <Button
-          label="Se connecter"
-          type="submit"
-          class="p-button-info"
-          @click="connect"
-        />
-
         <label v-on:click="toggleModale">
           Vous n'avez pas de compte?
           <router-link to="/Inscription"
@@ -90,10 +74,15 @@ export default {
       });
     },
     setDataToStore(data) {
-      this.$store.token = data["access-token"];
-      const payload = this.getTokenPayload(this.$store.token);
-      this.$store.id = payload["id"];
-      this.$store.username = payload["sub"];
+      this.$store.state.token = data["access-token"];
+      const payload = this.getTokenPayload(this.$store.state.token);
+      this.$store.state.id = payload["id"];
+      this.$store.state.username = payload["sub"];
+
+      localStorage.setItem('token', data["access-token"]);
+      localStorage.setItem('id', payload["id"]);
+      localStorage.setItem('username', payload["sub"]);
+      
       this.$router.push("/Home");
     },
     getTokenPayload(token) {
