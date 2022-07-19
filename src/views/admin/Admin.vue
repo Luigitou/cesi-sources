@@ -69,4 +69,17 @@ export default {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
+@media (max-width: 443px) {
+  .admin{
+    flex-direction: column;
+    width: 80%;
+    margin-top: 10%;
+  }
+
+  .categories_users{
+    width: 100%;
+    padding-left: 20%;
+  }
+}
 </style>

@@ -78,4 +78,10 @@ export default{
     width: 15rem;
   }
 }
+
+@media (max-width: 443px) {
+ .statistique{
+    display: none;
+  }
+}
 </style>

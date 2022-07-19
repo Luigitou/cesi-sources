@@ -119,4 +119,11 @@ export default{
     margin-left: 20px;
   }
 }
+
+@media (max-width: 443px) {
+  .users{
+    display: flex;
+    align-items: center;
+  }
+}
 </style>
