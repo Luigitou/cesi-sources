@@ -57,6 +57,17 @@ export default {
       }
     },
   },
+  mounted() {
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
+    const username = localStorage.getItem("username");
+
+    if (token && id && username) {
+      this.$store.state.token = token;
+      this.$store.state.id = id;
+      this.$store.state.username = username;
+    }
+  },
 };
 </script>
 
@@ -100,11 +111,11 @@ export default {
     border: none;
   }
 
-  .p-splitter-gutter{
+  .p-splitter-gutter {
     display: none;
   }
 
-  .p-splitter-panel{
+  .p-splitter-panel {
     background-color: $color-head;
   }
 }
