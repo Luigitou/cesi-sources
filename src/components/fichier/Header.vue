@@ -2,7 +2,7 @@
   <div class="header">
     <div class="left">
       <div class="nom">{{ data.name }}</div>
-      <div class="proprietaire">utilisateur</div>
+      <div class="proprietaire">{{ this.$store.state.username }}</div>
     </div>
     <div class="right">
       <div class="icons">

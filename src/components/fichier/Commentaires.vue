@@ -64,7 +64,7 @@ export default {
 
       VosFichiersServices.createCommentaire(
         this.$route.params.id,
-        0,
+        this.$store.state.id,
         this.newCommentaire,
         this.$store.state.token
       )
