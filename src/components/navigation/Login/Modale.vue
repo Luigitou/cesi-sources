@@ -53,6 +53,8 @@ export default {
                     } else {
                         this.setDataToStore(response.data);
                     }
+
+                    localStorage.setItem('user_token', response.data["access-token"]);
                 });
         },
         setDataToStore(data) {

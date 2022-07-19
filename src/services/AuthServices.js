@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const AUTH_API_BASE_URL = 'http://localhost:8082/login';
+const API_PATH = process.env.VUE_APP_URL_API + '/login';
 
 class AuthServices{
 
   auth(data){
-    return axios.post(AUTH_API_BASE_URL, data);
+    return axios.post(API_PATH, data);
   }
 }
 
