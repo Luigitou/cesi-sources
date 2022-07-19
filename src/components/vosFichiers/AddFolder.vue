@@ -50,10 +50,11 @@ export default {
     sendNewDossier() {
       if (this.name !== "") {
         VosFichiersServices.createFolder(
-          0,
+          this.$store.state.id,
           this.idDossier,
           this.name,
-          this.selectedStatut.id
+          this.selectedStatut.id,
+          this.$store.state.token
         ).then((response) => {
           if (response.status === 201) {
             this.showSuccess();

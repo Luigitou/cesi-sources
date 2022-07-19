@@ -50,11 +50,12 @@ export default {
   methods: {
     fetchData() {
       this.$data.commentaires = [];
-      VosFichiersServices.getCommentaires(this.$route.params.id).then(
-        (response) => {
-          this.$data.commentaires = response.data;
-        }
-      );
+      VosFichiersServices.getCommentaires(
+        this.$route.params.id,
+        this.$store.state.token
+      ).then((response) => {
+        this.$data.commentaires = response.data;
+      });
     },
     createCommentaire() {
       if (this.newCommentaire === "" || this.newCommentaire === null) {
@@ -64,7 +65,8 @@ export default {
       VosFichiersServices.createCommentaire(
         this.$route.params.id,
         0,
-        this.newCommentaire
+        this.newCommentaire,
+        this.$store.state.token
       )
         .then((response) => {
           if (response.status !== 200) {

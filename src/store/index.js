@@ -6,4 +6,9 @@ export default createStore({
     id: null,
     username: null,
   },
+  getters: {
+    getToken(state) {
+      return state.token
+    }
+  }
 })

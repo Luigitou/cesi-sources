@@ -33,12 +33,13 @@ export default {
   },
   methods: {
     fetchData() {
-      VosFichiersServices.getHeaderFromFile(this.$route.params.id).then(
-        (response) => {
-          this.$data.data = response.data;
-          this.displayFile(response.data);
-        }
-      );
+      VosFichiersServices.getHeaderFromFile(
+        this.$route.params.id,
+        this.$store.state.token
+      ).then((response) => {
+        this.$data.data = response.data;
+        this.displayFile(response.data);
+      });
     },
     displayFile(data) {
       if (data.type.startsWith("image")) {

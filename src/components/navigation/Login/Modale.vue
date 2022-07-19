@@ -90,10 +90,10 @@ export default {
       });
     },
     setDataToStore(data) {
-      this.$store.token = data["access-token"];
-      const payload = this.getTokenPayload(this.$store.token);
-      this.$store.id = payload["id"];
-      this.$store.username = payload["sub"];
+      this.$store.state.token = data["access-token"];
+      const payload = this.getTokenPayload(this.$store.state.token);
+      this.$store.state.id = payload["id"];
+      this.$store.state.username = payload["sub"];
       this.$router.push("/Home");
     },
     getTokenPayload(token) {

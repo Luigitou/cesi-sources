@@ -59,10 +59,11 @@ export default {
     sendNewFichier() {
       if (this.file !== null) {
         VosFichiersServices.createFile(
-          0,
+          this.$store.state.id,
           this.idDossier,
           this.selectedStatut.id,
-          this.file
+          this.file,
+          this.$store.state.token
         ).then((response) => {
           if (response.status === 201) {
             this.showSuccess();

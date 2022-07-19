@@ -64,22 +64,20 @@ export default {
       flex-direction: row;
       width: 100%;
       justify-content: space-around;
-        #btnInscription{
-          text-decoration: none;
-          .p-button-rounded{
-            position: static;
-            background-color: $color-text;
-            border: 1px solid $color-text;
-          }
-
-        }
-        img {
-          width: 50%;
+      #btnInscription {
+        text-decoration: none;
+        .p-button-rounded {
+          position: static;
+          background-color: $color-text;
+          border: 1px solid $color-text;
         }
       }
       img {
         width: 50%;
       }
+    }
+    img {
+      width: 50%;
     }
   }
   .imgWrapper {
@@ -91,6 +89,7 @@ export default {
     }
   }
 }
+
 @media (max-width: 443px) {
   .MidAccueil {
     display: flex;
@@ -106,7 +105,7 @@ export default {
     width: 80%;
   }
 
-  .MidAccueil .imgWrapper{
+  .MidAccueil .imgWrapper {
     margin-top: 15%;
     width: 90%;
   }

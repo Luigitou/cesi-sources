@@ -48,7 +48,10 @@ export default {
       this.getBaseId();
     },
     getBaseId() {
-      VosFichiersServices.getBase(0).then((response) => {
+      VosFichiersServices.getBase(
+        this.$store.state.id,
+        this.$store.state.token
+      ).then((response) => {
         this.$data.idBase = response.data.id;
         this.$data.currentFolder = response.data;
         this.base = response.data;
@@ -71,22 +74,24 @@ export default {
     },
     fetchAllFiles() {
       this.files = [];
-      VosFichiersServices.getFilesFromFolder(0, this.currentFolder.id).then(
-        (response) => {
-          response.data.forEach((element) => {
-            this.files.push({
-              id: element.id,
-              name: element.nom,
-              dateCreation: element.dateCreation,
-              utilisateur: element.dossier.utilisateur,
-              taille: element.taille,
-              type: element.type,
-              etat: element.etat,
-              file: true,
-            });
+      VosFichiersServices.getFilesFromFolder(
+        this.$store.state.id,
+        this.currentFolder.id,
+        this.$store.state.token
+      ).then((response) => {
+        response.data.forEach((element) => {
+          this.files.push({
+            id: element.id,
+            name: element.nom,
+            dateCreation: element.dateCreation,
+            utilisateur: element.dossier.utilisateur,
+            taille: element.taille,
+            type: element.type,
+            etat: element.etat,
+            file: true,
           });
-        }
-      );
+        });
+      });
       this.reset = this.reset + 1;
     },
     openFile(payload) {

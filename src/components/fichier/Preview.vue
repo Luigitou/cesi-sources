@@ -19,14 +19,15 @@ export default {
   },
   methods: {
     fetchImage() {
-      VosFichiersServices.downloadFile(this.$route.params.id).then(
-        (response) => {
-          const blob = new Blob([response.data], {
-            type: response.headers["content-type"],
-          });
-          this.fileData = URL.createObjectURL(blob);
-        }
-      );
+      VosFichiersServices.downloadFile(
+        this.$route.params.id,
+        this.$store.state.token
+      ).then((response) => {
+        const blob = new Blob([response.data], {
+          type: response.headers["content-type"],
+        });
+        this.fileData = URL.createObjectURL(blob);
+      });
     },
   },
   mounted() {

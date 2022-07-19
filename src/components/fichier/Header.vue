@@ -38,18 +38,19 @@ export default {
   },
   methods: {
     downloadFile() {
-      VosFichiersServices.downloadFile(this.$route.params.id).then(
-        (response) => {
-          const blob = new Blob([response.data], {
-            type: response.headers["content-type"],
-          });
-          const link = document.createElement("a");
-          link.href = URL.createObjectURL(blob);
-          link.download = this.$props.data.name;
-          link.click();
-          URL.revokeObjectURL(link.href);
-        }
-      );
+      VosFichiersServices.downloadFile(
+        this.$route.params.id,
+        this.$store.state.token
+      ).then((response) => {
+        const blob = new Blob([response.data], {
+          type: response.headers["content-type"],
+        });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = this.$props.data.name;
+        link.click();
+        URL.revokeObjectURL(link.href);
+      });
     },
   },
 };
