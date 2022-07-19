@@ -90,4 +90,24 @@ const router = createRouter({
   routes,
 })
 
+import store from "../store/index";
+
+router.beforeEach(async (to, from, next) => {
+  if (to.path !== '/' && to.path !== '/Inscription') {
+    try {
+      if (
+        store.state.token === null
+      ) {
+        next('/');
+      } else {
+        next();
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  } else {
+    next();
+  }
+});
+
 export default router;
