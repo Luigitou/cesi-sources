@@ -2,14 +2,8 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
+    token: null,
     id: null,
-    nom: "",
-    prenom: "",
-    mail: "",
-    adresse: "",
-    btnAdd: null,
-    nombreImages: 0,
-    nombreDocuments: 0,
-    nombreVideos: 0
-  }
+    username: null,
+  },
 })
