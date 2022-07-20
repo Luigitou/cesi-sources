@@ -17,7 +17,7 @@
       </Column>
       <Column field="dateCreation" header="Date" :sortable="true"></Column>
       <Column
-        field="utilisateur.nom"
+        field="utilisateur"
         header="Propriétaire"
         :sortable="true"
       ></Column>

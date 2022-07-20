@@ -11,14 +11,14 @@
           class="p-button-text p-button-rounded"
           @click="downloadFile"
         ></Button>
-        <Button
+        <!--<Button
           icon="pi pi-heart"
           class="p-button-text p-button-rounded"
         ></Button>
         <Button
           icon="pi pi-share-alt"
           class="p-button-text p-button-rounded"
-        ></Button>
+        ></Button>-->
       </div>
     </div>
   </div>

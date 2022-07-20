@@ -84,7 +84,7 @@ export default {
             id: element.id,
             name: element.nom,
             dateCreation: element.dateCreation,
-            utilisateur: element.dossier.utilisateur,
+            utilisateur: this.$store.state.username,
             taille: element.taille,
             type: element.type,
             etat: element.etat,
