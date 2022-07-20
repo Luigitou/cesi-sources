@@ -29,12 +29,11 @@ export default {
           icon: "pi pi-users iconR",
           to: "vosamis",
         },
-        {
+        /*{
           label: "Vos Favoris",
           icon: "pi pi-heart iconR",
           to: "vosfav",
-        },
-        {
+        }*/ {
           label: "Contact",
           icon: "pi pi-send iconR",
           to: "contact",
@@ -46,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/Global.scss';
+@import "../../../scss/Global.scss";
 .menu {
   .item {
     padding: 1.8rem 0.5rem;
@@ -66,7 +65,7 @@ export default {
         color: $color-android;
       }
 
-      .iconR:hover{
+      .iconR:hover {
         color: $color-special;
       }
     }

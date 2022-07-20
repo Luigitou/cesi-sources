@@ -42,7 +42,6 @@
         aria-controls="overlay_menu"
       />
       <Menu id="overlay_menu" ref="menu" :model="items" :popup="true" />
-      <Button icon="pi pi-bell" class="p-button-raised p-button-rounded" />
       <Button
         icon="pi pi-sign-out"
         class="p-button-raised p-button-rounded"
@@ -74,14 +73,14 @@ export default {
         {
           label: "Options",
           items: [
-            {
+            /*{
               label: "Modifier profile",
               icon: "pi pi-user-edit",
               command: () => {
                 //this.$toast.add({severity:'success', summary:'Updated', detail:'Data Updated', life: 3000});
                 this.$router.push("/profil");
               },
-            },
+            },*/
             {
               label: "Passer Admin",
               icon: "pi pi-user",
@@ -91,11 +90,11 @@ export default {
               },
             },
             {
-              label: 'Passer Super-admin',
-              icon: 'pi pi-user-plus',
+              label: "Passer Super-admin",
+              icon: "pi pi-user-plus",
               command: () => {
                 this.$router.push("/superadmin");
-              }
+              },
             },
             {
               label: "Supprimer compte",
