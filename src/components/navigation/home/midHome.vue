@@ -10,6 +10,7 @@
     data() {
       return {
         showNoFile: false,
+        baseId: null,
         files: [],
         responsiveOptions: [
           {
@@ -32,7 +33,7 @@
     },
 
     created() {
-      this.loadUserFiles();
+      this.getBaseId();
     },
 
     methods: {
@@ -51,10 +52,20 @@
         });
       },
 
+      getBaseId() {
+        FichiersServices.getBase(this.$store.state.id, this.$store.state.token)
+          .then((response) => {
+            this.$data.baseId = response.data.id;
+          })
+          .then(() => {
+            this.loadUserFiles();
+          });
+      },
+
       loadUserFiles() {
         FichiersServices.getFilesFromFolder(
           this.$store.state.id,
-          2,
+          this.$data.baseId,
           this.$store.state.token
         ).then((response) => {
           this.parseData(response.data);
