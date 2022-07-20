@@ -46,7 +46,7 @@ export default {
         { id: 0, name: "Public" },
         { id: 1, name: "Privé" },
       ],
-      selectedStatut: { id: 1, name: "Public" },
+      selectedStatut: { id: 0, name: "Public" },
       errorFile: false,
       file: null,
     };
