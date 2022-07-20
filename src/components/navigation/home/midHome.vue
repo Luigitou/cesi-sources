@@ -1,83 +1,88 @@
 <script>
-  import Carousel from "primevue/carousel";
-  import FichiersServices from "../../../services/VosFichiersServices";
+import Carousel from "primevue/carousel";
+import FichiersServices from "../../../services/VosFichiersServices";
 
-  export default {
-    name: "MidHome",
-    components: {
-      Carousel,
-    },
-    data() {
-      return {
-        showNoFile: false,
-        baseId: null,
-        files: [],
-        responsiveOptions: [
-          {
-            breakpoint: "1024px",
-            numVisible: 3,
-            numScroll: 3,
-          },
-          {
-            breakpoint: "600px",
-            numVisible: 2,
-            numScroll: 2,
-          },
-          {
-            breakpoint: "480px",
-            numVisible: 1,
-            numScroll: 1,
-          },
-        ],
-      };
-    },
+export default {
+  name: "MidHome",
+  components: {
+    Carousel,
+  },
+  data() {
+    return {
+      showNoFile: false,
+      baseId: null,
+      files: [],
+      responsiveOptions: [
+        {
+          breakpoint: "1024px",
+          numVisible: 3,
+          numScroll: 3,
+        },
+        {
+          breakpoint: "600px",
+          numVisible: 2,
+          numScroll: 2,
+        },
+        {
+          breakpoint: "480px",
+          numVisible: 1,
+          numScroll: 1,
+        },
+      ],
+    };
+  },
 
-    created() {
-      this.getBaseId();
-    },
+  created() {
+    this.getBaseId();
+  },
 
-    methods: {
-      parseData(data) {
-        this.$data.files = [];
-        data.forEach((element) => {
-          //console.log(element.nom)  //Test pour verifier le centenu de element
-          this.$data.files.push({
-            nom: element.nom,
-            date: element.dateCreation,
-            membres: element.user,
-            etat: element.etat,
-            taille: element.taille + " octets",
-            type: element.type,
-          });
+  methods: {
+    parseData(data) {
+      this.$data.files = [];
+      data.forEach((element) => {
+        //console.log(element.nom)  //Test pour verifier le centenu de element
+        this.$data.files.push({
+          nom: element.nom,
+          date: element.dateCreation,
+          membres: element.user,
+          etat: element.etat,
+          taille: element.taille + " octets",
+          type: element.type,
+          id: element.id,
         });
-      },
-
-      getBaseId() {
-        FichiersServices.getBase(this.$store.state.id, this.$store.state.token)
-          .then((response) => {
-            this.$data.baseId = response.data.id;
-          })
-          .then(() => {
-            this.loadUserFiles();
-          });
-      },
-
-      loadUserFiles() {
-        FichiersServices.getFilesFromFolder(
-          this.$store.state.id,
-          this.$data.baseId,
-          this.$store.state.token
-        ).then((response) => {
-          this.parseData(response.data);
-          console.log(this.files); //Test pour verifier le centenu de data
-
-          if (response.data.length == 0) {
-            this.showNoFile == true;
-          }
-        });
-      },
+      });
     },
-  };
+
+    getBaseId() {
+      FichiersServices.getBase(this.$store.state.id, this.$store.state.token)
+        .then((response) => {
+          this.$data.baseId = response.data.id;
+        })
+        .then(() => {
+          this.loadUserFiles();
+        });
+    },
+
+    openFile(id) {
+      this.$router.push(`/fichier/${id}`);
+    },
+
+    loadUserFiles() {
+      FichiersServices.getFilesFromFolder(
+        this.$store.state.id,
+        this.$data.baseId,
+        this.$store.state.token
+      ).then((response) => {
+        this.parseData(response.data);
+        console.log(this.files); //Test pour verifier le centenu de data
+
+        if (response.data.length == 0) {
+          this.showNoFile == true;
+        }
+      });
+    },
+  },
+};
 </script>
 
 <template>
@@ -101,7 +106,7 @@
           >
         </template>
         <template #item="slotProps">
-          <div class="user-items">
+          <div class="user-items" @click="() => openFile(slotProps.data.id)">
             <div class="mb-3">
               <!-- Changement d'icone dynamique selon le type d'objet -->
               <span v-if="slotProps.data.type == 'png'"
@@ -125,46 +130,46 @@
 </template>
 
 <style lang="scss" scoped>
-  @import "../../../scss/Global.scss";
+@import "../../../scss/Global.scss";
 
-  .user-items {
-    border: 1px solid var(--surface-border);
-    border-radius: 3px;
-    margin: 0.3rem;
-    text-align: center;
-    padding: 2rem 0;
+.user-items {
+  border: 1px solid var(--surface-border);
+  border-radius: 3px;
+  margin: 0.3rem;
+  text-align: center;
+  padding: 2rem 0;
 
-    .ObjectsInformations {
-      color: $color-android;
-    }
-  }
-
-  .title {
+  .ObjectsInformations {
     color: $color-android;
-    display: flex;
-    justify-content: center;
-    padding: 1%;
   }
+}
 
-  .pi {
-    color: $color-special;
-  }
+.title {
+  color: $color-android;
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+}
 
-  #create_file {
-    background-color: $color-special;
-    padding: 10px;
-    border-radius: 10px;
-    color: #ffffff;
-    cursor: pointer;
-  }
+.pi {
+  color: $color-special;
+}
 
-  #no_file {
-    display: none;
-  }
+#create_file {
+  background-color: $color-special;
+  padding: 10px;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+}
 
-  #create_file:hover {
-    background-color: transparent;
-    color: $color-special;
-    border: 1px solid $color-special;
-  }
+#no_file {
+  display: none;
+}
+
+#create_file:hover {
+  background-color: transparent;
+  color: $color-special;
+  border: 1px solid $color-special;
+}
 </style>

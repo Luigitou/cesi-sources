@@ -3,7 +3,7 @@
     <div class="greetings">
       <p>
         <span class="default-text">Bonjour, </span
-        ><span class="dynamic-name">Louis</span>
+        ><span class="dynamic-name">{{ this.$store.state.username }}</span>
       </p>
     </div>
     <div class="searchBar">
@@ -94,18 +94,6 @@ export default {
               icon: "pi pi-user-plus",
               command: () => {
                 this.$router.push("/superadmin");
-              },
-            },
-            {
-              label: "Supprimer compte",
-              icon: "pi pi-times",
-              command: () => {
-                this.$toast.add({
-                  severity: "warn",
-                  summary: "Delete",
-                  detail: "Data Deleted",
-                  life: 3000,
-                });
               },
             },
             {
