@@ -164,7 +164,6 @@ export default {
           id: element.id,
         });
       });
-      this.$data.searchValue = null;
     },
 
     searchFiles() {
