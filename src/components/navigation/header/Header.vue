@@ -17,7 +17,7 @@
         field="searchValue"
       >
         <template #item="{ item }">
-          <div>
+          <div @click="() => openFile(item.id)">
             <div>
               <span v-if="item.type == 'png'"
                 ><i class="pi pi-images" style="font-size: 2rem"></i
@@ -135,6 +135,10 @@
         this.$refs.menu.toggle(event);
       },
 
+      openFile(id) {
+        this.$router.push(`/fichier/${id}`);
+      },
+
       parseData(data) {
         this.$data.files = [];
         data.forEach((element) => {
@@ -146,6 +150,7 @@
             etat: element.etat,
             taille: element.taille + " octets",
             type: element.type,
+            id: element.id,
           });
         });
       },
