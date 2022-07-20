@@ -74,7 +74,6 @@ export default {
         this.$store.state.token
       ).then((response) => {
         this.parseData(response.data);
-        console.log(this.files); //Test pour verifier le centenu de data
 
         if (response.data.length == 0) {
           this.showNoFile == true;
@@ -171,5 +170,11 @@ export default {
   background-color: transparent;
   color: $color-special;
   border: 1px solid $color-special;
+}
+
+@media (max-width: 443px) {
+  .MidHome {
+    margin-top: 40px;
+  }
 }
 </style>

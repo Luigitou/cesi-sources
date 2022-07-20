@@ -2,7 +2,7 @@
   <nav class="menu">
     <div class="item" v-for="link in links" :key="link">
       <a class="textMenu" :href="'#/' + link.to">
-        <i :class="link.icon"></i>{{ link.label }}
+        <i :class="link.icon"></i><a id="text-Icons">{{ link.label }}</a>
       </a>
     </div>
   </nav>
@@ -69,6 +69,18 @@ export default {
         color: $color-special;
       }
     }
+  }
+}
+@media (max-width: 443px) {
+  .menu .item {
+    margin-top: 80px;
+    margin-left: 10px;
+  }
+  .menu .item .textMenu .iconR {
+    font-size: 150%;
+  }
+  #text-Icons {
+    display: none;
   }
 }
 </style>

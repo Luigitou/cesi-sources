@@ -3,7 +3,7 @@
     <div class="greetings">
       <p>
         <span class="default-text">Bonjour, </span
-        ><span class="dynamic-name">{{ this.$store.state.username }}</span>
+        ><span class="dynamic-name">Louis</span>
       </p>
     </div>
     <div class="searchBar">
@@ -108,6 +108,18 @@ export default {
                 });
               },
             },
+            {
+              label: "Supprimer compte",
+              icon: "pi pi-times",
+              command: () => {
+                this.$toast.add({
+                  severity: "warn",
+                  summary: "Delete",
+                  detail: "Data Deleted",
+                  life: 3000,
+                });
+              },
+            },
           ],
         },
       ],
@@ -152,6 +164,7 @@ export default {
           id: element.id,
         });
       });
+      this.$data.searchValue = null;
     },
 
     searchFiles() {
@@ -166,9 +179,6 @@ export default {
 
     toAccueil() {
       window.location.href = "/";
-    },
-    getUserName() {
-      return localStorage.getItem("nom");
     },
   },
 };
