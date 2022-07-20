@@ -5,11 +5,11 @@ export default createStore({
     token: null,
     id: null,
     username: null,
-    amiDansListe: null
+    amiDansListe: null,
   },
   getters: {
     getToken(state) {
-      return state.token
-    }
-  }
-})
+      return state.token;
+    },
+  },
+});
