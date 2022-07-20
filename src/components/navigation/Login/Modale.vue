@@ -26,7 +26,8 @@
         <Button
           label="Se connecter"
           type="submit"
-          class="p-button-info"
+          id="btn"
+          class="p-button"
           @click="connect"
         />
 
@@ -161,7 +162,8 @@ input[type="password"] {
 }
 
 /* Set a style for all buttons */
-#button {
+
+.p-button{
   padding: 1%;
   margin: 1%;
   cursor: pointer;
@@ -171,7 +173,11 @@ input[type="password"] {
   border: 1px solid $color-text;
 }
 
-#button:hover {
+#btn{
+  background-color: $color-text;
+}
+
+.p-button:hover {
   opacity: 0.8;
 }
 

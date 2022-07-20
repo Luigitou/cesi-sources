@@ -54,7 +54,7 @@ export default{
   },
   methods: {
     getDocuments(){
-      VosFichiersService.getDocuments().then((response) => {
+      VosFichiersService.getDocuments(localStorage.getItem('token')).then((response) => {
         this.documents = response.data;             
       });
     },

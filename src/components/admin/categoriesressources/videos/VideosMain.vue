@@ -54,7 +54,7 @@ export default{
   },
  methods: {
     getVideos(){
-      VosFichiersService.getVideos().then((response) => {
+      VosFichiersService.getVideos(localStorage.getItem('token')).then((response) => {
         this.videos = response.data;
       });
     },

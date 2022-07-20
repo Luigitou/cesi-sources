@@ -71,7 +71,7 @@ export default{
 
   .image, .document, .videos{
     transition: 0.3s;
-    width: 25%;
+    width: 30%;
     height: 6rem;
     border-radius: 10px;
     padding: 10px;
