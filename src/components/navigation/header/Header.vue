@@ -17,7 +17,7 @@
         field="searchValue"
       >
         <template #item="{ item }">
-          <div>
+          <div @click="() => openFile(item.id)">
             <div>
               <span v-if="item.type == 'png'"
                 ><i class="pi pi-images" style="font-size: 2rem"></i
@@ -108,6 +108,18 @@ export default {
                 });
               },
             },
+            {
+              label: "Supprimer compte",
+              icon: "pi pi-times",
+              command: () => {
+                this.$toast.add({
+                  severity: "warn",
+                  summary: "Delete",
+                  detail: "Data Deleted",
+                  life: 3000,
+                });
+              },
+            },
           ],
         },
       ],
@@ -134,6 +146,10 @@ export default {
       this.$refs.menu.toggle(event);
     },
 
+    openFile(id) {
+      this.$router.push(`/fichier/${id}`);
+    },
+
     parseData(data) {
       this.$data.files = [];
       data.forEach((element) => {
@@ -145,12 +161,16 @@ export default {
           etat: element.etat,
           taille: element.taille + " octets",
           type: element.type,
+          id: element.id,
         });
       });
     },
 
     searchFiles() {
-      FichierService.searchFile(this.$data.searchValue).then((response) => {
+      FichierService.searchFile(
+        this.$data.searchValue,
+        this.$store.state.token
+      ).then((response) => {
         this.parseData(response.data);
         //console.log(response.data) //Test pour verifier le centenu de data
       });
